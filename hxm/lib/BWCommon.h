@@ -1,13 +1,13 @@
 //
-//  common.h
-//  easyshanghai
+//  BWCommon.h
+//  pinpintong
 //
-//  Created by Bruce He on 15-3-16.
+//  Created by Bruce He on 15-4-4.
 //  Copyright (c) 2015年 shanghai baiwei network technology. All rights reserved.
 //
 
-#ifndef easyshanghai_common_h
-#define easyshanghai_common_h
+#ifndef pinpintong_BWCommon_h
+#define pinpintong_BWCommon_h
 
 
 #endif
@@ -18,8 +18,17 @@
 @interface BWCommon : NSObject
 
 +(float) getSystemVersion;
-+(void) fixTabBarItem:(UITabBarItem*) tabBarItem;
 +(NSString *) getBaseInfo:(NSString *) key;
-+(NSString *) getAPIUrl:(NSString *) action;
+
++(id) getUserInfo:(NSString *) key;
+
++(BOOL) isLoggedIn;
++(void) logout;
+
++ (CGSize)sizeWithString:(NSString *)str font:(UIFont *)font maxSize:(CGSize)maxSize;
+
++(void) setRegionData;
+
++(id) getDataInfo:(NSString *) key;
 
 @end
