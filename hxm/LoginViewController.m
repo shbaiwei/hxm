@@ -35,29 +35,38 @@
     
     RegisterViewController * registerView = [[RegisterViewController alloc] init];
     
-    [self presentViewController:registerView animated:YES completion:^(void){
+    [self.navigationController pushViewController:registerView animated:YES];
         
-        NSString *username = [BWCommon getUserInfo:@"username"];
-        if(username != nil){
-            //注册成功
-        }
-        NSLog(@"register view closed");
-    }];
-    
     NSLog(@"register touched");
 }
 
 - (void)pageLayout {
     
-    self.view.backgroundColor = [UIColor colorWithRed:240/255.0f green:240/255.0f blue:250/255.0f alpha:1];
+    UIColor *bgColor = [BWCommon getBackgroundColor];
     
-    //logo
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    CGSize size = rect.size;
+    
+    
+    UIBarButtonItem *backItem=[[UIBarButtonItem alloc]init];
+    backItem.title=@"";
+    backItem.image=[UIImage imageNamed:@""];
+    self.navigationItem.backBarButtonItem=backItem;
+    
+    
+    UIScrollView *sclView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    sclView.backgroundColor = bgColor;
+    sclView.scrollEnabled = YES;
+    sclView.contentSize = CGSizeMake(size.width, size.height);
+    [self.view addSubview:sclView];
+
+    
+    
     UIImage *logo = [UIImage imageNamed:@"logo.png"];
     UIImageView *ivLogo = [[UIImageView alloc] initWithImage:logo];
-    ivLogo.frame = CGRectMake(50, 100, 220, 100);
-    ivLogo.contentMode = UIViewContentModeCenter;
     
-    [self.view addSubview:ivLogo];
+    ivLogo.translatesAutoresizingMaskIntoConstraints = NO;
+    [sclView addSubview:ivLogo];
     
 //注册连接
     
@@ -65,8 +74,21 @@
     btnRegister.tintColor = [UIColor grayColor];
     [btnRegister setTitle:@"注册账号" forState:UIControlStateNormal];
     [btnRegister addTarget:self action:@selector(registerTouched:)forControlEvents:UIControlEventTouchUpInside];
+    [sclView addSubview:btnRegister];
     
-    [self.view addSubview:btnRegister];
+    
+    NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[ivLogo(<=220)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(ivLogo)];
+    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-80-[ivLogo(<=100)]-40-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(ivLogo)];
+    
+    [sclView addConstraints:constraints1];
+    [sclView addConstraints:constraints2];
+    
+    //水平居中
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:ivLogo attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    
+    
+    
+    
 
     
 }

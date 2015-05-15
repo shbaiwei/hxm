@@ -31,4 +31,6 @@
 
 +(id) getDataInfo:(NSString *) key;
 
++(UIColor *) getBackgroundColor;
+
 @end
