@@ -9,6 +9,18 @@
 /* Begin PBXBuildFile section */
 		2F28CE4029F20C31DC29FC0D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B4D25A284901F0055FD25C7 /* libPods.a */; };
 		3214A87F1B04F920007DE10F /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3214A87E1B04F920007DE10F /* RegisterViewController.m */; };
+		321A238E1B09CD0200A9D294 /* login-password.png in Resources */ = {isa = PBXBuildFile; fileRef = 321A23831B09CD0200A9D294 /* login-password.png */; };
+		321A238F1B09CD0200A9D294 /* login-password@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 321A23841B09CD0200A9D294 /* login-password@2x.png */; };
+		321A23901B09CD0200A9D294 /* login-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 321A23851B09CD0200A9D294 /* login-user.png */; };
+		321A23911B09CD0200A9D294 /* login-user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 321A23861B09CD0200A9D294 /* login-user@2x.png */; };
+		321A23921B09CD0200A9D294 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 321A23871B09CD0200A9D294 /* logo.png */; };
+		321A23931B09CD0200A9D294 /* register-cellphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 321A23881B09CD0200A9D294 /* register-cellphone.png */; };
+		321A23941B09CD0200A9D294 /* register-check-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 321A23891B09CD0200A9D294 /* register-check-checked.png */; };
+		321A23951B09CD0200A9D294 /* register-check-checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 321A238A1B09CD0200A9D294 /* register-check-checked@2x.png */; };
+		321A23961B09CD0200A9D294 /* register-check-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 321A238B1B09CD0200A9D294 /* register-check-default.png */; };
+		321A23971B09CD0200A9D294 /* register-email.png in Resources */ = {isa = PBXBuildFile; fileRef = 321A238C1B09CD0200A9D294 /* register-email.png */; };
+		321A23981B09CD0200A9D294 /* register-password.png in Resources */ = {isa = PBXBuildFile; fileRef = 321A238D1B09CD0200A9D294 /* register-password.png */; };
+		321A239A1B09CEFF00A9D294 /* baseinfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 321A23991B09CEFF00A9D294 /* baseinfo.plist */; };
 		323EE90D1AF8F57D00C55306 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 323EE90C1AF8F57D00C55306 /* main.m */; };
 		323EE9101AF8F57D00C55306 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 323EE90F1AF8F57D00C55306 /* AppDelegate.m */; };
 		323EE9131AF8F57D00C55306 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323EE9121AF8F57D00C55306 /* FirstViewController.m */; };
@@ -18,14 +30,6 @@
 		323EE91E1AF8F57D00C55306 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323EE91C1AF8F57D00C55306 /* LaunchScreen.xib */; };
 		323EE92A1AF8F57D00C55306 /* hxmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 323EE9291AF8F57D00C55306 /* hxmTests.m */; };
 		325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325C87E81B04D100001DF5D8 /* LoginViewController.m */; };
-		325C87F31B04D27A001DF5D8 /* login-password.png in Resources */ = {isa = PBXBuildFile; fileRef = 325C87EB1B04D27A001DF5D8 /* login-password.png */; };
-		325C87F41B04D27A001DF5D8 /* login-password@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 325C87EC1B04D27A001DF5D8 /* login-password@2x.png */; };
-		325C87F51B04D27A001DF5D8 /* login-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 325C87ED1B04D27A001DF5D8 /* login-user.png */; };
-		325C87F61B04D27A001DF5D8 /* login-user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 325C87EE1B04D27A001DF5D8 /* login-user@2x.png */; };
-		325C87F71B04D27A001DF5D8 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 325C87EF1B04D27A001DF5D8 /* logo.png */; };
-		325C87F81B04D27A001DF5D8 /* register-check-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 325C87F01B04D27A001DF5D8 /* register-check-checked.png */; };
-		325C87F91B04D27A001DF5D8 /* register-check-checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 325C87F11B04D27A001DF5D8 /* register-check-checked@2x.png */; };
-		325C87FA1B04D27A001DF5D8 /* register-check-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 325C87F21B04D27A001DF5D8 /* register-check-default.png */; };
 		32D3D9891B03B2AE00B50967 /* AFNetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D3D9851B03B2AE00B50967 /* AFNetworkTool.m */; };
 		32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D3D9871B03B2AE00B50967 /* BWCommon.m */; };
 /* End PBXBuildFile section */
@@ -45,6 +49,18 @@
 		1640FFD999E11B7C9BEE9121 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3214A87D1B04F920007DE10F /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		3214A87E1B04F920007DE10F /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		321A23831B09CD0200A9D294 /* login-password.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-password.png"; sourceTree = "<group>"; };
+		321A23841B09CD0200A9D294 /* login-password@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-password@2x.png"; sourceTree = "<group>"; };
+		321A23851B09CD0200A9D294 /* login-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-user.png"; sourceTree = "<group>"; };
+		321A23861B09CD0200A9D294 /* login-user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-user@2x.png"; sourceTree = "<group>"; };
+		321A23871B09CD0200A9D294 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		321A23881B09CD0200A9D294 /* register-cellphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-cellphone.png"; sourceTree = "<group>"; };
+		321A23891B09CD0200A9D294 /* register-check-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-check-checked.png"; sourceTree = "<group>"; };
+		321A238A1B09CD0200A9D294 /* register-check-checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-check-checked@2x.png"; sourceTree = "<group>"; };
+		321A238B1B09CD0200A9D294 /* register-check-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-check-default.png"; sourceTree = "<group>"; };
+		321A238C1B09CD0200A9D294 /* register-email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-email.png"; sourceTree = "<group>"; };
+		321A238D1B09CD0200A9D294 /* register-password.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-password.png"; sourceTree = "<group>"; };
+		321A23991B09CEFF00A9D294 /* baseinfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = baseinfo.plist; sourceTree = "<group>"; };
 		323EE9071AF8F57D00C55306 /* hxm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hxm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		323EE90B1AF8F57D00C55306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		323EE90C1AF8F57D00C55306 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -62,14 +78,6 @@
 		323EE9291AF8F57D00C55306 /* hxmTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hxmTests.m; sourceTree = "<group>"; };
 		325C87E71B04D100001DF5D8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		325C87E81B04D100001DF5D8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		325C87EB1B04D27A001DF5D8 /* login-password.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-password.png"; sourceTree = "<group>"; };
-		325C87EC1B04D27A001DF5D8 /* login-password@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-password@2x.png"; sourceTree = "<group>"; };
-		325C87ED1B04D27A001DF5D8 /* login-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-user.png"; sourceTree = "<group>"; };
-		325C87EE1B04D27A001DF5D8 /* login-user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-user@2x.png"; sourceTree = "<group>"; };
-		325C87EF1B04D27A001DF5D8 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
-		325C87F01B04D27A001DF5D8 /* register-check-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-check-checked.png"; sourceTree = "<group>"; };
-		325C87F11B04D27A001DF5D8 /* register-check-checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-check-checked@2x.png"; sourceTree = "<group>"; };
-		325C87F21B04D27A001DF5D8 /* register-check-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-check-default.png"; sourceTree = "<group>"; };
 		32D3D9841B03B2AE00B50967 /* AFNetworkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkTool.h; sourceTree = "<group>"; };
 		32D3D9851B03B2AE00B50967 /* AFNetworkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkTool.m; sourceTree = "<group>"; };
 		32D3D9861B03B2AE00B50967 /* BWCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWCommon.h; sourceTree = "<group>"; };
@@ -113,6 +121,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		321A23821B09CD0200A9D294 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				321A23831B09CD0200A9D294 /* login-password.png */,
+				321A23841B09CD0200A9D294 /* login-password@2x.png */,
+				321A23851B09CD0200A9D294 /* login-user.png */,
+				321A23861B09CD0200A9D294 /* login-user@2x.png */,
+				321A23871B09CD0200A9D294 /* logo.png */,
+				321A23881B09CD0200A9D294 /* register-cellphone.png */,
+				321A23891B09CD0200A9D294 /* register-check-checked.png */,
+				321A238A1B09CD0200A9D294 /* register-check-checked@2x.png */,
+				321A238B1B09CD0200A9D294 /* register-check-default.png */,
+				321A238C1B09CD0200A9D294 /* register-email.png */,
+				321A238D1B09CD0200A9D294 /* register-password.png */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
 		323EE8FE1AF8F57D00C55306 = {
 			isa = PBXGroup;
 			children = (
@@ -136,7 +162,7 @@
 		323EE9091AF8F57D00C55306 /* hxm */ = {
 			isa = PBXGroup;
 			children = (
-				325C87EA1B04D27A001DF5D8 /* assets */,
+				321A23821B09CD0200A9D294 /* assets */,
 				325C87E61B04D07A001DF5D8 /* Controller */,
 				32D3D9881B03B2AE00B50967 /* lib */,
 				323EE90E1AF8F57D00C55306 /* AppDelegate.h */,
@@ -154,6 +180,7 @@
 			children = (
 				323EE90B1AF8F57D00C55306 /* Info.plist */,
 				323EE90C1AF8F57D00C55306 /* main.m */,
+				321A23991B09CEFF00A9D294 /* baseinfo.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -188,21 +215,6 @@
 				323EE9151AF8F57D00C55306 /* SecondViewController.m */,
 			);
 			name = Controller;
-			sourceTree = "<group>";
-		};
-		325C87EA1B04D27A001DF5D8 /* assets */ = {
-			isa = PBXGroup;
-			children = (
-				325C87EB1B04D27A001DF5D8 /* login-password.png */,
-				325C87EC1B04D27A001DF5D8 /* login-password@2x.png */,
-				325C87ED1B04D27A001DF5D8 /* login-user.png */,
-				325C87EE1B04D27A001DF5D8 /* login-user@2x.png */,
-				325C87EF1B04D27A001DF5D8 /* logo.png */,
-				325C87F01B04D27A001DF5D8 /* register-check-checked.png */,
-				325C87F11B04D27A001DF5D8 /* register-check-checked@2x.png */,
-				325C87F21B04D27A001DF5D8 /* register-check-default.png */,
-			);
-			path = assets;
 			sourceTree = "<group>";
 		};
 		32D3D9881B03B2AE00B50967 /* lib */ = {
@@ -299,15 +311,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				323EE9191AF8F57D00C55306 /* Main.storyboard in Resources */,
+				321A23981B09CD0200A9D294 /* register-password.png in Resources */,
 				323EE91E1AF8F57D00C55306 /* LaunchScreen.xib in Resources */,
-				325C87F91B04D27A001DF5D8 /* register-check-checked@2x.png in Resources */,
-				325C87F31B04D27A001DF5D8 /* login-password.png in Resources */,
-				325C87F41B04D27A001DF5D8 /* login-password@2x.png in Resources */,
-				325C87F81B04D27A001DF5D8 /* register-check-checked.png in Resources */,
-				325C87F71B04D27A001DF5D8 /* logo.png in Resources */,
-				325C87FA1B04D27A001DF5D8 /* register-check-default.png in Resources */,
-				325C87F51B04D27A001DF5D8 /* login-user.png in Resources */,
-				325C87F61B04D27A001DF5D8 /* login-user@2x.png in Resources */,
+				321A238E1B09CD0200A9D294 /* login-password.png in Resources */,
+				321A23961B09CD0200A9D294 /* register-check-default.png in Resources */,
+				321A238F1B09CD0200A9D294 /* login-password@2x.png in Resources */,
+				321A239A1B09CEFF00A9D294 /* baseinfo.plist in Resources */,
+				321A23921B09CD0200A9D294 /* logo.png in Resources */,
+				321A23931B09CD0200A9D294 /* register-cellphone.png in Resources */,
+				321A23971B09CD0200A9D294 /* register-email.png in Resources */,
+				321A23901B09CD0200A9D294 /* login-user.png in Resources */,
+				321A23951B09CD0200A9D294 /* register-check-checked@2x.png in Resources */,
+				321A23941B09CD0200A9D294 /* register-check-checked.png in Resources */,
+				321A23911B09CD0200A9D294 /* login-user@2x.png in Resources */,
 				323EE91B1AF8F57D00C55306 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
