@@ -14,6 +14,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <CommonCrypto/CommonDigest.h>
 
 @interface BWCommon : NSObject
 
@@ -32,5 +33,7 @@
 +(id) getDataInfo:(NSString *) key;
 
 +(UIColor *) getBackgroundColor;
+
++(NSString *) md5: (NSString *) str;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "RegisterViewController.h"
+#import "ApplyViewController.h"
 #import "AFNetworkTool.h"
 #import "BWCommon.h"
 
@@ -67,25 +68,31 @@ UITextField *email;
     btnRegister.frame = CGRectMake(0, 0, 270, 50);
     [btnRegister.layer setMasksToBounds:YES];
     [btnRegister.layer setCornerRadius:5.0];
+    btnRegister.translatesAutoresizingMaskIntoConstraints = NO;
     btnRegister.backgroundColor = [UIColor colorWithRed:119/255.0 green:179/255.0 blue:215/255.0 alpha:1];
     btnRegister.tintColor = [UIColor whiteColor];
+    btnRegister.titleLabel.font = [UIFont systemFontOfSize:22];
     
     [btnRegister setTitle:@"提交注册" forState:UIControlStateNormal];
     
     //点击回调
-    [btnRegister addTarget:self action:@selector(registerTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [btnRegister addTarget:self action:@selector(applyTouched:) forControlEvents:UIControlEventTouchUpInside];
     
     [sclView addSubview:btnRegister];
     
     
     
+    
+    
     NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[username(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(username)];
-    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[username(==50)]-10-[password(==50)]-10-[repassword(==50)]-10-[mobile(==50)]-10-[email(==50)]-40-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(username,password,repassword,mobile,email)];
+    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[username(==50)]-10-[password(==50)]-10-[repassword(==50)]-10-[mobile(==50)]-10-[email(==50)]-20-[btnRegister(==50)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(username,password,repassword,mobile,email,btnRegister)];
     
     NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[password(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(password)];
     NSArray *constraints4= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[repassword(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(repassword)];
     NSArray *constraints5= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[mobile(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(mobile)];
     NSArray *constraints6= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[email(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(email)];
+    
+    NSArray *constraints7= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[btnRegister(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnRegister)];
     
     [sclView addConstraints:constraints1];
     [sclView addConstraints:constraints2];
@@ -93,11 +100,12 @@ UITextField *email;
     [sclView addConstraints:constraints4];
     [sclView addConstraints:constraints5];
     [sclView addConstraints:constraints6];
+    [sclView addConstraints:constraints7];
     
     
     //水平居中
     
-    [self setTextFieldCenter:[[NSArray alloc] initWithObjects:username,password,repassword,mobile,email,nil]];
+    [self setTextFieldCenter:[[NSArray alloc] initWithObjects:username,password,repassword,mobile,email,btnRegister,nil]];
     
 
     
@@ -198,6 +206,16 @@ UITextField *email;
     field.delegate = self;
     
     return field;
+}
+
+- (void) applyTouched:(id)sender
+{
+    
+    ApplyViewController * applyView = [[ApplyViewController alloc] init];
+    
+    [self.navigationController pushViewController:applyView animated:YES];
+    
+    NSLog(@"apply touched");
 }
 
 - (void)didReceiveMemoryWarning {

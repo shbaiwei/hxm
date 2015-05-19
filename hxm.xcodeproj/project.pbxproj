@@ -21,10 +21,11 @@
 		321A23971B09CD0200A9D294 /* register-email.png in Resources */ = {isa = PBXBuildFile; fileRef = 321A238C1B09CD0200A9D294 /* register-email.png */; };
 		321A23981B09CD0200A9D294 /* register-password.png in Resources */ = {isa = PBXBuildFile; fileRef = 321A238D1B09CD0200A9D294 /* register-password.png */; };
 		321A239A1B09CEFF00A9D294 /* baseinfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 321A23991B09CEFF00A9D294 /* baseinfo.plist */; };
+		323C30E81B0B90A400D0B8D0 /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323C30E71B0B90A400D0B8D0 /* OrderViewController.m */; };
+		323C30EB1B0B913F00D0B8D0 /* GoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323C30EA1B0B913F00D0B8D0 /* GoodsViewController.m */; };
+		323C30EE1B0B94FF00D0B8D0 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323C30ED1B0B94FF00D0B8D0 /* ApplyViewController.m */; };
 		323EE90D1AF8F57D00C55306 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 323EE90C1AF8F57D00C55306 /* main.m */; };
 		323EE9101AF8F57D00C55306 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 323EE90F1AF8F57D00C55306 /* AppDelegate.m */; };
-		323EE9131AF8F57D00C55306 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323EE9121AF8F57D00C55306 /* FirstViewController.m */; };
-		323EE9161AF8F57D00C55306 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323EE9151AF8F57D00C55306 /* SecondViewController.m */; };
 		323EE9191AF8F57D00C55306 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 323EE9171AF8F57D00C55306 /* Main.storyboard */; };
 		323EE91B1AF8F57D00C55306 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 323EE91A1AF8F57D00C55306 /* Images.xcassets */; };
 		323EE91E1AF8F57D00C55306 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323EE91C1AF8F57D00C55306 /* LaunchScreen.xib */; };
@@ -61,15 +62,17 @@
 		321A238C1B09CD0200A9D294 /* register-email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-email.png"; sourceTree = "<group>"; };
 		321A238D1B09CD0200A9D294 /* register-password.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-password.png"; sourceTree = "<group>"; };
 		321A23991B09CEFF00A9D294 /* baseinfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = baseinfo.plist; sourceTree = "<group>"; };
+		323C30E61B0B90A400D0B8D0 /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
+		323C30E71B0B90A400D0B8D0 /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
+		323C30E91B0B913F00D0B8D0 /* GoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsViewController.h; sourceTree = "<group>"; };
+		323C30EA1B0B913F00D0B8D0 /* GoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsViewController.m; sourceTree = "<group>"; };
+		323C30EC1B0B94FF00D0B8D0 /* ApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyViewController.h; sourceTree = "<group>"; };
+		323C30ED1B0B94FF00D0B8D0 /* ApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyViewController.m; sourceTree = "<group>"; };
 		323EE9071AF8F57D00C55306 /* hxm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hxm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		323EE90B1AF8F57D00C55306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		323EE90C1AF8F57D00C55306 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		323EE90E1AF8F57D00C55306 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		323EE90F1AF8F57D00C55306 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		323EE9111AF8F57D00C55306 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		323EE9121AF8F57D00C55306 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		323EE9141AF8F57D00C55306 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		323EE9151AF8F57D00C55306 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		323EE9181AF8F57D00C55306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		323EE91A1AF8F57D00C55306 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		323EE91D1AF8F57D00C55306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -205,14 +208,16 @@
 		325C87E61B04D07A001DF5D8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				323C30E91B0B913F00D0B8D0 /* GoodsViewController.h */,
+				323C30EC1B0B94FF00D0B8D0 /* ApplyViewController.h */,
+				323C30ED1B0B94FF00D0B8D0 /* ApplyViewController.m */,
+				323C30EA1B0B913F00D0B8D0 /* GoodsViewController.m */,
 				325C87E71B04D100001DF5D8 /* LoginViewController.h */,
 				3214A87D1B04F920007DE10F /* RegisterViewController.h */,
 				3214A87E1B04F920007DE10F /* RegisterViewController.m */,
 				325C87E81B04D100001DF5D8 /* LoginViewController.m */,
-				323EE9111AF8F57D00C55306 /* FirstViewController.h */,
-				323EE9121AF8F57D00C55306 /* FirstViewController.m */,
-				323EE9141AF8F57D00C55306 /* SecondViewController.h */,
-				323EE9151AF8F57D00C55306 /* SecondViewController.m */,
+				323C30E61B0B90A400D0B8D0 /* OrderViewController.h */,
+				323C30E71B0B90A400D0B8D0 /* OrderViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -375,11 +380,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				323EE9161AF8F57D00C55306 /* SecondViewController.m in Sources */,
 				323EE9101AF8F57D00C55306 /* AppDelegate.m in Sources */,
-				323EE9131AF8F57D00C55306 /* FirstViewController.m in Sources */,
+				323C30EB1B0B913F00D0B8D0 /* GoodsViewController.m in Sources */,
 				32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */,
+				323C30E81B0B90A400D0B8D0 /* OrderViewController.m in Sources */,
 				325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */,
+				323C30EE1B0B94FF00D0B8D0 /* ApplyViewController.m in Sources */,
 				32D3D9891B03B2AE00B50967 /* AFNetworkTool.m in Sources */,
 				323EE90D1AF8F57D00C55306 /* main.m in Sources */,
 				3214A87F1B04F920007DE10F /* RegisterViewController.m in Sources */,
