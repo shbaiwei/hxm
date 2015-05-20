@@ -106,31 +106,56 @@
     UIImage *img=[info objectForKey:@"UIImagePickerControllerOriginalImage"];
     
     if(picker.sourceType==UIImagePickerControllerSourceTypeCamera){
-            UIImageWriteToSavedPhotosAlbum(img,nil,nil,nil);
+            //UIImageWriteToSavedPhotosAlbum(img,nil,nil,nil);
     }
     
+    int y = (arc4random() % 1001) + 9000;
+    
+    NSString *fileName = [NSString stringWithFormat:@"%d%@",y,@".jpg"];
+    
+    [self saveImage:img WithName:fileName];
+    
+    NSString *fullFileName = [[self documentFolderPath] stringByAppendingPathComponent:fileName];
+    
+    NSURL *fileUrl = [[NSURL alloc] initFileURLWithPath:fullFileName];
+    //NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:fileName withExtension:nil];
+    //NSLog(@"%@",fileUrl);
     
     
-    NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:[info objectForKey:@"UIImagePickerControllerReferenceURL"] withExtension:nil];
-    NSLog(@"%@",fileUrl);
+    NSString *api_url = @"http://www.huaji.com:81/member/register/upload_img";
+
+    NSDictionary *postData = @{@"password":@"200314",@"uniqueid":[BWCommon getUserInfo:@"uid"]};
     
-    /*
-    [AFNetworkTool postUploadWithUrl:@"" fileUrl:fileUrl success:^(id responseObject) {
+    
+    [AFNetworkTool postUploadWithUrl:api_url fileUrl:fileUrl parameters:postData success:^(id responseObject) {
         
+        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",result);
     } fail:^{
-        
+        NSLog(@"请求失败");
     }];
-     */
     
-    
-   // UIImage *newImg=[self imageWithImageSimple:img scaledToSize:CGSizeMake(300, 300)];
-   // [self saveImage:newImg WithName:[NSString stringWithFormat:@"%@%@",[self generateUuidString],@".jpg"]];
-   //[self dismissModalViewControllerAnimated:YES];
     
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
     
+}
+
+- (NSString *)documentFolderPath
+{
+    return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+}
+
+- (void)saveImage:(UIImage *)tempImage WithName:(NSString *)imageName
+{
+    NSData* imageData = UIImageJPEGRepresentation(tempImage,1);
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentsDirectory = [paths objectAtIndex:0];
+    // Now we get the full path to the file
+    NSString* fullPathToFile = [documentsDirectory stringByAppendingPathComponent:imageName];
+    // and then we write it out
+    [imageData writeToFile:fullPathToFile atomically:NO];
 }
 
 /*

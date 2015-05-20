@@ -167,7 +167,7 @@
 }
 
 #pragma mark - POST上传文件
-+ (void)postUploadWithUrl:(NSString *)urlStr fileUrl:(NSURL *)fileURL success:(void (^)(id responseObject))success fail:(void (^)())fail
++ (void)postUploadWithUrl:(NSString *)urlStr fileUrl:(NSURL *)fileURL parameters:(id)parameters success:(void (^)(id responseObject))success fail:(void (^)())fail
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     // AFHTTPResponseSerializer就是正常的HTTP请求响应结果:NSData
@@ -178,12 +178,12 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     // formData是遵守了AFMultipartFormData的对象
-    [manager POST:urlStr parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:urlStr parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         // 将本地的文件上传至服务器
 //        NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"头像1.png" withExtension:nil];
         
-        [formData appendPartWithFileURL:fileURL name:@"uploadFile" error:NULL];
+        [formData appendPartWithFileURL:fileURL name:@"filename" error:NULL];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
 //        

@@ -88,5 +88,5 @@
  *fileURL:   需要上传的本地文件URL
  *
  */
-+ (void)postUploadWithUrl:(NSString *)urlStr fileUrl:(NSURL *)fileURL success:(void (^)(id responseObject))success fail:(void (^)())fail;
++ (void)postUploadWithUrl:(NSString *)urlStr fileUrl:(NSURL *)fileURL parameters:(id)parameters success:(void (^)(id responseObject))success fail:(void (^)())fail;
 @end
