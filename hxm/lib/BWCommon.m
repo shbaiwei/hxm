@@ -27,6 +27,14 @@
     return value;
 }
 
++(void) setUserInfo:(NSString *) key value:(NSString *) value{
+    
+    NSUserDefaults *udata = [NSUserDefaults standardUserDefaults];
+    [udata setObject:value forKey:key];
+    [udata synchronize];
+
+}
+
 +(id) getUserInfo:(NSString *)key
 {
     NSUserDefaults *udata = [NSUserDefaults standardUserDefaults];

@@ -7,6 +7,7 @@
 //
 
 #import "ApplyViewController.h"
+#import "AFNetworkTool.h"
 #import "BWCommon.h"
 
 @interface ApplyViewController ()
@@ -78,9 +79,14 @@
 - (void) snapImage{
     UIImagePickerController *ipc=[[UIImagePickerController alloc] init];
     ipc.sourceType=UIImagePickerControllerSourceTypeCamera;
-    ipc.delegate=self;
+    ipc.delegate = self;
     ipc.allowsEditing=NO;
-    [self presentModalViewController:ipc animated:YES];
+    
+   
+    [self presentViewController:ipc animated:YES completion:^{
+        
+        
+    }];
     
 }
 //从相册里找
@@ -89,7 +95,10 @@
     ipc.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
     ipc.delegate=self;
     ipc.allowsEditing=NO;
-    [self presentModalViewController:ipc animated:YES];
+    
+    [self presentViewController:ipc animated:YES completion:^{
+    }];
+
 }
 
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *) info{
@@ -97,12 +106,30 @@
     UIImage *img=[info objectForKey:@"UIImagePickerControllerOriginalImage"];
     
     if(picker.sourceType==UIImagePickerControllerSourceTypeCamera){
-        //        UIImageWriteToSavedPhotosAlbum(img,nil,nil,nil);
+            UIImageWriteToSavedPhotosAlbum(img,nil,nil,nil);
     }
+    
+    
+    
+    NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:[info objectForKey:@"UIImagePickerControllerReferenceURL"] withExtension:nil];
+    NSLog(@"%@",fileUrl);
+    
+    /*
+    [AFNetworkTool postUploadWithUrl:@"" fileUrl:fileUrl success:^(id responseObject) {
+        
+    } fail:^{
+        
+    }];
+     */
+    
     
    // UIImage *newImg=[self imageWithImageSimple:img scaledToSize:CGSizeMake(300, 300)];
    // [self saveImage:newImg WithName:[NSString stringWithFormat:@"%@%@",[self generateUuidString],@".jpg"]];
-   // [self dismissModalViewControllerAnimated:YES];
+   //[self dismissModalViewControllerAnimated:YES];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
     
 }
 

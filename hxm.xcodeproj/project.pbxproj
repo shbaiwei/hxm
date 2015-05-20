@@ -21,6 +21,10 @@
 		321A23971B09CD0200A9D294 /* register-email.png in Resources */ = {isa = PBXBuildFile; fileRef = 321A238C1B09CD0200A9D294 /* register-email.png */; };
 		321A23981B09CD0200A9D294 /* register-password.png in Resources */ = {isa = PBXBuildFile; fileRef = 321A238D1B09CD0200A9D294 /* register-password.png */; };
 		321A239A1B09CEFF00A9D294 /* baseinfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 321A23991B09CEFF00A9D294 /* baseinfo.plist */; };
+		323263601B0C88550004522E /* register-cellphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3232635C1B0C88550004522E /* register-cellphone@2x.png */; };
+		323263611B0C88550004522E /* register-check-default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3232635D1B0C88550004522E /* register-check-default@2x.png */; };
+		323263621B0C88550004522E /* register-email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3232635E1B0C88550004522E /* register-email@2x.png */; };
+		323263631B0C88550004522E /* register-password@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3232635F1B0C88550004522E /* register-password@2x.png */; };
 		323C30E81B0B90A400D0B8D0 /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323C30E71B0B90A400D0B8D0 /* OrderViewController.m */; };
 		323C30EB1B0B913F00D0B8D0 /* GoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323C30EA1B0B913F00D0B8D0 /* GoodsViewController.m */; };
 		323C30EE1B0B94FF00D0B8D0 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323C30ED1B0B94FF00D0B8D0 /* ApplyViewController.m */; };
@@ -62,6 +66,10 @@
 		321A238C1B09CD0200A9D294 /* register-email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-email.png"; sourceTree = "<group>"; };
 		321A238D1B09CD0200A9D294 /* register-password.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-password.png"; sourceTree = "<group>"; };
 		321A23991B09CEFF00A9D294 /* baseinfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = baseinfo.plist; sourceTree = "<group>"; };
+		3232635C1B0C88550004522E /* register-cellphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-cellphone@2x.png"; sourceTree = "<group>"; };
+		3232635D1B0C88550004522E /* register-check-default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-check-default@2x.png"; sourceTree = "<group>"; };
+		3232635E1B0C88550004522E /* register-email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-email@2x.png"; sourceTree = "<group>"; };
+		3232635F1B0C88550004522E /* register-password@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-password@2x.png"; sourceTree = "<group>"; };
 		323C30E61B0B90A400D0B8D0 /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
 		323C30E71B0B90A400D0B8D0 /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
 		323C30E91B0B913F00D0B8D0 /* GoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsViewController.h; sourceTree = "<group>"; };
@@ -127,6 +135,10 @@
 		321A23821B09CD0200A9D294 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				3232635C1B0C88550004522E /* register-cellphone@2x.png */,
+				3232635D1B0C88550004522E /* register-check-default@2x.png */,
+				3232635E1B0C88550004522E /* register-email@2x.png */,
+				3232635F1B0C88550004522E /* register-password@2x.png */,
 				321A23831B09CD0200A9D294 /* login-password.png */,
 				321A23841B09CD0200A9D294 /* login-password@2x.png */,
 				321A23851B09CD0200A9D294 /* login-user.png */,
@@ -317,6 +329,8 @@
 			files = (
 				323EE9191AF8F57D00C55306 /* Main.storyboard in Resources */,
 				321A23981B09CD0200A9D294 /* register-password.png in Resources */,
+				323263631B0C88550004522E /* register-password@2x.png in Resources */,
+				323263601B0C88550004522E /* register-cellphone@2x.png in Resources */,
 				323EE91E1AF8F57D00C55306 /* LaunchScreen.xib in Resources */,
 				321A238E1B09CD0200A9D294 /* login-password.png in Resources */,
 				321A23961B09CD0200A9D294 /* register-check-default.png in Resources */,
@@ -327,8 +341,10 @@
 				321A23971B09CD0200A9D294 /* register-email.png in Resources */,
 				321A23901B09CD0200A9D294 /* login-user.png in Resources */,
 				321A23951B09CD0200A9D294 /* register-check-checked@2x.png in Resources */,
+				323263611B0C88550004522E /* register-check-default@2x.png in Resources */,
 				321A23941B09CD0200A9D294 /* register-check-checked.png in Resources */,
 				321A23911B09CD0200A9D294 /* login-user@2x.png in Resources */,
+				323263621B0C88550004522E /* register-email@2x.png in Resources */,
 				323EE91B1AF8F57D00C55306 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

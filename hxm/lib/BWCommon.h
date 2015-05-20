@@ -31,6 +31,7 @@
 +(void) setRegionData;
 
 +(id) getDataInfo:(NSString *) key;
++(void) setUserInfo:(NSString *) key value:(NSString *) value;
 
 +(UIColor *) getBackgroundColor;
 

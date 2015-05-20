@@ -10,6 +10,7 @@
 
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
+#import "ApplyViewController.h"
 #import "AFNetworkTool.h"
 #import "BWCommon.h"
 
@@ -86,7 +87,7 @@ UITextField *password;
     [btnLogin.layer setMasksToBounds:YES];
     [btnLogin.layer setCornerRadius:5.0];
     btnLogin.translatesAutoresizingMaskIntoConstraints = NO;
-    btnLogin.backgroundColor = [UIColor colorWithRed:119/255.0 green:179/255.0 blue:215/255.0 alpha:1];
+    btnLogin.backgroundColor = [UIColor colorWithRed:116/255.0 green:197/255.0 blue:67/255.0 alpha:1];
     btnLogin.tintColor = [UIColor whiteColor];
     btnLogin.titleLabel.font = [UIFont systemFontOfSize:22];
     
@@ -182,9 +183,21 @@ UITextField *password;
         
         NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
         
-        if (errNo >= 0) {
+        if (errNo > 0) {
             [alert setMessage:[responseObject objectForKey:@"error"]];
             [alert show];
+            
+            //提交审核信息
+            if(errNo == 3){
+                
+                NSString *uid = [[responseObject objectForKey:@"data"] objectForKey:@"user_id"];
+                //记录
+                NSLog(@"%@",uid);
+                [BWCommon setUserInfo:@"uid" value:uid];
+                ApplyViewController *applyView = [[ApplyViewController alloc] init];
+                [self.navigationController pushViewController:applyView animated:YES];
+
+            }
         }
         else
         {
