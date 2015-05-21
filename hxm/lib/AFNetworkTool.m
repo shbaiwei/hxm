@@ -175,7 +175,7 @@
     // 例如返回一个html,text...
     //
     // 实际上就是AFN没有对响应数据做任何处理的情况
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     // formData是遵守了AFMultipartFormData的对象
     [manager POST:urlStr parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {

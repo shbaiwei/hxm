@@ -93,7 +93,7 @@
 - (void) pickImage{
     UIImagePickerController *ipc=[[UIImagePickerController alloc] init];
     ipc.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
-    ipc.delegate=self;
+    ipc.delegate = self;
     ipc.allowsEditing=NO;
     
     [self presentViewController:ipc animated:YES completion:^{
@@ -122,6 +122,9 @@
     //NSLog(@"%@",fileUrl);
     
     
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    
+    
     NSString *api_url = @"http://www.huaji.com:81/member/register/upload_img";
 
     NSDictionary *postData = @{@"password":@"200314",@"uniqueid":[BWCommon getUserInfo:@"uid"]};
@@ -129,8 +132,18 @@
     
     [AFNetworkTool postUploadWithUrl:api_url fileUrl:fileUrl parameters:postData success:^(id responseObject) {
         
-        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",result);
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        NSLog(@"%@",responseObject);
+        if (errNo > 0) {
+            [alert setMessage:[responseObject objectForKey:@"error"]];
+            [alert show];
+        }
+        else
+        {
+            NSString *imgurl = [[responseObject objectForKey:@"data"] objectForKey:@"imgurl"];
+        }
+
     } fail:^{
         NSLog(@"请求失败");
     }];

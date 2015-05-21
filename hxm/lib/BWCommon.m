@@ -52,7 +52,7 @@
 
 +(BOOL) isLoggedIn{
     
-    return [self getUserInfo:@"username"] != nil;
+    return [self getUserInfo:@"uid"] != nil && [[self getUserInfo:@"status"] isEqualToString:@"normal"];
 }
 
 //实际还是从NSUserDefaults中获取

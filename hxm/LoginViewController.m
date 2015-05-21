@@ -150,6 +150,9 @@ UITextField *password;
     NSString *usernameValue = username.text;
     NSString *passwordValue = password.text;
 
+    //test user
+    usernameValue = @"花满大厦";
+    passwordValue = @"hj1234567";
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     
@@ -183,6 +186,11 @@ UITextField *password;
         
         NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
         
+        NSString *uid = [[responseObject objectForKey:@"data"] objectForKey:@"user_id"];
+        
+        NSString *user_key = [[responseObject objectForKey:@"data"] objectForKey:@"user_key"];
+        
+        
         if (errNo > 0) {
             [alert setMessage:[responseObject objectForKey:@"error"]];
             [alert show];
@@ -190,10 +198,10 @@ UITextField *password;
             //提交审核信息
             if(errNo == 3){
                 
-                NSString *uid = [[responseObject objectForKey:@"data"] objectForKey:@"user_id"];
-                //记录
-                NSLog(@"%@",uid);
                 [BWCommon setUserInfo:@"uid" value:uid];
+                [BWCommon setUserInfo:@"user_key" value:user_key];
+                
+                [BWCommon setUserInfo:@"status" value:@"verify"];
                 ApplyViewController *applyView = [[ApplyViewController alloc] init];
                 [self.navigationController pushViewController:applyView animated:YES];
 
@@ -201,7 +209,12 @@ UITextField *password;
         }
         else
         {
-
+            
+            [BWCommon setUserInfo:@"uid" value:uid];
+            [BWCommon setUserInfo:@"user_key" value:user_key];
+            
+            [self getHxmUserInfo:uid];
+            
         }
         
     } fail:^{
@@ -209,6 +222,37 @@ UITextField *password;
     }];
     
     
+}
+
+-(void) getHxmUserInfo:(NSString *) uid{
+    
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"user/getHxmUserInfo"];
+    
+    NSDictionary *postData = @{@"uniqueid":uid};
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        //NSLog(@"%@",responseObject);
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        if (errNo > 0) {
+            [alert setMessage:[responseObject objectForKey:@"error"]];
+            [alert show];
+        }
+        else{
+            //记录好香美ID
+            [BWCommon setUserInfo:@"hxm_uid" value:[[responseObject objectForKey:@"data"] objectForKey:@"user_id"]];
+            
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            id mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"MainIdentifier"];
+            [self presentViewController:mainViewController animated:YES completion:^{}];
+        }
+        
+    } fail:^{
+        NSLog(@"访问失败");
+    }];
 }
 
 - (void) setTextFieldCenter:(NSArray *) items{

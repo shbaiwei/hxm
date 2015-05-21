@@ -95,7 +95,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="财务管理" id="Jec-BJ-NwS"/>
+                    <tabBarItem key="tabBarItem" title="财务管理" image="tab-finance.png" id="Jec-BJ-NwS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hj4-2q-0dh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -104,7 +104,7 @@
         <!--我的-->
         <scene sceneID="L9a-Rt-wms">
             <objects>
-                <viewController id="KOa-Pz-yN0" sceneMemberID="viewController">
+                <viewController id="KOa-Pz-yN0" customClass="MyViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0bS-kY-Y9o"/>
                         <viewControllerLayoutGuide type="bottom" id="otW-Pc-hEF"/>
@@ -114,7 +114,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="我的" id="wN2-kF-nTz"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="tab-my.png" id="wN2-kF-nTz"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1EX-pW-fEs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -147,7 +147,7 @@
         <scene sceneID="Aqs-6M-ctb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gTB-MC-ZQj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="订单管理" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="订单管理" image="tab-order.png" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oX8-Pl-L8c">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -166,7 +166,7 @@
         <scene sceneID="AvV-YE-6yi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NGC-Af-mh5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="商品管理" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="商品管理" image="tab-goods.png" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3kg-W9-ZaT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -183,7 +183,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="tab-finance.png" width="25" height="25"/>
+        <image name="tab-goods.png" width="25" height="25"/>
+        <image name="tab-my.png" width="25" height="25"/>
+        <image name="tab-order.png" width="25" height="25"/>
     </resources>
 </document>

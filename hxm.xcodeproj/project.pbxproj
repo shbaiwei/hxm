@@ -34,6 +34,17 @@
 		323EE91B1AF8F57D00C55306 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 323EE91A1AF8F57D00C55306 /* Images.xcassets */; };
 		323EE91E1AF8F57D00C55306 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323EE91C1AF8F57D00C55306 /* LaunchScreen.xib */; };
 		323EE92A1AF8F57D00C55306 /* hxmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 323EE9291AF8F57D00C55306 /* hxmTests.m */; };
+		325A8A7E1B0D92F300CEA0AB /* tab-finance.png in Resources */ = {isa = PBXBuildFile; fileRef = 325A8A761B0D92F300CEA0AB /* tab-finance.png */; };
+		325A8A7F1B0D92F300CEA0AB /* tab-finance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 325A8A771B0D92F300CEA0AB /* tab-finance@2x.png */; };
+		325A8A801B0D92F300CEA0AB /* tab-goods.png in Resources */ = {isa = PBXBuildFile; fileRef = 325A8A781B0D92F300CEA0AB /* tab-goods.png */; };
+		325A8A811B0D92F300CEA0AB /* tab-goods@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 325A8A791B0D92F300CEA0AB /* tab-goods@2x.png */; };
+		325A8A821B0D92F300CEA0AB /* tab-my.png in Resources */ = {isa = PBXBuildFile; fileRef = 325A8A7A1B0D92F300CEA0AB /* tab-my.png */; };
+		325A8A831B0D92F300CEA0AB /* tab-my@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 325A8A7B1B0D92F300CEA0AB /* tab-my@2x.png */; };
+		325A8A841B0D92F300CEA0AB /* tab-order.png in Resources */ = {isa = PBXBuildFile; fileRef = 325A8A7C1B0D92F300CEA0AB /* tab-order.png */; };
+		325A8A851B0D92F300CEA0AB /* tab-order@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 325A8A7D1B0D92F300CEA0AB /* tab-order@2x.png */; };
+		325A8A871B0D93C300CEA0AB /* tab-my@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 325A8A861B0D93C300CEA0AB /* tab-my@3x.png */; };
+		325A8A891B0D944900CEA0AB /* user-bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 325A8A881B0D944900CEA0AB /* user-bg.jpg */; };
+		325A8A8C1B0D948800CEA0AB /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325A8A8B1B0D948800CEA0AB /* MyViewController.m */; };
 		325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325C87E81B04D100001DF5D8 /* LoginViewController.m */; };
 		32D3D9891B03B2AE00B50967 /* AFNetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D3D9851B03B2AE00B50967 /* AFNetworkTool.m */; };
 		32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D3D9871B03B2AE00B50967 /* BWCommon.m */; };
@@ -87,6 +98,18 @@
 		323EE9231AF8F57D00C55306 /* hxmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hxmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		323EE9281AF8F57D00C55306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		323EE9291AF8F57D00C55306 /* hxmTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hxmTests.m; sourceTree = "<group>"; };
+		325A8A761B0D92F300CEA0AB /* tab-finance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-finance.png"; sourceTree = "<group>"; };
+		325A8A771B0D92F300CEA0AB /* tab-finance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-finance@2x.png"; sourceTree = "<group>"; };
+		325A8A781B0D92F300CEA0AB /* tab-goods.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-goods.png"; sourceTree = "<group>"; };
+		325A8A791B0D92F300CEA0AB /* tab-goods@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-goods@2x.png"; sourceTree = "<group>"; };
+		325A8A7A1B0D92F300CEA0AB /* tab-my.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-my.png"; sourceTree = "<group>"; };
+		325A8A7B1B0D92F300CEA0AB /* tab-my@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-my@2x.png"; sourceTree = "<group>"; };
+		325A8A7C1B0D92F300CEA0AB /* tab-order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-order.png"; sourceTree = "<group>"; };
+		325A8A7D1B0D92F300CEA0AB /* tab-order@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-order@2x.png"; sourceTree = "<group>"; };
+		325A8A861B0D93C300CEA0AB /* tab-my@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-my@3x.png"; sourceTree = "<group>"; };
+		325A8A881B0D944900CEA0AB /* user-bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "user-bg.jpg"; sourceTree = "<group>"; };
+		325A8A8A1B0D948800CEA0AB /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		325A8A8B1B0D948800CEA0AB /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		325C87E71B04D100001DF5D8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		325C87E81B04D100001DF5D8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		32D3D9841B03B2AE00B50967 /* AFNetworkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkTool.h; sourceTree = "<group>"; };
@@ -135,6 +158,16 @@
 		321A23821B09CD0200A9D294 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				325A8A881B0D944900CEA0AB /* user-bg.jpg */,
+				325A8A861B0D93C300CEA0AB /* tab-my@3x.png */,
+				325A8A761B0D92F300CEA0AB /* tab-finance.png */,
+				325A8A771B0D92F300CEA0AB /* tab-finance@2x.png */,
+				325A8A781B0D92F300CEA0AB /* tab-goods.png */,
+				325A8A791B0D92F300CEA0AB /* tab-goods@2x.png */,
+				325A8A7A1B0D92F300CEA0AB /* tab-my.png */,
+				325A8A7B1B0D92F300CEA0AB /* tab-my@2x.png */,
+				325A8A7C1B0D92F300CEA0AB /* tab-order.png */,
+				325A8A7D1B0D92F300CEA0AB /* tab-order@2x.png */,
 				3232635C1B0C88550004522E /* register-cellphone@2x.png */,
 				3232635D1B0C88550004522E /* register-check-default@2x.png */,
 				3232635E1B0C88550004522E /* register-email@2x.png */,
@@ -230,6 +263,8 @@
 				325C87E81B04D100001DF5D8 /* LoginViewController.m */,
 				323C30E61B0B90A400D0B8D0 /* OrderViewController.h */,
 				323C30E71B0B90A400D0B8D0 /* OrderViewController.m */,
+				325A8A8A1B0D948800CEA0AB /* MyViewController.h */,
+				325A8A8B1B0D948800CEA0AB /* MyViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -328,23 +363,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				323EE9191AF8F57D00C55306 /* Main.storyboard in Resources */,
+				325A8A871B0D93C300CEA0AB /* tab-my@3x.png in Resources */,
 				321A23981B09CD0200A9D294 /* register-password.png in Resources */,
+				325A8A811B0D92F300CEA0AB /* tab-goods@2x.png in Resources */,
 				323263631B0C88550004522E /* register-password@2x.png in Resources */,
+				325A8A841B0D92F300CEA0AB /* tab-order.png in Resources */,
+				325A8A831B0D92F300CEA0AB /* tab-my@2x.png in Resources */,
 				323263601B0C88550004522E /* register-cellphone@2x.png in Resources */,
 				323EE91E1AF8F57D00C55306 /* LaunchScreen.xib in Resources */,
 				321A238E1B09CD0200A9D294 /* login-password.png in Resources */,
 				321A23961B09CD0200A9D294 /* register-check-default.png in Resources */,
+				325A8A851B0D92F300CEA0AB /* tab-order@2x.png in Resources */,
 				321A238F1B09CD0200A9D294 /* login-password@2x.png in Resources */,
+				325A8A7F1B0D92F300CEA0AB /* tab-finance@2x.png in Resources */,
 				321A239A1B09CEFF00A9D294 /* baseinfo.plist in Resources */,
 				321A23921B09CD0200A9D294 /* logo.png in Resources */,
 				321A23931B09CD0200A9D294 /* register-cellphone.png in Resources */,
 				321A23971B09CD0200A9D294 /* register-email.png in Resources */,
 				321A23901B09CD0200A9D294 /* login-user.png in Resources */,
+				325A8A821B0D92F300CEA0AB /* tab-my.png in Resources */,
 				321A23951B09CD0200A9D294 /* register-check-checked@2x.png in Resources */,
+				325A8A891B0D944900CEA0AB /* user-bg.jpg in Resources */,
 				323263611B0C88550004522E /* register-check-default@2x.png in Resources */,
+				325A8A801B0D92F300CEA0AB /* tab-goods.png in Resources */,
 				321A23941B09CD0200A9D294 /* register-check-checked.png in Resources */,
 				321A23911B09CD0200A9D294 /* login-user@2x.png in Resources */,
 				323263621B0C88550004522E /* register-email@2x.png in Resources */,
+				325A8A7E1B0D92F300CEA0AB /* tab-finance.png in Resources */,
 				323EE91B1AF8F57D00C55306 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,6 +445,7 @@
 				323C30EB1B0B913F00D0B8D0 /* GoodsViewController.m in Sources */,
 				32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */,
 				323C30E81B0B90A400D0B8D0 /* OrderViewController.m in Sources */,
+				325A8A8C1B0D948800CEA0AB /* MyViewController.m in Sources */,
 				325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */,
 				323C30EE1B0B94FF00D0B8D0 /* ApplyViewController.m in Sources */,
 				32D3D9891B03B2AE00B50967 /* AFNetworkTool.m in Sources */,
