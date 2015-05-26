@@ -14,7 +14,7 @@
 #import "AFNetworkTool.h"
 #import "BWCommon.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () 
 
 @end
 
@@ -289,5 +289,19 @@ UITextField *password;
  // Pass the selected object to the new view controller.
  }
  */
+#pragma mark - <UITextFeildDeletage>
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+// 点击隐藏键盘
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    [self.view endEditing:YES];
+}
 
 @end
