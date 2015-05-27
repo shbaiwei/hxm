@@ -56,6 +56,8 @@
 		325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325C87E81B04D100001DF5D8 /* LoginViewController.m */; };
 		32D3D9891B03B2AE00B50967 /* AFNetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D3D9851B03B2AE00B50967 /* AFNetworkTool.m */; };
 		32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D3D9871B03B2AE00B50967 /* BWCommon.m */; };
+		6F6995C51B15875800AFB979 /* user-right-array.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6995C41B15875800AFB979 /* user-right-array.png */; };
+		6F6995C71B15992900AFB979 /* user-face.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6995C61B15992900AFB979 /* user-face.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +134,8 @@
 		32D3D9851B03B2AE00B50967 /* AFNetworkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkTool.m; sourceTree = "<group>"; };
 		32D3D9861B03B2AE00B50967 /* BWCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWCommon.h; sourceTree = "<group>"; };
 		32D3D9871B03B2AE00B50967 /* BWCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWCommon.m; sourceTree = "<group>"; };
+		6F6995C41B15875800AFB979 /* user-right-array.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-right-array.png"; sourceTree = "<group>"; };
+		6F6995C61B15992900AFB979 /* user-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-face.png"; sourceTree = "<group>"; };
 		9209D6723B6D4EA0AEA34FD9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +178,8 @@
 		321A23821B09CD0200A9D294 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				6F6995C61B15992900AFB979 /* user-face.png */,
+				6F6995C41B15875800AFB979 /* user-right-array.png */,
 				321B0E4A1B14807C004D5827 /* user-edit.png */,
 				321B0E4B1B14807C004D5827 /* user-icon1.png */,
 				321B0E4C1B14807C004D5827 /* user-icon2.png */,
@@ -397,6 +403,7 @@
 				323263601B0C88550004522E /* register-cellphone@2x.png in Resources */,
 				321B0E541B14807C004D5827 /* user-icon2.png in Resources */,
 				323EE91E1AF8F57D00C55306 /* LaunchScreen.xib in Resources */,
+				6F6995C51B15875800AFB979 /* user-right-array.png in Resources */,
 				321B0E531B14807C004D5827 /* user-icon1.png in Resources */,
 				321A238E1B09CD0200A9D294 /* login-password.png in Resources */,
 				321A23961B09CD0200A9D294 /* register-check-default.png in Resources */,
@@ -416,6 +423,7 @@
 				325A8A891B0D944900CEA0AB /* user-bg.jpg in Resources */,
 				321B0E551B14807C004D5827 /* user-icon3.png in Resources */,
 				323263611B0C88550004522E /* register-check-default@2x.png in Resources */,
+				6F6995C71B15992900AFB979 /* user-face.png in Resources */,
 				325A8A801B0D92F300CEA0AB /* tab-goods.png in Resources */,
 				321A23941B09CD0200A9D294 /* register-check-checked.png in Resources */,
 				321A23911B09CD0200A9D294 /* login-user@2x.png in Resources */,
