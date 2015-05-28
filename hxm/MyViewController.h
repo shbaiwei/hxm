@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyViewController : UIViewController <UIActionSheetDelegate,UIGestureRecognizerDelegate>
+@interface MyViewController : UIViewController <UIActionSheetDelegate>
 
 @end

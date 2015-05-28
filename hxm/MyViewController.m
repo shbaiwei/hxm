@@ -165,56 +165,46 @@
     
     NSArray *titleArray = [[NSArray alloc] initWithObjects: @"联系方式", @"营业信息", @"收货地址管理", @"售后管理", @"密码管理", nil];
     NSArray *imageArray =[[NSArray alloc] initWithObjects:@"user-icon3", @"user-icon4", @"user-icon5" ,@"user-icon6" ,@"user-icon7" ,nil];
-    NSInteger y_size = 0;
-    UIView *other_small_view;
-    UIImageView *image_icon;
-    UILabel *title_label;
-    UIImageView *right_icon;
-    UILabel *line_label;
-    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
-    singleTap.delegate = self;
-    singleTap.cancelsTouchesInView = NO;
-    for(int i = 0; i < [titleArray count]; i++)
+    NSInteger YY = 0 ;
+    YY += 15;
+    for(int i = 0; i < titleArray.count; i++)
     {
-        
-        other_small_view = [[UIView alloc] initWithFrame:CGRectMake(0, y_size, size.width, 64)];
-        //other_small_view.backgroundColor = [UIColor redColor];
-        image_icon = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 44, 44)];
-        [image_icon setImage:[UIImage imageNamed:imageArray[i]]];
-       
-        
-        title_label = [[UILabel alloc] initWithFrame:CGRectMake(75, 10, 200, 44)];
-        [title_label setText:titleArray[i]];
-        //title_label.tag = 10+i;
-        //title_label.userInteractionEnabled = YES;
-        //[title_label addGestureRecognizer:singleTap];
-        
-        right_icon = [[UIImageView alloc] initWithFrame:CGRectMake(size.width-20, 20, 11, 20)];
-        [right_icon setImage:[UIImage imageNamed:@"user-right-array"]];
-        
-        line_label = [[UILabel alloc] initWithFrame:CGRectMake(title_label.frame.origin.x, 55, size.width-80, 0.5)];
-        line_label.backgroundColor = [UIColor grayColor];
-        
-        [other_small_view addSubview:image_icon];
-        [other_small_view addSubview:title_label];
-        [other_small_view addSubview:right_icon];
-        [other_small_view addSubview:line_label];
-        other_small_view.tag = 10 +i;
-        other_small_view.userInteractionEnabled = YES;
-        [other_small_view addGestureRecognizer:singleTap];
-        //[other_small_view setTag:10+i];
-        [other_view addSubview:other_small_view];
-        
-        y_size += 64;
-        
-    }
     
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, YY, 280, 65)];
+        button.backgroundColor = [UIColor whiteColor];
+        button.tag = 10 + i;
+        [button addTarget:self action:@selector(do_action:) forControlEvents:UIControlEventTouchUpInside];
+        [other_view addSubview:button];
+        
+        UIImageView *headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 5, 44, 44)];
+        headImageView.image = [UIImage imageNamed:imageArray[i]];
+        [button addSubview:headImageView];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(75, 5, 130, 44)];
+        label.text = titleArray[i];
+        label.backgroundColor = [UIColor clearColor];
+        label.textColor = [UIColor blackColor];
+       // label.font = [UIFont systemFontOfSize:15];
+        [button addSubview:label];
+        
+        if(i != titleArray.count-1)
+        {
+            UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(label.frame.origin.x, 50, size.width, 0.5)];
+            label2.backgroundColor = [UIColor grayColor];
+            [button addSubview:label2];
+        }
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(size.width-30, 22, 10, 10)];
+        imageView.image = [UIImage imageNamed:@"user-right-array"];
+        [button addSubview:imageView];
+        YY += 65;
+    }
     //exit button
     UIButton *exit_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    exit_button.frame = CGRectMake(10, other_view.frame.origin.y+other_view.bounds.size.height+30, size.width-20, 50);
+    exit_button.frame = CGRectMake(10, other_view.frame.origin.y+other_view.bounds.size.height+30, size.width-20, 40);
     [exit_button setTag:30];
     [exit_button.layer setMasksToBounds:YES];
-    [exit_button.layer setCornerRadius:5.0];
+    [exit_button.layer setCornerRadius:3.0];
     [exit_button setTintColor:[UIColor whiteColor]];
     [exit_button setBackgroundColor:[UIColor redColor]];
     [exit_button setTitle:@"退出当前账号" forState:UIControlStateNormal];
@@ -239,7 +229,8 @@
 //操作集合
 - (void)do_action:(UIView *)sender
 {
-    NSLog(@"do action");
+    //NSLog(@"do action");
+    NSLog(@"%ld",sender.tag);
     switch (sender.tag) {
         case 1: //eidt birthday
         {
@@ -253,6 +244,27 @@
              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"system message" message:@"edit sex" delegate:nil cancelButtonTitle:@"confirm" otherButtonTitles: nil];
             [alert show];
             NSLog(@"edit sex");
+            break;
+        }
+        case 10: //联系方式 
+        {
+            
+            break;
+        }
+        case 11: //营业信息
+        {
+            break;
+        }
+        case 12: //收货地址管理
+        {
+            break;
+        }
+        case 13: //售后管理
+        {
+            break;
+        }
+        case 14: //密码管理
+        {
             break;
         }
         case 30: //exit button action
@@ -291,23 +303,5 @@
 }
 
 
--(void)handleSingleTap:(UITapGestureRecognizer *)sender
 
-{
-    UIView *uiview = sender.view;
-    NSLog(@"%ld",(long)uiview.tag);
-    
-    CGPoint point = [sender locationInView:self.view];
-    
-    NSLog(@"handleSingleTap!pointx:%f,y:%f",point.x,point.y);
-    
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-
-{
-    
-    return YES;
-    
-}
 @end
