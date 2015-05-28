@@ -1,0 +1,45 @@
+
+/* Class = "UILabel"; text = "收货地址管理"; ObjectID = "4fd-tG-kZ5"; */
+"4fd-tG-kZ5.text" = "收货地址管理";
+
+/* Class = "UINavigationItem"; title = "好香美鲜花网络拍卖"; ObjectID = "5ng-oK-uTX"; */
+"5ng-oK-uTX.title" = "好香美鲜花网络拍卖";
+
+/* Class = "UIViewController"; title = "我的－联系方式"; ObjectID = "Aac-dr-sBR"; */
+"Aac-dr-sBR.title" = "我的－联系方式";
+
+/* Class = "UIViewController"; title = "我的－收货地址管理"; ObjectID = "Aan-JJ-qzP"; */
+"Aan-JJ-qzP.title" = "我的－收货地址管理";
+
+/* Class = "UILabel"; text = "售后"; ObjectID = "HiS-hG-L7U"; */
+"HiS-hG-L7U.text" = "售后";
+
+/* Class = "UITabBarItem"; title = "财务管理"; ObjectID = "Jec-BJ-NwS"; */
+"Jec-BJ-NwS.title" = "财务管理";
+
+/* Class = "UILabel"; text = "密码"; ObjectID = "NW9-RS-xpq"; */
+"NW9-RS-xpq.text" = "密码";
+
+/* Class = "UIViewController"; title = "我的－营业信息"; ObjectID = "TO4-fM-Qxc"; */
+"TO4-fM-Qxc.title" = "我的－营业信息";
+
+/* Class = "UITabBarItem"; title = "订单管理"; ObjectID = "acW-dT-cKf"; */
+"acW-dT-cKf.title" = "订单管理";
+
+/* Class = "UITabBarItem"; title = "商品管理"; ObjectID = "cPa-gy-q4n"; */
+"cPa-gy-q4n.title" = "商品管理";
+
+/* Class = "UILabel"; text = "我的营业信息"; ObjectID = "csz-h3-1Xz"; */
+"csz-h3-1Xz.text" = "我的营业信息";
+
+/* Class = "UILabel"; text = "contact way"; ObjectID = "hnb-ST-VKk"; */
+"hnb-ST-VKk.text" = "contact way";
+
+/* Class = "UIViewController"; title = "我的－密码管理"; ObjectID = "uxD-bl-9lw"; */
+"uxD-bl-9lw.title" = "我的－密码管理";
+
+/* Class = "UITabBarItem"; title = "我的"; ObjectID = "wN2-kF-nTz"; */
+"wN2-kF-nTz.title" = "我的";
+
+/* Class = "UIViewController"; title = "我的－售后管理"; ObjectID = "xxI-Gq-jZs"; */
+"xxI-Gq-jZs.title" = "我的－售后管理";

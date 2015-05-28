@@ -1,22 +1,21 @@
 //
-//  ContactWayViewController.m
+//  MyAfterSalesViewController.m
 //  hxm
 //
 //  Created by spring on 15/5/28.
 //  Copyright (c) 2015年 Bruce. All rights reserved.
 //
 
-#import "ContactWayViewController.h"
+#import "MyAfterSalesViewController.h"
 
-@interface ContactWayViewController ()
+@interface MyAfterSalesViewController ()
 
 @end
 
-@implementation ContactWayViewController
+@implementation MyAfterSalesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"ContactWayViewController");
     // Do any additional setup after loading the view.
 }
 

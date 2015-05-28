@@ -10,6 +10,11 @@
 #import "BWCommon.h"
 #import "AFNetworkTool.h"
 #import "LoginViewController.h"
+#import "MyContactWayViewController.h"
+#import "MyBusinessInfoViewController.h"
+#import "MyAddressViewController.h"
+#import "MyAfterSalesViewController.h"
+#import "MyPasswordViewController.h"
 
 @interface MyViewController ()
 
@@ -33,15 +38,25 @@
     
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = rect.size;
-    self.navigationController.navigationBarHidden = YES;
-    //self.title = @"我的";
+    
+    /*
+    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    self.navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
+    */
+    self.navigationController.navigationBar.alpha = 0.300;
+    NSDictionary *dict = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    self.navigationController.navigationBar.titleTextAttributes = dict;
+     
+    //self.navigationController.navigationBarHidden = YES;
+    self.title = @"我的";
     //self.navigationController.title = @"我的";
     
     UIImageView *topView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user-bg.jpg"]];
     topView.frame = CGRectMake(0, 0, size.width, 160);
     [self.view addSubview:topView];
     
-    
+    /*
     UILabel *bar_title =  [[UILabel alloc] initWithFrame:CGRectMake(0, 0, size.width, topView.bounds.size.height/2)];
     bar_title.text = @"我的";
     bar_title.textAlignment = NSTextAlignmentCenter;
@@ -51,7 +66,8 @@
    // [bar_title setTextColor:[UIColor colorWithRed:0.0/255.0 green:140.0/255.0 blue:199.0/255.0 alpha:1.0]];
    // [bar_title setFont:[UIFont fontWithName:@"HelveticaNeueLTStd-ThCn" size:35]];
     [self.view addSubview:bar_title];
-    
+    */
+     
     UILabel *user_number = [[UILabel alloc] initWithFrame:CGRectMake(0, (topView.bounds.size.height)-30, size.width, 20)];
     user_number.text = @"87290008(编号00176)";
     user_number.textAlignment = NSTextAlignmentCenter;
@@ -248,23 +264,34 @@
         }
         case 10: //联系方式 
         {
-            
+            MyContactWayViewController *page = [[MyContactWayViewController alloc] init];
+            [self.navigationController pushViewController:page animated:YES];
+            // [page setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+            //[self presentViewController:page animated:YES completion:nil];
             break;
         }
         case 11: //营业信息
         {
+            MyBusinessInfoViewController *page = [[MyBusinessInfoViewController alloc] init];
+            [self.navigationController pushViewController:page animated:YES];
             break;
         }
         case 12: //收货地址管理
         {
+            MyAddressViewController *page = [[MyAddressViewController alloc] init];
+            [self.navigationController pushViewController:page animated:YES];
             break;
         }
         case 13: //售后管理
         {
+            MyAfterSalesViewController *page = [[MyAfterSalesViewController alloc] init];
+            [self.navigationController pushViewController:page animated:YES];
             break;
         }
         case 14: //密码管理
         {
+            MyPasswordViewController *page = [[MyPasswordViewController alloc] init];
+            [self.navigationController pushViewController:page animated:YES];
             break;
         }
         case 30: //exit button action

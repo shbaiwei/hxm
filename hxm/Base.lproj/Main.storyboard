@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--好香美鲜花网络拍卖-->
@@ -75,7 +75,7 @@
                         <segue destination="gTB-MC-ZQj" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="NGC-Af-mh5" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="rlg-w8-hR7" kind="relationship" relationship="viewControllers" id="QNs-rt-7wQ"/>
-                        <segue destination="KOa-Pz-yN0" kind="relationship" relationship="viewControllers" id="lT6-7M-HXl"/>
+                        <segue destination="kUL-Nd-FrW" kind="relationship" relationship="viewControllers" id="2L8-oS-aKS"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -101,7 +101,7 @@
             </objects>
             <point key="canvasLocation" x="-724" y="823"/>
         </scene>
-        <!--我的-->
+        <!--My View Controller-->
         <scene sceneID="L9a-Rt-wms">
             <objects>
                 <viewController id="KOa-Pz-yN0" customClass="MyViewController" sceneMemberID="viewController">
@@ -114,11 +114,141 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="我的" image="tab-my.png" id="wN2-kF-nTz"/>
+                    <navigationItem key="navigationItem" id="FRt-aG-uV1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1EX-pW-fEs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="62" y="1068"/>
+            <point key="canvasLocation" x="874" y="1068"/>
+        </scene>
+        <!--我的－联系方式-->
+        <scene sceneID="bcv-dx-DCK">
+            <objects>
+                <viewController title="我的－联系方式" id="Aac-dr-sBR" customClass="MyContactWayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2xv-FW-nGj"/>
+                        <viewControllerLayoutGuide type="bottom" id="bPd-wS-pIX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zYu-9d-XLb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="contact way" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnb-ST-VKk">
+                                <rect key="frame" x="121" y="120" width="157" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2tv-rp-76m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-812" y="1880"/>
+        </scene>
+        <!--我的－营业信息-->
+        <scene sceneID="LVF-2r-SNb">
+            <objects>
+                <viewController title="我的－营业信息" id="TO4-fM-Qxc" customClass="MyBusinessInfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IXl-KM-qW7"/>
+                        <viewControllerLayoutGuide type="bottom" id="PTM-Us-c0E"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cb3-tM-pwv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我的营业信息" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csz-h3-1Xz">
+                                <rect key="frame" x="214" y="151" width="214" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wzu-bj-FV3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-162" y="1880"/>
+        </scene>
+        <!--我的－收货地址管理-->
+        <scene sceneID="3im-Xd-SDb">
+            <objects>
+                <viewController title="我的－收货地址管理" id="Aan-JJ-qzP" customClass="MyAddressViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jqa-NW-Ruv"/>
+                        <viewControllerLayoutGuide type="bottom" id="IA8-fb-SuZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zy0-Lf-j1u">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="收货地址管理" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fd-tG-kZ5">
+                                <rect key="frame" x="216" y="128" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yU3-l2-flT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="505" y="1880"/>
+        </scene>
+        <!--我的－售后管理-->
+        <scene sceneID="ToV-Di-Y9S">
+            <objects>
+                <viewController title="我的－售后管理" id="xxI-Gq-jZs" customClass="MyAfterSalesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QUL-CP-O9C"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jdh-Rl-xpF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xA2-iq-AtS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="售后" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HiS-hG-L7U">
+                                <rect key="frame" x="227" y="246" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ua-zW-j9w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1252" y="1880"/>
+        </scene>
+        <!--我的－密码管理-->
+        <scene sceneID="I63-pW-ODb">
+            <objects>
+                <viewController title="我的－密码管理" id="uxD-bl-9lw" customClass="MyPasswordViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e6p-Yy-0Xq"/>
+                        <viewControllerLayoutGuide type="bottom" id="tU1-Bz-ec8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="suH-tQ-CRw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NW9-RS-xpq">
+                                <rect key="frame" x="215" y="130" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CDm-pZ-flw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2004" y="1888"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jrm-SG-Lyc">
@@ -180,6 +310,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdi-ea-j7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
+        </scene>
+        <!--我的-->
+        <scene sceneID="1Or-f0-g81">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kUL-Nd-FrW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="我的" image="tab-my.png" id="wN2-kF-nTz"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tm1-QC-ox5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KOa-Pz-yN0" kind="relationship" relationship="rootViewController" id="SxG-2L-Yrp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LZ3-Bn-5jq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="62" y="1068"/>
         </scene>
     </scenes>
     <resources>

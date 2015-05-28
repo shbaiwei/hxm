@@ -1,5 +1,5 @@
 //
-//  ContactWayViewController.h
+//  MyAddressViewController.h
 //  hxm
 //
 //  Created by spring on 15/5/28.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ContactWayViewController : UIViewController
+@interface MyAddressViewController : UIViewController
 
 @end

@@ -58,7 +58,11 @@
 		32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D3D9871B03B2AE00B50967 /* BWCommon.m */; };
 		6F6995C51B15875800AFB979 /* user-right-array.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6995C41B15875800AFB979 /* user-right-array.png */; };
 		6F6995C71B15992900AFB979 /* user-face.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6995C61B15992900AFB979 /* user-face.png */; };
-		6F85EFDF1B16E291008C101B /* ContactWayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EFDE1B16E291008C101B /* ContactWayViewController.m */; };
+		6F85EFE51B16E3CC008C101B /* MyAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EFE41B16E3CC008C101B /* MyAddressViewController.m */; };
+		6F85EFEB1B16E47F008C101B /* MyContactWayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EFEA1B16E47F008C101B /* MyContactWayViewController.m */; };
+		6F85EFEE1B16E4CF008C101B /* MyBusinessInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EFED1B16E4CF008C101B /* MyBusinessInfoViewController.m */; };
+		6F85EFF11B16E509008C101B /* MyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EFF01B16E509008C101B /* MyPasswordViewController.m */; };
+		6F85EFF41B16E5D4008C101B /* MyAfterSalesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EFF31B16E5D4008C101B /* MyAfterSalesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,8 +141,16 @@
 		32D3D9871B03B2AE00B50967 /* BWCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWCommon.m; sourceTree = "<group>"; };
 		6F6995C41B15875800AFB979 /* user-right-array.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-right-array.png"; sourceTree = "<group>"; };
 		6F6995C61B15992900AFB979 /* user-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-face.png"; sourceTree = "<group>"; };
-		6F85EFDD1B16E291008C101B /* ContactWayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactWayViewController.h; sourceTree = "<group>"; };
-		6F85EFDE1B16E291008C101B /* ContactWayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactWayViewController.m; sourceTree = "<group>"; };
+		6F85EFE31B16E3CC008C101B /* MyAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAddressViewController.h; sourceTree = "<group>"; };
+		6F85EFE41B16E3CC008C101B /* MyAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAddressViewController.m; sourceTree = "<group>"; };
+		6F85EFE91B16E47F008C101B /* MyContactWayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyContactWayViewController.h; sourceTree = "<group>"; };
+		6F85EFEA1B16E47F008C101B /* MyContactWayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyContactWayViewController.m; sourceTree = "<group>"; };
+		6F85EFEC1B16E4CF008C101B /* MyBusinessInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBusinessInfoViewController.h; sourceTree = "<group>"; };
+		6F85EFED1B16E4CF008C101B /* MyBusinessInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBusinessInfoViewController.m; sourceTree = "<group>"; };
+		6F85EFEF1B16E509008C101B /* MyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPasswordViewController.h; sourceTree = "<group>"; };
+		6F85EFF01B16E509008C101B /* MyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPasswordViewController.m; sourceTree = "<group>"; };
+		6F85EFF21B16E5D4008C101B /* MyAfterSalesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAfterSalesViewController.h; sourceTree = "<group>"; };
+		6F85EFF31B16E5D4008C101B /* MyAfterSalesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAfterSalesViewController.m; sourceTree = "<group>"; };
 		9209D6723B6D4EA0AEA34FD9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -298,8 +310,16 @@
 				323C30E71B0B90A400D0B8D0 /* OrderViewController.m */,
 				325A8A8A1B0D948800CEA0AB /* MyViewController.h */,
 				325A8A8B1B0D948800CEA0AB /* MyViewController.m */,
-				6F85EFDD1B16E291008C101B /* ContactWayViewController.h */,
-				6F85EFDE1B16E291008C101B /* ContactWayViewController.m */,
+				6F85EFE91B16E47F008C101B /* MyContactWayViewController.h */,
+				6F85EFEA1B16E47F008C101B /* MyContactWayViewController.m */,
+				6F85EFEC1B16E4CF008C101B /* MyBusinessInfoViewController.h */,
+				6F85EFED1B16E4CF008C101B /* MyBusinessInfoViewController.m */,
+				6F85EFE31B16E3CC008C101B /* MyAddressViewController.h */,
+				6F85EFE41B16E3CC008C101B /* MyAddressViewController.m */,
+				6F85EFF21B16E5D4008C101B /* MyAfterSalesViewController.h */,
+				6F85EFF31B16E5D4008C101B /* MyAfterSalesViewController.m */,
+				6F85EFEF1B16E509008C101B /* MyPasswordViewController.h */,
+				6F85EFF01B16E509008C101B /* MyPasswordViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -486,17 +506,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F85EFEE1B16E4CF008C101B /* MyBusinessInfoViewController.m in Sources */,
 				323EE9101AF8F57D00C55306 /* AppDelegate.m in Sources */,
 				323C30EB1B0B913F00D0B8D0 /* GoodsViewController.m in Sources */,
 				32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */,
 				323C30E81B0B90A400D0B8D0 /* OrderViewController.m in Sources */,
 				325A8A8C1B0D948800CEA0AB /* MyViewController.m in Sources */,
 				325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */,
+				6F85EFF41B16E5D4008C101B /* MyAfterSalesViewController.m in Sources */,
 				323C30EE1B0B94FF00D0B8D0 /* ApplyViewController.m in Sources */,
+				6F85EFE51B16E3CC008C101B /* MyAddressViewController.m in Sources */,
 				32D3D9891B03B2AE00B50967 /* AFNetworkTool.m in Sources */,
+				6F85EFEB1B16E47F008C101B /* MyContactWayViewController.m in Sources */,
 				323EE90D1AF8F57D00C55306 /* main.m in Sources */,
-				6F85EFDF1B16E291008C101B /* ContactWayViewController.m in Sources */,
 				3214A87F1B04F920007DE10F /* RegisterViewController.m in Sources */,
+				6F85EFF11B16E509008C101B /* MyPasswordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
