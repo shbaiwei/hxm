@@ -39,24 +39,20 @@
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = rect.size;
     
-    /*
-    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-    self.navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
-    */
-    self.navigationController.navigationBar.alpha = 0.300;
-    NSDictionary *dict = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
-    self.navigationController.navigationBar.titleTextAttributes = dict;
-     
-    //self.navigationController.navigationBarHidden = YES;
-    self.title = @"我的";
+    
+   // [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
+   // self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    //self.navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
+    
+    self.navigationController.navigationBarHidden = YES;
+    //self.title = @"我的";
     //self.navigationController.title = @"我的";
     
     UIImageView *topView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user-bg.jpg"]];
     topView.frame = CGRectMake(0, 0, size.width, 160);
     [self.view addSubview:topView];
     
-    /*
+    
     UILabel *bar_title =  [[UILabel alloc] initWithFrame:CGRectMake(0, 0, size.width, topView.bounds.size.height/2)];
     bar_title.text = @"我的";
     bar_title.textAlignment = NSTextAlignmentCenter;
@@ -66,7 +62,7 @@
    // [bar_title setTextColor:[UIColor colorWithRed:0.0/255.0 green:140.0/255.0 blue:199.0/255.0 alpha:1.0]];
    // [bar_title setFont:[UIFont fontWithName:@"HelveticaNeueLTStd-ThCn" size:35]];
     [self.view addSubview:bar_title];
-    */
+    
      
     UILabel *user_number = [[UILabel alloc] initWithFrame:CGRectMake(0, (topView.bounds.size.height)-30, size.width, 20)];
     user_number.text = @"87290008(编号00176)";

@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"联系方式";
     // Do any additional setup after loading the view.
     [self pageLayout];
 }
@@ -51,7 +52,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+    // 进入页面隐藏标签栏
+    self.tabBarController.tabBar.hidden = YES;
+}
 
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = YES;
+    // 离开页面显示标签栏
+    self.tabBarController.tabBar.hidden = NO;
+}
 #pragma mark - Navigation
 /*
 // In a storyboard-based application, you will often want to do a little preparation before navigation

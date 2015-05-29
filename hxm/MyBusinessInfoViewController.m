@@ -7,6 +7,7 @@
 //
 
 #import "MyBusinessInfoViewController.h"
+#import "BWCommon.h"
 
 @interface MyBusinessInfoViewController ()
 
@@ -16,8 +17,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor redColor];
+    self.title = @"营业信息";
+    [self pageLayout];
     // Do any additional setup after loading the view.
+}
+
+- (void)pageLayout
+{
+    UIColor *bgColor = [BWCommon getBackgroundColor];
+    self.view.backgroundColor = bgColor;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,6 +33,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+    // 进入页面隐藏标签栏
+    self.tabBarController.tabBar.hidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = YES;
+    // 离开页面显示标签栏
+    self.tabBarController.tabBar.hidden = NO;
+}
 
 #pragma mark - Navigation
 
