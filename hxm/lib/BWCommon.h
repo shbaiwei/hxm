@@ -34,6 +34,8 @@
 +(void) setUserInfo:(NSString *) key value:(NSString *) value;
 
 +(UIColor *) getBackgroundColor;
++(UIColor *) getMainColor;
++(NSMutableDictionary *) getTokenData:(NSString *) api;
 
 +(NSString *) md5: (NSString *) str;
 

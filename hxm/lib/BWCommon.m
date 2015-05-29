@@ -97,6 +97,35 @@
     return [UIColor colorWithRed:240/255.0f green:240/255.0f blue:250/255.0f alpha:1];
 }
 
++(UIColor *) getMainColor{
+    return [UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1];
+}
++(NSMutableDictionary *) getTokenData:(NSString *) api
+{
+    //NSString *api_url = [self getBaseInfo:@"api_url"];
+    //NSString *url =  [api_url stringByAppendingString:api];
+    
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    
+    NSString *timestamp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970] ];
+    
+    NSString *str = [NSString stringWithFormat:@"%@/%@/%@",[api lowercaseString],timestamp,[self getUserInfo:@"user_key"]];
+
+    //init token
+    NSString *token = [self md5:str];
+    
+    NSLog(@"%@",[self getUserInfo:@"user_key"]);
+    NSLog(@"%@",timestamp);
+    NSLog(@"%@",str);
+    NSLog(@"%@",token);
+    
+    [data setValue:[BWCommon getUserInfo:@"hxm_uid"] forKey:@"user_id"];
+    [data setValue:timestamp forKey:@"time"];
+    [data setValue:token forKey:@"token"];
+
+    return data;
+}
+
 //md5 32位 加密 （小写）
 + (NSString *)md5:(NSString *)str
 {
