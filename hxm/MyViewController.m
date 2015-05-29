@@ -40,11 +40,13 @@
     CGSize size = rect.size;
     
     
-   // [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
-   // self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-    //self.navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
-    
+   [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    self.navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
+    //self.navigationController.navigationBar.backgroundColor = [UIColor blueColor];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBarHidden = YES;
+    
     //self.title = @"我的";
     //self.navigationController.title = @"我的";
     
