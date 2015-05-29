@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyBusinessInfoViewController : UIViewController
+@interface MyBusinessInfoViewController : UIViewController<UITextFieldDelegate>
 
 @end

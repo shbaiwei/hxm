@@ -1,36 +1,29 @@
 //
-//  MyContactWayViewController.m
-//  
+//  PasswordLoginViewController.m
+//  hxm
 //
-//  Created by spring on 15/5/28.
-//
+//  Created by spring on 15/5/29.
+//  Copyright (c) 2015年 Bruce. All rights reserved.
 //
 
-#import "MyContactWayViewController.h"
+#import "PasswordLoginViewController.h"
 #import "BWCommon.h"
 
-@interface MyContactWayViewController ()
+
+@interface PasswordLoginViewController ()
 {
-    UITextField *link_man;
-    UITextField *link_mobile;
-    UITextField *link_phone;
-    UITextField *link_email;
-    UITextField *link_qq;
-    UITextField *link_fax;
-    UITextField *link_prov_id;
-    UITextField *link_city_id;
-    UITextField *link_dist_id;
-    UITextField *link_address;
+    UITextField *password;
+    UITextField *newpassword;
+    UITextField *confirmpassword;
     CGSize size;
 }
 @end
 
-@implementation MyContactWayViewController
-
+@implementation PasswordLoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"联系方式";
+    self.title = @"登录密码修改";
     // Do any additional setup after loading the view.
     [self pageLayout];
 }
@@ -46,35 +39,25 @@
     UIView *main_view = [[UIView alloc] initWithFrame:CGRectMake(20, 60, size.width, size.height)];
     [self.view addSubview:main_view];
     NSInteger yy = 0;
-    link_man = [self createTextFieldWithTitle:@"姓    名：" yy:yy];
+    
+    password = [self createTextFieldWithTitle:@"原密码：" yy:yy];
     yy += 50;
-    link_mobile = [self createTextFieldWithTitle:@"手    机：" yy:yy];
+    newpassword = [self createTextFieldWithTitle:@"新密码：" yy:yy];
     yy += 50;
-    link_phone = [self createTextFieldWithTitle:@"固定电话：" yy:yy];
-    yy += 50;
-    link_email = [self createTextFieldWithTitle:@"E-mail：" yy:yy];
-    yy += 50;
-    link_qq = [self createTextFieldWithTitle:@"Q Q：" yy:yy];
-    yy += 50;
-    link_fax = [self createTextFieldWithTitle:@"传     真：" yy:yy];
-    yy += 50;
-    link_address = [self createTextFieldWithTitle:@"街道地址：" yy:yy];
-    [main_view addSubview:link_man];
-    [main_view addSubview:link_mobile];
-    [main_view addSubview:link_phone];
-    [main_view addSubview:link_email];
-    [main_view addSubview:link_qq];
-    [main_view addSubview:link_fax];
-    [main_view addSubview:link_address];
+    confirmpassword = [self createTextFieldWithTitle:@"确认密码：" yy:yy];
+
+    [main_view addSubview:password];
+    [main_view addSubview:newpassword];
+    [main_view addSubview:confirmpassword];
     
     UIButton *save_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    save_button.frame = CGRectMake(0, link_address.frame.origin.y+link_address.bounds.size.height+30, size.width-40, 40);
+    save_button.frame = CGRectMake(0, confirmpassword.frame.origin.y+confirmpassword.bounds.size.height+30, size.width-40, 40);
     [save_button setTag:30];
     [save_button.layer setMasksToBounds:YES];
     [save_button.layer setCornerRadius:3.0];
     [save_button setTintColor:[UIColor whiteColor]];
     [save_button setBackgroundColor:[UIColor redColor]];
-    [save_button setTitle:@"保存" forState:UIControlStateNormal];
+    [save_button setTitle:@"确认修改" forState:UIControlStateNormal];
     [save_button addTarget:self action:@selector(do_save:) forControlEvents:UIControlEventTouchUpInside];
     [main_view addSubview:save_button];
 }
@@ -83,6 +66,7 @@
 {
     NSLog(@"save action");
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -104,14 +88,17 @@
     // 离开页面显示标签栏
     self.tabBarController.tabBar.hidden = NO;
 }
-#pragma mark - Navigation
+
 /*
+#pragma mark - Navigation
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
 */
+
 - (UITextField *) createTextFieldWithTitle:(NSString *) title yy:(NSInteger)yy{
     
     UITextField * field = [[UITextField alloc] initWithFrame:CGRectMake(0, yy+10, size.width-40, 40)];
@@ -129,5 +116,4 @@
     
     return field;
 }
-
 @end

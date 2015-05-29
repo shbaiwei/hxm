@@ -68,6 +68,10 @@
 		32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D3D9871B03B2AE00B50967 /* BWCommon.m */; };
 		6F6995C51B15875800AFB979 /* user-right-array.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6995C41B15875800AFB979 /* user-right-array.png */; };
 		6F6995C71B15992900AFB979 /* user-face.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6995C61B15992900AFB979 /* user-face.png */; };
+		6F6E4CA41B1870BE002F0419 /* password-login-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6E4CA21B1870BE002F0419 /* password-login-icon.png */; };
+		6F6E4CA51B1870BE002F0419 /* password-sale-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6E4CA31B1870BE002F0419 /* password-sale-icon.png */; };
+		6F6E4CA81B187B5F002F0419 /* PasswordLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E4CA71B187B5F002F0419 /* PasswordLoginViewController.m */; };
+		6F6E4CAB1B187B91002F0419 /* PasswordSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E4CAA1B187B91002F0419 /* PasswordSaleViewController.m */; };
 		6F85EFE51B16E3CC008C101B /* MyAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EFE41B16E3CC008C101B /* MyAddressViewController.m */; };
 		6F85EFEB1B16E47F008C101B /* MyContactWayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EFEA1B16E47F008C101B /* MyContactWayViewController.m */; };
 		6F85EFEE1B16E4CF008C101B /* MyBusinessInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EFED1B16E4CF008C101B /* MyBusinessInfoViewController.m */; };
@@ -166,6 +170,12 @@
 		32D3D9871B03B2AE00B50967 /* BWCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWCommon.m; sourceTree = "<group>"; };
 		6F6995C41B15875800AFB979 /* user-right-array.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-right-array.png"; sourceTree = "<group>"; };
 		6F6995C61B15992900AFB979 /* user-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-face.png"; sourceTree = "<group>"; };
+		6F6E4CA21B1870BE002F0419 /* password-login-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password-login-icon.png"; sourceTree = "<group>"; };
+		6F6E4CA31B1870BE002F0419 /* password-sale-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password-sale-icon.png"; sourceTree = "<group>"; };
+		6F6E4CA61B187B5F002F0419 /* PasswordLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordLoginViewController.h; sourceTree = "<group>"; };
+		6F6E4CA71B187B5F002F0419 /* PasswordLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordLoginViewController.m; sourceTree = "<group>"; };
+		6F6E4CA91B187B91002F0419 /* PasswordSaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordSaleViewController.h; sourceTree = "<group>"; };
+		6F6E4CAA1B187B91002F0419 /* PasswordSaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordSaleViewController.m; sourceTree = "<group>"; };
 		6F85EFE31B16E3CC008C101B /* MyAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAddressViewController.h; sourceTree = "<group>"; };
 		6F85EFE41B16E3CC008C101B /* MyAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAddressViewController.m; sourceTree = "<group>"; };
 		6F85EFE91B16E47F008C101B /* MyContactWayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyContactWayViewController.h; sourceTree = "<group>"; };
@@ -468,9 +478,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				321B0E581B14807C004D5827 /* user-icon6.png in Resources */,
+				6F6E4CA41B1870BE002F0419 /* password-login-icon.png in Resources */,
 				323EE9191AF8F57D00C55306 /* Main.storyboard in Resources */,
 				325A8A871B0D93C300CEA0AB /* tab-my@3x.png in Resources */,
 				321A23981B09CD0200A9D294 /* register-password.png in Resources */,
+				6F6E4CA51B1870BE002F0419 /* password-sale-icon.png in Resources */,
 				325A8A811B0D92F300CEA0AB /* tab-goods@2x.png in Resources */,
 				323263631B0C88550004522E /* register-password@2x.png in Resources */,
 				325A8A841B0D92F300CEA0AB /* tab-order.png in Resources */,
@@ -566,7 +578,9 @@
 				6F85EFEE1B16E4CF008C101B /* MyBusinessInfoViewController.m in Sources */,
 				323EE9101AF8F57D00C55306 /* AppDelegate.m in Sources */,
 				323C30EB1B0B913F00D0B8D0 /* GoodsViewController.m in Sources */,
+				6F6E4CA81B187B5F002F0419 /* PasswordLoginViewController.m in Sources */,
 				32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */,
+				6F6E4CAB1B187B91002F0419 /* PasswordSaleViewController.m in Sources */,
 				323C30E81B0B90A400D0B8D0 /* OrderViewController.m in Sources */,
 				325A8A8C1B0D948800CEA0AB /* MyViewController.m in Sources */,
 				325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */,
