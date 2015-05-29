@@ -29,6 +29,9 @@
 		321B0E571B14807C004D5827 /* user-icon5.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B0E4F1B14807C004D5827 /* user-icon5.png */; };
 		321B0E581B14807C004D5827 /* user-icon6.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B0E501B14807C004D5827 /* user-icon6.png */; };
 		321B0E591B14807C004D5827 /* user-icon7.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B0E511B14807C004D5827 /* user-icon7.png */; };
+		322CFAE31B18230D00D12AFD /* OrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 322CFAE21B18230D00D12AFD /* OrderTableViewCell.m */; };
+		322CFAE61B18235300D12AFD /* OrderTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 322CFAE51B18235300D12AFD /* OrderTableViewFrame.m */; };
+		322CFAE91B187D6800D12AFD /* GoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 322CFAE81B187D6800D12AFD /* GoodsTableViewCell.m */; };
 		323263601B0C88550004522E /* register-cellphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3232635C1B0C88550004522E /* register-cellphone@2x.png */; };
 		323263611B0C88550004522E /* register-check-default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3232635D1B0C88550004522E /* register-check-default@2x.png */; };
 		323263621B0C88550004522E /* register-email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3232635E1B0C88550004522E /* register-email@2x.png */; };
@@ -100,6 +103,12 @@
 		321B0E4F1B14807C004D5827 /* user-icon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-icon5.png"; sourceTree = "<group>"; };
 		321B0E501B14807C004D5827 /* user-icon6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-icon6.png"; sourceTree = "<group>"; };
 		321B0E511B14807C004D5827 /* user-icon7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-icon7.png"; sourceTree = "<group>"; };
+		322CFAE11B18230D00D12AFD /* OrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTableViewCell.h; sourceTree = "<group>"; };
+		322CFAE21B18230D00D12AFD /* OrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTableViewCell.m; sourceTree = "<group>"; };
+		322CFAE41B18233D00D12AFD /* OrderTableViewFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTableViewFrame.h; sourceTree = "<group>"; };
+		322CFAE51B18235300D12AFD /* OrderTableViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTableViewFrame.m; sourceTree = "<group>"; };
+		322CFAE71B187D6800D12AFD /* GoodsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsTableViewCell.h; sourceTree = "<group>"; };
+		322CFAE81B187D6800D12AFD /* GoodsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsTableViewCell.m; sourceTree = "<group>"; };
 		3232635C1B0C88550004522E /* register-cellphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-cellphone@2x.png"; sourceTree = "<group>"; };
 		3232635D1B0C88550004522E /* register-check-default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-check-default@2x.png"; sourceTree = "<group>"; };
 		3232635E1B0C88550004522E /* register-email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-email@2x.png"; sourceTree = "<group>"; };
@@ -234,6 +243,19 @@
 			path = assets;
 			sourceTree = "<group>";
 		};
+		322CFAE01B1822DE00D12AFD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				322CFAE11B18230D00D12AFD /* OrderTableViewCell.h */,
+				322CFAE21B18230D00D12AFD /* OrderTableViewCell.m */,
+				322CFAE41B18233D00D12AFD /* OrderTableViewFrame.h */,
+				322CFAE51B18235300D12AFD /* OrderTableViewFrame.m */,
+				322CFAE71B187D6800D12AFD /* GoodsTableViewCell.h */,
+				322CFAE81B187D6800D12AFD /* GoodsTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		323EE8FE1AF8F57D00C55306 = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +279,7 @@
 		323EE9091AF8F57D00C55306 /* hxm */ = {
 			isa = PBXGroup;
 			children = (
+				322CFAE01B1822DE00D12AFD /* View */,
 				321A23821B09CD0200A9D294 /* assets */,
 				325C87E61B04D07A001DF5D8 /* Controller */,
 				32D3D9881B03B2AE00B50967 /* lib */,
@@ -508,6 +531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				322CFAE91B187D6800D12AFD /* GoodsTableViewCell.m in Sources */,
 				6F85EFEE1B16E4CF008C101B /* MyBusinessInfoViewController.m in Sources */,
 				323EE9101AF8F57D00C55306 /* AppDelegate.m in Sources */,
 				323C30EB1B0B913F00D0B8D0 /* GoodsViewController.m in Sources */,
@@ -518,10 +542,12 @@
 				6F85EFF41B16E5D4008C101B /* MyAfterSalesViewController.m in Sources */,
 				323C30EE1B0B94FF00D0B8D0 /* ApplyViewController.m in Sources */,
 				6F85EFE51B16E3CC008C101B /* MyAddressViewController.m in Sources */,
+				322CFAE61B18235300D12AFD /* OrderTableViewFrame.m in Sources */,
 				32D3D9891B03B2AE00B50967 /* AFNetworkTool.m in Sources */,
 				6F85EFEB1B16E47F008C101B /* MyContactWayViewController.m in Sources */,
 				323EE90D1AF8F57D00C55306 /* main.m in Sources */,
 				3214A87F1B04F920007DE10F /* RegisterViewController.m in Sources */,
+				322CFAE31B18230D00D12AFD /* OrderTableViewCell.m in Sources */,
 				6F85EFF11B16E509008C101B /* MyPasswordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

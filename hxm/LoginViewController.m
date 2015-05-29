@@ -233,7 +233,7 @@ UITextField *password;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     
     [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
-        //NSLog(@"%@",responseObject);
+        NSLog(@"%@",responseObject);
         NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
         
         if (errNo > 0) {
@@ -243,8 +243,9 @@ UITextField *password;
         else{
             //记录好香美ID
             [BWCommon setUserInfo:@"hxm_uid" value:[[responseObject objectForKey:@"data"] objectForKey:@"user_id"]];
+            [BWCommon setUserInfo:@"user_key" value:[[responseObject objectForKey:@"data"] objectForKey:@"user_key"]];
             
-            
+
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             id mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"MainIdentifier"];
             [self presentViewController:mainViewController animated:YES completion:^{}];
