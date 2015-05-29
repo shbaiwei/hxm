@@ -35,6 +35,10 @@
 		322CFAED1B18800300D12AFD /* goods-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 322CFAEA1B18800300D12AFD /* goods-1.png */; };
 		322CFAEE1B18800300D12AFD /* goods-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 322CFAEB1B18800300D12AFD /* goods-2.png */; };
 		322CFAEF1B18800300D12AFD /* goods-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 322CFAEC1B18800300D12AFD /* goods-3.png */; };
+		322CFAF21B18845500D12AFD /* FinanceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 322CFAF11B18845500D12AFD /* FinanceTableViewController.m */; };
+		322CFAF51B1887BC00D12AFD /* FinanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 322CFAF41B1887BC00D12AFD /* FinanceTableViewCell.m */; };
+		322CFAF81B18897800D12AFD /* finance-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 322CFAF61B18897800D12AFD /* finance-1.png */; };
+		322CFAF91B18897800D12AFD /* finance-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 322CFAF71B18897800D12AFD /* finance-2.png */; };
 		323263601B0C88550004522E /* register-cellphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3232635C1B0C88550004522E /* register-cellphone@2x.png */; };
 		323263611B0C88550004522E /* register-check-default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3232635D1B0C88550004522E /* register-check-default@2x.png */; };
 		323263621B0C88550004522E /* register-email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3232635E1B0C88550004522E /* register-email@2x.png */; };
@@ -115,6 +119,12 @@
 		322CFAEA1B18800300D12AFD /* goods-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goods-1.png"; sourceTree = "<group>"; };
 		322CFAEB1B18800300D12AFD /* goods-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goods-2.png"; sourceTree = "<group>"; };
 		322CFAEC1B18800300D12AFD /* goods-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goods-3.png"; sourceTree = "<group>"; };
+		322CFAF01B18845500D12AFD /* FinanceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinanceTableViewController.h; sourceTree = "<group>"; };
+		322CFAF11B18845500D12AFD /* FinanceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinanceTableViewController.m; sourceTree = "<group>"; };
+		322CFAF31B1887BC00D12AFD /* FinanceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinanceTableViewCell.h; sourceTree = "<group>"; };
+		322CFAF41B1887BC00D12AFD /* FinanceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinanceTableViewCell.m; sourceTree = "<group>"; };
+		322CFAF61B18897800D12AFD /* finance-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finance-1.png"; sourceTree = "<group>"; };
+		322CFAF71B18897800D12AFD /* finance-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finance-2.png"; sourceTree = "<group>"; };
 		3232635C1B0C88550004522E /* register-cellphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-cellphone@2x.png"; sourceTree = "<group>"; };
 		3232635D1B0C88550004522E /* register-check-default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-check-default@2x.png"; sourceTree = "<group>"; };
 		3232635E1B0C88550004522E /* register-email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-email@2x.png"; sourceTree = "<group>"; };
@@ -210,6 +220,8 @@
 		321A23821B09CD0200A9D294 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				322CFAF61B18897800D12AFD /* finance-1.png */,
+				322CFAF71B18897800D12AFD /* finance-2.png */,
 				322CFAEA1B18800300D12AFD /* goods-1.png */,
 				322CFAEB1B18800300D12AFD /* goods-2.png */,
 				322CFAEC1B18800300D12AFD /* goods-3.png */,
@@ -261,6 +273,8 @@
 				322CFAE51B18235300D12AFD /* OrderTableViewFrame.m */,
 				322CFAE71B187D6800D12AFD /* GoodsTableViewCell.h */,
 				322CFAE81B187D6800D12AFD /* GoodsTableViewCell.m */,
+				322CFAF31B1887BC00D12AFD /* FinanceTableViewCell.h */,
+				322CFAF41B1887BC00D12AFD /* FinanceTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -333,9 +347,9 @@
 			isa = PBXGroup;
 			children = (
 				323C30E91B0B913F00D0B8D0 /* GoodsViewController.h */,
+				323C30EA1B0B913F00D0B8D0 /* GoodsViewController.m */,
 				323C30EC1B0B94FF00D0B8D0 /* ApplyViewController.h */,
 				323C30ED1B0B94FF00D0B8D0 /* ApplyViewController.m */,
-				323C30EA1B0B913F00D0B8D0 /* GoodsViewController.m */,
 				325C87E71B04D100001DF5D8 /* LoginViewController.h */,
 				325C87E81B04D100001DF5D8 /* LoginViewController.m */,
 				3214A87D1B04F920007DE10F /* RegisterViewController.h */,
@@ -354,6 +368,8 @@
 				6F85EFF31B16E5D4008C101B /* MyAfterSalesViewController.m */,
 				6F85EFEF1B16E509008C101B /* MyPasswordViewController.h */,
 				6F85EFF01B16E509008C101B /* MyPasswordViewController.m */,
+				322CFAF01B18845500D12AFD /* FinanceTableViewController.h */,
+				322CFAF11B18845500D12AFD /* FinanceTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -478,6 +494,7 @@
 				321A23921B09CD0200A9D294 /* logo.png in Resources */,
 				321A23931B09CD0200A9D294 /* register-cellphone.png in Resources */,
 				321A23971B09CD0200A9D294 /* register-email.png in Resources */,
+				322CFAF91B18897800D12AFD /* finance-2.png in Resources */,
 				321A23901B09CD0200A9D294 /* login-user.png in Resources */,
 				321B0E591B14807C004D5827 /* user-icon7.png in Resources */,
 				325A8A821B0D92F300CEA0AB /* tab-my.png in Resources */,
@@ -488,6 +505,7 @@
 				6F6995C71B15992900AFB979 /* user-face.png in Resources */,
 				325A8A801B0D92F300CEA0AB /* tab-goods.png in Resources */,
 				321A23941B09CD0200A9D294 /* register-check-checked.png in Resources */,
+				322CFAF81B18897800D12AFD /* finance-1.png in Resources */,
 				321A23911B09CD0200A9D294 /* login-user@2x.png in Resources */,
 				323263621B0C88550004522E /* register-email@2x.png in Resources */,
 				325A8A7E1B0D92F300CEA0AB /* tab-finance.png in Resources */,
@@ -543,6 +561,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				322CFAF51B1887BC00D12AFD /* FinanceTableViewCell.m in Sources */,
 				322CFAE91B187D6800D12AFD /* GoodsTableViewCell.m in Sources */,
 				6F85EFEE1B16E4CF008C101B /* MyBusinessInfoViewController.m in Sources */,
 				323EE9101AF8F57D00C55306 /* AppDelegate.m in Sources */,
@@ -551,6 +570,7 @@
 				323C30E81B0B90A400D0B8D0 /* OrderViewController.m in Sources */,
 				325A8A8C1B0D948800CEA0AB /* MyViewController.m in Sources */,
 				325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */,
+				322CFAF21B18845500D12AFD /* FinanceTableViewController.m in Sources */,
 				6F85EFF41B16E5D4008C101B /* MyAfterSalesViewController.m in Sources */,
 				323C30EE1B0B94FF00D0B8D0 /* ApplyViewController.m in Sources */,
 				6F85EFE51B16E3CC008C101B /* MyAddressViewController.m in Sources */,

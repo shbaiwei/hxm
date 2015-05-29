@@ -50,7 +50,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1562" y="360"/>
+            <point key="canvasLocation" x="2374" y="360"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -65,7 +65,7 @@
                     <connections>
                         <segue destination="gTB-MC-ZQj" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="NGC-Af-mh5" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="rlg-w8-hR7" kind="relationship" relationship="viewControllers" id="QNs-rt-7wQ"/>
+                        <segue destination="ncd-dg-oSH" kind="relationship" relationship="viewControllers" id="QNs-rt-7wQ"/>
                         <segue destination="kUL-Nd-FrW" kind="relationship" relationship="viewControllers" id="2L8-oS-aKS"/>
                     </connections>
                 </tabBarController>
@@ -73,24 +73,15 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--财务管理-->
+        <!--Finance Table View Controller-->
         <scene sceneID="Qhx-Q3-Mn2">
             <objects>
-                <viewController id="rlg-w8-hR7" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="e5i-wh-C3r"/>
-                        <viewControllerLayoutGuide type="bottom" id="XcZ-Ru-oah"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="roe-BC-hJx">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="财务管理" image="tab-finance.png" id="Jec-BJ-NwS"/>
+                <viewController id="rlg-w8-hR7" customClass="FinanceTableViewController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="tVC-jS-eYv"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hj4-2q-0dh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-724" y="823"/>
+            <point key="canvasLocation" x="88" y="823"/>
         </scene>
         <!--My View Controller-->
         <scene sceneID="L9a-Rt-wms">
@@ -109,7 +100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1EX-pW-fEs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="874" y="1068"/>
+            <point key="canvasLocation" x="1686" y="1068"/>
         </scene>
         <!--我的－联系方式-->
         <scene sceneID="bcv-dx-DCK">
@@ -308,7 +299,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdi-ea-j7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="360"/>
+            <point key="canvasLocation" x="1562" y="360"/>
         </scene>
         <!--我的-->
         <scene sceneID="1Or-f0-g81">
@@ -327,7 +318,30 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LZ3-Bn-5jq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="62" y="1068"/>
+            <point key="canvasLocation" x="874" y="1068"/>
+        </scene>
+        <!--财务管理-->
+        <scene sceneID="i4f-Le-a60">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ncd-dg-oSH" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="财务管理" image="tab-finance.png" id="Jec-BJ-NwS"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yfI-4p-JrX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.4549019608" green="0.7725490196" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rlg-w8-hR7" kind="relationship" relationship="rootViewController" id="yd2-0Y-7AQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="odp-fM-ozz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-724" y="823"/>
         </scene>
     </scenes>
     <resources>

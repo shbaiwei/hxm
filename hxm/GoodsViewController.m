@@ -32,8 +32,8 @@
     
     self.view.backgroundColor = bgColor;
     
-    CGRect rect = [[UIScreen mainScreen] bounds];
-    CGSize size = rect.size;
+    //CGRect rect = [[UIScreen mainScreen] bounds];
+    //CGSize size = rect.size;
 
     NSMutableArray *menus0 = [[NSMutableArray alloc] init];
     NSMutableDictionary *row0 = [[NSMutableDictionary alloc] init];
@@ -121,7 +121,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 12;
+    return 20;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
