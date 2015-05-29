@@ -25,6 +25,7 @@
     CGRect tmpFrame = self.textLabel.frame;
     tmpFrame.origin.x = 70;
     self.textLabel.frame = tmpFrame;
+
     
     
 }

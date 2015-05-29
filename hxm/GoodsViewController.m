@@ -37,8 +37,8 @@
 
     NSMutableArray *menus0 = [[NSMutableArray alloc] init];
     NSMutableDictionary *row0 = [[NSMutableDictionary alloc] init];
-    [row0 setValue:@"空车渡柜" forKey:@"title"];
-    UIImage *icon = [UIImage imageNamed:@"kongchedugui.png"];
+    [row0 setValue:@"在售商品" forKey:@"title"];
+    UIImage *icon = [UIImage imageNamed:@"goods-1.png"];
     [row0 setValue:icon forKey:@"image"];
     
     [menus0 addObject:row0];
@@ -46,29 +46,25 @@
     NSMutableArray *menus1 = [[NSMutableArray alloc] init];
     
     row0 = [[NSMutableDictionary alloc] init];
-    [row0 setValue:@"信誉榜" forKey:@"title"];
-    icon = [UIImage imageNamed:@"xinyubang.png"];
+    [row0 setValue:@"委托记录" forKey:@"title"];
+    icon = [UIImage imageNamed:@"goods-2.png"];
     [row0 setValue:icon forKey:@"image"];
     [menus1 addObject:row0];
     
+    NSMutableArray *menus2 = [[NSMutableArray alloc] init];
     row0 = [[NSMutableDictionary alloc] init];
-    [row0 setValue:@"堆场电话" forKey:@"title"];
-    icon = [UIImage imageNamed:@"duitangdianhua.png"];
+    [row0 setValue:@"拍卖顺序" forKey:@"title"];
+    icon = [UIImage imageNamed:@"goods-3.png"];
     [row0 setValue:icon forKey:@"image"];
     
-    [menus1 addObject:row0];
+    [menus2 addObject:row0];
     
-    row0 = [[NSMutableDictionary alloc] init];
-    [row0 setValue:@"违章查询" forKey:@"title"];
-    icon = [UIImage imageNamed:@"weizhangchaxun.png"];
-    [row0 setValue:icon forKey:@"image"];
-    
-    [menus1 addObject:row0];
     
     self.list = [[NSMutableArray alloc] init];
     
     [self.list addObject:menus0];
     [self.list addObject:menus1];
+    [self.list addObject:menus2];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -114,19 +110,24 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 48;
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     
     return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 20;
+    return 12;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView* myView = [[UIView alloc] init];
-    myView.backgroundColor = [UIColor colorWithRed:214/255.0f green:214/255.0f blue:214/255.0f alpha:1];
+    myView.backgroundColor = [BWCommon getBackgroundColor];
     return myView;
 }
 
