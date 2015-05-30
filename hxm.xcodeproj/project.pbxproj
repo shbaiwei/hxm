@@ -83,6 +83,8 @@
 		6FE32FFF1B19E24500BE3B8F /* address-delete-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE32FFC1B19E24500BE3B8F /* address-delete-icon.png */; };
 		6FE330001B19E24500BE3B8F /* address-noselect-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE32FFD1B19E24500BE3B8F /* address-noselect-icon.png */; };
 		6FE330011B19E24500BE3B8F /* address-selected-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE32FFE1B19E24500BE3B8F /* address-selected-icon.png */; };
+		6FE330041B19E39A00BE3B8F /* MyAddressTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE330031B19E39A00BE3B8F /* MyAddressTableViewFrame.m */; };
+		6FE330071B19E3FB00BE3B8F /* MyAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE330061B19E3FB00BE3B8F /* MyAddressTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,6 +204,10 @@
 		6FE32FFC1B19E24500BE3B8F /* address-delete-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "address-delete-icon.png"; sourceTree = "<group>"; };
 		6FE32FFD1B19E24500BE3B8F /* address-noselect-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "address-noselect-icon.png"; sourceTree = "<group>"; };
 		6FE32FFE1B19E24500BE3B8F /* address-selected-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "address-selected-icon.png"; sourceTree = "<group>"; };
+		6FE330021B19E36A00BE3B8F /* MyAddressTableViewFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAddressTableViewFrame.h; sourceTree = "<group>"; };
+		6FE330031B19E39A00BE3B8F /* MyAddressTableViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAddressTableViewFrame.m; sourceTree = "<group>"; };
+		6FE330051B19E3FB00BE3B8F /* MyAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAddressTableViewCell.h; sourceTree = "<group>"; };
+		6FE330061B19E3FB00BE3B8F /* MyAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAddressTableViewCell.m; sourceTree = "<group>"; };
 		9209D6723B6D4EA0AEA34FD9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -309,6 +315,10 @@
 				6FCBFE261B19B4A200537CC6 /* MyAfterSaleTableViewFrame.m */,
 				6FCBFE2B1B19B5A800537CC6 /* MyAfterSaleTableViewCell.h */,
 				6FCBFE2C1B19B5A800537CC6 /* MyAfterSaleTableViewCell.m */,
+				6FE330021B19E36A00BE3B8F /* MyAddressTableViewFrame.h */,
+				6FE330031B19E39A00BE3B8F /* MyAddressTableViewFrame.m */,
+				6FE330051B19E3FB00BE3B8F /* MyAddressTableViewCell.h */,
+				6FE330061B19E3FB00BE3B8F /* MyAddressTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -609,6 +619,7 @@
 				322CFAE91B187D6800D12AFD /* GoodsTableViewCell.m in Sources */,
 				6F85EFEE1B16E4CF008C101B /* MyBusinessInfoViewController.m in Sources */,
 				323EE9101AF8F57D00C55306 /* AppDelegate.m in Sources */,
+				6FE330041B19E39A00BE3B8F /* MyAddressTableViewFrame.m in Sources */,
 				323C30EB1B0B913F00D0B8D0 /* GoodsViewController.m in Sources */,
 				6FCBFE271B19B4A200537CC6 /* MyAfterSaleTableViewFrame.m in Sources */,
 				6F6E4CA81B187B5F002F0419 /* PasswordLoginViewController.m in Sources */,
@@ -626,6 +637,7 @@
 				6F85EFEB1B16E47F008C101B /* MyContactWayViewController.m in Sources */,
 				323EE90D1AF8F57D00C55306 /* main.m in Sources */,
 				3214A87F1B04F920007DE10F /* RegisterViewController.m in Sources */,
+				6FE330071B19E3FB00BE3B8F /* MyAddressTableViewCell.m in Sources */,
 				6FCBFE2D1B19B5A800537CC6 /* MyAfterSaleTableViewCell.m in Sources */,
 				322CFAE31B18230D00D12AFD /* OrderTableViewCell.m in Sources */,
 				6F85EFF11B16E509008C101B /* MyPasswordViewController.m in Sources */,
