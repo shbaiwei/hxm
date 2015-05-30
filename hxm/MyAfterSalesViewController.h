@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface MyAfterSalesViewController : UIViewController
+@interface MyAfterSalesViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate>
+{
+    MBProgressHUD *hud;
+    NSMutableArray *_items;
+    NSMutableArray *_itemsKeys;
+    
+    
+    NSMutableArray *dataArray; //创建个数组来放我们的数据
+}
 
+@property (nonatomic,retain) NSMutableArray *items;
+@property (nonatomic,retain) NSMutableArray *itemsKeys;
+@property (nonatomic,strong) UITableView *tableview;
+@property (nonatomic,retain) NSMutableArray *dataArray;
 @end

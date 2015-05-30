@@ -77,6 +77,12 @@
 		6F85EFEE1B16E4CF008C101B /* MyBusinessInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EFED1B16E4CF008C101B /* MyBusinessInfoViewController.m */; };
 		6F85EFF11B16E509008C101B /* MyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EFF01B16E509008C101B /* MyPasswordViewController.m */; };
 		6F85EFF41B16E5D4008C101B /* MyAfterSalesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EFF31B16E5D4008C101B /* MyAfterSalesViewController.m */; };
+		6FCBFE271B19B4A200537CC6 /* MyAfterSaleTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCBFE261B19B4A200537CC6 /* MyAfterSaleTableViewFrame.m */; };
+		6FCBFE2D1B19B5A800537CC6 /* MyAfterSaleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCBFE2C1B19B5A800537CC6 /* MyAfterSaleTableViewCell.m */; };
+		6FE32FFB1B19BEE300BE3B8F /* complain-time-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE32FFA1B19BEE300BE3B8F /* complain-time-icon.png */; };
+		6FE32FFF1B19E24500BE3B8F /* address-delete-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE32FFC1B19E24500BE3B8F /* address-delete-icon.png */; };
+		6FE330001B19E24500BE3B8F /* address-noselect-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE32FFD1B19E24500BE3B8F /* address-noselect-icon.png */; };
+		6FE330011B19E24500BE3B8F /* address-selected-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE32FFE1B19E24500BE3B8F /* address-selected-icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,8 +192,16 @@
 		6F85EFF01B16E509008C101B /* MyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPasswordViewController.m; sourceTree = "<group>"; };
 		6F85EFF21B16E5D4008C101B /* MyAfterSalesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAfterSalesViewController.h; sourceTree = "<group>"; };
 		6F85EFF31B16E5D4008C101B /* MyAfterSalesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAfterSalesViewController.m; sourceTree = "<group>"; };
+		6FCBFE251B19B47700537CC6 /* MyAfterSaleTableViewFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAfterSaleTableViewFrame.h; sourceTree = "<group>"; };
+		6FCBFE261B19B4A200537CC6 /* MyAfterSaleTableViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAfterSaleTableViewFrame.m; sourceTree = "<group>"; };
+		6FCBFE2B1B19B5A800537CC6 /* MyAfterSaleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAfterSaleTableViewCell.h; sourceTree = "<group>"; };
+		6FCBFE2C1B19B5A800537CC6 /* MyAfterSaleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAfterSaleTableViewCell.m; sourceTree = "<group>"; };
 		6FDDE2D31B176A590064E885 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		6FDDE2D41B176A590064E885 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		6FE32FFA1B19BEE300BE3B8F /* complain-time-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "complain-time-icon.png"; sourceTree = "<group>"; };
+		6FE32FFC1B19E24500BE3B8F /* address-delete-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "address-delete-icon.png"; sourceTree = "<group>"; };
+		6FE32FFD1B19E24500BE3B8F /* address-noselect-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "address-noselect-icon.png"; sourceTree = "<group>"; };
+		6FE32FFE1B19E24500BE3B8F /* address-selected-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "address-selected-icon.png"; sourceTree = "<group>"; };
 		9209D6723B6D4EA0AEA34FD9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -230,6 +244,10 @@
 		321A23821B09CD0200A9D294 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				6FE32FFC1B19E24500BE3B8F /* address-delete-icon.png */,
+				6FE32FFD1B19E24500BE3B8F /* address-noselect-icon.png */,
+				6FE32FFE1B19E24500BE3B8F /* address-selected-icon.png */,
+				6FE32FFA1B19BEE300BE3B8F /* complain-time-icon.png */,
 				322CFAF61B18897800D12AFD /* finance-1.png */,
 				322CFAF71B18897800D12AFD /* finance-2.png */,
 				322CFAEA1B18800300D12AFD /* goods-1.png */,
@@ -287,6 +305,10 @@
 				322CFAE81B187D6800D12AFD /* GoodsTableViewCell.m */,
 				322CFAF31B1887BC00D12AFD /* FinanceTableViewCell.h */,
 				322CFAF41B1887BC00D12AFD /* FinanceTableViewCell.m */,
+				6FCBFE251B19B47700537CC6 /* MyAfterSaleTableViewFrame.h */,
+				6FCBFE261B19B4A200537CC6 /* MyAfterSaleTableViewFrame.m */,
+				6FCBFE2B1B19B5A800537CC6 /* MyAfterSaleTableViewCell.h */,
+				6FCBFE2C1B19B5A800537CC6 /* MyAfterSaleTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -489,6 +511,7 @@
 				325A8A871B0D93C300CEA0AB /* tab-my@3x.png in Resources */,
 				321A23981B09CD0200A9D294 /* register-password.png in Resources */,
 				6F6E4CA51B1870BE002F0419 /* password-sale-icon.png in Resources */,
+				6FE330011B19E24500BE3B8F /* address-selected-icon.png in Resources */,
 				325A8A811B0D92F300CEA0AB /* tab-goods@2x.png in Resources */,
 				323263631B0C88550004522E /* register-password@2x.png in Resources */,
 				325A8A841B0D92F300CEA0AB /* tab-order.png in Resources */,
@@ -507,6 +530,7 @@
 				321A238F1B09CD0200A9D294 /* login-password@2x.png in Resources */,
 				321B0E571B14807C004D5827 /* user-icon5.png in Resources */,
 				325A8A7F1B0D92F300CEA0AB /* tab-finance@2x.png in Resources */,
+				6FE32FFB1B19BEE300BE3B8F /* complain-time-icon.png in Resources */,
 				321B0E561B14807C004D5827 /* user-icon4.png in Resources */,
 				321A239A1B09CEFF00A9D294 /* baseinfo.plist in Resources */,
 				321A23921B09CD0200A9D294 /* logo.png in Resources */,
@@ -520,11 +544,13 @@
 				325A8A891B0D944900CEA0AB /* user-bg.jpg in Resources */,
 				321B0E551B14807C004D5827 /* user-icon3.png in Resources */,
 				323263611B0C88550004522E /* register-check-default@2x.png in Resources */,
+				6FE32FFF1B19E24500BE3B8F /* address-delete-icon.png in Resources */,
 				6F6995C71B15992900AFB979 /* user-face.png in Resources */,
 				325A8A801B0D92F300CEA0AB /* tab-goods.png in Resources */,
 				321A23941B09CD0200A9D294 /* register-check-checked.png in Resources */,
 				322CFAF81B18897800D12AFD /* finance-1.png in Resources */,
 				321A23911B09CD0200A9D294 /* login-user@2x.png in Resources */,
+				6FE330001B19E24500BE3B8F /* address-noselect-icon.png in Resources */,
 				323263621B0C88550004522E /* register-email@2x.png in Resources */,
 				325A8A7E1B0D92F300CEA0AB /* tab-finance.png in Resources */,
 				321B0E521B14807C004D5827 /* user-edit.png in Resources */,
@@ -584,6 +610,7 @@
 				6F85EFEE1B16E4CF008C101B /* MyBusinessInfoViewController.m in Sources */,
 				323EE9101AF8F57D00C55306 /* AppDelegate.m in Sources */,
 				323C30EB1B0B913F00D0B8D0 /* GoodsViewController.m in Sources */,
+				6FCBFE271B19B4A200537CC6 /* MyAfterSaleTableViewFrame.m in Sources */,
 				6F6E4CA81B187B5F002F0419 /* PasswordLoginViewController.m in Sources */,
 				32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */,
 				6F6E4CAB1B187B91002F0419 /* PasswordSaleViewController.m in Sources */,
@@ -599,6 +626,7 @@
 				6F85EFEB1B16E47F008C101B /* MyContactWayViewController.m in Sources */,
 				323EE90D1AF8F57D00C55306 /* main.m in Sources */,
 				3214A87F1B04F920007DE10F /* RegisterViewController.m in Sources */,
+				6FCBFE2D1B19B5A800537CC6 /* MyAfterSaleTableViewCell.m in Sources */,
 				322CFAE31B18230D00D12AFD /* OrderTableViewCell.m in Sources */,
 				6F85EFF11B16E509008C101B /* MyPasswordViewController.m in Sources */,
 			);
