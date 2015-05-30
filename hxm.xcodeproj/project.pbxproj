@@ -235,6 +235,8 @@
 				322CFAEA1B18800300D12AFD /* goods-1.png */,
 				322CFAEB1B18800300D12AFD /* goods-2.png */,
 				322CFAEC1B18800300D12AFD /* goods-3.png */,
+				6F6E4CA21B1870BE002F0419 /* password-login-icon.png */,
+				6F6E4CA31B1870BE002F0419 /* password-sale-icon.png */,
 				6F6995C61B15992900AFB979 /* user-face.png */,
 				6F6995C41B15875800AFB979 /* user-right-array.png */,
 				321B0E4A1B14807C004D5827 /* user-edit.png */,
@@ -380,6 +382,10 @@
 				6F85EFF01B16E509008C101B /* MyPasswordViewController.m */,
 				322CFAF01B18845500D12AFD /* FinanceTableViewController.h */,
 				322CFAF11B18845500D12AFD /* FinanceTableViewController.m */,
+				6F6E4CA61B187B5F002F0419 /* PasswordLoginViewController.h */,
+				6F6E4CA71B187B5F002F0419 /* PasswordLoginViewController.m */,
+				6F6E4CA91B187B91002F0419 /* PasswordSaleViewController.h */,
+				6F6E4CAA1B187B91002F0419 /* PasswordSaleViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
