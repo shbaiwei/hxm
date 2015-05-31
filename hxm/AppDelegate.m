@@ -20,8 +20,8 @@
     // Override point for customization after application launch.
     BOOL isLoggedIn = [BWCommon isLoggedIn];
     
-    //NSString * segueId = isLoggedIn ? @"MainIdentifier" : @"LoginIdentifier";
-    NSString * segueId = @"MainIdentifier";
+    NSString * segueId = isLoggedIn ? @"MainIdentifier" : @"LoginIdentifier";
+    //NSString * segueId = @"MainIdentifier";
     self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:segueId];
     
     return YES;
