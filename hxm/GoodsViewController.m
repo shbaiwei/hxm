@@ -9,6 +9,7 @@
 #import "GoodsViewController.h"
 #import "BWCommon.h"
 #import "GoodsTableViewCell.h"
+#import "GoodsListTableViewController.h"
 
 @interface GoodsViewController ()
 
@@ -31,6 +32,11 @@
     UIColor *bgColor = [BWCommon getBackgroundColor];
     
     self.view.backgroundColor = bgColor;
+    
+    UIBarButtonItem *backItem=[[UIBarButtonItem alloc]init];
+    backItem.title=@"";
+    backItem.image=[UIImage imageNamed:@""];
+    self.navigationItem.backBarButtonItem=backItem;
     
     //CGRect rect = [[UIScreen mainScreen] bounds];
     //CGSize size = rect.size;
@@ -141,6 +147,24 @@
      
      [self.navigationController pushViewController:userInfoTableViewController animated:YES];
      */
+    
+    NSInteger row = [indexPath indexAtPosition:0];
+    if(row == 0){
+        //在售商品
+        GoodsListTableViewController *goodsListTableViewController = [[GoodsListTableViewController alloc] init];
+        goodsListTableViewController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:goodsListTableViewController animated:YES];
+        
+    }
+    else if(row == 1){
+        //委托记录
+        
+    }
+    else if(row==2){
+        //拍卖顺序
+        
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }

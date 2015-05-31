@@ -29,6 +29,9 @@
 		321B0E571B14807C004D5827 /* user-icon5.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B0E4F1B14807C004D5827 /* user-icon5.png */; };
 		321B0E581B14807C004D5827 /* user-icon6.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B0E501B14807C004D5827 /* user-icon6.png */; };
 		321B0E591B14807C004D5827 /* user-icon7.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B0E511B14807C004D5827 /* user-icon7.png */; };
+		3227EAED1B19E44D00AC34B8 /* GoodsListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3227EAEC1B19E44D00AC34B8 /* GoodsListTableViewController.m */; };
+		3227EAF11B19E67100AC34B8 /* GoodsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3227EAF01B19E67100AC34B8 /* GoodsListTableViewCell.m */; };
+		3227EAF31B19E68B00AC34B8 /* GoodsListTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3227EAF21B19E68B00AC34B8 /* GoodsListTableViewFrame.m */; };
 		322CFAE31B18230D00D12AFD /* OrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 322CFAE21B18230D00D12AFD /* OrderTableViewCell.m */; };
 		322CFAE61B18235300D12AFD /* OrderTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 322CFAE51B18235300D12AFD /* OrderTableViewFrame.m */; };
 		322CFAE91B187D6800D12AFD /* GoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 322CFAE81B187D6800D12AFD /* GoodsTableViewCell.m */; };
@@ -114,6 +117,12 @@
 		321B0E4F1B14807C004D5827 /* user-icon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-icon5.png"; sourceTree = "<group>"; };
 		321B0E501B14807C004D5827 /* user-icon6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-icon6.png"; sourceTree = "<group>"; };
 		321B0E511B14807C004D5827 /* user-icon7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-icon7.png"; sourceTree = "<group>"; };
+		3227EAEB1B19E44D00AC34B8 /* GoodsListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsListTableViewController.h; sourceTree = "<group>"; };
+		3227EAEC1B19E44D00AC34B8 /* GoodsListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsListTableViewController.m; sourceTree = "<group>"; };
+		3227EAEF1B19E67100AC34B8 /* GoodsListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsListTableViewCell.h; sourceTree = "<group>"; };
+		3227EAF01B19E67100AC34B8 /* GoodsListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsListTableViewCell.m; sourceTree = "<group>"; };
+		3227EAF21B19E68B00AC34B8 /* GoodsListTableViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsListTableViewFrame.m; sourceTree = "<group>"; };
+		3227EAF41B19E69D00AC34B8 /* GoodsListTableViewFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsListTableViewFrame.h; sourceTree = "<group>"; };
 		322CFAE11B18230D00D12AFD /* OrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTableViewCell.h; sourceTree = "<group>"; };
 		322CFAE21B18230D00D12AFD /* OrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTableViewCell.m; sourceTree = "<group>"; };
 		322CFAE41B18233D00D12AFD /* OrderTableViewFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTableViewFrame.h; sourceTree = "<group>"; };
@@ -276,9 +285,30 @@
 			path = assets;
 			sourceTree = "<group>";
 		};
+		3227EAEA1B19E40E00AC34B8 /* Goods */ = {
+			isa = PBXGroup;
+			children = (
+				3227EAEB1B19E44D00AC34B8 /* GoodsListTableViewController.h */,
+				3227EAEC1B19E44D00AC34B8 /* GoodsListTableViewController.m */,
+			);
+			name = Goods;
+			sourceTree = "<group>";
+		};
+		3227EAEE1B19E65000AC34B8 /* Goods */ = {
+			isa = PBXGroup;
+			children = (
+				3227EAEF1B19E67100AC34B8 /* GoodsListTableViewCell.h */,
+				3227EAF01B19E67100AC34B8 /* GoodsListTableViewCell.m */,
+				3227EAF41B19E69D00AC34B8 /* GoodsListTableViewFrame.h */,
+				3227EAF21B19E68B00AC34B8 /* GoodsListTableViewFrame.m */,
+			);
+			name = Goods;
+			sourceTree = "<group>";
+		};
 		322CFAE01B1822DE00D12AFD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3227EAEE1B19E65000AC34B8 /* Goods */,
 				322CFAE11B18230D00D12AFD /* OrderTableViewCell.h */,
 				322CFAE21B18230D00D12AFD /* OrderTableViewCell.m */,
 				322CFAE41B18233D00D12AFD /* OrderTableViewFrame.h */,
@@ -358,6 +388,7 @@
 		325C87E61B04D07A001DF5D8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3227EAEA1B19E40E00AC34B8 /* Goods */,
 				323C30E91B0B913F00D0B8D0 /* GoodsViewController.h */,
 				323C30EA1B0B913F00D0B8D0 /* GoodsViewController.m */,
 				323C30EC1B0B94FF00D0B8D0 /* ApplyViewController.h */,
@@ -585,6 +616,7 @@
 				323EE9101AF8F57D00C55306 /* AppDelegate.m in Sources */,
 				323C30EB1B0B913F00D0B8D0 /* GoodsViewController.m in Sources */,
 				6F6E4CA81B187B5F002F0419 /* PasswordLoginViewController.m in Sources */,
+				3227EAF31B19E68B00AC34B8 /* GoodsListTableViewFrame.m in Sources */,
 				32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */,
 				6F6E4CAB1B187B91002F0419 /* PasswordSaleViewController.m in Sources */,
 				323C30E81B0B90A400D0B8D0 /* OrderViewController.m in Sources */,
@@ -594,12 +626,14 @@
 				6F85EFF41B16E5D4008C101B /* MyAfterSalesViewController.m in Sources */,
 				323C30EE1B0B94FF00D0B8D0 /* ApplyViewController.m in Sources */,
 				6F85EFE51B16E3CC008C101B /* MyAddressViewController.m in Sources */,
+				3227EAED1B19E44D00AC34B8 /* GoodsListTableViewController.m in Sources */,
 				322CFAE61B18235300D12AFD /* OrderTableViewFrame.m in Sources */,
 				32D3D9891B03B2AE00B50967 /* AFNetworkTool.m in Sources */,
 				6F85EFEB1B16E47F008C101B /* MyContactWayViewController.m in Sources */,
 				323EE90D1AF8F57D00C55306 /* main.m in Sources */,
 				3214A87F1B04F920007DE10F /* RegisterViewController.m in Sources */,
 				322CFAE31B18230D00D12AFD /* OrderTableViewCell.m in Sources */,
+				3227EAF11B19E67100AC34B8 /* GoodsListTableViewCell.m in Sources */,
 				6F85EFF11B16E509008C101B /* MyPasswordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

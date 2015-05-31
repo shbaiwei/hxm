@@ -9,6 +9,8 @@
 #import "FinanceTableViewController.h"
 #import "FinanceTableViewCell.h"
 #import "BWCommon.h"
+#import "MJRefresh.h"
+#import "AFNetworkTool.h"
 
 @interface FinanceTableViewController ()
 
@@ -62,9 +64,70 @@
     self.sectionList = [[NSMutableArray alloc] init];
     [self.sectionList addObject:@{@"title":@"账户信息"}];
     [self.sectionList addObject:@{@"title":@"账户余额"}];
-
+    
+ 
+    [self loadData:^{}];
+    
+    [self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(headerRefreshing)];
     
 }
+
+- (void) headerRefreshing{
+    
+    [self loadData:^{
+        [self.tableView.header endRefreshing];
+    }];
+    
+}
+
+
+- (void) loadData:(void(^)()) callback
+{
+    
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
+    
+    
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"account/getAccountInfoById"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"account/getAccountInfoById"];
+    
+    NSLog(@"%@",url);
+    //load data
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        
+        NSLog(@"%@",responseObject);
+        [hud removeFromSuperview];
+        if(errNo == 0)
+        {
+            
+            //NSLog(@"%@",json);
+            
+            
+            
+            if(callback){
+                callback();
+            }
+            
+            [self.tableView reloadData];
+        }
+        else
+        {
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+        }
+        
+    } fail:^{
+        [hud removeFromSuperview];
+        NSLog(@"请求失败");
+    }];
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -92,7 +155,10 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     
-    return 15;
+    if(section == 0)
+        return 15;
+    else
+        return 50;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -132,19 +198,22 @@
     //headerView.layer.borderColor = [[UIColor grayColor] CGColor];
     //headerView.layer.borderWidth = 1.0f;
     
-    headerView.backgroundColor = [UIColor whiteColor];
+
+        headerView.backgroundColor = [UIColor whiteColor];
     
-    NSString *imageName = [NSString stringWithFormat:@"finance-%ld.png",(long)(section+1)];
-    UIImage* icon = [UIImage imageNamed:imageName];
+        NSString *imageName = [NSString stringWithFormat:@"finance-%ld.png",(long)(section+1)];
+        UIImage* icon = [UIImage imageNamed:imageName];
     
-    UIImageView * iconView = [[UIImageView alloc] initWithImage:icon];
-    [headerView addSubview:iconView];
-    iconView.frame = CGRectMake(10, 10, 36, 36);
+        UIImageView * iconView = [[UIImageView alloc] initWithImage:icon];
+        [headerView addSubview:iconView];
+        iconView.frame = CGRectMake(10, 10, 36, 36);
+        
+        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 20, 100, 20)];
+        [headerView addSubview:nameLabel];
     
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 20, 100, 20)];
-    [headerView addSubview:nameLabel];
-    
-    nameLabel.text = [[self.sectionList objectAtIndex:section] objectForKey:@"title"];
+        nameLabel.text = [[self.sectionList objectAtIndex:section] objectForKey:@"title"];
+        
+
     
     
     return headerView;
@@ -154,6 +223,12 @@
 
     UIView* myView = [[UIView alloc] init];
     myView.backgroundColor = [BWCommon getBackgroundColor];
+    
+    if(section==1)
+    {
+        
+    }
+    
     return myView;
 }
 
