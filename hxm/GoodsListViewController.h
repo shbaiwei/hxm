@@ -8,13 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
+#import "DetailDelegate.h"
 
-@interface GoodsListTableViewController : UITableViewController
-<MBProgressHUDDelegate>{
+@interface GoodsListViewController : UIViewController
+<
+UITableViewDataSource,
+UITableViewDelegate,
+MBProgressHUDDelegate>{
     
     MBProgressHUD *hud;
 }
 
 @property (nonatomic,retain) NSMutableArray *dataArray;
+@property (nonatomic,strong) UITableView *tableview;
+@property (nonatomic,assign) id<DetailDelegate> delegate;
 
 @end

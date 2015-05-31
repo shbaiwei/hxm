@@ -213,16 +213,27 @@
     
         nameLabel.text = [[self.sectionList objectAtIndex:section] objectForKey:@"title"];
         
-
+    [headerView sizeToFit];
+    
+    CALayer* layer = [headerView layer];
+    
+    CALayer *bottomBorder = [CALayer layer];
+    bottomBorder.borderWidth = 1;
+    bottomBorder.frame = CGRectMake(-1, layer.frame.size.height, layer.frame.size.width, 1);
+    [bottomBorder setBorderColor:[UIColor lightGrayColor].CGColor];
+    [layer addSublayer:bottomBorder];
     
     
     return headerView;
 }
 
--(UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+-(UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
 
     UIView* myView = [[UIView alloc] init];
     myView.backgroundColor = [BWCommon getBackgroundColor];
+    
+
     
     if(section==1)
     {

@@ -67,6 +67,9 @@
 		325A8A891B0D944900CEA0AB /* user-bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 325A8A881B0D944900CEA0AB /* user-bg.jpg */; };
 		325A8A8C1B0D948800CEA0AB /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325A8A8B1B0D948800CEA0AB /* MyViewController.m */; };
 		325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325C87E81B04D100001DF5D8 /* LoginViewController.m */; };
+		32AAD6AE1B1AE488008C3306 /* GoodsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AAD6AD1B1AE488008C3306 /* GoodsListViewController.m */; };
+		32AAD6B01B1B1530008C3306 /* goods-cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 32AAD6AF1B1B1530008C3306 /* goods-cart.png */; };
+		32AAD6B31B1B242E008C3306 /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AAD6B21B1B242E008C3306 /* GoodsDetailViewController.m */; };
 		32D3D9891B03B2AE00B50967 /* AFNetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D3D9851B03B2AE00B50967 /* AFNetworkTool.m */; };
 		32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D3D9871B03B2AE00B50967 /* BWCommon.m */; };
 		6F6995C51B15875800AFB979 /* user-right-array.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6995C41B15875800AFB979 /* user-right-array.png */; };
@@ -181,6 +184,12 @@
 		325A8A8B1B0D948800CEA0AB /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		325C87E71B04D100001DF5D8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		325C87E81B04D100001DF5D8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		32AAD6AC1B1AE488008C3306 /* GoodsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsListViewController.h; sourceTree = "<group>"; };
+		32AAD6AD1B1AE488008C3306 /* GoodsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsListViewController.m; sourceTree = "<group>"; };
+		32AAD6AF1B1B1530008C3306 /* goods-cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goods-cart.png"; sourceTree = "<group>"; };
+		32AAD6B11B1B242E008C3306 /* GoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailViewController.h; sourceTree = "<group>"; };
+		32AAD6B21B1B242E008C3306 /* GoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailViewController.m; sourceTree = "<group>"; };
+		32AAD6B41B1B24E1008C3306 /* DetailDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailDelegate.h; sourceTree = "<group>"; };
 		32D3D9841B03B2AE00B50967 /* AFNetworkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkTool.h; sourceTree = "<group>"; };
 		32D3D9851B03B2AE00B50967 /* AFNetworkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkTool.m; sourceTree = "<group>"; };
 		32D3D9861B03B2AE00B50967 /* BWCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWCommon.h; sourceTree = "<group>"; };
@@ -259,6 +268,7 @@
 		321A23821B09CD0200A9D294 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				32AAD6AF1B1B1530008C3306 /* goods-cart.png */,
 				6FE32FFC1B19E24500BE3B8F /* address-delete-icon.png */,
 				6FE32FFD1B19E24500BE3B8F /* address-noselect-icon.png */,
 				6FE32FFE1B19E24500BE3B8F /* address-selected-icon.png */,
@@ -314,6 +324,10 @@
 			children = (
 				3227EAEB1B19E44D00AC34B8 /* GoodsListTableViewController.h */,
 				3227EAEC1B19E44D00AC34B8 /* GoodsListTableViewController.m */,
+				32AAD6AC1B1AE488008C3306 /* GoodsListViewController.h */,
+				32AAD6AD1B1AE488008C3306 /* GoodsListViewController.m */,
+				32AAD6B11B1B242E008C3306 /* GoodsDetailViewController.h */,
+				32AAD6B21B1B242E008C3306 /* GoodsDetailViewController.m */,
 			);
 			name = Goods;
 			sourceTree = "<group>";
@@ -382,6 +396,7 @@
 				32D3D9881B03B2AE00B50967 /* lib */,
 				323EE90E1AF8F57D00C55306 /* AppDelegate.h */,
 				323EE90F1AF8F57D00C55306 /* AppDelegate.m */,
+				32AAD6B41B1B24E1008C3306 /* DetailDelegate.h */,
 				323EE9171AF8F57D00C55306 /* Main.storyboard */,
 				323EE91A1AF8F57D00C55306 /* Images.xcassets */,
 				323EE91C1AF8F57D00C55306 /* LaunchScreen.xib */,
@@ -563,6 +578,7 @@
 				323EE91E1AF8F57D00C55306 /* LaunchScreen.xib in Resources */,
 				322CFAEE1B18800300D12AFD /* goods-2.png in Resources */,
 				6F6995C51B15875800AFB979 /* user-right-array.png in Resources */,
+				32AAD6B01B1B1530008C3306 /* goods-cart.png in Resources */,
 				321B0E531B14807C004D5827 /* user-icon1.png in Resources */,
 				321A238E1B09CD0200A9D294 /* login-password.png in Resources */,
 				322CFAEF1B18800300D12AFD /* goods-3.png in Resources */,
@@ -649,6 +665,7 @@
 				322CFAF51B1887BC00D12AFD /* FinanceTableViewCell.m in Sources */,
 				322CFAE91B187D6800D12AFD /* GoodsTableViewCell.m in Sources */,
 				6F85EFEE1B16E4CF008C101B /* MyBusinessInfoViewController.m in Sources */,
+				32AAD6B31B1B242E008C3306 /* GoodsDetailViewController.m in Sources */,
 				323EE9101AF8F57D00C55306 /* AppDelegate.m in Sources */,
 				6FE330041B19E39A00BE3B8F /* MyAddressTableViewFrame.m in Sources */,
 				323C30EB1B0B913F00D0B8D0 /* GoodsViewController.m in Sources */,
@@ -671,6 +688,7 @@
 				323EE90D1AF8F57D00C55306 /* main.m in Sources */,
 				3214A87F1B04F920007DE10F /* RegisterViewController.m in Sources */,
 				6FE330071B19E3FB00BE3B8F /* MyAddressTableViewCell.m in Sources */,
+				32AAD6AE1B1AE488008C3306 /* GoodsListViewController.m in Sources */,
 				6FCBFE2D1B19B5A800537CC6 /* MyAfterSaleTableViewCell.m in Sources */,
 				322CFAE31B18230D00D12AFD /* OrderTableViewCell.m in Sources */,
 				3227EAF11B19E67100AC34B8 /* GoodsListTableViewCell.m in Sources */,

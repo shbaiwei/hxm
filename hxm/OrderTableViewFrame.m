@@ -29,14 +29,14 @@
     //CGFloat imageY = padding;
     //self.imageF = CGRectMake(imageX, imageY, 100, 60);
     
-    CGFloat orderNoX = 100+paddingX*2;
-    CGFloat orderNoY = paddingY + 22;
-    CGSize orderNoSize = [self sizeWithString:[NSString stringWithFormat:@"订单编号：%@",[data objectForKey:@"order_no"]] font:NJNameFont maxSize:CGSizeMake(240, MAXFLOAT)];
+    CGFloat orderNoX = 90+paddingX*2;
+    CGFloat orderNoY = paddingY + 16;
+    CGSize orderNoSize = [self sizeWithString:[NSString stringWithFormat:@"订单编号：%@",[data objectForKey:@"order_no"]] font:NJNameFont maxSize:CGSizeMake(220, MAXFLOAT)];
     CGFloat orderNoW = orderNoSize.width;
-    CGFloat orderNoH = 16;
+    CGFloat orderNoH = orderNoSize.height;
     self.orderNoF = CGRectMake(orderNoX, orderNoY, orderNoW, orderNoH);
     
-    CGFloat orderFeeX = 100+paddingX*2;
+    CGFloat orderFeeX = 90+paddingX*2;
     CGFloat orderFeeY = orderNoY + orderNoH + paddingY;
     self.orderFeeTitleF = CGRectMake(orderFeeX, orderFeeY, 70, 16);
     self.orderFeeF = CGRectMake(orderFeeX+70, orderFeeY, 70, 16);

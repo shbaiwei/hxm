@@ -100,6 +100,34 @@
 +(UIColor *) getMainColor{
     return [UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1];
 }
++(UIColor *) getBorderColor{
+    return [UIColor colorWithRed:168/255.0f green:168/255.0f blue:168/255.0f alpha:1];
+}
+
++(void) setTopBorder:(UIView *)view color:(UIColor *)color{
+
+    [view sizeToFit];
+    CALayer* layer = [view layer];
+    CALayer *topBorder = [CALayer layer];
+    topBorder.borderWidth = 1;
+    topBorder.frame = CGRectMake(-1, 0, layer.frame.size.width, 1);
+    [topBorder setBorderColor:color.CGColor];
+    [layer addSublayer:topBorder];
+
+}
++(void) setBottomBorder:(UIView *)view color:(UIColor *)color{
+    
+    [view sizeToFit];
+    
+    CALayer* layer = [view layer];
+    
+    CALayer *bottomBorder = [CALayer layer];
+    bottomBorder.borderWidth = 1;
+    bottomBorder.frame = CGRectMake(-1, layer.frame.size.height, layer.frame.size.width, 1);
+    [bottomBorder setBorderColor:color.CGColor];
+    [layer addSublayer:bottomBorder];
+}
+
 +(NSMutableDictionary *) getTokenData:(NSString *) api
 {
     //NSString *api_url = [self getBaseInfo:@"api_url"];

@@ -20,15 +20,44 @@
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = rect.size;
     
-    CGFloat paddingY = 10;
-    CGFloat paddingX = 10;
+    CGFloat padding = 10;
     
     //CGFloat imageX = padding;
     //CGFloat imageY = padding;
     //self.imageF = CGRectMake(imageX, imageY, 100, 60);
     
-    self.cellHeight =  90+paddingY*2 + 70;
+    CGFloat nameX = padding + 100;
+    CGFloat nameY = padding + 16;
+    CGFloat nameH = 20;
+    self.nameF = CGRectMake(nameX, nameY, 200, nameH);
     
+    
+    CGFloat levelY = nameY + nameH + padding;
+    self.levelF = CGRectMake(nameX, levelY, 60, 20);
+    
+    
+    CGFloat limitX = nameX+60+padding/2;
+    self.limitF = CGRectMake(limitX, levelY, 70, 20);
+    
+    
+    
+    CGFloat priceY = levelY + 20 + padding;
+    if(size.width>320){
+        self.merchantF = CGRectMake(limitX+70+padding/2, levelY, 70, 20);
+    }
+    else{
+        priceY += 20;
+        self.merchantF = CGRectMake(nameX, levelY + 20 + padding/2, 70, 20);
+    }
+
+    self.priceF = CGRectMake(nameX, priceY, 60, 20);
+    
+    self.buyButtonF = CGRectMake(size.width-50, 16, 50, 70);
+    self.auctionButtonF = CGRectMake(size.width-50, 86, 50, 70);
+    
+    self.cartButtonF = CGRectMake(size.width-105, 100, 40, 40);
+    
+    self.cellHeight =  140+16;
     
     self.borderViewF = CGRectMake(0, 1, size.width, 15);
     

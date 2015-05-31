@@ -9,7 +9,7 @@
 #import "GoodsViewController.h"
 #import "BWCommon.h"
 #import "GoodsTableViewCell.h"
-#import "GoodsListTableViewController.h"
+#import "GoodsListViewController.h"
 
 @interface GoodsViewController ()
 
@@ -132,10 +132,29 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView* myView = [[UIView alloc] init];
+    UIView* myView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
     myView.backgroundColor = [BWCommon getBackgroundColor];
+
+    
+    [BWCommon setBottomBorder:myView color:[BWCommon getBorderColor]];
+    
+
     return myView;
 }
+
+- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    
+    UIView* myView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
+    myView.backgroundColor = [BWCommon getBackgroundColor];
+
+    
+    [BWCommon setTopBorder:myView color:[BWCommon getBorderColor]];
+    
+    return myView;
+    
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -151,9 +170,9 @@
     NSInteger row = [indexPath indexAtPosition:0];
     if(row == 0){
         //在售商品
-        GoodsListTableViewController *goodsListTableViewController = [[GoodsListTableViewController alloc] init];
-        goodsListTableViewController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:goodsListTableViewController animated:YES];
+        GoodsListViewController *goodsListViewController = [[GoodsListViewController alloc] init];
+        goodsListViewController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:goodsListViewController animated:YES];
         
     }
     else if(row == 1){

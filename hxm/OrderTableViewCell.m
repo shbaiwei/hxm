@@ -46,7 +46,7 @@
 }
 - (void) layoutSubviews{
     [super layoutSubviews];
-    self.imageView.frame = CGRectMake(15, 30, 90, 90 );
+    self.imageView.frame = CGRectMake(10, 25, 90, 90 );
 }
 
 + (instancetype)cellWithTableView:(UITableView *)tableView {
@@ -84,7 +84,7 @@
         
         UILabel *orderNoLabel = [[UILabel alloc] init];
         orderNoLabel.font = NJNameFont;
-        //orderNoLabel.numberOfLines = 0;
+        orderNoLabel.numberOfLines = 0;
         // introLabel.backgroundColor = [UIColor greenColor];
         [self.contentView addSubview:orderNoLabel];
         self.orderNoLabel = orderNoLabel;

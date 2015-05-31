@@ -83,7 +83,7 @@
     
     NSMutableDictionary *postData = [BWCommon getTokenData:@"order/queryOrders"];
     
-    [postData setValue:[NSString stringWithFormat:@"%ld",self.gpage] forKey:@"OrderInfo_page"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",page] forKey:@"OrderInfo_page"];
     
     
     NSLog(@"%@",url);

@@ -17,7 +17,18 @@
 @property (nonatomic, assign) CGRect borderViewF;
 @property (nonatomic, assign) CGRect nameF;
 
+@property (nonatomic, assign) CGRect levelF;
+
+@property (nonatomic, assign) CGRect limitF;
+
+@property (nonatomic, assign) CGRect merchantF;
+
 @property (nonatomic, assign) CGRect priceF;
+
+@property (nonatomic, assign) CGRect buyButtonF;
+@property (nonatomic, assign) CGRect auctionButtonF;
+
+@property (nonatomic,assign) CGRect cartButtonF;
 
 @property (nonatomic, assign) CGFloat cellHeight;
 
