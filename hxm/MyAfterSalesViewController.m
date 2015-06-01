@@ -54,7 +54,7 @@
     
     [self.tableview addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(headerRefreshing)];
     
-    [self.tableview addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
+    //[self.tableview addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
     
 }
 
@@ -65,19 +65,28 @@
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.delegate=self;
     
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"complain/queryComplains"];
     
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"complain/queryComplains"];
+    
+    NSString *user_id = [BWCommon getUserInfo:@"uid"];
+    NSLog(@"uid:%@",user_id);
+    [postData setValue:[NSString stringWithFormat:@"%@",user_id] forKey:@"uid"];
+    
+    /*
     NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"order/queryOrders"];
     
     NSMutableDictionary *postData = [BWCommon getTokenData:@"order/queryOrders"];
     
     [postData setValue:[NSString stringWithFormat:@"%ld",self.gpage] forKey:@"OrderInfo_page"];
-    
+    */
     
     NSLog(@"%@",url);
     //load data
     
     [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
         
+        NSLog(@"%@",responseObject);
         NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
         
         [hud removeFromSuperview];
@@ -95,7 +104,7 @@
                 
             }
             
-            NSLog(@"%@",dataArray);
+           // NSLog(@"%@",dataArray);
             self.statusFrames = nil;
             
             [tableview reloadData];
@@ -152,8 +161,42 @@
     
     cell.viewFrame = self.statusFrames[indexPath.row];
     
+    cell.cancelButton.tag = indexPath.row;
+    [cell.cancelButton addTarget:self action:@selector(do_cancel:) forControlEvents:UIControlEventTouchUpInside];
     
+    cell.detailButton.tag = indexPath.row;
+    [cell.detailButton addTarget:self action:@selector(do_detail:) forControlEvents:UIControlEventTouchUpInside];
+    
+    cell.logisticsButton.tag = indexPath.row;
+    [cell.logisticsButton addTarget:self action:@selector(do_logistics:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
+}
+
+//撤销投诉
+- (void) do_cancel:(UIButton *) btn
+{
+    NSDictionary *data = [dataArray objectAtIndex:btn.tag];
+    NSString *order_id = [data objectForKey:@"order_no"];
+    NSLog(@"撤销操作：%@",order_id);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"您确定要撤销该投诉吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+    alert.tag = btn.tag;
+    [alert show];
+}
+
+//查看详情
+- (void) do_detail:(UIButton *) btn
+{
+    NSDictionary *data = [dataArray objectAtIndex:btn.tag];
+    NSString *order_id = [data objectForKey:@"order_no"];
+    NSLog(@"查看详情：%@",order_id);
+}
+
+//查看物流
+- (void) do_logistics:(UIButton *) btn
+{
+    NSDictionary *data = [dataArray objectAtIndex:btn.tag];
+    NSString *order_id = [data objectForKey:@"order_no"];
+    NSLog(@"查看物流：%@",order_id);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -230,5 +273,10 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+#pragma marks -- UIAlertViewDelegate --
+//根据被点击按钮的索引处理点击事件
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"clickButtonAtIndex:%ld",(long)buttonIndex);
+}
 @end

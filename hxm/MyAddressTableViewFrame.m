@@ -41,7 +41,7 @@
     self.addressButtonF = CGRectMake(30, 60, size.width-90, 120);
     self.nameLabelF = CGRectMake(0, 0, 200, 30);
     self.detailLabelF = CGRectMake(0, 20, size.width-60, 80);
-    self.rigthImageIconF = CGRectMake(size.width-60, 50, 10, 10);
+    self.rigthImageIconF = CGRectMake(size.width-60, 50, 10, 13);
     
     self.cellHeight =  90+paddingY*2 + 70;
     

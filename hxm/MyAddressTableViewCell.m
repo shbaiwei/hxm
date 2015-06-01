@@ -8,7 +8,6 @@
 #import "MyAddressTableViewCell.h"
 #import "MyAddressTableViewFrame.h"
 #import "BWCommon.h"
-
 #define NJNameFont [UIFont systemFontOfSize:14]
 #define NJTextFont [UIFont systemFontOfSize:12]
 
@@ -18,8 +17,7 @@
 @property (nonatomic,weak) UIView *statusView;
 @property (nonatomic,weak) UIImageView *timeIcon;
 @property (nonatomic,weak) UILabel *timeLabel;
-@property (nonatomic,weak) UIButton *delButton;
-@property (nonatomic,weak) UIButton *editButton;
+
 // 名称
 @property (nonatomic, weak) UIButton *addressButton;
 @property (nonatomic,weak) UILabel *nameLabel;
@@ -71,7 +69,7 @@
         //view.layer.shadowOffset = CGSizeMake(1, 1);
         //view.layer.shadowOpacity = 0.2;
         //view.layer.shadowRadius = 1;
-        
+        //self.contentView.backgroundColor = [UIColor redColor];
         [self.contentView addSubview:view];
         self.borderView = view;
         
@@ -109,13 +107,11 @@
         */
         UIButton *delButton = [[UIButton alloc] init];
         [delButton setBackgroundImage:[UIImage imageNamed:@"address-delete-icon"] forState:UIControlStateNormal];
-        [delButton addTarget:self action:@selector(do_action:) forControlEvents:UIControlEventTouchUpInside];
         [self.statusView addSubview:delButton];
         self.delButton = delButton;
         
         UIButton *editButton = [[UIButton alloc] init];
         [editButton setBackgroundImage:[UIImage imageNamed:@"user-edit"] forState:UIControlStateNormal];
-        [editButton addTarget:self action:@selector(do_action:) forControlEvents:UIControlEventTouchUpInside];
         [self.statusView addSubview:editButton];
         self.editButton = editButton;
         
@@ -130,9 +126,7 @@
         */
         
         UIButton *addressButton = [[UIButton alloc] init];
-        [addressButton addTarget:self action:@selector(do_action:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:addressButton];
-        //addressButton.backgroundColor = [UIColor yellowColor];
         self.addressButton = addressButton;
         
         UILabel *nameLabel = [[UILabel alloc] init];
@@ -162,23 +156,7 @@
     return self;
 }
 
-- (void)do_action:(UIButton *) sender
-{
-    switch (sender.tag) {
-        case 11:
-            NSLog(@"撤销投诉");
-            break;
-        case 12:
-            NSLog(@"查看详情");
-            break;
-        case 13:
-            NSLog(@"查看物流");
-            break;
-        default:
-            break;
-    }
-}
-
+ 
 /**
  *  计算文本的宽高
  *
@@ -216,9 +194,9 @@
     NSDictionary *data = self.viewFrame.data;
     
     
-    self.nameLabel.text = [NSString stringWithFormat:@"%@",[data objectForKey:@"order_no"]];
+    self.nameLabel.text = [NSString stringWithFormat:@"%@",[data objectForKey:@"receiver_name"]];
     
-    
+    self.detailLabel.text = [NSString stringWithFormat:@"%@\n%@",[data objectForKey:@"address"],[data objectForKey:@"mobile"]];
     
 }
 /**

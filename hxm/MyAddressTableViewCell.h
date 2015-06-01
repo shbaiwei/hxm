@@ -12,7 +12,8 @@
 @interface MyAddressTableViewCell : UITableViewCell
 
 @property (nonatomic,strong) MyAddressTableViewFrame *viewFrame;
-
+@property (nonatomic,strong) UIButton *delButton;
+@property (nonatomic,strong) UIButton *editButton;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

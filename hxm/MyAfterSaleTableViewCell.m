@@ -27,9 +27,8 @@
 
 @property (nonatomic,weak) UIView *buttonView;
 
-@property (nonatomic, weak) UIButton *cancelButton;
-@property (nonatomic, weak) UIButton *detailButton;
-@property (nonatomic,weak) UIButton *logisticsButton;
+
+
 @end
 
 @implementation MyAfterSaleTableViewCell
@@ -136,8 +135,6 @@
         [cancelButton.layer setBorderWidth:1.0f];
         [cancelButton setTitleColor:[UIColor colorWithRed:95/255.0f green:100/255.0f blue:110/255.0f alpha:1] forState:UIControlStateNormal];
         cancelButton.titleLabel.font = NJNameFont;
-        cancelButton.tag =11;
-        [cancelButton addTarget:self action:@selector(do_action:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:cancelButton];
         
         
@@ -149,8 +146,6 @@
         [detailButton.layer setBorderWidth:1.0f];
         [detailButton setTitleColor:[UIColor colorWithRed:95/255.0f green:100/255.0f blue:110/255.0f alpha:1] forState:UIControlStateNormal];
         detailButton.titleLabel.font = NJNameFont;
-        detailButton.tag = 12;
-        [detailButton addTarget:self action:@selector(do_action:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:detailButton];
         
         UIButton *logisticsButton = [[UIButton alloc] init];
@@ -161,8 +156,6 @@
         [logisticsButton.layer setBorderWidth:1.0f];
         [logisticsButton setTitleColor:[UIColor colorWithRed:95/255.0f green:100/255.0f blue:110/255.0f alpha:1] forState:UIControlStateNormal];
         logisticsButton.titleLabel.font = NJNameFont;
-        logisticsButton.tag = 13;
-        [logisticsButton addTarget:self action:@selector(do_action:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:logisticsButton];
         
         
@@ -170,22 +163,7 @@
     return self;
 }
 
-- (void)do_action:(UIButton *) sender
-{
-    switch (sender.tag) {
-        case 11:
-            NSLog(@"撤销投诉");
-            break;
-        case 12:
-            NSLog(@"查看详情");
-            break;
-        case 13:
-            NSLog(@"查看物流");
-            break;
-        default:
-            break;
-    }
-}
+
 
 /**
  *  计算文本的宽高
@@ -224,10 +202,25 @@
     NSDictionary *data = self.viewFrame.data;
     
     
-    self.orderNoLabel.text = [NSString stringWithFormat:@"投诉内容：%@",[data objectForKey:@"order_no"]];
+    self.orderNoLabel.text = [NSString stringWithFormat:@"投诉内容：%@",[data objectForKey:@"content"]];
+    
+    NSString *status = [data objectForKey:@"status"];
+    if([status isEqualToString:@"1"])
+    {
+        self.statusLabel.text  = @"已处理";
+    }
+    else
+    {
+        self.statusLabel.text  = @"未处理";
+    }
+    //self.timeLabel;
     
     
-    
+    NSDate * dt = [NSDate dateWithTimeIntervalSince1970:[[data objectForKey:@"updatetime"] floatValue]];
+    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    //NSString *time = [df stringFromDate:dt];
+    self.timeLabel.text = [df stringFromDate:dt];
 }
 /**
  *  设置子控件的frame
