@@ -8,6 +8,7 @@
 
 #import "MyContactWayViewController.h"
 #import "BWCommon.h"
+#import "AFNetworkTool.h"
 
 @interface MyContactWayViewController ()
 {
@@ -33,8 +34,22 @@
     self.title = @"联系方式";
     // Do any additional setup after loading the view.
     [self pageLayout];
+    [self initData];
 }
 
+//初始化数据
+- (void) initData
+{
+    link_man.text = [_userinfo objectForKey:@"link_man"];
+    link_mobile.text = [_userinfo objectForKey:@"link_mobile"];
+    link_phone.text = [_userinfo objectForKey:@"link_phone"];
+    link_email.text = [_userinfo objectForKey:@"link_email"];
+    link_qq.text = [_userinfo objectForKey:@"link_qq"];
+    link_fax.text = [_userinfo objectForKey:@"link_fax"];
+    link_address.text = [_userinfo objectForKey:@"link_address"];
+}
+
+//初始化界面
 - (void)pageLayout
 {
     UIColor *bgColor = [BWCommon getBackgroundColor];
@@ -82,6 +97,51 @@
 - (void)do_save:(id *)sender
 {
     NSLog(@"save action");
+    MBProgressHUD *hud;
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
+    
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"user/saveContactInfo"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"user/saveContactInfo"];
+    
+    NSString *user_id = [BWCommon getUserInfo:@"uid"];
+    [postData setValue:[NSString stringWithFormat:@"%@",user_id] forKey:@"uid"];
+    [postData setValue:[NSString stringWithFormat:@"%@",link_man.text] forKey:@"link_man"];
+    [postData setValue:[NSString stringWithFormat:@"%@",link_mobile.text] forKey:@"link_mobile"];
+    [postData setValue:[NSString stringWithFormat:@"%@",link_phone.text] forKey:@"link_phone"];
+    [postData setValue:[NSString stringWithFormat:@"%@",link_email.text] forKey:@"link_email"];
+    [postData setValue:[NSString stringWithFormat:@"%@",link_qq.text] forKey:@"link_qq"];
+    [postData setValue:[NSString stringWithFormat:@"%@",link_fax.text] forKey:@"link_fax"];
+    [postData setValue:[NSString stringWithFormat:@"%@",link_address.text] forKey:@"link_address"];
+    
+    
+    NSLog(@"%@",url);
+    //load data
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        // NSLog(@"userinfo:%@",responseObject);
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        [hud removeFromSuperview];
+        if(errNo == 0)
+        {
+            //处理成功
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"资料修改成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        
+        }
+        else
+        {
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+        }
+        
+    } fail:^{
+        [hud removeFromSuperview];
+        NSLog(@"请求失败");
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning {

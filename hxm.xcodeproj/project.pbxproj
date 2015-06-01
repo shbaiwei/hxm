@@ -72,6 +72,7 @@
 		32AAD6B31B1B242E008C3306 /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AAD6B21B1B242E008C3306 /* GoodsDetailViewController.m */; };
 		32D3D9891B03B2AE00B50967 /* AFNetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D3D9851B03B2AE00B50967 /* AFNetworkTool.m */; };
 		32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D3D9871B03B2AE00B50967 /* BWCommon.m */; };
+		6F57A9EC1B1BF986001530C7 /* MyAddressEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57A9EB1B1BF986001530C7 /* MyAddressEditViewController.m */; };
 		6F6995C51B15875800AFB979 /* user-right-array.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6995C41B15875800AFB979 /* user-right-array.png */; };
 		6F6995C71B15992900AFB979 /* user-face.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6995C61B15992900AFB979 /* user-face.png */; };
 		6F6E4CA41B1870BE002F0419 /* password-login-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6E4CA21B1870BE002F0419 /* password-login-icon.png */; };
@@ -194,6 +195,8 @@
 		32D3D9851B03B2AE00B50967 /* AFNetworkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkTool.m; sourceTree = "<group>"; };
 		32D3D9861B03B2AE00B50967 /* BWCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWCommon.h; sourceTree = "<group>"; };
 		32D3D9871B03B2AE00B50967 /* BWCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWCommon.m; sourceTree = "<group>"; };
+		6F57A9EA1B1BF986001530C7 /* MyAddressEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAddressEditViewController.h; sourceTree = "<group>"; };
+		6F57A9EB1B1BF986001530C7 /* MyAddressEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAddressEditViewController.m; sourceTree = "<group>"; };
 		6F6995C41B15875800AFB979 /* user-right-array.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-right-array.png"; sourceTree = "<group>"; };
 		6F6995C61B15992900AFB979 /* user-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-face.png"; sourceTree = "<group>"; };
 		6F6E4CA21B1870BE002F0419 /* password-login-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password-login-icon.png"; sourceTree = "<group>"; };
@@ -454,6 +457,8 @@
 				6F85EFED1B16E4CF008C101B /* MyBusinessInfoViewController.m */,
 				6F85EFE31B16E3CC008C101B /* MyAddressViewController.h */,
 				6F85EFE41B16E3CC008C101B /* MyAddressViewController.m */,
+				6F57A9EA1B1BF986001530C7 /* MyAddressEditViewController.h */,
+				6F57A9EB1B1BF986001530C7 /* MyAddressEditViewController.m */,
 				6F85EFF21B16E5D4008C101B /* MyAfterSalesViewController.h */,
 				6F85EFF31B16E5D4008C101B /* MyAfterSalesViewController.m */,
 				6F85EFEF1B16E509008C101B /* MyPasswordViewController.h */,
@@ -671,6 +676,7 @@
 				323C30EB1B0B913F00D0B8D0 /* GoodsViewController.m in Sources */,
 				6FCBFE271B19B4A200537CC6 /* MyAfterSaleTableViewFrame.m in Sources */,
 				6F6E4CA81B187B5F002F0419 /* PasswordLoginViewController.m in Sources */,
+				6F57A9EC1B1BF986001530C7 /* MyAddressEditViewController.m in Sources */,
 				3227EAF31B19E68B00AC34B8 /* GoodsListTableViewFrame.m in Sources */,
 				32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */,
 				6F6E4CAB1B187B91002F0419 /* PasswordSaleViewController.m in Sources */,

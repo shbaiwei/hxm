@@ -17,7 +17,15 @@
 #import "MyPasswordViewController.h"
 
 @interface MyViewController ()
-
+{
+    UILabel *user_number;
+    UILabel *baseinfo_telephone;
+    UILabel *baseinfo_birthday;
+    UILabel *baseinfo_sex;
+    UIView *idcard_view;
+    CGSize size;
+    NSDictionary *userinfo;
+}
 @end
 
 @implementation MyViewController
@@ -25,8 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [self pageLayout];
+    [self getUserInfo];
 }
 
 - (void) pageLayout{
@@ -37,7 +45,7 @@
     NSLog(@"%@",[BWCommon getUserInfo:@"uid"]);
     
     CGRect rect = [[UIScreen mainScreen] bounds];
-    CGSize size = rect.size;
+    size = rect.size;
     
     
     
@@ -69,7 +77,7 @@
     [self.view addSubview:bar_title];
     
      
-    UILabel *user_number = [[UILabel alloc] initWithFrame:CGRectMake(0, (topView.bounds.size.height)-30, size.width, 20)];
+    user_number = [[UILabel alloc] initWithFrame:CGRectMake(0, (topView.bounds.size.height)-30, size.width, 20)];
     user_number.text = @"87290008(编号00176)";
     user_number.textAlignment = NSTextAlignmentCenter;
     user_number.textColor = [UIColor whiteColor];
@@ -103,16 +111,16 @@
     baseinfo_line1.backgroundColor = [UIColor grayColor];
     [baseinfo_view addSubview:baseinfo_line1];
     
-    UILabel *baseinfo_telephone = [[UILabel alloc] initWithFrame:CGRectMake(baseinfo_title.frame.origin.x, baseinfo_line1.frame.origin.y+10, 200, 30)];
-    baseinfo_telephone.text = @"手机：15221966658";
+    baseinfo_telephone = [[UILabel alloc] initWithFrame:CGRectMake(baseinfo_title.frame.origin.x, baseinfo_line1.frame.origin.y+10, 300, 30)];
+    //baseinfo_telephone.text = @"手机：15221966658";
     [baseinfo_view addSubview:baseinfo_telephone];
     
     UILabel *baseinfo_line2 = [[UILabel alloc] initWithFrame:CGRectMake(baseinfo_telephone.frame.origin.x, baseinfo_telephone.frame.origin.y+30+10, size.width, 0.5)];
     baseinfo_line2.backgroundColor = [UIColor grayColor];
     [baseinfo_view addSubview:baseinfo_line2];
     
-    UILabel *baseinfo_birthday = [[UILabel alloc] initWithFrame:CGRectMake(baseinfo_title.frame.origin.x, baseinfo_line2.frame.origin.y+10, 150, 30)];
-    baseinfo_birthday.text = @"生日：1985-01-25";
+    baseinfo_birthday = [[UILabel alloc] initWithFrame:CGRectMake(baseinfo_title.frame.origin.x, baseinfo_line2.frame.origin.y+10, 150, 30)];
+   // baseinfo_birthday.text = @"生日：1985-01-25";
     [baseinfo_view addSubview:baseinfo_birthday];
     
     UIButton *baseinfo_birthday_edit = [[UIButton alloc] initWithFrame:CGRectMake(baseinfo_birthday.frame.origin.x+baseinfo_birthday.frame.size.width+10, baseinfo_birthday.frame.origin.y+5, 20, 20)];
@@ -125,8 +133,8 @@
     baseinfo_line3.backgroundColor = [UIColor grayColor];
     [baseinfo_view addSubview:baseinfo_line3];
     
-    UILabel *baseinfo_sex = [[UILabel alloc] initWithFrame:CGRectMake(baseinfo_birthday.frame.origin.x, baseinfo_line3.frame.origin.y+10, 75, 30)];
-    baseinfo_sex.text = @"性别：男";
+    baseinfo_sex = [[UILabel alloc] initWithFrame:CGRectMake(baseinfo_birthday.frame.origin.x, baseinfo_line3.frame.origin.y+10, 75, 30)];
+    //baseinfo_sex.text = @"性别：男";
     [baseinfo_view addSubview:baseinfo_sex];
     
     UIButton *baseinfo_sex_edit = [[UIButton alloc] initWithFrame:CGRectMake(baseinfo_sex.frame.origin.x+baseinfo_sex.frame.size.width+10, baseinfo_sex.frame.origin.y+5, 20, 20)];
@@ -137,23 +145,21 @@
    
     
     //身份证信息view
-    UIView *idcard_view = [[UIView alloc] initWithFrame:CGRectMake(0, baseinfo_view.frame.origin.y+baseinfo_view.bounds.size.height+15, size.width+1, 230)];
+    idcard_view = [[UIView alloc] initWithFrame:CGRectMake(0, baseinfo_view.frame.origin.y+baseinfo_view.bounds.size.height+15, size.width+1, 230)];
     idcard_view.backgroundColor = [UIColor whiteColor];
     idcard_view.layer.borderWidth = 0.5;
     idcard_view.layer.borderColor = [[UIColor grayColor] CGColor];
     [sclView addSubview:idcard_view];
     
-    UIImageView *id_card_image =[[UIImageView alloc] initWithFrame:CGRectMake(20, 15, 44, 44)];
-    [id_card_image setImage:[UIImage imageNamed:@"user-icon2"]];
     
-    UILabel *id_card_title = [[UILabel alloc] initWithFrame:CGRectMake(74, 15, 100, id_card_image.frame.size.height)];
-    id_card_title.text = @"身份证信息";
     
+    /*
     UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(0, id_card_image.frame.origin.y+id_card_image.frame.size.height+10, size.height, 0.5)];
     line.backgroundColor = [UIColor grayColor];
     [idcard_view addSubview:id_card_image];
     [idcard_view addSubview:id_card_title];
     [idcard_view addSubview:line];
+    
     
     NSArray *id_title_array = [[NSArray alloc] initWithObjects:@"真实姓名：花集网", @"身份证号：513822199010048135", @"有效期限：2013-05-17至2017-15－18", nil];
     UILabel *title_array_label;
@@ -173,6 +179,7 @@
         
         id_card_y_size += 50;
     }
+    */
     //其他功能view
     UIView *other_view = [[UIView alloc] initWithFrame:CGRectMake(0, idcard_view.frame.origin.y+idcard_view.bounds.size.height+15, size.width+1, 64*5+20)];
     other_view.backgroundColor = [UIColor whiteColor];
@@ -211,7 +218,7 @@
             [button addSubview:label2];
         }
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(size.width-30, 22, 10, 10)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(size.width-30, 22, 10, 13)];
         imageView.image = [UIImage imageNamed:@"user-right-array"];
         [button addSubview:imageView];
         YY += 65;
@@ -243,6 +250,96 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void) getUserInfo
+{
+    
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
+    
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"user/getUserInfoById"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"user/getUserInfoById"];
+    
+    NSString *user_id = [BWCommon getUserInfo:@"uid"];
+    NSLog(@"uid:%@",user_id);
+    [postData setValue:[NSString stringWithFormat:@"%@",user_id] forKey:@"uid"];
+
+    
+    NSLog(@"%@",url);
+    //load data
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+       // NSLog(@"userinfo:%@",responseObject);
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        [hud removeFromSuperview];
+        if(errNo == 0)
+        {
+            userinfo = [responseObject objectForKey:@"data"];
+            NSLog(@"userinfo:%@",userinfo);
+            user_number.text = [NSString stringWithFormat:@"%@(编号%@)",[userinfo objectForKey:@"real_name"],[userinfo objectForKey:@"uid_hj"]];
+            baseinfo_telephone.text = [NSString stringWithFormat:@"手机：%@",[userinfo objectForKey:@"link_mobile"]];
+            baseinfo_birthday.text = [NSString stringWithFormat:@"生日：%@",[userinfo objectForKey:@"birthday"]];
+            NSString *gender = [userinfo objectForKey:@"gender"];
+            if([gender isEqualToString:@"1"])
+            {
+                baseinfo_sex.text = @"性别：男";
+            }
+            else
+            {
+                baseinfo_sex.text = @"性别：女";
+            }
+            
+            /*身份证信息部分填充*/
+            UIImageView *id_card_image =[[UIImageView alloc] initWithFrame:CGRectMake(20, 15, 44, 44)];
+            [id_card_image setImage:[UIImage imageNamed:@"user-icon2"]];
+            
+            UILabel *id_card_title = [[UILabel alloc] initWithFrame:CGRectMake(74, 15, 100, id_card_image.frame.size.height)];
+            id_card_title.text = @"身份证信息";
+            UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(0, id_card_image.frame.origin.y+id_card_image.frame.size.height+10, size.height, 0.5)];
+            line.backgroundColor = [UIColor grayColor];
+            [idcard_view addSubview:id_card_image];
+            [idcard_view addSubview:id_card_title];
+            [idcard_view addSubview:line];
+            
+            NSString *real_name = [NSString stringWithFormat:@"真实姓名：%@",[userinfo objectForKey:@"real_name"]];
+            NSString *id_card = [NSString stringWithFormat:@"身份证号：%@",[userinfo objectForKey:@"id_card"]];
+            NSString *idcard_time = [NSString stringWithFormat:@"有效期限：%@至%@",[userinfo objectForKey:@"id_card_start"],[userinfo objectForKey:@"id_card_end"]];
+            NSArray *id_title_array = [[NSArray alloc] initWithObjects:real_name, id_card, idcard_time, nil];
+            UILabel *title_array_label;
+            UILabel *card_title_line;
+            NSInteger id_card_y_size = line.bounds.origin.y;
+            for(int i=0;i<id_title_array.count;i++)
+            {
+                title_array_label = [[UILabel alloc] initWithFrame:CGRectMake(69, id_card_y_size+80, size.width, 40)];
+                title_array_label.text = id_title_array[i];
+                card_title_line = [[UILabel alloc] initWithFrame:CGRectMake(69, id_card_y_size+130, size.width, 0.5)];
+                card_title_line.backgroundColor = [UIColor grayColor];
+                [idcard_view addSubview:title_array_label];
+                if(i<2)
+                {
+                    [idcard_view addSubview:card_title_line];
+                }
+                
+                id_card_y_size += 50;
+            }
+            /*身份证信息部分填充 end*/
+        }
+        else
+        {
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+        }
+        
+    } fail:^{
+        [hud removeFromSuperview];
+        NSLog(@"请求失败");
+    }];
+    
+    
+}
+
 //操作集合
 - (void)do_action:(UIView *)sender
 {
@@ -252,20 +349,29 @@
         case 1: //eidt birthday
         {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"system message" message:@"edit birthday" delegate:nil cancelButtonTitle:@"confirm" otherButtonTitles: nil];
+            alert.tag = 60;
             [alert show];
             NSLog(@"edit birthday");
             break;
         }
         case 2: //edit sex
         {
-             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"system message" message:@"edit sex" delegate:nil cancelButtonTitle:@"confirm" otherButtonTitles: nil];
-            [alert show];
+            UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                          initWithTitle:@"请选择性别"
+                                          delegate:self
+                                          cancelButtonTitle:@"取消"
+                                          destructiveButtonTitle:nil
+                                          otherButtonTitles:@"男",@"女",nil];
+            actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+            actionSheet.tag = 11;
+            [actionSheet showInView:self.view];
             NSLog(@"edit sex");
             break;
         }
         case 10: //联系方式 
         {
             MyContactWayViewController *page = [[MyContactWayViewController alloc] init];
+            page.userinfo = userinfo;
             [self.navigationController pushViewController:page animated:YES];
             // [page setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
             //[self presentViewController:page animated:YES completion:nil];
@@ -305,6 +411,7 @@
                                           destructiveButtonTitle:@"确定"
                                           otherButtonTitles:nil];
             actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+            actionSheet.tag = 12;
             [actionSheet showInView:self.view];
           
             break;
@@ -317,15 +424,27 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
-        NSLog(@"confirm");
-        LoginViewController *login_controller = [[LoginViewController alloc] init];
-        [login_controller setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-        [self presentViewController:login_controller animated:YES completion:nil];
-    }else if (buttonIndex == 1) {
-        NSLog(@"cancel");
+    switch (actionSheet.tag) {
+        case 11: //choose sex action
+            NSLog(@"%ld",(long)buttonIndex);
+            break;
+        case 12: //exit action
+        {
+            if (buttonIndex == 0) {
+                NSLog(@"confirm");
+                LoginViewController *login_controller = [[LoginViewController alloc] init];
+                [login_controller setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+                [self presentViewController:login_controller animated:YES completion:nil];
+            }else if (buttonIndex == 1) {
+                NSLog(@"cancel");
+            }
+
+        }
+            break;
+        default:
+            break;
     }
-}
+    }
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet{
     
 }

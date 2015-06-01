@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 
-@interface MyAddressViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate>
+@interface MyAddressViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,MBProgressHUDDelegate>
 {
     MBProgressHUD *hud;
     NSMutableArray *_items;

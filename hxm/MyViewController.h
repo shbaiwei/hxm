@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface MyViewController : UIViewController <UIActionSheetDelegate>
-
+@interface MyViewController : UIViewController <UIActionSheetDelegate,MBProgressHUDDelegate>
+{
+    MBProgressHUD *hud;
+}
 @end

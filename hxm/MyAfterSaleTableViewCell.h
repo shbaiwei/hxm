@@ -13,6 +13,9 @@
 @interface MyAfterSaleTableViewCell : UITableViewCell
 
 @property (nonatomic,strong) MyAfterSaleTableViewFrame *viewFrame;
+@property (nonatomic, strong) UIButton *cancelButton;
+@property (nonatomic, strong) UIButton *detailButton;
+@property (nonatomic,strong) UIButton *logisticsButton;
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 

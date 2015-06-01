@@ -12,6 +12,7 @@
 #import "MyAddressTableViewFrame.h"
 #import "MJRefresh.h"
 #import "AFNetworkTool.h"
+#import "MyAddressEditViewController.h"
 
 @interface MyAddressViewController ()
 @property (nonatomic, strong) NSArray *statusFrames;
@@ -56,13 +57,14 @@
     
     [self.tableview addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(headerRefreshing)];
     
-    [self.tableview addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
+    //[self.tableview addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
     
 }
 
 - (void) clickRightButton
 {
-    NSLog(@"right click");
+    MyAddressEditViewController *page = [[MyAddressEditViewController alloc] init];
+    [self.navigationController pushViewController:page animated:YES];
 }
 
 - (void) refreshingData:(NSUInteger)page callback:(void(^)()) callback
@@ -72,19 +74,29 @@
     hud.delegate=self;
     
     
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"user/getAddressList"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"user/getAddressList"];
+    
+    NSString *user_id = [BWCommon getUserInfo:@"uid"];
+    NSLog(@"uid:%@",user_id);
+    [postData setValue:[NSString stringWithFormat:@"%@",user_id] forKey:@"uid"];
+    
+    /*
     NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"order/queryOrders"];
     
     NSMutableDictionary *postData = [BWCommon getTokenData:@"order/queryOrders"];
     
     [postData setValue:[NSString stringWithFormat:@"%ld",self.gpage] forKey:@"OrderInfo_page"];
-    
-    
+    */
     NSLog(@"%@",url);
     //load data
     
     [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
         
         NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        //NSLog(@"%@",responseObject);
         
         [hud removeFromSuperview];
         if(errNo == 0)
@@ -158,8 +170,31 @@
     
     cell.viewFrame = self.statusFrames[indexPath.row];
     
+    cell.editButton.tag = indexPath.row;
+    [cell.editButton addTarget:self action:@selector(do_edit:) forControlEvents:UIControlEventTouchUpInside];
+    cell.delButton.tag = indexPath.row;
+    [cell.delButton addTarget:self action:@selector(do_del:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
+}
+
+- (void) do_edit: (UIButton *)sender
+{
+    //NSDictionary *address = [dataArray objectAtIndex:sender.tag];
+    //NSLog(@"address:%@",address);
+    MyAddressEditViewController *page = [[MyAddressEditViewController alloc] init];
+    page.address_info = [dataArray objectAtIndex:sender.tag];
+    [self.navigationController pushViewController:page animated:YES];
+}
+
+- (void) do_del: (UIButton *)sender
+{
+    //NSDictionary *address = [dataArray objectAtIndex:sender.tag];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"您确定要删除吗？" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:@"确认", nil];
+    alert.tag = sender.tag;
+    [alert show];
+    //[dataArray objectAtIndex:sender.tag];
+    NSLog(@"delete action:%@",[dataArray objectAtIndex:sender.tag]);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -236,5 +271,10 @@
  // Pass the selected object to the new view controller.
  }
  */
-
+#pragma marks -- UIAlertViewDelegate --
+//根据被点击按钮的索引处理点击事件
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"clickButtonAtIndex:%ld",(long)buttonIndex);
+}
 @end
