@@ -241,7 +241,7 @@
     
     
     NSUInteger detail_id;
-    detail_id = [[[dataArray objectAtIndex:[indexPath row]] objectForKey:@"goods_id"] integerValue];
+    detail_id = [[[dataArray objectAtIndex:[indexPath row]] objectForKey:@"ent_id"] integerValue];
      
      GoodsDetailViewController *detailViewController = [[GoodsDetailViewController alloc] init];
      
