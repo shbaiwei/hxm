@@ -8,11 +8,14 @@
 
 #import "FinanceTableViewController.h"
 #import "FinanceTableViewCell.h"
+#import "FinanceTableViewFrame.h"
 #import "BWCommon.h"
 #import "MJRefresh.h"
 #import "AFNetworkTool.h"
 
 @interface FinanceTableViewController ()
+
+@property (nonatomic, strong) NSArray *statusFrames;
 
 @property (nonatomic,retain) NSMutableArray *list;
 
@@ -52,9 +55,9 @@
     
     NSMutableArray *menus1 = [[NSMutableArray alloc] init];
     
-    [menus1 addObject:@{@"title":@"可用余额：",@"text":@"111111"}];
-    [menus1 addObject:@{@"title":@"拍卖金额：",@"text":@"222222"}];
-    [menus1 addObject:@{@"title":@"保证金额：",@"text":@"333333"}];
+    [menus1 addObject:@{@"title":@"可用余额：",@"text":@""}];
+    [menus1 addObject:@{@"title":@"拍卖金额：",@"text":@""}];
+    [menus1 addObject:@{@"title":@"保证金额：",@"text":@""}];
     
     self.list = [[NSMutableArray alloc] init];
     
@@ -127,6 +130,32 @@
     
     
 }
+- (NSArray *)statusFrames
+{
+    if (_statusFrames == nil) {
+        
+        NSMutableArray *models = [NSMutableArray arrayWithCapacity:self.list.count];
+        
+        for (int i=0;i < self.list.count;i++){
+            
+            NSMutableArray *tmp = [[NSMutableArray alloc] init];
+            
+            for (NSDictionary *dict in [self.list objectAtIndex:i]) {
+                // 创建模型
+                FinanceTableViewFrame *vf = [[FinanceTableViewFrame alloc] init];
+                vf.data = dict;
+                //NSLog(@"%@",dict);
+                [tmp addObject:vf];
+            }
+            
+            
+            [models addObject:tmp];
+        }
+        self.statusFrames = [models copy];
+    }
+    
+    return _statusFrames;
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -167,23 +196,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *identifier = @"cell0";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
-        
-        cell = [[FinanceTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
-    }
+    FinanceTableViewCell * cell = [FinanceTableViewCell cellWithTableView:tableView];
     
-    NSInteger section = [indexPath indexAtPosition:0];
-    NSInteger row = [indexPath indexAtPosition:1];
     
-    NSArray *data = [[NSArray alloc] initWithArray:[self.list objectAtIndex:section]];
-    
-    cell.textLabel.text = [[data objectAtIndex:row] objectForKey:@"title"];
-    
+    //NSLog(@"%@",self.statusFrames[indexPath.section][indexPath.row]);
+    cell.viewFrame = self.statusFrames[indexPath.section][indexPath.row];
+                                   
     return cell;
 
 }

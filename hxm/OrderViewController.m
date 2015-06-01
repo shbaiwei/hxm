@@ -10,6 +10,7 @@
 #import "BWCommon.h"
 #import "OrderTableViewCell.h"
 #import "OrderTableViewFrame.h"
+#import "OrderDetailViewController.h"
 #import "MJRefresh.h"
 #import "AFNetworkTool.h"
 
@@ -43,6 +44,11 @@
     self.navigationItem.title = @"我的订单";
     
     UIColor *bgColor = [BWCommon getBackgroundColor];
+    
+    UIBarButtonItem *backItem=[[UIBarButtonItem alloc]init];
+    backItem.title=@"";
+    backItem.image=[UIImage imageNamed:@""];
+    self.navigationItem.backBarButtonItem=backItem;
     
     self.view.backgroundColor = bgColor;
     
@@ -198,17 +204,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSUInteger detail_id;
-    /*detail_id = [[[dataArray objectAtIndex:[indexPath row]] objectForKey:@"id"] integerValue];
-     
-     MixDetailViewController *detailViewController = [[MixDetailViewController alloc] init];
-     
-     detailViewController.hidesBottomBarWhenPushed = YES;
-     self.delegate = detailViewController;
-     
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     
-     [self.delegate setValue:detail_id];*/
+    NSUInteger detail_id;
+    detail_id = [[[dataArray objectAtIndex:[indexPath row]] objectForKey:@"ent_id"] integerValue];
+    
+    OrderDetailViewController *detailViewController = [[OrderDetailViewController alloc] init];
+    
+    detailViewController.hidesBottomBarWhenPushed = YES;
+    self.delegate = detailViewController;
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    [self.delegate setValue:detail_id];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+
     
 }
 

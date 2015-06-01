@@ -7,8 +7,14 @@
 //
 
 #import "FinanceTableViewCell.h"
+#import "FinanceTableViewFrame.h"
+
+@interface FinanceTableViewCell ()
+
+@end
 
 @implementation FinanceTableViewCell
+
 
 - (void)awakeFromNib {
     // Initialization code
@@ -32,6 +38,56 @@
     
     
 }
++ (instancetype)cellWithTableView:(UITableView *)tableView {
+    
+    static NSString *identifier = @"cell0";
+    FinanceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        
+        cell = [[FinanceTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    return cell;
+}
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        
+        UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 200, 20)];
+        
+        self.valueLabel = valueLabel;
+        
+        [self.contentView addSubview:valueLabel];
+    }
+    
+    return self;
+}
+
+- (void)setViewFrame:(FinanceTableViewFrame *)viewFrame
+{
+    _viewFrame = viewFrame;
+    
+    // 1.给子控件赋值数据
+    [self settingData];
+}
+
+/**
+ *  设置子控件的数据
+ */
+- (void)settingData
+{
+    
+    NSDictionary *data = self.viewFrame.data;
+    
+    
+    self.textLabel.text = [data objectForKey:@"title"];
+    self.valueLabel.text = [data objectForKey:@"text"];
+    
+    
+}
+
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

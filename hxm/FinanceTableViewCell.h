@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FinanceTableViewFrame.h"
 
 @interface FinanceTableViewCell : UITableViewCell
 
+@property (nonatomic,strong) FinanceTableViewFrame *viewFrame;
+
+@property (nonatomic,retain) UILabel *valueLabel;
+
++ (instancetype)cellWithTableView:(UITableView *)tableView;
 @end
