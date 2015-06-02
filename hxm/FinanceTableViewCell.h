@@ -16,4 +16,6 @@
 @property (nonatomic,retain) UILabel *valueLabel;
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
+
+
 @end

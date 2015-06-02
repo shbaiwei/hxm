@@ -110,8 +110,33 @@
             
             //NSLog(@"%@",json);
             
+            NSDictionary * data = [responseObject objectForKey:@"data"];
             
             
+            
+            NSMutableArray *menus1 = [[NSMutableArray alloc] init];
+            NSMutableDictionary *balance = [[NSMutableDictionary alloc] init];
+            [balance setObject:@"可用余额：" forKey:@"title"];
+            [balance setObject:[data objectForKey:@"balance"] forKey:@"text"];
+            
+            NSMutableDictionary *auction = [[NSMutableDictionary alloc] init];
+            [auction setObject:@"拍卖金额：" forKey:@"title"];
+            [auction setObject:[data objectForKey:@"auction"] forKey:@"text"];
+            
+            NSMutableDictionary *guarantee = [[NSMutableDictionary alloc] init];
+            [guarantee setObject:@"保证金额：" forKey:@"title"];
+            [guarantee setObject:[data objectForKey:@"guarantee"] forKey:@"text"];
+            
+            [menus1 addObject:balance];
+            [menus1 addObject:auction];
+            [menus1 addObject:guarantee];
+            
+            self.list[1] = menus1;
+            
+            self.statusFrames = nil;
+            
+            //NSLog(@"%@",self.list);
+
             if(callback){
                 callback();
             }
@@ -256,12 +281,43 @@
     
     if(section==1)
     {
+        //加入
+        UIButton *btnWireIn = [self footerButton:@"去充值" bgColor:[UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1]];
+        btnWireIn.frame = CGRectMake(10, 20, 140, 40);
+        [myView addSubview: btnWireIn];
         
+        UIButton *btnList = [self footerButton:@"我的对账单" bgColor:[UIColor colorWithRed:219/255.0f green:0/255.0f blue:0 alpha:1]];
+        btnList.frame = CGRectMake(0, 20, 140, 40);
+        [myView addSubview: btnList];
+        
+        NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnWireIn(==140)]-20-[btnList(==140)]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnWireIn,btnList)];
+        
+        NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[btnWireIn(==40)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnWireIn)];
+        
+        NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[btnList(==40)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnList)];
+        
+        [myView addConstraints:constraints1];
+        [myView addConstraints:constraints2];
+        [myView addConstraints:constraints3];
     }
     
     return myView;
 }
 
+
+-(UIButton *) footerButton: (NSString *) title bgColor : (UIColor *) bgColor {
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    [button.layer setMasksToBounds:YES];
+    [button.layer setCornerRadius:5.0];
+    button.translatesAutoresizingMaskIntoConstraints = NO;
+    button.backgroundColor = bgColor;
+    button.tintColor = [UIColor whiteColor];
+    button.titleLabel.font = [UIFont systemFontOfSize:16];
+    [button setTitle:title forState:UIControlStateNormal];
+    return button;
+}
 
 
 /*
