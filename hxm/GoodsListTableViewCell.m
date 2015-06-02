@@ -34,6 +34,8 @@
 - (void) layoutSubviews{
     [super layoutSubviews];
     self.imageView.frame = CGRectMake(10, 30, 90, 90 );
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 + (instancetype)cellWithTableView:(UITableView *)tableView {

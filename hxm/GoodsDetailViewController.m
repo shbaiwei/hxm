@@ -282,7 +282,7 @@ NSUInteger detail_id;
     
     NSMutableDictionary *postData = [BWCommon getTokenData:@"goods/getGoodsInfoById"];
     
-    [postData setValue:[NSString stringWithFormat:@"%ld",detail_id] forKey:@"goods_id"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",detail_id] forKey:@"ent_id"];
     
     NSLog(@"%ld",detail_id);
     //load data

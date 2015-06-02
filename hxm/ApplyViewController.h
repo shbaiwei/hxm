@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface ApplyViewController : UIViewController
-<UIActionSheetDelegate,UIImagePickerControllerDelegate>
+<
+UIActionSheetDelegate,
+UIImagePickerControllerDelegate,
+UITextFieldDelegate
+>
 
 - (void) snapImage;//拍照
 - (void) pickImage;//从相册里找

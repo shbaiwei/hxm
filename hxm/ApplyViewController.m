@@ -44,6 +44,38 @@
     self.view.backgroundColor = bgColor;
     [self.navigationItem setTitle:@"提交审核信息"];
     
+    UITextField *real_name = [self createTextField:@"真实姓名："];
+    
+    [sclView addSubview:real_name];
+    
+    UITextField *id_card = [self createTextField:@"身份证号："];
+    
+    [sclView addSubview:id_card];
+    
+    UITextField *address = [self createTextField:@"送货地址："];
+    
+    [sclView addSubview:address];
+    
+    
+    NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[real_name(==280)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(real_name)];
+    
+    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-80-[real_name(==50)]-10-[id_card(==50)]-10-[address(==50)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(real_name,id_card,address)];
+    
+    NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[id_card(==280)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(id_card)];
+    
+    NSArray *constraints4= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[address(==280)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(address)];
+    
+    
+    
+    [sclView addConstraints:constraints1];
+    [sclView addConstraints:constraints2];
+    [sclView addConstraints:constraints3];
+    [sclView addConstraints:constraints4];
+    /*[sclView addConstraints:constraints5];
+    [sclView addConstraints:constraints6];*/
+
+    
+    
     
     UIButton *btnUpload = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 200, 50)];
     btnUpload.titleLabel.font = [UIFont systemFontOfSize:16];
@@ -54,8 +86,50 @@
     [sclView addSubview:btnUpload];
     
     [btnUpload addTarget:self action:@selector(uploadTouched:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    [self setTextFieldCenter:[[NSArray alloc] initWithObjects:real_name,id_card,address,nil]];
 
 }
+
+- (void) setTextFieldCenter:(NSArray *) items{
+    
+    NSInteger i = 0;
+    
+    for (i=0; i<[items count]; i++) {
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:[items objectAtIndex:i] attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    }
+    
+}
+
+- (UITextField *) createTextField:(NSString *) title{
+    
+    UITextField * field = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 280, 50)];
+    field.borderStyle = UITextBorderStyleRoundedRect;
+    [field.layer setCornerRadius:5.0];
+    field.clearsOnBeginEditing = YES;
+    field.clearButtonMode=UITextFieldViewModeWhileEditing;
+    //field.placeholder = title;
+    
+    UIView *lfView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 70, 30)];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 70, 30)];
+    titleLabel.font = [UIFont systemFontOfSize:14];
+    titleLabel.text = title;
+    
+    [lfView addSubview:titleLabel];
+    
+    field.leftView = lfView;
+
+    field.translatesAutoresizingMaskIntoConstraints = NO;
+    field.leftViewMode = UITextFieldViewModeAlways;
+    field.rightViewMode=UITextFieldViewModeAlways;
+    field.delegate = self;
+    
+    return field;
+}
+
 
 -(void) uploadTouched:(id)sender{
     

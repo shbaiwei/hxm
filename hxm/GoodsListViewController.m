@@ -66,6 +66,9 @@
     tableview.delegate = self;
     tableview.dataSource = self;
     
+    tableview.backgroundColor = [BWCommon getBackgroundColor];
+    
+    
     self.gpage = 1;
     
     
@@ -77,10 +80,14 @@
     
     [self.tableview addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
     
-    UIView *view = [UIView new];
+    //[self.tableview.footer setTitle:@"No data" forState:MJRefreshFooterStateRefreshing];
     
-    view.backgroundColor = [UIColor clearColor];
-    [tableview setTableFooterView:view];
+    //UIView *view = [UIView new];
+    
+    //view.backgroundColor = [UIColor clearColor];
+    //[tableview setTableFooterView:view];
+    
+    tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void) refreshingData:(NSUInteger)page callback:(void(^)()) callback
@@ -241,7 +248,7 @@
     
     
     NSUInteger detail_id;
-    detail_id = [[[dataArray objectAtIndex:[indexPath row]] objectForKey:@"goods_id"] integerValue];
+    detail_id = [[[dataArray objectAtIndex:[indexPath row]] objectForKey:@"ent_id"] integerValue];
      
      GoodsDetailViewController *detailViewController = [[GoodsDetailViewController alloc] init];
      
@@ -251,6 +258,17 @@
      [self.delegate setValue:detail_id];
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+-(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   // NSMutableDictionary *dic = [self.dataArray objectAtIndex:indexPath.section];
+   // NSMutableDictionary *infoDic = [dic objectForKey:@"dic"];
+    if (indexPath.row==[self.dataArray count]-1) {
+        NSLog(@"indexPath.row===%ld",indexPath.row);
+        cell.separatorInset = UIEdgeInsetsMake(10, 0, 0, 0);
+    }
+
 }
 
 /*
