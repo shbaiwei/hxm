@@ -23,11 +23,15 @@
     UITextField *link_dist_id;
     UITextField *link_address;
     CGSize size;
+    
 }
 @end
 
 @implementation MyContactWayViewController
 
+@synthesize areaText;
+@synthesize areaValue=_areaValue;
+@synthesize locatePicker=_locatePicker;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,6 +39,13 @@
     // Do any additional setup after loading the view.
     [self pageLayout];
     [self initData];
+}
+
+-(void)setAreaValue:(NSString *)areaValue
+{
+    if (![_areaValue isEqualToString:areaValue]) {
+        self.areaText.text = areaValue;
+    }
 }
 
 //初始化数据
@@ -73,14 +84,19 @@
     yy += 50;
     link_fax = [self createTextFieldWithTitle:@"传     真：" yy:yy];
     yy += 50;
+    areaText = [self createTextFieldWithTitle:@"所在地区：" yy:yy];
+    yy += 50;
     link_address = [self createTextFieldWithTitle:@"街道地址：" yy:yy];
+    
     [main_view addSubview:link_man];
     [main_view addSubview:link_mobile];
     [main_view addSubview:link_phone];
     [main_view addSubview:link_email];
     [main_view addSubview:link_qq];
     [main_view addSubview:link_fax];
+    [main_view addSubview:areaText];
     [main_view addSubview:link_address];
+    
     
     UIButton *save_button = [UIButton buttonWithType:UIButtonTypeCustom];
     save_button.frame = CGRectMake(0, link_address.frame.origin.y+link_address.bounds.size.height+30, size.width-40, 40);
@@ -92,6 +108,8 @@
     [save_button setTitle:@"保存" forState:UIControlStateNormal];
     [save_button addTarget:self action:@selector(do_save:) forControlEvents:UIControlEventTouchUpInside];
     [main_view addSubview:save_button];
+    
+    
 }
 
 - (void)do_save:(id *)sender
@@ -189,5 +207,42 @@
     
     return field;
 }
+
+#pragma mark - HZAreaPicker delegate
+-(void)pickerDidChaneStatus:(HZAreaPickerView *)picker
+{
+    if (picker.pickerStyle == HZAreaPickerWithStateAndCityAndDistrict) {
+        self.areaValue = [NSString stringWithFormat:@"%@ %@ %@", picker.locate.state, picker.locate.city, picker.locate.district];
+    }
+}
+
+-(void)cancelLocatePicker
+{
+    [self.locatePicker cancelPicker];
+    self.locatePicker.delegate = nil;
+    self.locatePicker = nil;
+}
+
+
+#pragma mark - TextField delegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if ([textField isEqual:self.areaText]) {
+        [self cancelLocatePicker];
+        self.locatePicker = [[HZAreaPickerView alloc] initWithStyle:HZAreaPickerWithStateAndCityAndDistrict delegate:self];
+        [self.locatePicker showInView:self.view];
+    } else {
+        [self cancelLocatePicker];
+        self.locatePicker = [[HZAreaPickerView alloc] initWithStyle:HZAreaPickerWithStateAndCity delegate:self] ;
+        [self.locatePicker showInView:self.view];
+    }
+    return NO;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    [self cancelLocatePicker];
+}
+
 
 @end

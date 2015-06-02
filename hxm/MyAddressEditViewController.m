@@ -26,18 +26,29 @@
 
 @implementation MyAddressEditViewController
 
+@synthesize areaText;
+@synthesize areaValue=_areaValue;
+@synthesize locatePicker=_locatePicker;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (self.address_info != NULL) {
+    if (_address_info != NULL) {
         self.title = @"收货地址编辑";
     }
     else{
         self.title = @"收货地址添加";
     }
-    NSLog(@"address:%@",self.address_info);
+    NSLog(@"address:%@",_address_info);
     // Do any additional setup after loading the view.
     [self pageLayout];
+}
+
+-(void)setAreaValue:(NSString *)areaValue
+{
+    if (![_areaValue isEqualToString:areaValue]) {
+        self.areaText.text = areaValue;
+    }
 }
 
 - (void) pageLayout
@@ -53,19 +64,8 @@
     NSInteger yy = 10;
     
     receiver_name = [self createTextFieldWithTitle:@"收件人姓名：" yy:yy];
-
-    //所在地区
     yy += 50;
-    UIView * uiview = [[UIView alloc] initWithFrame:CGRectMake(0, yy+10, size.width-40, 40)];
-    [uiview.layer setCornerRadius:5.0];
-    uiview.backgroundColor = [UIColor whiteColor];
-   [main_view addSubview:uiview];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 40)];
-    label.text = @"所在地区:";
-    label.textAlignment = NSTextAlignmentCenter;
-    [uiview addSubview:label];
-    
-    
+    areaText = [self createTextFieldWithTitle:@"所在地区：" yy:yy];
     yy += 50;
     address = [self createTextFieldWithTitle:@"详细地址：" yy:yy];
     yy += 50;
@@ -76,6 +76,7 @@
     phone = [self createTextFieldWithTitle:@"固定电话：" yy:yy];
     
     [main_view addSubview:receiver_name];
+    [main_view addSubview:areaText];
     [main_view addSubview:address];
     [main_view addSubview:zip];
     [main_view addSubview:mobile];
@@ -155,4 +156,41 @@
     // 离开页面显示标签栏
     self.tabBarController.tabBar.hidden = NO;
 }
+
+#pragma mark - HZAreaPicker delegate
+-(void)pickerDidChaneStatus:(HZAreaPickerView *)picker
+{
+    if (picker.pickerStyle == HZAreaPickerWithStateAndCityAndDistrict) {
+        self.areaValue = [NSString stringWithFormat:@"%@ %@ %@", picker.locate.state, picker.locate.city, picker.locate.district];
+    }
+}
+
+-(void)cancelLocatePicker
+{
+    [self.locatePicker cancelPicker];
+    self.locatePicker.delegate = nil;
+    self.locatePicker = nil;
+}
+
+
+#pragma mark - TextField delegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if ([textField isEqual:self.areaText]) {
+        [self cancelLocatePicker];
+        self.locatePicker = [[HZAreaPickerView alloc] initWithStyle:HZAreaPickerWithStateAndCityAndDistrict delegate:self];
+        [self.locatePicker showInView:self.view];
+    } else {
+        [self cancelLocatePicker];
+        self.locatePicker = [[HZAreaPickerView alloc] initWithStyle:HZAreaPickerWithStateAndCity delegate:self] ;
+        [self.locatePicker showInView:self.view];
+    }
+    return NO;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    [self cancelLocatePicker];
+}
+
 @end

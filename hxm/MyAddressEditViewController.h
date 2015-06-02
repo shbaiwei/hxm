@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MyAddressEditViewController : UIViewController<UITextFieldDelegate>
+#import "HZAreaPickerView.h"
+@interface MyAddressEditViewController : UIViewController<UITextFieldDelegate,HZAreaPickerDelegate>
 @property (nonatomic,strong) NSDictionary *address_info;
+@property (retain, nonatomic) IBOutlet UITextField *areaText;
+@property (strong, nonatomic) NSString *areaValue;
+@property (strong, nonatomic) HZAreaPickerView *locatePicker;
+
+-(void)cancelLocatePicker;
 @end

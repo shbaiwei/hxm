@@ -84,6 +84,11 @@
 		6F85EFEE1B16E4CF008C101B /* MyBusinessInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EFED1B16E4CF008C101B /* MyBusinessInfoViewController.m */; };
 		6F85EFF11B16E509008C101B /* MyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EFF01B16E509008C101B /* MyPasswordViewController.m */; };
 		6F85EFF41B16E5D4008C101B /* MyAfterSalesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EFF31B16E5D4008C101B /* MyAfterSalesViewController.m */; };
+		6F8AEB8A1B1D446000E2F6E9 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F8AEB831B1D446000E2F6E9 /* area.plist */; };
+		6F8AEB8B1B1D446000E2F6E9 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F8AEB841B1D446000E2F6E9 /* city.plist */; };
+		6F8AEB8C1B1D446000E2F6E9 /* HZAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8AEB861B1D446000E2F6E9 /* HZAreaPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6F8AEB8D1B1D446000E2F6E9 /* HZAreaPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F8AEB871B1D446000E2F6E9 /* HZAreaPickerView.xib */; };
+		6F8AEB8E1B1D446000E2F6E9 /* HZLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8AEB891B1D446000E2F6E9 /* HZLocation.m */; };
 		6FCBFE271B19B4A200537CC6 /* MyAfterSaleTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCBFE261B19B4A200537CC6 /* MyAfterSaleTableViewFrame.m */; };
 		6FCBFE2D1B19B5A800537CC6 /* MyAfterSaleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCBFE2C1B19B5A800537CC6 /* MyAfterSaleTableViewCell.m */; };
 		6FE32FFB1B19BEE300BE3B8F /* complain-time-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE32FFA1B19BEE300BE3B8F /* complain-time-icon.png */; };
@@ -215,6 +220,13 @@
 		6F85EFF01B16E509008C101B /* MyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPasswordViewController.m; sourceTree = "<group>"; };
 		6F85EFF21B16E5D4008C101B /* MyAfterSalesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAfterSalesViewController.h; sourceTree = "<group>"; };
 		6F85EFF31B16E5D4008C101B /* MyAfterSalesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAfterSalesViewController.m; sourceTree = "<group>"; };
+		6F8AEB831B1D446000E2F6E9 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		6F8AEB841B1D446000E2F6E9 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
+		6F8AEB851B1D446000E2F6E9 /* HZAreaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZAreaPickerView.h; sourceTree = "<group>"; };
+		6F8AEB861B1D446000E2F6E9 /* HZAreaPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZAreaPickerView.m; sourceTree = "<group>"; };
+		6F8AEB871B1D446000E2F6E9 /* HZAreaPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZAreaPickerView.xib; sourceTree = "<group>"; };
+		6F8AEB881B1D446000E2F6E9 /* HZLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZLocation.h; sourceTree = "<group>"; };
+		6F8AEB891B1D446000E2F6E9 /* HZLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZLocation.m; sourceTree = "<group>"; };
 		6FCBFE251B19B47700537CC6 /* MyAfterSaleTableViewFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAfterSaleTableViewFrame.h; sourceTree = "<group>"; };
 		6FCBFE261B19B4A200537CC6 /* MyAfterSaleTableViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAfterSaleTableViewFrame.m; sourceTree = "<group>"; };
 		6FCBFE2B1B19B5A800537CC6 /* MyAfterSaleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAfterSaleTableViewCell.h; sourceTree = "<group>"; };
@@ -349,6 +361,7 @@
 		322CFAE01B1822DE00D12AFD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6F8AEB821B1D43F600E2F6E9 /* AreaPicker */,
 				3227EAEE1B19E65000AC34B8 /* Goods */,
 				322CFAE11B18230D00D12AFD /* OrderTableViewCell.h */,
 				322CFAE21B18230D00D12AFD /* OrderTableViewCell.m */,
@@ -484,6 +497,20 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		6F8AEB821B1D43F600E2F6E9 /* AreaPicker */ = {
+			isa = PBXGroup;
+			children = (
+				6F8AEB831B1D446000E2F6E9 /* area.plist */,
+				6F8AEB841B1D446000E2F6E9 /* city.plist */,
+				6F8AEB851B1D446000E2F6E9 /* HZAreaPickerView.h */,
+				6F8AEB861B1D446000E2F6E9 /* HZAreaPickerView.m */,
+				6F8AEB871B1D446000E2F6E9 /* HZAreaPickerView.xib */,
+				6F8AEB881B1D446000E2F6E9 /* HZLocation.h */,
+				6F8AEB891B1D446000E2F6E9 /* HZLocation.m */,
+			);
+			name = AreaPicker;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -571,12 +598,14 @@
 				323EE9191AF8F57D00C55306 /* Main.storyboard in Resources */,
 				325A8A871B0D93C300CEA0AB /* tab-my@3x.png in Resources */,
 				321A23981B09CD0200A9D294 /* register-password.png in Resources */,
+				6F8AEB8A1B1D446000E2F6E9 /* area.plist in Resources */,
 				6F6E4CA51B1870BE002F0419 /* password-sale-icon.png in Resources */,
 				6FE330011B19E24500BE3B8F /* address-selected-icon.png in Resources */,
 				325A8A811B0D92F300CEA0AB /* tab-goods@2x.png in Resources */,
 				323263631B0C88550004522E /* register-password@2x.png in Resources */,
 				325A8A841B0D92F300CEA0AB /* tab-order.png in Resources */,
 				325A8A831B0D92F300CEA0AB /* tab-my@2x.png in Resources */,
+				6F8AEB8B1B1D446000E2F6E9 /* city.plist in Resources */,
 				322CFAED1B18800300D12AFD /* goods-1.png in Resources */,
 				323263601B0C88550004522E /* register-cellphone@2x.png in Resources */,
 				321B0E541B14807C004D5827 /* user-icon2.png in Resources */,
@@ -609,6 +638,7 @@
 				6FE32FFF1B19E24500BE3B8F /* address-delete-icon.png in Resources */,
 				6F6995C71B15992900AFB979 /* user-face.png in Resources */,
 				325A8A801B0D92F300CEA0AB /* tab-goods.png in Resources */,
+				6F8AEB8D1B1D446000E2F6E9 /* HZAreaPickerView.xib in Resources */,
 				321A23941B09CD0200A9D294 /* register-check-checked.png in Resources */,
 				322CFAF81B18897800D12AFD /* finance-1.png in Resources */,
 				321A23911B09CD0200A9D294 /* login-user@2x.png in Resources */,
@@ -668,6 +698,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				322CFAF51B1887BC00D12AFD /* FinanceTableViewCell.m in Sources */,
+				6F8AEB8C1B1D446000E2F6E9 /* HZAreaPickerView.m in Sources */,
 				322CFAE91B187D6800D12AFD /* GoodsTableViewCell.m in Sources */,
 				6F85EFEE1B16E4CF008C101B /* MyBusinessInfoViewController.m in Sources */,
 				32AAD6B31B1B242E008C3306 /* GoodsDetailViewController.m in Sources */,
@@ -682,6 +713,7 @@
 				6F6E4CAB1B187B91002F0419 /* PasswordSaleViewController.m in Sources */,
 				323C30E81B0B90A400D0B8D0 /* OrderViewController.m in Sources */,
 				325A8A8C1B0D948800CEA0AB /* MyViewController.m in Sources */,
+				6F8AEB8E1B1D446000E2F6E9 /* HZLocation.m in Sources */,
 				325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */,
 				322CFAF21B18845500D12AFD /* FinanceTableViewController.m in Sources */,
 				6F85EFF41B16E5D4008C101B /* MyAfterSalesViewController.m in Sources */,
