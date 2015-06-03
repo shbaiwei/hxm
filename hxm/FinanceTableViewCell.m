@@ -9,6 +9,9 @@
 #import "FinanceTableViewCell.h"
 #import "FinanceTableViewFrame.h"
 
+#define NJNameFont [UIFont systemFontOfSize:14]
+
+
 @interface FinanceTableViewCell ()
 
 @end
@@ -54,10 +57,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 200, 20)];
+        UILabel *valueLabel = [[UILabel alloc] init];
         
         self.valueLabel = valueLabel;
-        
         [self.contentView addSubview:valueLabel];
     }
     
@@ -70,6 +72,7 @@
     
     // 1.给子控件赋值数据
     [self settingData];
+    [self settingFrame];
 }
 
 /**
@@ -87,6 +90,19 @@
     
 }
 
+/**
+ *  设置子控件的frame
+ */
+- (void)settingFrame
+{
+    
+    self.textLabel.frame = self.viewFrame.textF;
+    self.textLabel.font = [UIFont systemFontOfSize:14 weight:10];
+    
+    self.valueLabel.frame = self.viewFrame.valueF;
+    self.valueLabel.font = NJNameFont;
+    
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

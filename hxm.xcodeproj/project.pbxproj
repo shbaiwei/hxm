@@ -69,6 +69,9 @@
 		325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325C87E81B04D100001DF5D8 /* LoginViewController.m */; };
 		3272D6351B1CA672007DBF31 /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272D6341B1CA672007DBF31 /* OrderDetailViewController.m */; };
 		3272D63C1B1CAFBF007DBF31 /* FinanceTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272D63B1B1CAFBF007DBF31 /* FinanceTableViewFrame.m */; };
+		3272D63F1B1DB7EC007DBF31 /* ConsignationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272D63E1B1DB7EC007DBF31 /* ConsignationTableViewController.m */; };
+		3272D6421B1DB82E007DBF31 /* ConsignationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272D6411B1DB82E007DBF31 /* ConsignationTableViewCell.m */; };
+		3272D6441B1DB857007DBF31 /* ConsignationTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272D6431B1DB857007DBF31 /* ConsignationTableViewFrame.m */; };
 		32AAD6AE1B1AE488008C3306 /* GoodsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AAD6AD1B1AE488008C3306 /* GoodsListViewController.m */; };
 		32AAD6B01B1B1530008C3306 /* goods-cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 32AAD6AF1B1B1530008C3306 /* goods-cart.png */; };
 		32AAD6B31B1B242E008C3306 /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AAD6B21B1B242E008C3306 /* GoodsDetailViewController.m */; };
@@ -197,6 +200,12 @@
 		3272D6341B1CA672007DBF31 /* OrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
 		3272D63A1B1CAFA7007DBF31 /* FinanceTableViewFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinanceTableViewFrame.h; sourceTree = "<group>"; };
 		3272D63B1B1CAFBF007DBF31 /* FinanceTableViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinanceTableViewFrame.m; sourceTree = "<group>"; };
+		3272D63D1B1DB7EC007DBF31 /* ConsignationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsignationTableViewController.h; sourceTree = "<group>"; };
+		3272D63E1B1DB7EC007DBF31 /* ConsignationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsignationTableViewController.m; sourceTree = "<group>"; };
+		3272D6401B1DB82E007DBF31 /* ConsignationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsignationTableViewCell.h; sourceTree = "<group>"; };
+		3272D6411B1DB82E007DBF31 /* ConsignationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsignationTableViewCell.m; sourceTree = "<group>"; };
+		3272D6431B1DB857007DBF31 /* ConsignationTableViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsignationTableViewFrame.m; sourceTree = "<group>"; };
+		3272D6451B1DB870007DBF31 /* ConsignationTableViewFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConsignationTableViewFrame.h; sourceTree = "<group>"; };
 		32AAD6AC1B1AE488008C3306 /* GoodsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsListViewController.h; sourceTree = "<group>"; };
 		32AAD6AD1B1AE488008C3306 /* GoodsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsListViewController.m; sourceTree = "<group>"; };
 		32AAD6AF1B1B1530008C3306 /* goods-cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goods-cart.png"; sourceTree = "<group>"; };
@@ -352,6 +361,8 @@
 				32AAD6AD1B1AE488008C3306 /* GoodsListViewController.m */,
 				32AAD6B11B1B242E008C3306 /* GoodsDetailViewController.h */,
 				32AAD6B21B1B242E008C3306 /* GoodsDetailViewController.m */,
+				3272D63D1B1DB7EC007DBF31 /* ConsignationTableViewController.h */,
+				3272D63E1B1DB7EC007DBF31 /* ConsignationTableViewController.m */,
 			);
 			name = Goods;
 			sourceTree = "<group>";
@@ -363,6 +374,10 @@
 				3227EAF01B19E67100AC34B8 /* GoodsListTableViewCell.m */,
 				3227EAF41B19E69D00AC34B8 /* GoodsListTableViewFrame.h */,
 				3227EAF21B19E68B00AC34B8 /* GoodsListTableViewFrame.m */,
+				3272D6401B1DB82E007DBF31 /* ConsignationTableViewCell.h */,
+				3272D6411B1DB82E007DBF31 /* ConsignationTableViewCell.m */,
+				3272D6451B1DB870007DBF31 /* ConsignationTableViewFrame.h */,
+				3272D6431B1DB857007DBF31 /* ConsignationTableViewFrame.m */,
 			);
 			name = Goods;
 			sourceTree = "<group>";
@@ -739,6 +754,7 @@
 				322CFAF51B1887BC00D12AFD /* FinanceTableViewCell.m in Sources */,
 				6F8AEB8C1B1D446000E2F6E9 /* HZAreaPickerView.m in Sources */,
 				322CFAE91B187D6800D12AFD /* GoodsTableViewCell.m in Sources */,
+				3272D6421B1DB82E007DBF31 /* ConsignationTableViewCell.m in Sources */,
 				6F85EFEE1B16E4CF008C101B /* MyBusinessInfoViewController.m in Sources */,
 				3272D6351B1CA672007DBF31 /* OrderDetailViewController.m in Sources */,
 				32AAD6B31B1B242E008C3306 /* GoodsDetailViewController.m in Sources */,
@@ -763,6 +779,7 @@
 				6F85EFE51B16E3CC008C101B /* MyAddressViewController.m in Sources */,
 				3227EAED1B19E44D00AC34B8 /* GoodsListTableViewController.m in Sources */,
 				322CFAE61B18235300D12AFD /* OrderTableViewFrame.m in Sources */,
+				3272D6441B1DB857007DBF31 /* ConsignationTableViewFrame.m in Sources */,
 				32D3D9891B03B2AE00B50967 /* AFNetworkTool.m in Sources */,
 				6F85EFEB1B16E47F008C101B /* MyContactWayViewController.m in Sources */,
 				323EE90D1AF8F57D00C55306 /* main.m in Sources */,
@@ -773,6 +790,7 @@
 				322CFAE31B18230D00D12AFD /* OrderTableViewCell.m in Sources */,
 				3227EAF11B19E67100AC34B8 /* GoodsListTableViewCell.m in Sources */,
 				6F85EFF11B16E509008C101B /* MyPasswordViewController.m in Sources */,
+				3272D63F1B1DB7EC007DBF31 /* ConsignationTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
