@@ -398,6 +398,7 @@
         case 14: //密码管理
         {
             MyPasswordViewController *page = [[MyPasswordViewController alloc] init];
+            page.mobile = [userinfo objectForKey:@"link_mobile"];
             [self.navigationController pushViewController:page animated:YES];
             break;
         }

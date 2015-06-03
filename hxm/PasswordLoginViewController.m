@@ -8,18 +8,19 @@
 
 #import "PasswordLoginViewController.h"
 #import "BWCommon.h"
-
+#import "AFNetworkTool.h"
 
 @interface PasswordLoginViewController ()
 {
-    UITextField *password;
-    UITextField *newpassword;
-    UITextField *confirmpassword;
     CGSize size;
 }
 @end
 
 @implementation PasswordLoginViewController
+
+@synthesize password;
+@synthesize newpassword;
+@synthesize confirmpassword;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,14 +39,16 @@
     
     UIView *main_view = [[UIView alloc] initWithFrame:CGRectMake(20, 60, size.width, size.height)];
     [self.view addSubview:main_view];
-    NSInteger yy = 0;
+    NSInteger yy = 10;
     
     password = [self createTextFieldWithTitle:@"原密码：" yy:yy];
+    password.secureTextEntry = YES;
     yy += 50;
     newpassword = [self createTextFieldWithTitle:@"新密码：" yy:yy];
+    newpassword.secureTextEntry = YES;
     yy += 50;
     confirmpassword = [self createTextFieldWithTitle:@"确认密码：" yy:yy];
-
+    confirmpassword.secureTextEntry = YES;
     [main_view addSubview:password];
     [main_view addSubview:newpassword];
     [main_view addSubview:confirmpassword];
@@ -64,7 +67,70 @@
 
 - (void)do_save:(id *)sender
 {
-    NSLog(@"save action");
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"系统信息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    if([password.text isEqualToString:@""])
+    {
+        alert.message = @"请输入您的愿密码";
+        [alert show];
+        return ;
+    }
+    if([newpassword.text isEqualToString:@""])
+    {
+        alert.message = @"请输入您的新密码";
+        [alert show];
+        return;
+    }
+    if([confirmpassword.text isEqualToString:@""])
+    {
+        alert.message = @"请再次输入您的密码";
+        [alert show];
+        return;
+    }
+    if([confirmpassword.text isEqualToString:newpassword.text] == FALSE)
+    {
+        alert.message = @"两次密码不一致，请检查";
+        [alert show];
+        return;
+    }
+    
+    MBProgressHUD *hud;
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
+    
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"user/modifyPassword"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"user/modifyPassword"];
+    
+    [postData setValue:self.mobile forKey:@"mobile"];
+    [postData setValue:password.text forKey:@"password"];
+    [postData setValue:newpassword.text forKey:@"newpassword"];
+    NSLog(@"%@",url);
+    //load data
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        // NSLog(@"userinfo:%@",responseObject);
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        [hud removeFromSuperview];
+        if(errNo == 0)
+        {
+            //处理成功
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"登陆密码修改成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+            
+        }
+        else
+        {
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+        }
+        
+    } fail:^{
+        [hud removeFromSuperview];
+        NSLog(@"请求失败");
+    }];
+
+    
+    //NSLog(@"save action");
 }
 
 
@@ -99,6 +165,8 @@
 }
 */
 
+
+
 - (UITextField *) createTextFieldWithTitle:(NSString *) title yy:(NSInteger)yy{
     
     UITextField * field = [[UITextField alloc] initWithFrame:CGRectMake(0, yy+10, size.width-40, 40)];
@@ -115,5 +183,23 @@
     field.delegate = self;
     
     return field;
+}
+
+-(IBAction)backgroundTap:(id)sender
+{
+    [password resignFirstResponder];
+    [newpassword resignFirstResponder];
+    [confirmpassword resignFirstResponder];
+}
+
+#pragma mark UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    //[nameTextField resignFirstResponder];
+    //    [numberTextField resignFirstResponder];
+    [textField resignFirstResponder];//等于上面两行的代码
+    
+    //NSLog(@"textFieldShouldReturn");//测试用
+    return YES;
 }
 @end

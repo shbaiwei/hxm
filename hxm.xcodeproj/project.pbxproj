@@ -99,6 +99,7 @@
 		6FE330011B19E24500BE3B8F /* address-selected-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE32FFE1B19E24500BE3B8F /* address-selected-icon.png */; };
 		6FE330041B19E39A00BE3B8F /* MyAddressTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE330031B19E39A00BE3B8F /* MyAddressTableViewFrame.m */; };
 		6FE330071B19E3FB00BE3B8F /* MyAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE330061B19E3FB00BE3B8F /* MyAddressTableViewCell.m */; };
+		6FE75F101B1ED32D005C9A6B /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE75F0F1B1ED32D005C9A6B /* JKCountDownButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -247,6 +248,8 @@
 		6FE330031B19E39A00BE3B8F /* MyAddressTableViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAddressTableViewFrame.m; sourceTree = "<group>"; };
 		6FE330051B19E3FB00BE3B8F /* MyAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAddressTableViewCell.h; sourceTree = "<group>"; };
 		6FE330061B19E3FB00BE3B8F /* MyAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAddressTableViewCell.m; sourceTree = "<group>"; };
+		6FE75F0E1B1ED32D005C9A6B /* JKCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKCountDownButton.h; sourceTree = "<group>"; };
+		6FE75F0F1B1ED32D005C9A6B /* JKCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCountDownButton.m; sourceTree = "<group>"; };
 		9209D6723B6D4EA0AEA34FD9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -367,7 +370,6 @@
 		322CFAE01B1822DE00D12AFD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6F8AEB821B1D43F600E2F6E9 /* AreaPicker */,
 				3227EAEE1B19E65000AC34B8 /* Goods */,
 				322CFAE11B18230D00D12AFD /* OrderTableViewCell.h */,
 				322CFAE21B18230D00D12AFD /* OrderTableViewCell.m */,
@@ -414,6 +416,7 @@
 		323EE9091AF8F57D00C55306 /* hxm */ = {
 			isa = PBXGroup;
 			children = (
+				6FE75F111B1EDADA005C9A6B /* 3rd */,
 				322CFAE01B1822DE00D12AFD /* View */,
 				321A23821B09CD0200A9D294 /* assets */,
 				325C87E61B04D07A001DF5D8 /* Controller */,
@@ -527,6 +530,24 @@
 				6F8AEB891B1D446000E2F6E9 /* HZLocation.m */,
 			);
 			name = AreaPicker;
+			sourceTree = "<group>";
+		};
+		6FE75F0D1B1ED32D005C9A6B /* JKCountDownButton */ = {
+			isa = PBXGroup;
+			children = (
+				6FE75F0E1B1ED32D005C9A6B /* JKCountDownButton.h */,
+				6FE75F0F1B1ED32D005C9A6B /* JKCountDownButton.m */,
+			);
+			path = JKCountDownButton;
+			sourceTree = "<group>";
+		};
+		6FE75F111B1EDADA005C9A6B /* 3rd */ = {
+			isa = PBXGroup;
+			children = (
+				6F8AEB821B1D43F600E2F6E9 /* AreaPicker */,
+				6FE75F0D1B1ED32D005C9A6B /* JKCountDownButton */,
+			);
+			name = 3rd;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -736,6 +757,7 @@
 				6F8AEB8E1B1D446000E2F6E9 /* HZLocation.m in Sources */,
 				325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */,
 				322CFAF21B18845500D12AFD /* FinanceTableViewController.m in Sources */,
+				6FE75F101B1ED32D005C9A6B /* JKCountDownButton.m in Sources */,
 				6F85EFF41B16E5D4008C101B /* MyAfterSalesViewController.m in Sources */,
 				323C30EE1B0B94FF00D0B8D0 /* ApplyViewController.m in Sources */,
 				6F85EFE51B16E3CC008C101B /* MyAddressViewController.m in Sources */,

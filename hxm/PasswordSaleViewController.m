@@ -8,18 +8,23 @@
 
 #import "PasswordSaleViewController.h"
 #import "BWCommon.h"
+#import "AFNetworkTool.h"
+#import "JKCountDownButton.h"
 
 @interface PasswordSaleViewController ()
 {
+    MBProgressHUD *hud;
     UILabel *phone_info;
-    UITextField *code;
-    UITextField *password;
-    UITextField *confirmpassword;
+    JKCountDownButton *getCodeButton;
     CGSize size;
 }
 @end
 
 @implementation PasswordSaleViewController
+
+@synthesize code;
+@synthesize password;
+@synthesize confirmpassword;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,7 +45,9 @@
     [self.view addSubview:main_view];
     
     phone_info = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, size.width-40, 40) ];
-    phone_info.text = @"  您的验证手机：15221966658";
+    NSString *phone = [NSString stringWithFormat:@"  您的验证手机：%@",self.mobile];
+    phone_info.text = phone;
+    
     phone_info.backgroundColor = [UIColor whiteColor];
     [phone_info.layer setMasksToBounds:YES];
     [phone_info.layer setCornerRadius:5.0];
@@ -50,11 +57,13 @@
     NSInteger yy = phone_info.frame.origin.y + phone_info.frame.size.height + 10;
     
     code = [self createTextFieldWithTitle:@"验证码:" yy:yy];
+    code.keyboardType = UIKeyboardTypeNumberPad;
     yy += 50;
     password = [self createTextFieldWithTitle:@"新密码:" yy:yy];
+    password.secureTextEntry = YES;
     yy += 50;
     confirmpassword = [self createTextFieldWithTitle:@"确认密码:" yy:yy];
-    
+    confirmpassword.secureTextEntry = YES;
     [main_view addSubview:code];
     [main_view addSubview:password];
     [main_view addSubview:confirmpassword];
@@ -71,6 +80,28 @@
     [save_button setTitle:@"确认修改" forState:UIControlStateNormal];
     [save_button addTarget:self action:@selector(do_action:) forControlEvents:UIControlEventTouchUpInside];
     [main_view addSubview:save_button];
+    
+    [getCodeButton addToucheHandler:^(JKCountDownButton*sender, NSInteger tag) {
+        
+        [self sendPhoneCode];
+        UIColor *color = sender.backgroundColor;
+        sender.backgroundColor = [UIColor grayColor];
+        sender.enabled = NO;
+        
+        [sender startWithSecond:60];
+        
+        [sender didChange:^NSString *(JKCountDownButton *countDownButton,int second) {
+            NSString *title = [NSString stringWithFormat:@"剩余%d秒",second];
+            return title;
+        }];
+        [sender didFinished:^NSString *(JKCountDownButton *countDownButton, int second) {
+            countDownButton.enabled = YES;
+            sender.backgroundColor = color;
+            return @"获取验证码";
+            
+        }];
+        
+    }];
 }
 
 - (void)do_action:(UIButton *)sender
@@ -79,11 +110,116 @@
     if(sender.tag==20)
     {
         NSLog(@"获取验证码操作");
+        //[self sendPhoneCode];
     }
     else{
-        NSLog(@"确认修改操作");
+        //NSLog(@"确认修改操作");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"系统提示信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+        if([code.text isEqualToString:@""])
+        {
+            alert.message = @"请输入您收到的手机验证码信息";
+            [alert show];
+            return;
+        }
+        if([password.text isEqualToString:@""])
+        {
+            alert.message = @"请输入您的新密码";
+            [alert show];
+            return;
+        }
+        if([confirmpassword.text isEqualToString:@""])
+        {
+            alert.message = @"请输入您的确认密码";
+            [alert show];
+            return;
+        }
+        if ([confirmpassword.text isEqualToString:password.text] == FALSE) {
+            alert.message = @"密码不一致，请检查";
+            [alert show];
+            return;
+        }
+        
+        
+        hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.delegate=self;
+        
+        NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"user/modifyAuctionPassword"];
+        
+        NSMutableDictionary *postData = [BWCommon getTokenData:@"user/modifyAuctionPassword"];
+        
+        [postData setValue:self.mobile forKey:@"mobile"];
+        [postData setValue:code.text forKey:@"code"];
+        [postData setValue:password.text forKey:@"password"];
+        NSLog(@"%@",url);
+        //load data
+        [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+            
+            // NSLog(@"userinfo:%@",responseObject);
+            NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+            
+            [hud removeFromSuperview];
+            if(errNo == 0)
+            {
+                //处理成功
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"拍卖密码修改成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+                
+            }
+            else
+            {
+                NSLog(@"%@",[responseObject objectForKey:@"error"]);
+            }
+            
+        } fail:^{
+            [hud removeFromSuperview];
+            NSLog(@"请求失败");
+        }];
+        
+
     }
 }
+
+//sendPhoneCode
+- (void)sendPhoneCode
+{
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
+    
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"common/sendSmsCode"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"common/sendSmsCode"];
+    
+    //[postData setValue:self.mobile forKey:@"mobile"];
+    [postData setValue:@"15221966658" forKey:@"mobile"];
+    [postData setValue:@"发送手机验证码" forKey:@"msg"];
+    NSLog(@"%@",url);
+    //load data
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        // NSLog(@"userinfo:%@",responseObject);
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        [hud removeFromSuperview];
+        if(errNo == 0)
+        {
+            //处理成功
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"成功发送验证码,请尽快填写验证" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+            
+        }
+        else
+        {
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+        }
+        
+    } fail:^{
+        [hud removeFromSuperview];
+        NSLog(@"请求失败");
+    }];
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -132,7 +268,7 @@
     
     if([title isEqualToString:@"验证码:"])
     {
-        NSLog(@"1111");
+       // NSLog(@"1111");
         /*
         UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(size.width-80, 20, 80, 40)];
         label2.text = @"获取验证码";
@@ -140,18 +276,20 @@
         [field addSubview:label2];
         */
         
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(field.frame.size.width-90, 10, 80, 20)];
-        [button setTitle:@"获取验证码" forState:UIControlStateNormal];
-        button.tintColor = [UIColor whiteColor];
-        [button addTarget:self action:@selector(do_action:) forControlEvents:UIControlEventTouchUpInside];
-        button.tag = 20;
-        button.titleLabel.font = [UIFont systemFontOfSize:12.0];
+        getCodeButton = [[JKCountDownButton alloc] initWithFrame:CGRectMake(field.frame.size.width-90, 10, 80, 20)];
+        [getCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        getCodeButton.tintColor = [UIColor whiteColor];
+        //[getCodeButton addTarget:self action:@selector(do_action:) forControlEvents:UIControlEventTouchUpInside];
+       // getCodeButton.tag = 20;
+        getCodeButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
         //button.font = [UIFont systemFontOfSize:20];
-        button.backgroundColor = [UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1.0];
+        getCodeButton.backgroundColor = [UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1.0];
 
-        [button.layer setMasksToBounds:YES];
-        [button.layer setCornerRadius:3.0];
-        [field addSubview:button];
+        [getCodeButton.layer setMasksToBounds:YES];
+        [getCodeButton.layer setCornerRadius:3.0];
+        [field addSubview:getCodeButton];
+        
+        
         
        // field.rightView = button;
         //field.rightViewMode = UITextFieldViewModeAlways;

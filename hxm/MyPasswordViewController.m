@@ -76,11 +76,13 @@
     if(button.tag==10){
         //密码管理
         PasswordLoginViewController *page = [[PasswordLoginViewController alloc] init];
+        page.mobile = self.mobile;
         [self.navigationController pushViewController:page animated:YES];
     }
     else{
         //拍卖密码
         PasswordSaleViewController *page = [[PasswordSaleViewController alloc] init];
+        page.mobile = self.mobile;
         [self.navigationController pushViewController:page animated:YES];
     }
 }

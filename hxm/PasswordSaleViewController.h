@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface PasswordSaleViewController : UIViewController<UITextFieldDelegate>
-
+#import "MBProgressHUD.h"
+@interface PasswordSaleViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate,MBProgressHUDDelegate>
+{
+    UITextField *code;
+    UITextField *password;
+    UITextField *confirmpassword;
+}
+@property (nonatomic,retain) NSString *mobile;
+@property (nonatomic ,retain) UITextField *code;
+@property (nonatomic,retain) UITextField *password;
+@property (nonatomic,retain) UITextField *confirmpassword;
 @end

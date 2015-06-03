@@ -70,10 +70,13 @@
     address = [self createTextFieldWithTitle:@"详细地址：" yy:yy];
     yy += 50;
     zip = [self createTextFieldWithTitle:@"邮政编码：" yy:yy];
+    zip.keyboardType = UIKeyboardTypeNumberPad;
     yy += 50;
     mobile = [self createTextFieldWithTitle:@"手机号码：" yy:yy];
+    mobile.keyboardType = UIKeyboardTypeNumberPad;
     yy += 50;
     phone = [self createTextFieldWithTitle:@"固定电话：" yy:yy];
+    phone.keyboardType = UIKeyboardTypeNumberPad;
     
     [main_view addSubview:receiver_name];
     [main_view addSubview:areaText];

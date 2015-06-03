@@ -75,14 +75,18 @@
     link_man = [self createTextFieldWithTitle:@"姓    名：" yy:yy];
     yy += 50;
     link_mobile = [self createTextFieldWithTitle:@"手    机：" yy:yy];
+    link_mobile.keyboardType = UIKeyboardTypeNamePhonePad;
     yy += 50;
     link_phone = [self createTextFieldWithTitle:@"固定电话：" yy:yy];
     yy += 50;
     link_email = [self createTextFieldWithTitle:@"E-mail：" yy:yy];
+    link_email.keyboardType = UIKeyboardTypeEmailAddress;
     yy += 50;
     link_qq = [self createTextFieldWithTitle:@"Q Q：" yy:yy];
+    link_qq.keyboardType = UIKeyboardTypeNumberPad;
     yy += 50;
     link_fax = [self createTextFieldWithTitle:@"传     真：" yy:yy];
+    link_fax.keyboardType = UIKeyboardTypeNumberPad;
     yy += 50;
     areaText = [self createTextFieldWithTitle:@"所在地区：" yy:yy];
     yy += 50;
@@ -212,7 +216,7 @@
 -(void)pickerDidChaneStatus:(HZAreaPickerView *)picker
 {
     if (picker.pickerStyle == HZAreaPickerWithStateAndCityAndDistrict) {
-        self.areaValue = [NSString stringWithFormat:@"%@ %@ %@", picker.locate.state, picker.locate.city, picker.locate.district];
+        self.areaValue = [NSString stringWithFormat:@"%@－%@－%@", picker.locate.state, picker.locate.city, picker.locate.district];
     }
 }
 
@@ -230,10 +234,6 @@
     if ([textField isEqual:self.areaText]) {
         [self cancelLocatePicker];
         self.locatePicker = [[HZAreaPickerView alloc] initWithStyle:HZAreaPickerWithStateAndCityAndDistrict delegate:self];
-        [self.locatePicker showInView:self.view];
-    } else {
-        [self cancelLocatePicker];
-        self.locatePicker = [[HZAreaPickerView alloc] initWithStyle:HZAreaPickerWithStateAndCity delegate:self] ;
         [self.locatePicker showInView:self.view];
     }
     return NO;

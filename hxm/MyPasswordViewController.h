@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MyPasswordViewController : UIViewController
-
+@property(nonatomic,retain) NSString *mobile;
 @end

@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface PasswordLoginViewController : UIViewController<UITextFieldDelegate>
+@interface PasswordLoginViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate,MBProgressHUDDelegate>
+{
+    UITextField *password;
+    UITextField *newpassword;
+    UITextField *confirmpassword;
+}
+@property (nonatomic,retain) NSString *mobile;
+@property (nonatomic ,retain) UITextField *password;
+@property (nonatomic,retain) UITextField *newpassword;
+@property (nonatomic,retain) UITextField *confirmpassword;
 
+-(IBAction)backgroundTap:(id)sender;
+-(UITextField *) createTextFieldWithTitle:(NSString *) title yy:(NSInteger)yy;
 @end
