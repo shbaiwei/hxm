@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
-#import "DetailDelegate.h"
+#import "OrderDetailDelegate.h"
 
 @interface OrderViewController : UIViewController
 <
@@ -28,5 +28,5 @@ MBProgressHUDDelegate>{
 @property (nonatomic,retain) NSMutableArray *itemsKeys;
 @property (nonatomic,strong) UITableView *tableview;
 @property (nonatomic,retain) NSMutableArray *dataArray;
-@property (nonatomic,assign) id<DetailDelegate> delegate;
+@property (nonatomic,assign) id<OrderDetailDelegate> delegate;
 @end

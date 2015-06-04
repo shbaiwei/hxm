@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DetailDelegate.h"
+#import "OrderDetailDelegate.h"
+#import "XCMultiSortTableView.h"
+#import "MBProgressHUD.h"
 
 @interface OrderDetailViewController : UIViewController
-<DetailDelegate>
+<OrderDetailDelegate,
+XCMultiTableViewDataSource,
+MBProgressHUDDelegate>
+{
+    MBProgressHUD *hud;
+}
 
+@property (nonatomic,assign) id<OrderDetailDelegate> delegate;
 @end
