@@ -10,6 +10,7 @@
 #import "BWCommon.h"
 #import "PasswordLoginViewController.h"
 #import "PasswordSaleViewController.h"
+#import "AFNetworkTool.h"
 
 @interface MyPasswordViewController ()
 
@@ -22,6 +23,7 @@
     self.title = @"密码管理";
     // Do any additional setup after loading the view.
     [self pageLayout];
+    [self InitData];
 }
 
 - (void)pageLayout
@@ -117,5 +119,42 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)InitData
+{
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"user/getUserBaseInfoById"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"user/getUserBaseInfoById"];
+    
+    NSString *user_id = [BWCommon getUserInfo:@"uid"];
+    NSLog(@"uid:%@",user_id);
+    [postData setValue:[NSString stringWithFormat:@"%@",user_id] forKey:@"uid"];
+    NSLog(@"%@",url);
+    // NSLog(@"field_name:%@  field_value:%@",field_name,field_value);
+    //load data
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        // NSLog(@"userinfo:%@",responseObject);
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        [hud removeFromSuperview];
+        if(errNo == 0)
+        {
+            NSDictionary *userinfo = [responseObject objectForKey:@"data"];
+            self.mobile = userinfo[@"mobile"];
+            NSLog(@"userinfo:%@",userinfo);
+        }
+        else
+        {
+            
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+        }
+        
+    } fail:^{
+        [hud removeFromSuperview];
+        NSLog(@"请求失败");
+    }];
+}
 
 @end

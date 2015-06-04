@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface MyBusinessInfoViewController : UIViewController<UITextFieldDelegate>
-
+@interface MyBusinessInfoViewController : UIViewController<UITextFieldDelegate,UIActionSheetDelegate,MBProgressHUDDelegate>
+@property (nonatomic, strong) NSDictionary *userinfo;
+@property (nonatomic, strong) NSDictionary *bussiness_types;
 @end

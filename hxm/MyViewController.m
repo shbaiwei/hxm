@@ -15,10 +15,12 @@
 #import "MyAddressViewController.h"
 #import "MyAfterSalesViewController.h"
 #import "MyPasswordViewController.h"
+#import "UIImageView+WebCache.h"
 
 @interface MyViewController ()
 {
     UILabel *user_number;
+    UIImageView *user_face;
     UILabel *baseinfo_telephone;
     UILabel *baseinfo_birthday;
     UILabel *baseinfo_sex;
@@ -83,9 +85,10 @@
     user_number.textColor = [UIColor whiteColor];
     [self.view addSubview:user_number];
     
-    UIImageView *user_face = [[UIImageView alloc] initWithFrame:CGRectMake(10, topView.frame.size.height-80, 80, 80)];
-    [user_face.layer setCornerRadius:30.0];
-    [user_face setImage:[UIImage imageNamed:@"user-face"]];
+    user_face = [[UIImageView alloc] initWithFrame:CGRectMake(10, topView.frame.size.height-80, 80, 80)];
+    [user_face.layer setCornerRadius:40.0];
+    user_face.layer.masksToBounds = YES;
+    //[user_face setImage:[UIImage imageNamed:@"user-face"]];
     [self.view addSubview:user_face];
     
     UIScrollView *sclView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 160, size.width, size.height-160)];
@@ -279,19 +282,22 @@
         {
             userinfo = [responseObject objectForKey:@"data"];
             NSLog(@"userinfo:%@",userinfo);
+            [user_face sd_setImageWithURL:[NSURL URLWithString:@"https://www.baidu.com/img/bdlogo.png"] placeholderImage:[UIImage imageNamed:@"user-face"]];
+            
             user_number.text = [NSString stringWithFormat:@"%@(编号%@)",[userinfo objectForKey:@"real_name"],[userinfo objectForKey:@"uid_hj"]];
             baseinfo_telephone.text = [NSString stringWithFormat:@"手机：%@",[userinfo objectForKey:@"link_mobile"]];
             baseinfo_birthday.text = [NSString stringWithFormat:@"生日：%@",[userinfo objectForKey:@"birthday"]];
-            NSString *gender = [userinfo objectForKey:@"gender"];
-            if([gender isEqualToString:@"1"])
+            NSInteger gender = [[userinfo objectForKey:@"gender"] integerValue];
+            //NSLog(@"sex:%ld",(long)[userinfo[@"gender"] integerValue]);
+            //baseinfo_sex.text = [NSString stringWithFormat:@"性别：%s",(gender == 1)?"男":"女"];
+            if(gender == 1)
             {
                 baseinfo_sex.text = @"性别：男";
             }
-            else
-            {
+            else{
                 baseinfo_sex.text = @"性别：女";
             }
-            
+           
             /*身份证信息部分填充*/
             UIImageView *id_card_image =[[UIImageView alloc] initWithFrame:CGRectMake(20, 15, 44, 44)];
             [id_card_image setImage:[UIImage imageNamed:@"user-icon2"]];
@@ -348,9 +354,8 @@
     switch (sender.tag) {
         case 1: //eidt birthday
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"system message" message:@"edit birthday" delegate:nil cancelButtonTitle:@"confirm" otherButtonTitles: nil];
-            alert.tag = 60;
-            [alert show];
+            //NSDate *toDate = [[NSData alloc] initwith];
+            
             NSLog(@"edit birthday");
             break;
         }
@@ -380,6 +385,7 @@
         case 11: //营业信息
         {
             MyBusinessInfoViewController *page = [[MyBusinessInfoViewController alloc] init];
+            page.userinfo = userinfo;
             [self.navigationController pushViewController:page animated:YES];
             break;
         }
@@ -398,7 +404,6 @@
         case 14: //密码管理
         {
             MyPasswordViewController *page = [[MyPasswordViewController alloc] init];
-            page.mobile = [userinfo objectForKey:@"link_mobile"];
             [self.navigationController pushViewController:page animated:YES];
             break;
         }
@@ -428,6 +433,24 @@
     switch (actionSheet.tag) {
         case 11: //choose sex action
             NSLog(@"%ld",(long)buttonIndex);
+            NSLog(@"%@",baseinfo_sex.text);
+            NSInteger gender = [[userinfo objectForKey:@"gender"] integerValue];
+            //buttonIndex == 0为男性 gender==0为女性
+            if(buttonIndex == 0 && gender == 0)
+            {
+                [self updateProfile:@"gender" field_vale:@"1"];
+                NSLog(@"修改为男性");
+            }
+            else if(buttonIndex == 1 && gender == 1)
+            {
+                [self updateProfile:@"gender" field_vale:@"2"];
+                NSLog(@"修改为女性");
+            }
+            else
+            {
+                NSLog(@"未做修改");
+            }
+            
             break;
         case 12: //exit action
         {
@@ -450,6 +473,52 @@
     
 }
 
-
+- (void)updateProfile: (NSString *)field_name field_vale:(NSString *) field_value
+{
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"user/saveContactInfo"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"user/saveContactInfo"];
+    
+    [postData setValue:field_value forKey:field_name];
+    [postData setValue:userinfo[@"link_man"] forKey:@"link_man"];
+    [postData setValue:userinfo[@"link_mobile"] forKey:@"link_mobile"];
+    NSLog(@"%@",postData);
+   // NSLog(@"field_name:%@  field_value:%@",field_name,field_value);
+    //load data
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        // NSLog(@"userinfo:%@",responseObject);
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        [hud removeFromSuperview];
+        if(errNo == 0)
+        {
+            //处理成功
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"修改成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+            if([field_name isEqualToString:@"gender"] )
+            {
+            if([field_value isEqualToString:@"1"])
+            {
+                baseinfo_sex.text = @"男";
+            }
+            else{
+                baseinfo_sex.text = @"女";
+            }
+            }
+        }
+        else
+        {
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[responseObject objectForKey:@"error"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
+        
+    } fail:^{
+        [hud removeFromSuperview];
+        NSLog(@"请求失败");
+    }];
+}
 
 @end

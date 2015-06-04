@@ -13,6 +13,7 @@
 @interface PasswordLoginViewController ()
 {
     CGSize size;
+    UIButton *save_button;
 }
 @end
 
@@ -27,6 +28,7 @@
     self.title = @"登录密码修改";
     // Do any additional setup after loading the view.
     [self pageLayout];
+    [self checkMobile];
 }
 
 - (void)pageLayout
@@ -53,7 +55,7 @@
     [main_view addSubview:newpassword];
     [main_view addSubview:confirmpassword];
     
-    UIButton *save_button = [UIButton buttonWithType:UIButtonTypeCustom];
+    save_button = [UIButton buttonWithType:UIButtonTypeCustom];
     save_button.frame = CGRectMake(0, confirmpassword.frame.origin.y+confirmpassword.bounds.size.height+30, size.width-40, 40);
     [save_button setTag:30];
     [save_button.layer setMasksToBounds:YES];
@@ -104,28 +106,37 @@
     [postData setValue:self.mobile forKey:@"mobile"];
     [postData setValue:password.text forKey:@"password"];
     [postData setValue:newpassword.text forKey:@"newpassword"];
+    //[postData setValue:@"15221966658" forKey:@"mobile"];
+    //[postData setValue:@"hj1234567" forKey:@"password"];
+    //[postData setValue:@"1qaz2wsx" forKey:@"newpassword"];
+    
     NSLog(@"%@",url);
+    NSLog(@"postData:%@",postData);
     //load data
     [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
         
-        // NSLog(@"userinfo:%@",responseObject);
+        NSLog(@"responseObject:%@",responseObject);
         NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
         
         [hud removeFromSuperview];
         if(errNo == 0)
         {
             //处理成功
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"登陆密码修改成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            alert.message = @"登陆密码修改成功";
             [alert show];
             
         }
         else
         {
+            alert.message = [responseObject objectForKey:@"error"];
+            [alert show];
             NSLog(@"%@",[responseObject objectForKey:@"error"]);
         }
         
     } fail:^{
         [hud removeFromSuperview];
+        alert.message = @"请求失败";
+        [alert show];
         NSLog(@"请求失败");
     }];
 
@@ -133,6 +144,17 @@
     //NSLog(@"save action");
 }
 
+- (void)checkMobile
+{
+    if (self.mobile==NULL) {
+        save_button.backgroundColor = [UIColor grayColor];
+        [save_button setUserInteractionEnabled:NO];
+        [save_button setAlpha:0.4];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"未绑定手机号码不能进行修改密码操作！" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
+        [alert show];
+        
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

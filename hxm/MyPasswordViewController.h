@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface MyPasswordViewController : UIViewController
+@interface MyPasswordViewController : UIViewController<MBProgressHUDDelegate>
+{
+    MBProgressHUD *hud;
+}
 @property(nonatomic,retain) NSString *mobile;
 @end

@@ -17,6 +17,7 @@
     UILabel *phone_info;
     JKCountDownButton *getCodeButton;
     CGSize size;
+    UIButton *save_button;
 }
 @end
 
@@ -31,6 +32,7 @@
     self.title = @"拍卖密码修改";
     // Do any additional setup after loading the view.
     [self pageLayout];
+    [self checkMobile];
 }
 
 - (void)pageLayout
@@ -70,7 +72,7 @@
     
     
     
-    UIButton *save_button = [UIButton buttonWithType:UIButtonTypeCustom];
+    save_button = [UIButton buttonWithType:UIButtonTypeCustom];
     save_button.frame = CGRectMake(0, confirmpassword.frame.origin.y+confirmpassword.bounds.size.height+30, size.width-40, 40);
     [save_button setTag:30];
     [save_button.layer setMasksToBounds:YES];
@@ -81,10 +83,11 @@
     [save_button addTarget:self action:@selector(do_action:) forControlEvents:UIControlEventTouchUpInside];
     [main_view addSubview:save_button];
     
+    /*发送验证码uibutton事件处理*/
     [getCodeButton addToucheHandler:^(JKCountDownButton*sender, NSInteger tag) {
         
         [self sendPhoneCode];
-        UIColor *color = sender.backgroundColor;
+        UIColor *orgin_color = sender.backgroundColor;
         sender.backgroundColor = [UIColor grayColor];
         sender.enabled = NO;
         
@@ -96,12 +99,13 @@
         }];
         [sender didFinished:^NSString *(JKCountDownButton *countDownButton, int second) {
             countDownButton.enabled = YES;
-            sender.backgroundColor = color;
-            return @"获取验证码";
+            sender.backgroundColor = orgin_color;
+            return @"重新获取";
             
         }];
         
     }];
+    /*发送验证码uibutton事件处理－－－end*/
 }
 
 - (void)do_action:(UIButton *)sender
@@ -154,24 +158,28 @@
         //load data
         [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
             
-            // NSLog(@"userinfo:%@",responseObject);
+            NSLog(@"responseObject:%@",responseObject);
             NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
             
             [hud removeFromSuperview];
             if(errNo == 0)
             {
                 //处理成功
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"拍卖密码修改成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                alert.message = @"拍卖密码修改成功";
                 [alert show];
                 
             }
             else
             {
+                alert.message = [responseObject objectForKey:@"error"];
+                [alert show];
                 NSLog(@"%@",[responseObject objectForKey:@"error"]);
             }
             
         } fail:^{
             [hud removeFromSuperview];
+            alert.message = @"请求失败";
+            [alert show];
             NSLog(@"请求失败");
         }];
         
@@ -179,9 +187,14 @@
     }
 }
 
-//sendPhoneCode
+//发送手机验证码
 - (void)sendPhoneCode
 {
+     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    if (self.mobile == NULL) {
+        alert.message = @"未绑定手机号码不能进行修改密码操作！";
+        [alert show];
+    }
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.delegate=self;
     
@@ -189,26 +202,28 @@
     
     NSMutableDictionary *postData = [BWCommon getTokenData:@"common/sendSmsCode"];
     
-    //[postData setValue:self.mobile forKey:@"mobile"];
-    [postData setValue:@"15221966658" forKey:@"mobile"];
+    [postData setValue:self.mobile forKey:@"mobile"];
+    //[postData setValue:@"15221966658" forKey:@"mobile"];
     [postData setValue:@"发送手机验证码" forKey:@"msg"];
     NSLog(@"%@",url);
     //load data
     [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
         
-        // NSLog(@"userinfo:%@",responseObject);
+        NSLog(@"userinfo:%@",responseObject);
         NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
         
         [hud removeFromSuperview];
         if(errNo == 0)
         {
             //处理成功
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"成功发送验证码,请尽快填写验证" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            alert.message = @"成功发送验证码,请尽快填写验证";
             [alert show];
             
         }
         else
         {
+            alert.message = [responseObject objectForKey:@"error"];
+            [alert show];
             NSLog(@"%@",[responseObject objectForKey:@"error"]);
         }
         
@@ -220,6 +235,18 @@
     
 }
 
+
+- (void)checkMobile
+{
+    if (self.mobile==NULL) {
+        save_button.backgroundColor = [UIColor grayColor];
+        [save_button setUserInteractionEnabled:NO];
+        [save_button setAlpha:0.4];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"未绑定手机号码不能进行修改密码操作！" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
+        [alert show];
+        
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

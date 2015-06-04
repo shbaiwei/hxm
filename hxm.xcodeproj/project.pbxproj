@@ -103,6 +103,7 @@
 		6FE330041B19E39A00BE3B8F /* MyAddressTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE330031B19E39A00BE3B8F /* MyAddressTableViewFrame.m */; };
 		6FE330071B19E3FB00BE3B8F /* MyAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE330061B19E3FB00BE3B8F /* MyAddressTableViewCell.m */; };
 		6FE75F101B1ED32D005C9A6B /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE75F0F1B1ED32D005C9A6B /* JKCountDownButton.m */; };
+		6FE75F131B1EEB07005C9A6B /* user-address-down-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE75F121B1EEB07005C9A6B /* user-address-down-icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,6 +260,7 @@
 		6FE330061B19E3FB00BE3B8F /* MyAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAddressTableViewCell.m; sourceTree = "<group>"; };
 		6FE75F0E1B1ED32D005C9A6B /* JKCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKCountDownButton.h; sourceTree = "<group>"; };
 		6FE75F0F1B1ED32D005C9A6B /* JKCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCountDownButton.m; sourceTree = "<group>"; };
+		6FE75F121B1EEB07005C9A6B /* user-address-down-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-address-down-icon.png"; sourceTree = "<group>"; };
 		9209D6723B6D4EA0AEA34FD9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -301,6 +303,7 @@
 		321A23821B09CD0200A9D294 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				6FE75F121B1EEB07005C9A6B /* user-address-down-icon.png */,
 				32AAD6AF1B1B1530008C3306 /* goods-cart.png */,
 				6FE32FFC1B19E24500BE3B8F /* address-delete-icon.png */,
 				6FE32FFD1B19E24500BE3B8F /* address-noselect-icon.png */,
@@ -697,6 +700,7 @@
 				322CFAF81B18897800D12AFD /* finance-1.png in Resources */,
 				321A23911B09CD0200A9D294 /* login-user@2x.png in Resources */,
 				6FE330001B19E24500BE3B8F /* address-noselect-icon.png in Resources */,
+				6FE75F131B1EEB07005C9A6B /* user-address-down-icon.png in Resources */,
 				323263621B0C88550004522E /* register-email@2x.png in Resources */,
 				325A8A7E1B0D92F300CEA0AB /* tab-finance.png in Resources */,
 				321B0E521B14807C004D5827 /* user-edit.png in Resources */,

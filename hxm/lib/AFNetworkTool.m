@@ -85,7 +85,8 @@
             success(responseObject);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
+        NSLog(@"operation:%@", operation);
+        NSLog(@"error:%@", error.description);
         if (fail) {
             fail();
         }
