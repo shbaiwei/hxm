@@ -185,11 +185,7 @@ UITextField *password;
         
         
         NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
-        
-        NSString *uid = [[responseObject objectForKey:@"data"] objectForKey:@"user_id"];
-        
-        NSString *user_key = [[responseObject objectForKey:@"data"] objectForKey:@"user_key"];
-        
+
         
         if (errNo > 0) {
             [alert setMessage:[responseObject objectForKey:@"error"]];
@@ -197,6 +193,10 @@ UITextField *password;
             
             //提交审核信息
             if(errNo == 3){
+                
+                
+                NSString *uid = [[responseObject objectForKey:@"data"] objectForKey:@"user_id"];
+                NSString *user_key = [[responseObject objectForKey:@"data"] objectForKey:@"user_key"];
                 
                 [BWCommon setUserInfo:@"uid" value:uid];
                 [BWCommon setUserInfo:@"user_key" value:user_key];
@@ -209,6 +209,9 @@ UITextField *password;
         }
         else
         {
+            
+            NSString *uid = [[responseObject objectForKey:@"data"] objectForKey:@"user_id"];
+            NSString *user_key = [[responseObject objectForKey:@"data"] objectForKey:@"user_key"];
             
             [BWCommon setUserInfo:@"uid" value:uid];
             [BWCommon setUserInfo:@"user_key" value:user_key];

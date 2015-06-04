@@ -15,4 +15,7 @@
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
+@property (nonatomic, weak) UIButton *commentButton;
+@property (nonatomic, weak) UIButton *noteButton;
+
 @end

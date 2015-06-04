@@ -72,6 +72,12 @@
 		3272D63F1B1DB7EC007DBF31 /* ConsignationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272D63E1B1DB7EC007DBF31 /* ConsignationTableViewController.m */; };
 		3272D6421B1DB82E007DBF31 /* ConsignationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272D6411B1DB82E007DBF31 /* ConsignationTableViewCell.m */; };
 		3272D6441B1DB857007DBF31 /* ConsignationTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272D6431B1DB857007DBF31 /* ConsignationTableViewFrame.m */; };
+		32A48DED1B2032AF000A44A0 /* UIView+XCMultiSortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DE71B2032AF000A44A0 /* UIView+XCMultiSortTableView.m */; };
+		32A48DEE1B2032AF000A44A0 /* XCMultiSortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DE91B2032AF000A44A0 /* XCMultiSortTableView.m */; };
+		32A48DEF1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DEB1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.m */; };
+		32A48DF21B205762000A44A0 /* order-tips.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A48DF11B205762000A44A0 /* order-tips.png */; };
+		32A48DF51B205F00000A44A0 /* OrderCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DF41B205F00000A44A0 /* OrderCommentViewController.m */; };
+		32A48DF81B20672B000A44A0 /* OrderNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DF71B20672B000A44A0 /* OrderNoteViewController.m */; };
 		32AAD6AE1B1AE488008C3306 /* GoodsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AAD6AD1B1AE488008C3306 /* GoodsListViewController.m */; };
 		32AAD6B01B1B1530008C3306 /* goods-cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 32AAD6AF1B1B1530008C3306 /* goods-cart.png */; };
 		32AAD6B31B1B242E008C3306 /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AAD6B21B1B242E008C3306 /* GoodsDetailViewController.m */; };
@@ -206,6 +212,19 @@
 		3272D6411B1DB82E007DBF31 /* ConsignationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsignationTableViewCell.m; sourceTree = "<group>"; };
 		3272D6431B1DB857007DBF31 /* ConsignationTableViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsignationTableViewFrame.m; sourceTree = "<group>"; };
 		3272D6451B1DB870007DBF31 /* ConsignationTableViewFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConsignationTableViewFrame.h; sourceTree = "<group>"; };
+		32A48DE61B2032AF000A44A0 /* UIView+XCMultiSortTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XCMultiSortTableView.h"; sourceTree = "<group>"; };
+		32A48DE71B2032AF000A44A0 /* UIView+XCMultiSortTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XCMultiSortTableView.m"; sourceTree = "<group>"; };
+		32A48DE81B2032AF000A44A0 /* XCMultiSortTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCMultiSortTableView.h; sourceTree = "<group>"; };
+		32A48DE91B2032AF000A44A0 /* XCMultiSortTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCMultiSortTableView.m; sourceTree = "<group>"; };
+		32A48DEA1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCMultiSortTableViewBGScrollView.h; sourceTree = "<group>"; };
+		32A48DEB1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCMultiSortTableViewBGScrollView.m; sourceTree = "<group>"; };
+		32A48DEC1B2032AF000A44A0 /* XCMultiSortTableViewDefault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCMultiSortTableViewDefault.h; sourceTree = "<group>"; };
+		32A48DF01B203D62000A44A0 /* OrderDetailDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailDelegate.h; sourceTree = "<group>"; };
+		32A48DF11B205762000A44A0 /* order-tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "order-tips.png"; sourceTree = "<group>"; };
+		32A48DF31B205F00000A44A0 /* OrderCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCommentViewController.h; sourceTree = "<group>"; };
+		32A48DF41B205F00000A44A0 /* OrderCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCommentViewController.m; sourceTree = "<group>"; };
+		32A48DF61B20672B000A44A0 /* OrderNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderNoteViewController.h; sourceTree = "<group>"; };
+		32A48DF71B20672B000A44A0 /* OrderNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderNoteViewController.m; sourceTree = "<group>"; };
 		32AAD6AC1B1AE488008C3306 /* GoodsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsListViewController.h; sourceTree = "<group>"; };
 		32AAD6AD1B1AE488008C3306 /* GoodsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsListViewController.m; sourceTree = "<group>"; };
 		32AAD6AF1B1B1530008C3306 /* goods-cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goods-cart.png"; sourceTree = "<group>"; };
@@ -301,6 +320,7 @@
 		321A23821B09CD0200A9D294 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				32A48DF11B205762000A44A0 /* order-tips.png */,
 				32AAD6AF1B1B1530008C3306 /* goods-cart.png */,
 				6FE32FFC1B19E24500BE3B8F /* address-delete-icon.png */,
 				6FE32FFD1B19E24500BE3B8F /* address-noselect-icon.png */,
@@ -439,6 +459,7 @@
 				323EE90E1AF8F57D00C55306 /* AppDelegate.h */,
 				323EE90F1AF8F57D00C55306 /* AppDelegate.m */,
 				32AAD6B41B1B24E1008C3306 /* DetailDelegate.h */,
+				32A48DF01B203D62000A44A0 /* OrderDetailDelegate.h */,
 				323EE9171AF8F57D00C55306 /* Main.storyboard */,
 				323EE91A1AF8F57D00C55306 /* Images.xcassets */,
 				323EE91C1AF8F57D00C55306 /* LaunchScreen.xib */,
@@ -518,13 +539,33 @@
 			children = (
 				3272D6331B1CA671007DBF31 /* OrderDetailViewController.h */,
 				3272D6341B1CA672007DBF31 /* OrderDetailViewController.m */,
+				32A48DF31B205F00000A44A0 /* OrderCommentViewController.h */,
+				32A48DF41B205F00000A44A0 /* OrderCommentViewController.m */,
+				32A48DF61B20672B000A44A0 /* OrderNoteViewController.h */,
+				32A48DF71B20672B000A44A0 /* OrderNoteViewController.m */,
 			);
 			name = Order;
 			sourceTree = "<group>";
 		};
+		32A48DE51B2032AF000A44A0 /* XCMultiSortTableView */ = {
+			isa = PBXGroup;
+			children = (
+				32A48DE61B2032AF000A44A0 /* UIView+XCMultiSortTableView.h */,
+				32A48DE71B2032AF000A44A0 /* UIView+XCMultiSortTableView.m */,
+				32A48DE81B2032AF000A44A0 /* XCMultiSortTableView.h */,
+				32A48DE91B2032AF000A44A0 /* XCMultiSortTableView.m */,
+				32A48DEA1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.h */,
+				32A48DEB1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.m */,
+				32A48DEC1B2032AF000A44A0 /* XCMultiSortTableViewDefault.h */,
+			);
+			name = XCMultiSortTableView;
+			path = hxm/XCMultiSortTableView;
+			sourceTree = SOURCE_ROOT;
+		};
 		32D3D9881B03B2AE00B50967 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				32A48DE51B2032AF000A44A0 /* XCMultiSortTableView */,
 				32D3D9841B03B2AE00B50967 /* AFNetworkTool.h */,
 				32D3D9851B03B2AE00B50967 /* AFNetworkTool.m */,
 				32D3D9861B03B2AE00B50967 /* BWCommon.h */,
@@ -672,6 +713,7 @@
 				322CFAEF1B18800300D12AFD /* goods-3.png in Resources */,
 				321A23961B09CD0200A9D294 /* register-check-default.png in Resources */,
 				325A8A851B0D92F300CEA0AB /* tab-order@2x.png in Resources */,
+				32A48DF21B205762000A44A0 /* order-tips.png in Resources */,
 				321A238F1B09CD0200A9D294 /* login-password@2x.png in Resources */,
 				321B0E571B14807C004D5827 /* user-icon5.png in Resources */,
 				325A8A7F1B0D92F300CEA0AB /* tab-finance@2x.png in Resources */,
@@ -762,6 +804,7 @@
 				6FE330041B19E39A00BE3B8F /* MyAddressTableViewFrame.m in Sources */,
 				323C30EB1B0B913F00D0B8D0 /* GoodsViewController.m in Sources */,
 				3272D63C1B1CAFBF007DBF31 /* FinanceTableViewFrame.m in Sources */,
+				32A48DEF1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.m in Sources */,
 				6FCBFE271B19B4A200537CC6 /* MyAfterSaleTableViewFrame.m in Sources */,
 				6F6E4CA81B187B5F002F0419 /* PasswordLoginViewController.m in Sources */,
 				6F57A9EC1B1BF986001530C7 /* MyAddressEditViewController.m in Sources */,
@@ -771,6 +814,7 @@
 				323C30E81B0B90A400D0B8D0 /* OrderViewController.m in Sources */,
 				325A8A8C1B0D948800CEA0AB /* MyViewController.m in Sources */,
 				6F8AEB8E1B1D446000E2F6E9 /* HZLocation.m in Sources */,
+				32A48DEE1B2032AF000A44A0 /* XCMultiSortTableView.m in Sources */,
 				325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */,
 				322CFAF21B18845500D12AFD /* FinanceTableViewController.m in Sources */,
 				6FE75F101B1ED32D005C9A6B /* JKCountDownButton.m in Sources */,
@@ -782,6 +826,7 @@
 				3272D6441B1DB857007DBF31 /* ConsignationTableViewFrame.m in Sources */,
 				32D3D9891B03B2AE00B50967 /* AFNetworkTool.m in Sources */,
 				6F85EFEB1B16E47F008C101B /* MyContactWayViewController.m in Sources */,
+				32A48DF51B205F00000A44A0 /* OrderCommentViewController.m in Sources */,
 				323EE90D1AF8F57D00C55306 /* main.m in Sources */,
 				3214A87F1B04F920007DE10F /* RegisterViewController.m in Sources */,
 				6FE330071B19E3FB00BE3B8F /* MyAddressTableViewCell.m in Sources */,
@@ -789,6 +834,8 @@
 				6FCBFE2D1B19B5A800537CC6 /* MyAfterSaleTableViewCell.m in Sources */,
 				322CFAE31B18230D00D12AFD /* OrderTableViewCell.m in Sources */,
 				3227EAF11B19E67100AC34B8 /* GoodsListTableViewCell.m in Sources */,
+				32A48DF81B20672B000A44A0 /* OrderNoteViewController.m in Sources */,
+				32A48DED1B2032AF000A44A0 /* UIView+XCMultiSortTableView.m in Sources */,
 				6F85EFF11B16E509008C101B /* MyPasswordViewController.m in Sources */,
 				3272D63F1B1DB7EC007DBF31 /* ConsignationTableViewController.m in Sources */,
 			);
@@ -868,7 +915,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -903,7 +950,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -916,6 +963,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = hxm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -927,6 +975,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = hxm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

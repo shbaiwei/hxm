@@ -11,6 +11,8 @@
 #import "OrderTableViewCell.h"
 #import "OrderTableViewFrame.h"
 #import "OrderDetailViewController.h"
+#import "OrderCommentViewController.h"
+#import "OrderNoteViewController.h"
 #import "MJRefresh.h"
 #import "AFNetworkTool.h"
 
@@ -59,6 +61,26 @@
     filterView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:filterView];
     
+    UIButton *tradeButton = [self createFilterButton:@"交易方式"];
+    
+    [filterView addSubview:tradeButton];
+    
+    UIButton *statusButton = [self createFilterButton:@"订单状态"];
+    
+    [filterView addSubview:statusButton];
+    
+    NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[tradeButton(<=100)]-20-[statusButton(<=100)]-50-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tradeButton,statusButton)];
+    
+    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[tradeButton(<=40)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tradeButton)];
+    NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[statusButton(<=40)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(statusButton)];
+    
+    [filterView addConstraints:constraints1];
+    [filterView addConstraints:constraints2];
+    [filterView addConstraints:constraints3];
+    
+    
+   
+    
     
     tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 104, size.width, size.height-146)];
     tableview.delegate = self;
@@ -75,6 +97,21 @@
     
     [self.tableview addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
 
+}
+
+- (UIButton *) createFilterButton:(NSString *) name{
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+    
+    btn.translatesAutoresizingMaskIntoConstraints = NO;
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn setTitle:name forState:UIControlStateNormal];
+    
+    [btn setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
+    
+    return btn;
+    
+    
 }
 
 
@@ -171,8 +208,42 @@
     
     cell.viewFrame = self.statusFrames[indexPath.row];
     
+    cell.commentButton.tag = indexPath.row;
+    cell.noteButton.tag = indexPath.row;
+    
+    
+    [cell.commentButton addTarget:self action:@selector(commentButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.noteButton addTarget:self action:@selector(noteButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
+}
+
+- (void) commentButtonTouched:(id) sender{
+
+    NSString * order_no;
+    order_no = [[dataArray objectAtIndex:[sender tag]] objectForKey:@"order_no"];
+    
+    OrderCommentViewController * commentViewController = [[OrderCommentViewController alloc] init];
+    self.delegate = commentViewController;
+    commentViewController.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:commentViewController animated:YES];
+    
+    [self.delegate setValue:order_no];
+}
+
+- (void) noteButtonTouched:(id) sender{
+    
+    NSString * order_no;
+    order_no = [[dataArray objectAtIndex:[sender tag]] objectForKey:@"order_no"];
+    
+    OrderNoteViewController * noteViewController = [[OrderNoteViewController alloc] init];
+    self.delegate = noteViewController;
+    noteViewController.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:noteViewController animated:YES];
+    
+    [self.delegate setValue:order_no];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -204,15 +275,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUInteger detail_id;
-    detail_id = [[[dataArray objectAtIndex:[indexPath row]] objectForKey:@"ent_id"] integerValue];
+    NSString * order_no;
+    order_no = [[dataArray objectAtIndex:[indexPath row]] objectForKey:@"order_no"];
     
     OrderDetailViewController *detailViewController = [[OrderDetailViewController alloc] init];
     
     detailViewController.hidesBottomBarWhenPushed = YES;
     self.delegate = detailViewController;
     [self.navigationController pushViewController:detailViewController animated:YES];
-    [self.delegate setValue:detail_id];
+    [self.delegate setValue:order_no];
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 

@@ -26,8 +26,7 @@
 
 @property (nonatomic,weak) UIView *buttonView;
 
-@property (nonatomic, weak) UIButton *commentButton;
-@property (nonatomic, weak) UIButton *noteButton;
+
 @property (nonatomic,weak) UILabel *timeLabel;
 
 @end
