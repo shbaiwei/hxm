@@ -10,6 +10,7 @@
 #import "BWCommon.h"
 #import "GoodsTableViewCell.h"
 #import "GoodsListViewController.h"
+#import "ConsignationTableViewController.h"
 
 @interface GoodsViewController ()
 
@@ -177,6 +178,9 @@
     }
     else if(row == 1){
         //委托记录
+        ConsignationTableViewController *consignationViewController = [[ConsignationTableViewController alloc] init];
+        consignationViewController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:consignationViewController animated:YES];
         
     }
     else if(row==2){

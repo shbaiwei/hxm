@@ -39,6 +39,34 @@
 
 -(void) pageLayout{
     
+    self.view.backgroundColor = [BWCommon getBackgroundColor];
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    self.navigationItem.title = @"委托记录";
+    
+    [self refreshingData:1 callback:^{}];
+    
+    [self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(headerRefreshing)];
+    
+    [self.tableView addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
+    
+}
+
+- (NSArray *)statusFrames
+{
+    if (_statusFrames == nil) {
+        
+        NSMutableArray *models = [NSMutableArray arrayWithCapacity:dataArray.count];
+        
+        for (NSDictionary *dict in dataArray) {
+            // 创建模型
+            ConsignationTableViewFrame *vf = [[ConsignationTableViewFrame alloc] init];
+            vf.data = dict;
+            [models addObject:vf];
+        }
+        self.statusFrames = [models copy];
+    }
+    return _statusFrames;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,12 +83,12 @@
     hud.delegate=self;
     
     
-    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"goods/queryGoods"];
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"delegation/queryDelegations"];
     
-    NSMutableDictionary *postData = [BWCommon getTokenData:@"goods/queryGoods"];
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"delegation/queryDelegations"];
     
     [postData setValue:@"10" forKey:@"pageSize"];
-    [postData setValue:[NSString stringWithFormat:@"%ld",self.gpage] forKey:@"GoodsEntry_page"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",self.gpage] forKey:@"DelegationEntry_page"];
     
     
     NSLog(@"%@",url);
@@ -142,9 +170,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ConsignationTableViewCell *cell = [[ConsignationTableViewCell alloc] init];
-    //cell.viewFrame = self.statusFrames[indexPath.row];
+    cell.viewFrame = self.statusFrames[indexPath.row];
     
     return cell;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // NSLog(@"heightForRowAtIndexPath");
+    // 取出对应航的frame模型
+    ConsignationTableViewFrame *vf = self.statusFrames[indexPath.row];
+    NSLog(@"height = %f", vf.cellHeight);
+    return vf.cellHeight;
 }
 
 

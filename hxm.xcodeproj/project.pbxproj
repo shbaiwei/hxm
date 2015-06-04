@@ -67,6 +67,7 @@
 		325A8A891B0D944900CEA0AB /* user-bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 325A8A881B0D944900CEA0AB /* user-bg.jpg */; };
 		325A8A8C1B0D948800CEA0AB /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325A8A8B1B0D948800CEA0AB /* MyViewController.m */; };
 		325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325C87E81B04D100001DF5D8 /* LoginViewController.m */; };
+		3262EE7D1B20722B007489B9 /* order-tips.png in Resources */ = {isa = PBXBuildFile; fileRef = 3262EE7C1B20722B007489B9 /* order-tips.png */; };
 		3272D6351B1CA672007DBF31 /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272D6341B1CA672007DBF31 /* OrderDetailViewController.m */; };
 		3272D63C1B1CAFBF007DBF31 /* FinanceTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272D63B1B1CAFBF007DBF31 /* FinanceTableViewFrame.m */; };
 		3272D63F1B1DB7EC007DBF31 /* ConsignationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272D63E1B1DB7EC007DBF31 /* ConsignationTableViewController.m */; };
@@ -75,7 +76,6 @@
 		32A48DED1B2032AF000A44A0 /* UIView+XCMultiSortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DE71B2032AF000A44A0 /* UIView+XCMultiSortTableView.m */; };
 		32A48DEE1B2032AF000A44A0 /* XCMultiSortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DE91B2032AF000A44A0 /* XCMultiSortTableView.m */; };
 		32A48DEF1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DEB1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.m */; };
-		32A48DF21B205762000A44A0 /* order-tips.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A48DF11B205762000A44A0 /* order-tips.png */; };
 		32A48DF51B205F00000A44A0 /* OrderCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DF41B205F00000A44A0 /* OrderCommentViewController.m */; };
 		32A48DF81B20672B000A44A0 /* OrderNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DF71B20672B000A44A0 /* OrderNoteViewController.m */; };
 		32AAD6AE1B1AE488008C3306 /* GoodsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AAD6AD1B1AE488008C3306 /* GoodsListViewController.m */; };
@@ -203,6 +203,7 @@
 		325A8A8B1B0D948800CEA0AB /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		325C87E71B04D100001DF5D8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		325C87E81B04D100001DF5D8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		3262EE7C1B20722B007489B9 /* order-tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "order-tips.png"; sourceTree = "<group>"; };
 		3272D6331B1CA671007DBF31 /* OrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
 		3272D6341B1CA672007DBF31 /* OrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
 		3272D63A1B1CAFA7007DBF31 /* FinanceTableViewFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinanceTableViewFrame.h; sourceTree = "<group>"; };
@@ -221,7 +222,6 @@
 		32A48DEB1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCMultiSortTableViewBGScrollView.m; sourceTree = "<group>"; };
 		32A48DEC1B2032AF000A44A0 /* XCMultiSortTableViewDefault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCMultiSortTableViewDefault.h; sourceTree = "<group>"; };
 		32A48DF01B203D62000A44A0 /* OrderDetailDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailDelegate.h; sourceTree = "<group>"; };
-		32A48DF11B205762000A44A0 /* order-tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "order-tips.png"; sourceTree = "<group>"; };
 		32A48DF31B205F00000A44A0 /* OrderCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCommentViewController.h; sourceTree = "<group>"; };
 		32A48DF41B205F00000A44A0 /* OrderCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCommentViewController.m; sourceTree = "<group>"; };
 		32A48DF61B20672B000A44A0 /* OrderNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderNoteViewController.h; sourceTree = "<group>"; };
@@ -338,6 +338,7 @@
 				6F6995C61B15992900AFB979 /* user-face.png */,
 				6F6995C41B15875800AFB979 /* user-right-array.png */,
 				321B0E4A1B14807C004D5827 /* user-edit.png */,
+				3262EE7C1B20722B007489B9 /* order-tips.png */,
 				321B0E4B1B14807C004D5827 /* user-icon1.png */,
 				321B0E4C1B14807C004D5827 /* user-icon2.png */,
 				321B0E4D1B14807C004D5827 /* user-icon3.png */,
@@ -715,7 +716,6 @@
 				322CFAEF1B18800300D12AFD /* goods-3.png in Resources */,
 				321A23961B09CD0200A9D294 /* register-check-default.png in Resources */,
 				325A8A851B0D92F300CEA0AB /* tab-order@2x.png in Resources */,
-				32A48DF21B205762000A44A0 /* order-tips.png in Resources */,
 				321A238F1B09CD0200A9D294 /* login-password@2x.png in Resources */,
 				321B0E571B14807C004D5827 /* user-icon5.png in Resources */,
 				325A8A7F1B0D92F300CEA0AB /* tab-finance@2x.png in Resources */,
@@ -725,6 +725,7 @@
 				321A23921B09CD0200A9D294 /* logo.png in Resources */,
 				321A23931B09CD0200A9D294 /* register-cellphone.png in Resources */,
 				321A23971B09CD0200A9D294 /* register-email.png in Resources */,
+				3262EE7D1B20722B007489B9 /* order-tips.png in Resources */,
 				322CFAF91B18897800D12AFD /* finance-2.png in Resources */,
 				321A23901B09CD0200A9D294 /* login-user.png in Resources */,
 				321B0E591B14807C004D5827 /* user-icon7.png in Resources */,
@@ -968,6 +969,7 @@
 				INFOPLIST_FILE = hxm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -980,6 +982,7 @@
 				INFOPLIST_FILE = hxm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
