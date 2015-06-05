@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface LoginViewController : UIViewController
-<UITextFieldDelegate>
+<UITextFieldDelegate,
+UIGestureRecognizerDelegate>
+
+@property (nonatomic,strong) UITextField *username;
+@property (nonatomic,strong) UITextField *password;
 
 @end

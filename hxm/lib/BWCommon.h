@@ -28,7 +28,11 @@
 
 + (CGSize)sizeWithString:(NSString *)str font:(UIFont *)font maxSize:(CGSize)maxSize;
 
++(void) loadCommonData;
+
 +(void) setRegionData;
+
++(void) setBusinessData;
 
 +(id) getDataInfo:(NSString *) key;
 +(void) setUserInfo:(NSString *) key value:(NSString *) value;

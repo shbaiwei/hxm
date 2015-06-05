@@ -9,7 +9,7 @@
 #import "FinanceTableViewCell.h"
 #import "FinanceTableViewFrame.h"
 
-#define NJNameFont [UIFont systemFontOfSize:14]
+#define NJNameFont [UIFont systemFontOfSize:16]
 
 
 @interface FinanceTableViewCell ()
@@ -97,7 +97,7 @@
 {
     
     self.textLabel.frame = self.viewFrame.textF;
-    self.textLabel.font = [UIFont systemFontOfSize:14 weight:10];
+    self.textLabel.font = [UIFont systemFontOfSize:16 weight:10];
     
     self.valueLabel.frame = self.viewFrame.valueF;
     self.valueLabel.font = NJNameFont;

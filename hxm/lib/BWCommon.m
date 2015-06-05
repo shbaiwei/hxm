@@ -55,6 +55,10 @@
     return [self getUserInfo:@"uid"] != nil && [[self getUserInfo:@"status"] isEqualToString:@"normal"];
 }
 
++(void) loadCommonData{
+    [self setBusinessData];
+    [self setRegionData];
+}
 //实际还是从NSUserDefaults中获取
 +(id) getDataInfo:(NSString *)key
 {
@@ -69,20 +73,47 @@
     
     NSString *api_url = [self getBaseInfo:@"api_url"];
     
-    NSString *url =  [api_url stringByAppendingString:@"getAllRegion"];
+    NSString *url =  [api_url stringByAppendingString:@"common/getRegions"];
     
     [AFNetworkTool JSONDataWithUrl:url success:^(id json) {
         
         
-        NSString *result = [json objectForKey:@"result"];
-        
-        if([result  isEqual:@"ok"])
-        {
+        NSInteger errNo = [[json objectForKey:@"errno"] integerValue];
+        if (errNo == 0) {
             NSArray *regions = [json objectForKey:@"data"];
-            
             NSUserDefaults *udata = [NSUserDefaults standardUserDefaults];
             [udata setObject:regions forKey:@"regions"];
             [udata synchronize];
+        }
+    } fail:^{
+        
+        NSLog(@"请求失败");
+    }];
+    
+    
+}
+
++(void) setBusinessData{
+    //如果data不存在 则重新加载
+    if ([self getDataInfo:@"business"] != nil) {
+        return;
+    }
+    
+    NSString *api_url = [self getBaseInfo:@"api_url"];
+    
+    NSString *url =  [api_url stringByAppendingString:@"common/getBusinessTypes"];
+    
+    [AFNetworkTool JSONDataWithUrl:url success:^(id json) {
+        
+        
+        NSInteger errNo = [[json objectForKey:@"errno"] integerValue];
+        if (errNo == 0) {
+            NSArray *business = [json objectForKey:@"data"];
+            
+            NSUserDefaults *udata = [NSUserDefaults standardUserDefaults];
+            [udata setObject:business forKey:@"business"];
+            [udata synchronize];
+            //NSLog(@"%@",business);
         }
     } fail:^{
         

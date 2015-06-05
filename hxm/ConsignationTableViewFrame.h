@@ -28,6 +28,10 @@
 
 @property (nonatomic,assign) CGRect packValueF;
 
+@property (nonatomic,assign) CGRect inRowF;
+
+@property (nonatomic,assign) CGRect packRowF;
+
 @property (nonatomic, assign) CGFloat cellHeight;
 
 @property (nonatomic, strong) NSDictionary *data;

@@ -183,11 +183,14 @@
     self.priceLabel.frame = self.viewFrame.priceLabelF;
     self.priceValue.frame = self.viewFrame.priceValueF;
     self.statusLabel.frame = self.viewFrame.statusLabelF;
-    self.inLabel.frame = self.viewFrame.inLabelF;
-    self.inValue.frame = self.viewFrame.inValueF;
-    self.packLabel.frame = self.viewFrame.packLabelF;
-    self.packValue.frame = self.viewFrame.packValueF;
+    //self.inLabel.frame = self.viewFrame.inLabelF;
+    //self.inValue.frame = self.viewFrame.inValueF;
+    //self.packLabel.frame = self.viewFrame.packLabelF;
+    //self.packValue.frame = self.viewFrame.packValueF;
     
+    self.inRowView.frame = self.viewFrame.inRowF;
+    self.packRowView.frame = self.viewFrame.packRowF;
+
 
     
 }

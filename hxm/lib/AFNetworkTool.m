@@ -193,7 +193,7 @@
             success(responseObject);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"错误 %@", error.localizedDescription);
+        NSLog(@"错误 %@,%@", error.localizedDescription,urlStr);
         if (fail) {
             fail();
         }

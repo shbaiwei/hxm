@@ -18,6 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [BWCommon loadCommonData];
+    
     BOOL isLoggedIn = [BWCommon isLoggedIn];
     
     NSString * segueId = isLoggedIn ? @"MainIdentifier" : @"LoginIdentifier";

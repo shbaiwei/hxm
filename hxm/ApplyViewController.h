@@ -7,13 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
 @interface ApplyViewController : UIViewController
 <
 UIActionSheetDelegate,
 UIImagePickerControllerDelegate,
-UITextFieldDelegate
+UITextFieldDelegate,
+UINavigationControllerDelegate,
+MBProgressHUDDelegate,
+UIGestureRecognizerDelegate,
+UIPickerViewDelegate,
+UIPickerViewDataSource
 >
+{
+    MBProgressHUD *hud;
+    
+}
 
 - (void) snapImage;//拍照
 - (void) pickImage;//从相册里找

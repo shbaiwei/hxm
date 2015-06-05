@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RegisterViewController : UIViewController
-<UITextFieldDelegate>
+<UITextFieldDelegate,
+UIGestureRecognizerDelegate>
 
 @end

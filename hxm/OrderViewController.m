@@ -85,6 +85,7 @@
     tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 104, size.width, size.height-146)];
     tableview.delegate = self;
     tableview.dataSource = self;
+    tableview.rowHeight = 180;
     
     [self.view addSubview:tableview];
     
@@ -208,12 +209,16 @@
     
     cell.viewFrame = self.statusFrames[indexPath.row];
     
-    cell.commentButton.tag = indexPath.row;
-    cell.noteButton.tag = indexPath.row;
+    if( ! cell.commentButton.tag)
+    {
+        cell.commentButton.tag = indexPath.row;
+        cell.noteButton.tag = indexPath.row;
     
     
-    [cell.commentButton addTarget:self action:@selector(commentButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.noteButton addTarget:self action:@selector(noteButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.commentButton addTarget:self action:@selector(commentButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.noteButton addTarget:self action:@selector(noteButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
     
     return cell;
 }
@@ -246,14 +251,6 @@
     [self.delegate setValue:order_no];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // NSLog(@"heightForRowAtIndexPath");
-    // 取出对应航的frame模型
-    OrderTableViewFrame *vf = self.statusFrames[indexPath.row];
-    NSLog(@"height = %f", vf.cellHeight);
-    return vf.cellHeight;
-}
 
 - (NSArray *)statusFrames
 {

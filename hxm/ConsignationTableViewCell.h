@@ -24,5 +24,7 @@
 @property (nonatomic,weak) UILabel *inValue;
 @property (nonatomic,weak) UILabel *packLabel;
 @property (nonatomic,weak) UILabel *packValue;
+@property (nonatomic,weak) UIView *inRowView;
+@property (nonatomic,weak) UIView *packRowView;
 
 @end

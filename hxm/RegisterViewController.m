@@ -49,27 +49,32 @@ UITextField *email;
     
     username = [self createTextField:@"login-user.png" Title:@"会员名"];
     [sclView addSubview:username];
+    username.delegate = self;
     
     password = [self createTextField:@"login-password.png" Title:@"登录密码"];
     password.secureTextEntry = YES;
     [sclView addSubview:password];
+    password.delegate = self;
     
     repassword = [self createTextField:@"register-password.png" Title:@"确认密码"];
     repassword.secureTextEntry = YES;
     [sclView addSubview:repassword];
+    repassword.delegate = self;
     
     mobile = [self createTextField:@"register-cellphone.png" Title:@"手机号码"];
     [sclView addSubview:mobile];
+    mobile.delegate = self;
     
     email = [self createTextField:@"register-email.png" Title:@"电子邮箱"];
     [sclView addSubview:email];
+    email.delegate = self;
     
     UIButton *btnRegister = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     btnRegister.frame = CGRectMake(0, 0, 270, 50);
     [btnRegister.layer setMasksToBounds:YES];
     [btnRegister.layer setCornerRadius:5.0];
     btnRegister.translatesAutoresizingMaskIntoConstraints = NO;
-    btnRegister.backgroundColor = [UIColor colorWithRed:119/255.0 green:179/255.0 blue:215/255.0 alpha:1];
+    btnRegister.backgroundColor = [UIColor colorWithRed:116/255.0 green:197/255.0 blue:67/255.0 alpha:1];
     btnRegister.tintColor = [UIColor whiteColor];
     btnRegister.titleLabel.font = [UIFont systemFontOfSize:22];
     
@@ -79,8 +84,6 @@ UITextField *email;
     [btnRegister addTarget:self action:@selector(applyTouched:) forControlEvents:UIControlEventTouchUpInside];
     
     [sclView addSubview:btnRegister];
-    
-    
     
     
     
@@ -108,9 +111,22 @@ UITextField *email;
     [self setTextFieldCenter:[[NSArray alloc] initWithObjects:username,password,repassword,mobile,email,btnRegister,nil]];
     
 
+    // tap for dismissing keyboard
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    // very important make delegate useful
+    tap.delegate = self;
+    
     
 }
 
+// tap dismiss keyboard
+-(void)dismissKeyboard {
+    [self.view endEditing:YES];
+    //[self.password resignFirstResponder];
+}
 
 -(void) registerTouched: (id)sender
 {
@@ -221,6 +237,45 @@ UITextField *email;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    
+    [textField resignFirstResponder];
+    return YES;
+}
+
+// 点击隐藏键盘
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    [self.view endEditing:YES];
+}
+
+
+//开始编辑输入框的时候，软键盘出现，执行此事件
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    CGRect frame = textField.frame;
+    int offset = frame.origin.y + 32 - (self.view.frame.size.height - 216.0);//键盘高度216
+    
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    
+    //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
+    if(offset > 0)
+        self.view.frame = CGRectMake(0.0f, -offset, self.view.frame.size.width, self.view.frame.size.height);
+    
+    [UIView commitAnimations];
+}
+
+//输入框编辑完成以后，将视图恢复到原始状态
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.view.frame =CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 /*
