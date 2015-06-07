@@ -52,6 +52,7 @@ NSMutableArray *selectedRegions;
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void) pageLayout{
     
     UIColor *bgColor = [BWCommon getBackgroundColor];

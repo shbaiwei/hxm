@@ -37,6 +37,7 @@ UITextField *email;
     
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = rect.size;
+
     
     UIScrollView *sclView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     sclView.backgroundColor = bgColor;
@@ -81,14 +82,14 @@ UITextField *email;
     [btnRegister setTitle:@"提交注册" forState:UIControlStateNormal];
     
     //点击回调
-    [btnRegister addTarget:self action:@selector(applyTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [btnRegister addTarget:self action:@selector(registerTouched:) forControlEvents:UIControlEventTouchUpInside];
     
     [sclView addSubview:btnRegister];
     
     
     
     NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[username(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(username)];
-    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[username(==50)]-10-[password(==50)]-10-[repassword(==50)]-10-[mobile(==50)]-10-[email(==50)]-20-[btnRegister(==50)]-60-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(username,password,repassword,mobile,email,btnRegister)];
+    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[username(==50)]-10-[password(==50)]-10-[repassword(==50)]-10-[mobile(==50)]-10-[email(==50)]-20-[btnRegister(==50)]-80-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(username,password,repassword,mobile,email,btnRegister)];
     
     NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[password(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(password)];
     NSArray *constraints4= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[repassword(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(repassword)];
@@ -127,6 +128,7 @@ UITextField *email;
     [self.view endEditing:YES];
     //[self.password resignFirstResponder];
 }
+
 
 -(void) registerTouched: (id)sender
 {
@@ -175,17 +177,32 @@ UITextField *email;
         
         NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
         
-        if (errNo >= 0) {
+        if (errNo > 0) {
             [alert setMessage:[responseObject objectForKey:@"error"]];
             [alert show];
         }
         else
         {
+            
+            [alert setMessage:[responseObject objectForKey:@"error"]];
+            [alert show];
             //NSDictionary *data = [responseObject objectForKey:@"data"];
             
             //NSUserDefaults *udata = [NSUserDefaults standardUserDefaults];
             //udata = [data copy];
             //[udata setObject:[data objectForKey:@"uid"] forKey:@"uid"];
+            
+            NSString *uid = [[responseObject objectForKey:@"data"] objectForKey:@"id"];
+            NSString *user_key = [[responseObject objectForKey:@"data"] objectForKey:@"user_key"];
+            
+            [BWCommon setUserInfo:@"uid" value:uid];
+            [BWCommon setUserInfo:@"user_key" value:user_key];
+            
+            [BWCommon setUserInfo:@"status" value:@"verify"];
+            ApplyViewController *applyView = [[ApplyViewController alloc] init];
+            
+            [self.navigationController pushViewController:applyView animated:YES];
+
             
             //[self backTouched:nil];
             
@@ -229,6 +246,7 @@ UITextField *email;
     
     ApplyViewController * applyView = [[ApplyViewController alloc] init];
     
+    [self.navigationController popToRootViewControllerAnimated:YES];
     [self.navigationController pushViewController:applyView animated:YES];
     
     NSLog(@"apply touched");
