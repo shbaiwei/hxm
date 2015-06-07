@@ -123,7 +123,7 @@ UITextField *password;
     
     NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[ivLogo(<=220)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(ivLogo)];
     
-    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-80-[ivLogo(<=100)]-40-[username(==50)]-10-[password(==50)]-20-[btnLogin(==50)]-10-[actionView(==20)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(ivLogo,username,password,btnLogin,actionView)];
+    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[ivLogo(<=100)]-40-[username(==50)]-10-[password(==50)]-20-[btnLogin(==50)]-10-[actionView(==20)]-60-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(ivLogo,username,password,btnLogin,actionView)];
     
     NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[username(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(username)];
     

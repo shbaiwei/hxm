@@ -51,7 +51,7 @@
     
     
     
-   [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
+   [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     self.navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
     //self.navigationController.navigationBar.backgroundColor = [UIColor blueColor];

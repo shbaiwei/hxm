@@ -10,7 +10,9 @@
 #import "MBProgressHUD.h"
 
 @interface FinanceTableViewController : UITableViewController
-<MBProgressHUDDelegate>{
+<MBProgressHUDDelegate
+>
+{
     
     MBProgressHUD *hud;
 }

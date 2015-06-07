@@ -55,6 +55,14 @@
 		323EE91B1AF8F57D00C55306 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 323EE91A1AF8F57D00C55306 /* Images.xcassets */; };
 		323EE91E1AF8F57D00C55306 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323EE91C1AF8F57D00C55306 /* LaunchScreen.xib */; };
 		323EE92A1AF8F57D00C55306 /* hxmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 323EE9291AF8F57D00C55306 /* hxmTests.m */; };
+		32502BA51B242D9000C9AB9C /* FinanceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32502BA41B242D9000C9AB9C /* FinanceDetailViewController.m */; };
+		32502BA71B2431BE00C9AB9C /* alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = 32502BA61B2431BE00C9AB9C /* alpha.png */; };
+		32502BA91B2435AF00C9AB9C /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 32502BA81B2435AF00C9AB9C /* green.png */; };
+		32502BAB1B24463E00C9AB9C /* finance-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 32502BAA1B24463E00C9AB9C /* finance-3.png */; };
+		32502BAE1B24553C00C9AB9C /* CartTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32502BAD1B24553C00C9AB9C /* CartTableViewController.m */; };
+		32502BB11B24557700C9AB9C /* CartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32502BB01B24557700C9AB9C /* CartTableViewCell.m */; };
+		32502BB41B2455B200C9AB9C /* CartTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 32502BB31B2455B200C9AB9C /* CartTableViewFrame.m */; };
+		32502BB61B246BEA00C9AB9C /* goods-q.png in Resources */ = {isa = PBXBuildFile; fileRef = 32502BB51B246BEA00C9AB9C /* goods-q.png */; };
 		325A8A7E1B0D92F300CEA0AB /* tab-finance.png in Resources */ = {isa = PBXBuildFile; fileRef = 325A8A761B0D92F300CEA0AB /* tab-finance.png */; };
 		325A8A7F1B0D92F300CEA0AB /* tab-finance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 325A8A771B0D92F300CEA0AB /* tab-finance@2x.png */; };
 		325A8A801B0D92F300CEA0AB /* tab-goods.png in Resources */ = {isa = PBXBuildFile; fileRef = 325A8A781B0D92F300CEA0AB /* tab-goods.png */; };
@@ -196,6 +204,18 @@
 		323EE9231AF8F57D00C55306 /* hxmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hxmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		323EE9281AF8F57D00C55306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		323EE9291AF8F57D00C55306 /* hxmTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hxmTests.m; sourceTree = "<group>"; };
+		32502BA31B242D9000C9AB9C /* FinanceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinanceDetailViewController.h; sourceTree = "<group>"; };
+		32502BA41B242D9000C9AB9C /* FinanceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinanceDetailViewController.m; sourceTree = "<group>"; };
+		32502BA61B2431BE00C9AB9C /* alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha.png; sourceTree = "<group>"; };
+		32502BA81B2435AF00C9AB9C /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
+		32502BAA1B24463E00C9AB9C /* finance-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finance-3.png"; sourceTree = "<group>"; };
+		32502BAC1B24553C00C9AB9C /* CartTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartTableViewController.h; sourceTree = "<group>"; };
+		32502BAD1B24553C00C9AB9C /* CartTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartTableViewController.m; sourceTree = "<group>"; };
+		32502BAF1B24557700C9AB9C /* CartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartTableViewCell.h; sourceTree = "<group>"; };
+		32502BB01B24557700C9AB9C /* CartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartTableViewCell.m; sourceTree = "<group>"; };
+		32502BB21B24559900C9AB9C /* CartTableViewFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartTableViewFrame.h; sourceTree = "<group>"; };
+		32502BB31B2455B200C9AB9C /* CartTableViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartTableViewFrame.m; sourceTree = "<group>"; };
+		32502BB51B246BEA00C9AB9C /* goods-q.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goods-q.png"; sourceTree = "<group>"; };
 		325A8A761B0D92F300CEA0AB /* tab-finance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-finance.png"; sourceTree = "<group>"; };
 		325A8A771B0D92F300CEA0AB /* tab-finance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-finance@2x.png"; sourceTree = "<group>"; };
 		325A8A781B0D92F300CEA0AB /* tab-goods.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-goods.png"; sourceTree = "<group>"; };
@@ -336,6 +356,10 @@
 		321A23821B09CD0200A9D294 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				32502BB51B246BEA00C9AB9C /* goods-q.png */,
+				32502BAA1B24463E00C9AB9C /* finance-3.png */,
+				32502BA81B2435AF00C9AB9C /* green.png */,
+				32502BA61B2431BE00C9AB9C /* alpha.png */,
 				327D079B1B21BB43002F4600 /* apply-plus2.png */,
 				327D07991B2184F8002F4600 /* apply-plus1.png */,
 				327D07971B217B68002F4600 /* apply-icon.png */,
@@ -407,6 +431,8 @@
 				32AAD6B21B1B242E008C3306 /* GoodsDetailViewController.m */,
 				3272D63D1B1DB7EC007DBF31 /* ConsignationTableViewController.h */,
 				3272D63E1B1DB7EC007DBF31 /* ConsignationTableViewController.m */,
+				32502BAC1B24553C00C9AB9C /* CartTableViewController.h */,
+				32502BAD1B24553C00C9AB9C /* CartTableViewController.m */,
 			);
 			name = Goods;
 			sourceTree = "<group>";
@@ -422,6 +448,10 @@
 				3272D6411B1DB82E007DBF31 /* ConsignationTableViewCell.m */,
 				3272D6451B1DB870007DBF31 /* ConsignationTableViewFrame.h */,
 				3272D6431B1DB857007DBF31 /* ConsignationTableViewFrame.m */,
+				32502BAF1B24557700C9AB9C /* CartTableViewCell.h */,
+				32502BB01B24557700C9AB9C /* CartTableViewCell.m */,
+				32502BB21B24559900C9AB9C /* CartTableViewFrame.h */,
+				32502BB31B2455B200C9AB9C /* CartTableViewFrame.m */,
 			);
 			name = Goods;
 			sourceTree = "<group>";
@@ -519,9 +549,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		32502BA21B242D0F00C9AB9C /* Finance */ = {
+			isa = PBXGroup;
+			children = (
+				32502BA31B242D9000C9AB9C /* FinanceDetailViewController.h */,
+				32502BA41B242D9000C9AB9C /* FinanceDetailViewController.m */,
+			);
+			name = Finance;
+			sourceTree = "<group>";
+		};
 		325C87E61B04D07A001DF5D8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				32502BA21B242D0F00C9AB9C /* Finance */,
 				3272D6361B1CA695007DBF31 /* Order */,
 				3227EAEA1B19E40E00AC34B8 /* Goods */,
 				323C30E91B0B913F00D0B8D0 /* GoodsViewController.h */,
@@ -714,6 +754,8 @@
 			files = (
 				321B0E581B14807C004D5827 /* user-icon6.png in Resources */,
 				6F6E4CA41B1870BE002F0419 /* password-login-icon.png in Resources */,
+				32502BA71B2431BE00C9AB9C /* alpha.png in Resources */,
+				32502BB61B246BEA00C9AB9C /* goods-q.png in Resources */,
 				323EE9191AF8F57D00C55306 /* Main.storyboard in Resources */,
 				325A8A871B0D93C300CEA0AB /* tab-my@3x.png in Resources */,
 				321A23981B09CD0200A9D294 /* register-password.png in Resources */,
@@ -733,6 +775,7 @@
 				322CFAEE1B18800300D12AFD /* goods-2.png in Resources */,
 				6F6995C51B15875800AFB979 /* user-right-array.png in Resources */,
 				32AAD6B01B1B1530008C3306 /* goods-cart.png in Resources */,
+				32502BA91B2435AF00C9AB9C /* green.png in Resources */,
 				321B0E531B14807C004D5827 /* user-icon1.png in Resources */,
 				321A238E1B09CD0200A9D294 /* login-password.png in Resources */,
 				322CFAEF1B18800300D12AFD /* goods-3.png in Resources */,
@@ -742,6 +785,7 @@
 				321A238F1B09CD0200A9D294 /* login-password@2x.png in Resources */,
 				321B0E571B14807C004D5827 /* user-icon5.png in Resources */,
 				325A8A7F1B0D92F300CEA0AB /* tab-finance@2x.png in Resources */,
+				32502BAB1B24463E00C9AB9C /* finance-3.png in Resources */,
 				6FE32FFB1B19BEE300BE3B8F /* complain-time-icon.png in Resources */,
 				321B0E561B14807C004D5827 /* user-icon4.png in Resources */,
 				321A239A1B09CEFF00A9D294 /* baseinfo.plist in Resources */,
@@ -846,6 +890,7 @@
 				323C30E81B0B90A400D0B8D0 /* OrderViewController.m in Sources */,
 				325A8A8C1B0D948800CEA0AB /* MyViewController.m in Sources */,
 				6F8AEB8E1B1D446000E2F6E9 /* HZLocation.m in Sources */,
+				32502BAE1B24553C00C9AB9C /* CartTableViewController.m in Sources */,
 				32A48DEE1B2032AF000A44A0 /* XCMultiSortTableView.m in Sources */,
 				325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */,
 				322CFAF21B18845500D12AFD /* FinanceTableViewController.m in Sources */,
@@ -857,6 +902,7 @@
 				322CFAE61B18235300D12AFD /* OrderTableViewFrame.m in Sources */,
 				3272D6441B1DB857007DBF31 /* ConsignationTableViewFrame.m in Sources */,
 				32D3D9891B03B2AE00B50967 /* AFNetworkTool.m in Sources */,
+				32502BB41B2455B200C9AB9C /* CartTableViewFrame.m in Sources */,
 				6F85EFEB1B16E47F008C101B /* MyContactWayViewController.m in Sources */,
 				32A48DF51B205F00000A44A0 /* OrderCommentViewController.m in Sources */,
 				323EE90D1AF8F57D00C55306 /* main.m in Sources */,
@@ -867,8 +913,10 @@
 				322CFAE31B18230D00D12AFD /* OrderTableViewCell.m in Sources */,
 				3227EAF11B19E67100AC34B8 /* GoodsListTableViewCell.m in Sources */,
 				32A48DF81B20672B000A44A0 /* OrderNoteViewController.m in Sources */,
+				32502BB11B24557700C9AB9C /* CartTableViewCell.m in Sources */,
 				32A48DED1B2032AF000A44A0 /* UIView+XCMultiSortTableView.m in Sources */,
 				6F85EFF11B16E509008C101B /* MyPasswordViewController.m in Sources */,
+				32502BA51B242D9000C9AB9C /* FinanceDetailViewController.m in Sources */,
 				3272D63F1B1DB7EC007DBF31 /* ConsignationTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

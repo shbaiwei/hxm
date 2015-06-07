@@ -14,6 +14,7 @@
 @interface GoodsDetailViewController ()
 
 @property (nonatomic,weak) UIImageView *imageView;
+@property (nonatomic,weak) UIImageView *imageView2;
 @property (nonatomic,weak) UIView *nameView;
 @property (nonatomic, weak) UIScrollView *sclView;
 
@@ -49,10 +50,15 @@ NSUInteger detail_id;
 
     
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, 200)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width/2, 200)];
     
     self.imageView = imageView;
     [self.sclView addSubview:imageView];
+    
+    UIImageView *imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(size.width/2, 0, size.width/2, 200)];
+    
+    self.imageView2 = imageView2;
+    [self.sclView addSubview:imageView2];
     
     UIView *nameView = [[UIView alloc] initWithFrame:CGRectMake(0, 200, size.width, 100)];
     self.nameView = nameView;
@@ -67,17 +73,28 @@ NSUInteger detail_id;
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = rect.size;
     
-    NSString *image_url = [data objectForKey:@"photo_cd2"];
+    NSString *image_url = [data objectForKey:@"photo_cd1"];
     
     [self.imageView setImage:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image_url]]]];
     
-    CGSize itemSize = CGSizeMake(self.view.frame.size.width, 200);
+    CGSize itemSize = CGSizeMake(size.width/2, 200);
     UIGraphicsBeginImageContext(itemSize);
     CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, 200);
     [self.imageView.image drawInRect:imageRect];
     self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
+    NSString *image_url2 = [data objectForKey:@"photo_cd2"];
+    
+    [self.imageView2 setImage:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image_url2]]]];
+    
+    CGSize itemSize2 = CGSizeMake(size.width/2, 200);
+    UIGraphicsBeginImageContext(itemSize2);
+    CGRect imageRect2 = CGRectMake(0.0, 0.0, itemSize2.width, 200);
+    [self.imageView2.image drawInRect:imageRect2];
+    self.imageView2.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
     
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 280, 30)];
     

@@ -6,21 +6,21 @@
 //  Copyright (c) 2015年 Bruce. All rights reserved.
 //
 
-#import "GoodsListTableViewCell.h"
-#import "GoodsListTableViewFrame.h"
+#import "CartTableViewCell.h"
+#import "CartTableViewFrame.h"
 #import "BWCommon.h"
 
 #define NJPriceFont [UIFont systemFontOfSize:16]
 #define NJNameFont [UIFont systemFontOfSize:14]
 #define NJTextFont [UIFont systemFontOfSize:12]
 
-@interface GoodsListTableViewCell ()
+@interface CartTableViewCell ()
 
 
 @end
 
 
-@implementation GoodsListTableViewCell
+@implementation CartTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -41,10 +41,10 @@
 + (instancetype)cellWithTableView:(UITableView *)tableView {
     
     static NSString *identifier = @"status";
-    GoodsListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    CartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         
-        cell = [[GoodsListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[CartTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     return cell;
 }
@@ -125,14 +125,6 @@
         [limitTitle setTextAlignment:NSTextAlignmentCenter];
         [self.limitView addSubview:limitTitle];
         
-        UILabel *limitLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 0, 30, 20)];
-        self.limitLabel = limitLabel;
-        limitLabel.font = NJTextFont;
-        [limitView addSubview:limitLabel];
-        [limitLabel setTextColor:limitColor];
-        [limitLabel setTextAlignment:NSTextAlignmentCenter];
-        [self.limitView addSubview:limitLabel];
-        
         
         //merchant
         UIView *merchantView = [[UIView alloc] init];
@@ -164,7 +156,7 @@
         [self.contentView addSubview:priceLabel];
         priceLabel.font = NJPriceFont;
         [priceLabel setTextColor:[UIColor colorWithRed:219/255.0f green:0/255.0f blue:0/255.0f alpha:1]];
-
+        
         
         UIButton *cartButton = [[UIButton alloc] init];
         self.cartButton = cartButton;
@@ -175,7 +167,7 @@
         UIButton *buyButton = [[UIButton alloc] init];
         self.buyButton = buyButton;
         [buyButton setTitle:@"立即购买" forState:UIControlStateNormal];
-
+        
         buyButton.titleLabel.font = [UIFont systemFontOfSize:18 weight:10];
         buyButton.titleLabel.numberOfLines = 0;
         
@@ -193,10 +185,9 @@
         
         [auctionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [auctionButton setBackgroundColor:[UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1]];
-
+        
         [self.contentView addSubview:auctionButton];
-
-
+        
         
         
     }
@@ -221,7 +212,7 @@
     return size;
 }
 
-- (void)setViewFrame:(GoodsListTableViewFrame *)viewFrame
+- (void)setViewFrame:(CartTableViewFrame *)viewFrame
 {
     _viewFrame = viewFrame;
     
@@ -255,8 +246,7 @@
     self.levelLabel.text = [data objectForKey:@"flwlevel"];
     self.merchantLabel.text = [data objectForKey:@"seller_name"];
     self.priceLabel.text = [NSString stringWithFormat:@"¥%@", [data objectForKey:@"sale_prc"]];
-    self.limitLabel.text = [data objectForKey:@"ent_num"];
-
+    
     
 }
 /**
@@ -282,7 +272,7 @@
     
     self.cartButton.frame = self.viewFrame.cartButtonF;
     
-    //[BWCommon setTopBorder:self.borderView color:[BWCommon getBackgroundColor]];
+    [BWCommon setTopBorder:self.borderView color:[BWCommon getBorderColor]];
     [BWCommon setBottomBorder:self.borderView color:[BWCommon getBorderColor]];
     
 }

@@ -134,6 +134,9 @@
 +(UIColor *) getBorderColor{
     return [UIColor colorWithRed:168/255.0f green:168/255.0f blue:168/255.0f alpha:1];
 }
++(UIColor *) getRedColor{
+    return [UIColor colorWithRed:219/255.0f green:0/255.0f blue:0/255.0f alpha:1];
+}
 
 +(void) setTopBorder:(UIView *)view color:(UIColor *)color{
 

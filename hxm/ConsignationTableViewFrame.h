@@ -20,13 +20,7 @@
 
 @property (nonatomic,assign) CGRect statusLabelF;
 
-@property (nonatomic,assign) CGRect inLabelF;
 
-@property (nonatomic,assign) CGRect inValueF;
-
-@property (nonatomic,assign) CGRect packLabelF;
-
-@property (nonatomic,assign) CGRect packValueF;
 
 @property (nonatomic,assign) CGRect inRowF;
 

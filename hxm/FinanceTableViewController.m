@@ -9,6 +9,7 @@
 #import "FinanceTableViewController.h"
 #import "FinanceTableViewCell.h"
 #import "FinanceTableViewFrame.h"
+#import "FinanceDetailViewController.h"
 #import "BWCommon.h"
 #import "MJRefresh.h"
 #import "AFNetworkTool.h"
@@ -37,12 +38,20 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
+
 -(void) pageLayout{
     self.navigationItem.title = @"财务管理";
     
     UIColor *bgColor = [BWCommon getBackgroundColor];
-    
     self.view.backgroundColor = bgColor;
+    
+    UIBarButtonItem *backItem=[[UIBarButtonItem alloc]init];
+    backItem.title=@"";
+    backItem.image=[UIImage imageNamed:@""];
+    self.navigationItem.backBarButtonItem=backItem;
+    
+
     
     //CGRect rect = [[UIScreen mainScreen] bounds];
     //CGSize size = rect.size;
@@ -250,7 +259,7 @@
     
         UIImageView * iconView = [[UIImageView alloc] initWithImage:icon];
         [headerView addSubview:iconView];
-        iconView.frame = CGRectMake(10, 10, 36, 36);
+        iconView.frame = CGRectMake(10, 10, 30, 30);
         
         UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 20, 100, 20)];
         [headerView addSubview:nameLabel];
@@ -290,11 +299,13 @@
         btnList.frame = CGRectMake(0, 20, 140, 40);
         [myView addSubview: btnList];
         
-        NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnWireIn(==140)]-20-[btnList(==140)]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnWireIn,btnList)];
+        [btnList addTarget:self action:@selector(listButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
         
-        NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[btnWireIn(==40)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnWireIn)];
+        NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnWireIn(<=140)]-20-[btnList(<=140)]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnWireIn,btnList)];
         
-        NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[btnList(==40)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnList)];
+        NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[btnWireIn(<=40)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnWireIn)];
+        
+        NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[btnList(<=40)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnList)];
         
         [myView addConstraints:constraints1];
         [myView addConstraints:constraints2];
@@ -304,6 +315,14 @@
     return myView;
 }
 
+-(void) listButtonTouched:(id) sender{
+    
+    FinanceDetailViewController * detailViewController = [[FinanceDetailViewController alloc] init];
+    
+    detailViewController.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:detailViewController animated:YES];
+}
 
 -(UIButton *) footerButton: (NSString *) title bgColor : (UIColor *) bgColor {
     

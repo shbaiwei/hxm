@@ -88,7 +88,7 @@ UITextField *email;
     
     
     NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[username(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(username)];
-    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[username(==50)]-10-[password(==50)]-10-[repassword(==50)]-10-[mobile(==50)]-10-[email(==50)]-20-[btnRegister(==50)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(username,password,repassword,mobile,email,btnRegister)];
+    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[username(==50)]-10-[password(==50)]-10-[repassword(==50)]-10-[mobile(==50)]-10-[email(==50)]-20-[btnRegister(==50)]-60-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(username,password,repassword,mobile,email,btnRegister)];
     
     NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[password(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(password)];
     NSArray *constraints4= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[repassword(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(repassword)];

@@ -29,7 +29,7 @@
 
 - (void) layoutSubviews{
     [super layoutSubviews];
-    self.imageView.frame = CGRectMake(10, 10, 90, 90 );
+    self.imageView.frame = CGRectMake(10, 25, 90, 90 );
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
@@ -64,14 +64,14 @@
         UILabel *priceLabel = [[UILabel alloc] init];
         self.priceLabel = priceLabel;
         priceLabel.text = @"委托价";
-        [priceLabel setTextColor:[UIColor redColor]];
+        [priceLabel setTextColor:[BWCommon getRedColor]];
         [self.contentView addSubview:priceLabel];
         priceLabel.font = NJNameFont;
         
         UILabel *priceValue = [[UILabel alloc] init];
         self.priceValue = priceValue;
         [self.contentView addSubview:priceValue];
-        [priceValue setTextColor:[UIColor redColor]];
+        [priceValue setTextColor:[BWCommon getRedColor]];
         
         UILabel *statusLabel = [[UILabel alloc] init];
         self.statusLabel = statusLabel;
@@ -83,32 +83,49 @@
         
         [self.contentView addSubview:statusLabel];
         
-        UILabel *inLabel = [[UILabel alloc] init];
+        UIView *inRowView = [[UIView alloc] init];
+        [self.contentView addSubview:inRowView];
+        self.inRowView = inRowView;
+        
+        UILabel *inLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 1, 62, 20)];
         self.inLabel = inLabel;
         
         inLabel.text = @"商品入数";
-        [self.contentView addSubview:inLabel];
+        [inRowView addSubview:inLabel];
+        [inRowView setBackgroundColor:[UIColor lightGrayColor]];
+        
         inLabel.font = NJTextFont;
         [inLabel setTextColor:[UIColor whiteColor]];
-        [inLabel setBackgroundColor:[UIColor lightGrayColor]];
+        //[inLabel setBackgroundColor:[UIColor whi]];
         
-        UILabel *inValue = [[UILabel alloc] init];
+        UILabel *inValue = [[UILabel alloc] initWithFrame:CGRectMake(67, 1, 62, 20)];
         self.inValue = inValue;
-        [self.contentView addSubview:inValue];
+        [inRowView addSubview:inValue];
+        [inValue setBackgroundColor:[UIColor whiteColor]];
+        inValue.textAlignment = NSTextAlignmentCenter;
         inValue.font = NJTextFont;
         
-        UILabel *packLabel = [[UILabel alloc] init];
+        UIView *packRowView = [[UIView alloc] init];
+        [self.contentView addSubview:packRowView];
+        self.packRowView = packRowView;
+        
+        [packRowView setBackgroundColor:[UIColor lightGrayColor]];
+        
+        UILabel *packLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 1, 62, 20)];
         self.packLabel = packLabel;
         packLabel.text = @"已委托数量";
-        [self.contentView addSubview:packLabel];
+        [packRowView addSubview:packLabel];
+        
         packLabel.font = NJTextFont;
         [packLabel setTextColor:[UIColor whiteColor]];
-        [packLabel setBackgroundColor:[UIColor lightGrayColor]];
+        //[packLabel setBackgroundColor:[UIColor lightGrayColor]];
         
-        UILabel *packValue = [[UILabel alloc] init];
+        UILabel *packValue = [[UILabel alloc] initWithFrame:CGRectMake(67, 1, 62, 20)];
         self.packValue = packValue;
-        [self.contentView addSubview:packValue];
+        [packRowView addSubview:packValue];
         packValue.font = NJTextFont;
+        [packValue setBackgroundColor:[UIColor whiteColor]];
+        packValue.textAlignment = NSTextAlignmentCenter;
         
         
     }
@@ -151,7 +168,7 @@
     
     NSDictionary *data = self.viewFrame.data;
 
-    NSString *image_url = [data objectForKey:@""];
+    NSString *image_url = [data objectForKey:@"img1"];
     
     [self.imageView setImage:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image_url]]]];
     

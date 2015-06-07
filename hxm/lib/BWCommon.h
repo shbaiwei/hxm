@@ -40,6 +40,7 @@
 +(UIColor *) getBackgroundColor;
 +(UIColor *) getMainColor;
 +(UIColor *) getBorderColor;
++(UIColor *) getRedColor;
 +(void) setTopBorder:(UIView *)view color:(UIColor *)color;
 +(void) setBottomBorder:(UIView *)view color:(UIColor *)color;
 

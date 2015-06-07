@@ -9,6 +9,7 @@
 #import "GoodsListViewController.h"
 #import "GoodsListTableViewCell.h"
 #import "GoodsListTableViewFrame.h"
+#import "CartTableViewController.h"
 #import "GoodsDetailViewController.h"
 #import "BWCommon.h"
 #import "MJRefresh.h"
@@ -62,7 +63,7 @@
     
     [self.view addSubview:searchView];
     
-    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, size.width, size.height)];
+    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, size.width, size.height)];
     tableview.delegate = self;
     tableview.dataSource = self;
     
@@ -192,28 +193,96 @@
     GoodsListTableViewCell *cell = [GoodsListTableViewCell cellWithTableView:tableView];
     
     cell.viewFrame = self.statusFrames[indexPath.row];
-    cell.buyButton.tag = indexPath.row;
-    cell.auctionButton.tag = indexPath.row;
-    cell.cartButton.tag = indexPath.row;
+
     
-    [cell.buyButton addTarget:self action:@selector(buyButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.auctionButton addTarget:self action:@selector(auctionButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.cartButton addTarget:self action:@selector(cartButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    if(!cell.buyButton.tag)
+    {
+        cell.buyButton.tag = indexPath.row;
+        cell.auctionButton.tag = indexPath.row;
+        cell.cartButton.tag = indexPath.row;
+    
+        [cell.buyButton addTarget:self action:@selector(buyButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.auctionButton addTarget:self action:@selector(auctionButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.cartButton addTarget:self action:@selector(cartButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
     return cell;
 }
 
 -(void) buyButtonTouched:(UIButton *)sender{
-    NSLog(@"%ld",sender.tag);
+   // NSLog(@"%ld",sender.tag);
+    
+    NSUInteger detail_id;
+    detail_id = [[[dataArray objectAtIndex:[sender tag]] objectForKey:@"goods_id"] integerValue];
+    
+    //加入购物车
+    
+    [self addToCart:detail_id callback:^{
+
+        CartTableViewController * cartViewController = [[CartTableViewController alloc] init];
+        self.delegate = cartViewController;
+        [self.navigationController pushViewController:cartViewController animated:YES];
+        [self.delegate setValue:detail_id];
+    }];
+    
+    
 }
 
 -(void) auctionButtonTouched:(UIButton *)sender{
-    NSLog(@"%ld",sender.tag);
+    //NSLog(@"%ld",sender.tag);
 }
 
 
 -(void) cartButtonTouched:(UIButton *)sender{
-    NSLog(@"%ld",sender.tag);
+    //NSLog(@"%ld",sender.tag);
+    
+    NSUInteger detail_id;
+    detail_id = [[[dataArray objectAtIndex:[sender tag]] objectForKey:@"goods_id"] integerValue];
+    
+    //加入购物车
+    
+    [self addToCart:detail_id callback:^{
+    }];
+}
+
+-(void) addToCart: (NSUInteger) ent_id callback:(void(^)()) callback{
+    
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"cart/AddToCart"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"cart/AddToCart"];
+    
+    [postData setValue:[NSString stringWithFormat:@"%d",ent_id] forKey:@"goods_id"];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    
+    NSLog(@"%@",url);
+    //load data
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        NSLog(@"%@",responseObject);
+        
+        if(errNo == 0)
+        {
+            if(callback){
+                callback();
+            }
+        }
+        else
+        {
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+            [alert setMessage:[responseObject objectForKey:@"error"]];
+            [alert show];
+        }
+        
+    } fail:^{
+        NSLog(@"请求失败");
+        [alert setMessage:@"请求超时"];
+        [alert show];
+    }];
+
 }
 
 
@@ -265,9 +334,42 @@
    // NSMutableDictionary *dic = [self.dataArray objectAtIndex:indexPath.section];
    // NSMutableDictionary *infoDic = [dic objectForKey:@"dic"];
     if (indexPath.row==[self.dataArray count]-1) {
-        NSLog(@"indexPath.row===%ld",indexPath.row);
+        
         cell.separatorInset = UIEdgeInsetsMake(10, 0, 0, 0);
     }
+
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 50;
+}
+
+-(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    
+    NSUInteger width = self.view.frame.size.width;
+    
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 50)];
+    headView.backgroundColor = [BWCommon getBackgroundColor];
+    UITextField *searchField = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, width - 40, 40)];
+    [headView addSubview:searchField];
+    
+    searchField.backgroundColor = [UIColor colorWithRed:250/255.0f green:250/255.0f  blue:250/255.0f  alpha:1];
+    searchField.layer.cornerRadius = 5.0f;
+    searchField.layer.borderColor = [BWCommon getMainColor].CGColor;
+    searchField.layer.borderWidth = 1.0f;
+    searchField.placeholder = @"搜索您想找的商品";
+    
+    searchField.borderStyle = UITextBorderStyleRoundedRect;
+
+    UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"goods-q.png"]];
+    searchField.leftView = icon;
+    searchField.leftViewMode = UITextFieldViewModeAlways;
+    
+    
+    [BWCommon setBottomBorder:headView color:[BWCommon getBackgroundColor]];
+
+    return headView;
 
 }
 
