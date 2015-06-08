@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
 @interface LoginViewController : UIViewController
 <UITextFieldDelegate,
-UIGestureRecognizerDelegate>
+UIGestureRecognizerDelegate,
+MBProgressHUDDelegate>{
+    
+    MBProgressHUD *hud;
+}
 
 @property (nonatomic,strong) UITextField *username;
 @property (nonatomic,strong) UITextField *password;

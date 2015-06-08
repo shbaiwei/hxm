@@ -161,6 +161,9 @@ UITextField *email;
         return;
     }
     
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
+    
     
     NSString *api_url = [BWCommon getBaseInfo:@"api_url"];
     
@@ -174,7 +177,7 @@ UITextField *email;
         
         NSLog(@"%@",responseObject);
         
-        
+        [hud removeFromSuperview];
         NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
         
         if (errNo > 0) {
@@ -210,6 +213,11 @@ UITextField *email;
         }
 
     } fail:^{
+        
+        [hud removeFromSuperview];
+        [alert setMessage:@"网络连接超时"];
+        [alert show];
+        
         NSLog(@"请求失败");
     }];
     

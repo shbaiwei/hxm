@@ -107,8 +107,15 @@
     btn.translatesAutoresizingMaskIntoConstraints = NO;
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn setTitle:name forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:14];
+    //btn.titleLabel.frame = CGRectMake(0, 0, 70, 30);
     
     [btn setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
+    
+    //UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"order-arrow.png"]];
+    [btn setBackgroundImage:[UIImage imageNamed:@"order-arrow.png"] forState:UIControlStateNormal];
+    
+    //[BWCommon setBottomBorder:btn color:[BWCommon getMainColor]];
     
     return btn;
     

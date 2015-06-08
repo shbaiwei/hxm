@@ -171,8 +171,10 @@ UITextField *password;
     NSString *passwordValue = password.text;
 
     //test user
-    usernameValue = @"花满大厦";
-    passwordValue = @"hj1234567";
+    //usernameValue = @"花满大厦";
+    //passwordValue = @"hj1234567";
+
+    
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     
@@ -191,6 +193,9 @@ UITextField *password;
     }
     
     
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
+    
     NSString *api_url = [BWCommon getBaseInfo:@"api_url"];
     
     NSString *url =  [api_url stringByAppendingString:@"user/checkUser"];
@@ -203,7 +208,7 @@ UITextField *password;
         
         NSLog(@"%@",responseObject);
         
-        
+        [hud removeFromSuperview];
         NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
 
         
@@ -241,6 +246,10 @@ UITextField *password;
         }
         
     } fail:^{
+        [hud removeFromSuperview];
+        [alert setMessage:@"网络连接超时"];
+        [alert show];
+        
         NSLog(@"请求失败");
     }];
     

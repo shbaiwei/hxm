@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
 @interface RegisterViewController : UIViewController
 <UITextFieldDelegate,
-UIGestureRecognizerDelegate>
+UIGestureRecognizerDelegate,
+MBProgressHUDDelegate>{
+    
+    MBProgressHUD *hud;
+}
+
 
 @end

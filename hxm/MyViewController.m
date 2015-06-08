@@ -57,8 +57,16 @@
     //self.navigationController.navigationBar.backgroundColor = [UIColor blueColor];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
+    //[self.navigationController.navigationBar setBackgroundColor:[BWCommon getMainColor]];
+    
     
     self.navigationController.navigationBarHidden = YES;
+    
+    
+    UIBarButtonItem *backItem=[[UIBarButtonItem alloc]init];
+    backItem.title=@"";
+    backItem.image=[UIImage imageNamed:@""];
+    self.navigationItem.backBarButtonItem=backItem;
     
     //self.title = @"我的";
     //self.navigationController.title = @"我的";
@@ -80,7 +88,7 @@
     
      
     user_number = [[UILabel alloc] initWithFrame:CGRectMake(0, (topView.bounds.size.height)-30, size.width, 20)];
-    user_number.text = @"87290008(编号00176)";
+    user_number.text = @"";
     user_number.textAlignment = NSTextAlignmentCenter;
     user_number.textColor = [UIColor whiteColor];
     [self.view addSubview:user_number];
@@ -96,21 +104,21 @@
     sclView.contentSize = CGSizeMake(size.width, size.height+400);
     [self.view addSubview:sclView];
     //基础信息view
-    UIView *baseinfo_view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width+1, 220)];
+    UIView *baseinfo_view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width+1, 205)];
     baseinfo_view.backgroundColor = [UIColor whiteColor];
     baseinfo_view.layer.borderWidth = 0.5;
     baseinfo_view.layer.borderColor = [[UIColor grayColor] CGColor];
     [sclView addSubview:baseinfo_view];
     
-    UIImageView *baseinfo_image = [[UIImageView alloc] initWithFrame:CGRectMake(20, 15, 44, 44)];
+    UIImageView *baseinfo_image = [[UIImageView alloc] initWithFrame:CGRectMake(20, 15, 32, 32)];
     [baseinfo_image setImage:[UIImage imageNamed:@"user-icon1"]];
     [baseinfo_view addSubview:baseinfo_image];
     
-    UILabel *baseinfo_title = [[UILabel alloc] initWithFrame:CGRectMake(20+44+10, 15, 200, 44)];
+    UILabel *baseinfo_title = [[UILabel alloc] initWithFrame:CGRectMake(20+32+10, 15, 200, 32)];
     baseinfo_title.text = @"基本信息";
     [baseinfo_view addSubview:baseinfo_title];
     
-    UILabel *baseinfo_line1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 15+44+10, size.width, 0.5)];
+    UILabel *baseinfo_line1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 10+44, size.width, 0.5)];
     baseinfo_line1.backgroundColor = [UIColor grayColor];
     [baseinfo_view addSubview:baseinfo_line1];
     
@@ -148,7 +156,7 @@
    
     
     //身份证信息view
-    idcard_view = [[UIView alloc] initWithFrame:CGRectMake(0, baseinfo_view.frame.origin.y+baseinfo_view.bounds.size.height+15, size.width+1, 230)];
+    idcard_view = [[UIView alloc] initWithFrame:CGRectMake(0, baseinfo_view.frame.origin.y+baseinfo_view.bounds.size.height+15, size.width+1, 210)];
     idcard_view.backgroundColor = [UIColor whiteColor];
     idcard_view.layer.borderWidth = 0.5;
     idcard_view.layer.borderColor = [[UIColor grayColor] CGColor];
@@ -184,7 +192,7 @@
     }
     */
     //其他功能view
-    UIView *other_view = [[UIView alloc] initWithFrame:CGRectMake(0, idcard_view.frame.origin.y+idcard_view.bounds.size.height+15, size.width+1, 64*5+20)];
+    UIView *other_view = [[UIView alloc] initWithFrame:CGRectMake(0, idcard_view.frame.origin.y+idcard_view.bounds.size.height+15, size.width+1, 50*5+20)];
     other_view.backgroundColor = [UIColor whiteColor];
     other_view.layer.borderWidth = 0.5;
     other_view.layer.borderColor = [[UIColor grayColor] CGColor];
@@ -197,17 +205,17 @@
     for(int i = 0; i < titleArray.count; i++)
     {
     
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, YY, 280, 65)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, YY, 280, 50)];
         button.backgroundColor = [UIColor whiteColor];
         button.tag = 10 + i;
         [button addTarget:self action:@selector(do_action:) forControlEvents:UIControlEventTouchUpInside];
         [other_view addSubview:button];
         
-        UIImageView *headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 5, 44, 44)];
+        UIImageView *headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 8, 32, 32)];
         headImageView.image = [UIImage imageNamed:imageArray[i]];
         [button addSubview:headImageView];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(75, 5, 130, 44)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(63, 5, 130, 44)];
         label.text = titleArray[i];
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor blackColor];
@@ -221,10 +229,10 @@
             [button addSubview:label2];
         }
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(size.width-30, 22, 10, 13)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(size.width-30, 20, 10, 15)];
         imageView.image = [UIImage imageNamed:@"user-right-array"];
         [button addSubview:imageView];
-        YY += 65;
+        YY += 51;
     }
     //exit button
     UIButton *exit_button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -282,7 +290,7 @@
         {
             userinfo = [responseObject objectForKey:@"data"];
             NSLog(@"userinfo:%@",userinfo);
-            [user_face sd_setImageWithURL:[NSURL URLWithString:@"https://www.baidu.com/img/bdlogo.png"] placeholderImage:[UIImage imageNamed:@"user-face"]];
+            [user_face sd_setImageWithURL:[NSURL URLWithString:[userinfo objectForKey:@"avatar"]] placeholderImage:[UIImage imageNamed:@"user-face"]];
             
             user_number.text = [NSString stringWithFormat:@"%@(编号%@)",[userinfo objectForKey:@"real_name"],[userinfo objectForKey:@"uid_hj"]];
             baseinfo_telephone.text = [NSString stringWithFormat:@"手机：%@",[userinfo objectForKey:@"link_mobile"]];
@@ -299,10 +307,10 @@
             }
            
             /*身份证信息部分填充*/
-            UIImageView *id_card_image =[[UIImageView alloc] initWithFrame:CGRectMake(20, 15, 44, 44)];
+            UIImageView *id_card_image =[[UIImageView alloc] initWithFrame:CGRectMake(20, 15, 32, 32)];
             [id_card_image setImage:[UIImage imageNamed:@"user-icon2"]];
             
-            UILabel *id_card_title = [[UILabel alloc] initWithFrame:CGRectMake(74, 15, 100, id_card_image.frame.size.height)];
+            UILabel *id_card_title = [[UILabel alloc] initWithFrame:CGRectMake(62, 15, 100, id_card_image.frame.size.height)];
             id_card_title.text = @"身份证信息";
             UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(0, id_card_image.frame.origin.y+id_card_image.frame.size.height+10, size.height, 0.5)];
             line.backgroundColor = [UIColor grayColor];
@@ -319,9 +327,9 @@
             NSInteger id_card_y_size = line.bounds.origin.y;
             for(int i=0;i<id_title_array.count;i++)
             {
-                title_array_label = [[UILabel alloc] initWithFrame:CGRectMake(69, id_card_y_size+80, size.width, 40)];
+                title_array_label = [[UILabel alloc] initWithFrame:CGRectMake(62, id_card_y_size+60, size.width, 50)];
                 title_array_label.text = id_title_array[i];
-                card_title_line = [[UILabel alloc] initWithFrame:CGRectMake(69, id_card_y_size+130, size.width, 0.5)];
+                card_title_line = [[UILabel alloc] initWithFrame:CGRectMake(62, id_card_y_size+110, size.width, 0.5)];
                 card_title_line.backgroundColor = [UIColor grayColor];
                 [idcard_view addSubview:title_array_label];
                 if(i<2)
@@ -456,9 +464,12 @@
         {
             if (buttonIndex == 0) {
                 NSLog(@"confirm");
-                LoginViewController *login_controller = [[LoginViewController alloc] init];
-                [login_controller setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-                [self presentViewController:login_controller animated:YES completion:nil];
+                //LoginViewController *login_controller = [[LoginViewController alloc] init];
+                //[login_controller setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+                //[self presentViewController:login_controller animated:YES completion:nil];
+                [BWCommon logout];
+                [self presentLoginView];
+                
             }else if (buttonIndex == 1) {
                 NSLog(@"cancel");
             }
@@ -470,6 +481,13 @@
     }
     }
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet{
+    
+}
+
+-(void) presentLoginView{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    id mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginIdentifier"];
+    [self presentViewController:mainViewController animated:YES completion:^{}];
     
 }
 

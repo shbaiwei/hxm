@@ -88,6 +88,18 @@
 		327D07981B217B68002F4600 /* apply-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 327D07971B217B68002F4600 /* apply-icon.png */; };
 		327D079A1B2184F8002F4600 /* apply-plus1.png in Resources */ = {isa = PBXBuildFile; fileRef = 327D07991B2184F8002F4600 /* apply-plus1.png */; };
 		327D079C1B21BB43002F4600 /* apply-plus2.png in Resources */ = {isa = PBXBuildFile; fileRef = 327D079B1B21BB43002F4600 /* apply-plus2.png */; };
+		328715451B25379C00D386CC /* app-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3287153F1B25379C00D386CC /* app-icon.png */; };
+		328715461B25379C00D386CC /* app-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 328715401B25379C00D386CC /* app-retina.png */; };
+		328715471B25379C00D386CC /* app-search.png in Resources */ = {isa = PBXBuildFile; fileRef = 328715411B25379C00D386CC /* app-search.png */; };
+		328715481B25379C00D386CC /* app-search2.png in Resources */ = {isa = PBXBuildFile; fileRef = 328715421B25379C00D386CC /* app-search2.png */; };
+		328715491B25379C00D386CC /* app-store-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 328715431B25379C00D386CC /* app-store-retina.png */; };
+		3287154A1B25379C00D386CC /* app-store.png in Resources */ = {isa = PBXBuildFile; fileRef = 328715441B25379C00D386CC /* app-store.png */; };
+		328715501B257DB900D386CC /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3287154B1B257DB900D386CC /* icon-72.png */; };
+		328715511B257DB900D386CC /* icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 3287154C1B257DB900D386CC /* icon-Small.png */; };
+		328715521B257DB900D386CC /* icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3287154D1B257DB900D386CC /* icon-Small@2x.png */; };
+		328715531B257DB900D386CC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3287154E1B257DB900D386CC /* icon.png */; };
+		328715541B257DB900D386CC /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3287154F1B257DB900D386CC /* icon@2x.png */; };
+		328715561B257F5400D386CC /* order-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 328715551B257F5400D386CC /* order-arrow.png */; };
 		32A48DED1B2032AF000A44A0 /* UIView+XCMultiSortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DE71B2032AF000A44A0 /* UIView+XCMultiSortTableView.m */; };
 		32A48DEE1B2032AF000A44A0 /* XCMultiSortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DE91B2032AF000A44A0 /* XCMultiSortTableView.m */; };
 		32A48DEF1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DEB1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.m */; };
@@ -248,6 +260,18 @@
 		327D07971B217B68002F4600 /* apply-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apply-icon.png"; sourceTree = "<group>"; };
 		327D07991B2184F8002F4600 /* apply-plus1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apply-plus1.png"; sourceTree = "<group>"; };
 		327D079B1B21BB43002F4600 /* apply-plus2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apply-plus2.png"; sourceTree = "<group>"; };
+		3287153F1B25379C00D386CC /* app-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon.png"; sourceTree = "<group>"; };
+		328715401B25379C00D386CC /* app-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-retina.png"; sourceTree = "<group>"; };
+		328715411B25379C00D386CC /* app-search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-search.png"; sourceTree = "<group>"; };
+		328715421B25379C00D386CC /* app-search2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-search2.png"; sourceTree = "<group>"; };
+		328715431B25379C00D386CC /* app-store-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-store-retina.png"; sourceTree = "<group>"; };
+		328715441B25379C00D386CC /* app-store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-store.png"; sourceTree = "<group>"; };
+		3287154B1B257DB900D386CC /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
+		3287154C1B257DB900D386CC /* icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-Small.png"; sourceTree = "<group>"; };
+		3287154D1B257DB900D386CC /* icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-Small@2x.png"; sourceTree = "<group>"; };
+		3287154E1B257DB900D386CC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		3287154F1B257DB900D386CC /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		328715551B257F5400D386CC /* order-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "order-arrow.png"; sourceTree = "<group>"; };
 		32A48DE61B2032AF000A44A0 /* UIView+XCMultiSortTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XCMultiSortTableView.h"; sourceTree = "<group>"; };
 		32A48DE71B2032AF000A44A0 /* UIView+XCMultiSortTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XCMultiSortTableView.m"; sourceTree = "<group>"; };
 		32A48DE81B2032AF000A44A0 /* XCMultiSortTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCMultiSortTableView.h; sourceTree = "<group>"; };
@@ -356,6 +380,18 @@
 		321A23821B09CD0200A9D294 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				328715551B257F5400D386CC /* order-arrow.png */,
+				3287154B1B257DB900D386CC /* icon-72.png */,
+				3287154C1B257DB900D386CC /* icon-Small.png */,
+				3287154D1B257DB900D386CC /* icon-Small@2x.png */,
+				3287154E1B257DB900D386CC /* icon.png */,
+				3287154F1B257DB900D386CC /* icon@2x.png */,
+				3287153F1B25379C00D386CC /* app-icon.png */,
+				328715401B25379C00D386CC /* app-retina.png */,
+				328715411B25379C00D386CC /* app-search.png */,
+				328715421B25379C00D386CC /* app-search2.png */,
+				328715431B25379C00D386CC /* app-store-retina.png */,
+				328715441B25379C00D386CC /* app-store.png */,
 				32502BB51B246BEA00C9AB9C /* goods-q.png */,
 				32502BAA1B24463E00C9AB9C /* finance-3.png */,
 				32502BA81B2435AF00C9AB9C /* green.png */,
@@ -761,6 +797,7 @@
 				321A23981B09CD0200A9D294 /* register-password.png in Resources */,
 				6F8AEB8A1B1D446000E2F6E9 /* area.plist in Resources */,
 				6F6E4CA51B1870BE002F0419 /* password-sale-icon.png in Resources */,
+				328715521B257DB900D386CC /* icon-Small@2x.png in Resources */,
 				6FE330011B19E24500BE3B8F /* address-selected-icon.png in Resources */,
 				325A8A811B0D92F300CEA0AB /* tab-goods@2x.png in Resources */,
 				323263631B0C88550004522E /* register-password@2x.png in Resources */,
@@ -769,6 +806,7 @@
 				6F8AEB8B1B1D446000E2F6E9 /* city.plist in Resources */,
 				327D07981B217B68002F4600 /* apply-icon.png in Resources */,
 				322CFAED1B18800300D12AFD /* goods-1.png in Resources */,
+				328715471B25379C00D386CC /* app-search.png in Resources */,
 				323263601B0C88550004522E /* register-cellphone@2x.png in Resources */,
 				321B0E541B14807C004D5827 /* user-icon2.png in Resources */,
 				323EE91E1AF8F57D00C55306 /* LaunchScreen.xib in Resources */,
@@ -778,6 +816,9 @@
 				32502BA91B2435AF00C9AB9C /* green.png in Resources */,
 				321B0E531B14807C004D5827 /* user-icon1.png in Resources */,
 				321A238E1B09CD0200A9D294 /* login-password.png in Resources */,
+				328715451B25379C00D386CC /* app-icon.png in Resources */,
+				328715561B257F5400D386CC /* order-arrow.png in Resources */,
+				328715511B257DB900D386CC /* icon-Small.png in Resources */,
 				322CFAEF1B18800300D12AFD /* goods-3.png in Resources */,
 				321A23961B09CD0200A9D294 /* register-check-default.png in Resources */,
 				325A8A851B0D92F300CEA0AB /* tab-order@2x.png in Resources */,
@@ -789,17 +830,23 @@
 				6FE32FFB1B19BEE300BE3B8F /* complain-time-icon.png in Resources */,
 				321B0E561B14807C004D5827 /* user-icon4.png in Resources */,
 				321A239A1B09CEFF00A9D294 /* baseinfo.plist in Resources */,
+				328715541B257DB900D386CC /* icon@2x.png in Resources */,
 				321A23921B09CD0200A9D294 /* logo.png in Resources */,
 				321A23931B09CD0200A9D294 /* register-cellphone.png in Resources */,
 				321A23971B09CD0200A9D294 /* register-email.png in Resources */,
 				3262EE7D1B20722B007489B9 /* order-tips.png in Resources */,
 				322CFAF91B18897800D12AFD /* finance-2.png in Resources */,
 				321A23901B09CD0200A9D294 /* login-user.png in Resources */,
+				328715501B257DB900D386CC /* icon-72.png in Resources */,
+				328715481B25379C00D386CC /* app-search2.png in Resources */,
 				321B0E591B14807C004D5827 /* user-icon7.png in Resources */,
+				328715531B257DB900D386CC /* icon.png in Resources */,
 				325A8A821B0D92F300CEA0AB /* tab-my.png in Resources */,
 				327D07951B2157F6002F4600 /* retainhd47.png in Resources */,
 				321A23951B09CD0200A9D294 /* register-check-checked@2x.png in Resources */,
+				328715491B25379C00D386CC /* app-store-retina.png in Resources */,
 				325A8A891B0D944900CEA0AB /* user-bg.jpg in Resources */,
+				328715461B25379C00D386CC /* app-retina.png in Resources */,
 				321B0E551B14807C004D5827 /* user-icon3.png in Resources */,
 				323263611B0C88550004522E /* register-check-default@2x.png in Resources */,
 				6FE32FFF1B19E24500BE3B8F /* address-delete-icon.png in Resources */,
@@ -817,6 +864,7 @@
 				321B0E521B14807C004D5827 /* user-edit.png in Resources */,
 				323EE91B1AF8F57D00C55306 /* Images.xcassets in Resources */,
 				327D07961B2157F6002F4600 /* retainhd55.png in Resources */,
+				3287154A1B25379C00D386CC /* app-store.png in Resources */,
 				327D079C1B21BB43002F4600 /* apply-plus2.png in Resources */,
 				327D07941B2157F6002F4600 /* retain4.png in Resources */,
 			);
@@ -1041,7 +1089,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1640FFD999E11B7C9BEE9121 /* Pods.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = hxm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
@@ -1055,7 +1102,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9209D6723B6D4EA0AEA34FD9 /* Pods.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = hxm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
