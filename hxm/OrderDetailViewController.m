@@ -11,7 +11,7 @@
 #import "BWCommon.h"
 #import "MJRefresh.h"
 #import "AFNetworkTool.h"
-
+#define NJNameFont [UIFont systemFontOfSize:14]
 
 @interface OrderDetailViewController ()
 
@@ -106,8 +106,10 @@ NSMutableArray *rightTableData;
     timeView.frame = CGRectMake(0, 0, size.width, 50);
     [BWCommon setBottomBorder:timeView color:[UIColor lightGrayColor]];
     
+    
     UILabel *orderTimeValue = [[UILabel alloc] initWithFrame:CGRectMake(95, 15, 200, 20)];
     self.orderTimeValue = orderTimeValue;
+    orderTimeValue.font = NJNameFont;
     [timeView addSubview:orderTimeValue];
     [orderView addSubview:timeView];
     
@@ -118,6 +120,7 @@ NSMutableArray *rightTableData;
     
     UILabel *orderStatusValue = [[UILabel alloc] initWithFrame:CGRectMake(95, 15, 200, 20)];
     self.orderStatusValue = orderStatusValue;
+    orderStatusValue.font = NJNameFont;
     [statusView addSubview:orderStatusValue];
     [orderView addSubview:statusView];
     
@@ -126,8 +129,9 @@ NSMutableArray *rightTableData;
     addressView.frame = CGRectMake(0, 102, size.width, 100);
     [BWCommon setBottomBorder:addressView color:[UIColor lightGrayColor]];
     
-    UILabel *orderAddressValue = [[UILabel alloc] initWithFrame:CGRectMake(95, 10, 220, 70)];
+    UILabel *orderAddressValue = [[UILabel alloc] initWithFrame:CGRectMake(95, 10, size.width-110, 46)];
     self.orderAddressValue = orderAddressValue;
+    orderAddressValue.font = NJNameFont;
     orderAddressValue.numberOfLines = 0;
     [addressView addSubview:orderAddressValue];
     
@@ -180,7 +184,7 @@ NSMutableArray *rightTableData;
     [commentButton addTarget:self action:@selector(commentButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[commentButton(<=80)]-[noteButton(<=80)]-[complainButton(<=80)]-[trackerButton(<=80)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentButton,noteButton,complainButton,trackerButton)];
+    NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[commentButton(<=90)]-[noteButton(<=90)]-[complainButton(<=90)]-[trackerButton(<=90)]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentButton,noteButton,complainButton,trackerButton)];
     
     NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[commentButton(<=30)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentButton)];
     NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[noteButton(<=30)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(noteButton)];

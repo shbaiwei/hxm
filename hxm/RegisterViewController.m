@@ -17,8 +17,8 @@
 
 @implementation RegisterViewController
 
-UITextField *username;
-UITextField *password;
+UITextField *rusername;
+UITextField *rpassword;
 UITextField *repassword;
 UITextField *mobile;
 UITextField *email;
@@ -48,14 +48,14 @@ UITextField *email;
     self.view.backgroundColor = bgColor;
     [self.navigationItem setTitle:@"注册"];
     
-    username = [self createTextField:@"login-user.png" Title:@"会员名"];
-    [sclView addSubview:username];
-    username.delegate = self;
+    rusername = [self createTextField:@"login-user.png" Title:@"会员名"];
+    [sclView addSubview:rusername];
+    rusername.delegate = self;
     
-    password = [self createTextField:@"login-password.png" Title:@"登录密码"];
-    password.secureTextEntry = YES;
-    [sclView addSubview:password];
-    password.delegate = self;
+    rpassword = [self createTextField:@"login-password.png" Title:@"登录密码"];
+    rpassword.secureTextEntry = YES;
+    [sclView addSubview:rpassword];
+    rpassword.delegate = self;
     
     repassword = [self createTextField:@"register-password.png" Title:@"确认密码"];
     repassword.secureTextEntry = YES;
@@ -88,10 +88,10 @@ UITextField *email;
     
     
     
-    NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[username(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(username)];
-    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[username(==50)]-10-[password(==50)]-10-[repassword(==50)]-10-[mobile(==50)]-10-[email(==50)]-20-[btnRegister(==50)]-80-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(username,password,repassword,mobile,email,btnRegister)];
+    NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[rusername(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(rusername)];
+    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[rusername(==50)]-10-[rpassword(==50)]-10-[repassword(==50)]-10-[mobile(==50)]-10-[email(==50)]-20-[btnRegister(==50)]-80-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(rusername,rpassword,repassword,mobile,email,btnRegister)];
     
-    NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[password(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(password)];
+    NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[rpassword(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(rpassword)];
     NSArray *constraints4= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[repassword(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(repassword)];
     NSArray *constraints5= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[mobile(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(mobile)];
     NSArray *constraints6= [NSLayoutConstraint constraintsWithVisualFormat:@"|-[email(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(email)];
@@ -109,7 +109,7 @@ UITextField *email;
     
     //水平居中
     
-    [self setTextFieldCenter:[[NSArray alloc] initWithObjects:username,password,repassword,mobile,email,btnRegister,nil]];
+    [self setTextFieldCenter:[[NSArray alloc] initWithObjects:rusername,rpassword,repassword,mobile,email,btnRegister,nil]];
     
 
     // tap for dismissing keyboard
@@ -132,8 +132,8 @@ UITextField *email;
 
 -(void) registerTouched: (id)sender
 {
-    NSString *usernameValue = username.text;
-    NSString *passwordValue = password.text;
+    NSString *usernameValue = rusername.text;
+    NSString *passwordValue = rpassword.text;
     NSString *repasswordValue = repassword.text;
     NSString *mobileValue = mobile.text;
     NSString *emailValue = email.text;

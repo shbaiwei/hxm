@@ -292,20 +292,20 @@
     {
         //加入
         UIButton *btnWireIn = [self footerButton:@"去充值" bgColor:[UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1]];
-        btnWireIn.frame = CGRectMake(10, 20, 140, 50);
+        btnWireIn.frame = CGRectMake(10, 20, 160, 60);
         [myView addSubview: btnWireIn];
         
         UIButton *btnList = [self footerButton:@"我的对账单" bgColor:[UIColor colorWithRed:219/255.0f green:0/255.0f blue:0 alpha:1]];
-        btnList.frame = CGRectMake(0, 20, 140, 50);
+        btnList.frame = CGRectMake(0, 20, 160, 60);
         [myView addSubview: btnList];
         
         [btnList addTarget:self action:@selector(listButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
         
-        NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnWireIn(<=140)]-10-[btnList(<=140)]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnWireIn,btnList)];
+        NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnWireIn(<=160)]-10-[btnList(<=160)]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnWireIn,btnList)];
         
-        NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[btnWireIn(<=50)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnWireIn)];
+        NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[btnWireIn(==40)]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnWireIn)];
         
-        NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[btnList(<=50)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnList)];
+        NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[btnList(==40)]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnList)];
         
         [myView addConstraints:constraints1];
         [myView addConstraints:constraints2];

@@ -31,7 +31,7 @@
     
     CGFloat orderNoX = 90+paddingX*2;
     CGFloat orderNoY = paddingY + 16;
-    CGSize orderNoSize = [self sizeWithString:[NSString stringWithFormat:@"订单编号：%@",[data objectForKey:@"order_no"]] font:NJNameFont maxSize:CGSizeMake(220, MAXFLOAT)];
+    CGSize orderNoSize = [self sizeWithString:[NSString stringWithFormat:@"订单编号：%@",[data objectForKey:@"order_no"]] font:NJNameFont maxSize:CGSizeMake(230, MAXFLOAT)];
     CGFloat orderNoW = orderNoSize.width;
     CGFloat orderNoH = orderNoSize.height;
     self.orderNoF = CGRectMake(orderNoX, orderNoY, orderNoW, orderNoH);

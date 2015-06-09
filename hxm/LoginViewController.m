@@ -118,12 +118,19 @@ UITextField *password;
     [btnForget setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     btnForget.titleLabel.font = [UIFont systemFontOfSize:16];
     [btnForget setTitle:@"忘记密码？" forState:UIControlStateNormal];
-    [btnForget addTarget:self action:@selector(registerTouched:)forControlEvents:UIControlEventTouchUpInside];
+    [btnForget addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
     [actionView addSubview:btnForget];
     
     NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[ivLogo(<=220)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(ivLogo)];
     
-    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[ivLogo(<=100)]-40-[username(==50)]-10-[password(==50)]-20-[btnLogin(==50)]-10-[actionView(==20)]-60-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(ivLogo,username,password,btnLogin,actionView)];
+    
+    NSUInteger mTop = 60;
+    if(size.height>700)
+        mTop = 120;
+    
+    NSString * format = [NSString stringWithFormat:@"V:|-%ld-[ivLogo(<=100)]-40-[username(==50)]-10-[password(==50)]-20-[btnLogin(==50)]-10-[actionView(==20)]-60-|",mTop];
+        
+    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:nil views:NSDictionaryOfVariableBindings(ivLogo,username,password,btnLogin,actionView)];
     
     NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[username(==270)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(username)];
     

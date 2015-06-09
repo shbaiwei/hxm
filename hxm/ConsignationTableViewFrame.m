@@ -33,7 +33,7 @@
     NSUInteger pricevalueW = 80;
     self.priceValueF = CGRectMake(padding*2 + priceLabelW + 90, priceLabelY, pricevalueW, priceValueH);
     
-    self.statusLabelF = CGRectMake(padding *3 + 90 + priceLabelW + pricevalueW, priceLabelY, 60, 20);
+    self.statusLabelF = CGRectMake(size.width - 70, priceLabelY, 60, 20);
     
     
     NSUInteger inRowY = priceLabelY + priceLabelH + padding;
