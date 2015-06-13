@@ -9,12 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 #import "OrderDetailDelegate.h"
+#import "DOPDropDownMenu.h"
 
 @interface OrderViewController : UIViewController
 <
 UITableViewDataSource,
 UITableViewDelegate,
-MBProgressHUDDelegate>{
+MBProgressHUDDelegate,
+DOPDropDownMenuDataSource,
+DOPDropDownMenuDelegate
+>{
     
     MBProgressHUD *hud;
     NSMutableArray *_items;

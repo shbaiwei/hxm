@@ -33,7 +33,7 @@
 }
 - (void) layoutSubviews{
     [super layoutSubviews];
-    self.imageView.frame = CGRectMake(10, 30, 90, 90 );
+    self.imageView.frame = CGRectMake(10, 60, 90, 90 );
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
@@ -70,123 +70,55 @@
         [self.contentView addSubview:view];
         self.borderView = view;
         
+        
+        UIView *headerView = [[UIView alloc] init];
+        self.headerView = headerView;
+        
+        UIImageView *sellerIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"seller-icon.png"]];
+        sellerIcon.frame = CGRectMake(4, 0, 18, 18);
+        [self.headerView addSubview:sellerIcon];
+        
+        UILabel *sellerLabel = [[UILabel alloc] init];
+        sellerLabel.font = NJNameFont;
+        self.sellerLabel = sellerLabel;
+        sellerLabel.frame = CGRectMake(26, 0, 100, 20);
+        
+        [self.headerView addSubview:sellerLabel];
+        [self.contentView addSubview:headerView];
+        
+        
         UILabel *nameLabel = [[UILabel alloc] init];
         nameLabel.font = NJNameFont;
         //orderNoLabel.numberOfLines = 0;
         // introLabel.backgroundColor = [UIColor greenColor];
         [self.contentView addSubview:nameLabel];
         self.nameLabel = nameLabel;
-        
-        //level
-        UIColor *levelColor = [UIColor colorWithRed:82/255.0f green:204/255.0f blue:115/255.0f alpha:1];
-        
-        UIView *levelView = [[UIView alloc] init];
-        [self.contentView addSubview:levelView];
-        self.levelView = levelView;
-        
-        levelView.layer.cornerRadius = 3.0f;
-        [levelView.layer setBorderColor:levelColor.CGColor];
-        [levelView.layer setBorderWidth:1.0f];
-        
-        
-        UILabel *levelTitle = [[UILabel alloc] initWithFrame:CGRectMake(1, 0, 30, 20)];
-        levelTitle.text = @"等级";
-        levelTitle.font = NJTextFont;
-        levelTitle.backgroundColor = levelColor;
-        [levelTitle setTextColor:[UIColor whiteColor]];
-        [levelTitle setTextAlignment:NSTextAlignmentCenter];
-        
-        [self.levelView addSubview:levelTitle];
-        
-        UILabel *levelLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 0, 30, 20)];
-        self.levelLabel = levelLabel;
-        levelLabel.font = NJTextFont;
-        [levelView addSubview:levelLabel];
-        [levelLabel setTextColor:levelColor];
-        [levelLabel setTextAlignment:NSTextAlignmentCenter];
-        
-        
-        //limit
-        UIColor *limitColor = [UIColor colorWithRed:176/255.0f green:176/255.0f blue:176/255.0f alpha:1];
-        
-        UIView *limitView = [[UIView alloc] init];
-        [self.contentView addSubview:limitView];
-        self.limitView = limitView;
-        
-        limitView.layer.cornerRadius = 3.0f;
-        [limitView.layer setBorderColor:limitColor.CGColor];
-        [limitView.layer setBorderWidth:1.0f];
-        
-        UILabel *limitTitle = [[UILabel alloc] initWithFrame:CGRectMake(1, 0, 30, 20)];
-        limitTitle.text = @"剩余";
-        limitTitle.font = NJTextFont;
-        limitTitle.backgroundColor = limitColor;
-        [limitTitle setTextColor:[UIColor whiteColor]];
-        [limitTitle setTextAlignment:NSTextAlignmentCenter];
-        [self.limitView addSubview:limitTitle];
-        
-        
-        //merchant
-        UIView *merchantView = [[UIView alloc] init];
-        [self.contentView addSubview:merchantView];
-        self.merchantView = merchantView;
-        
-        merchantView.layer.cornerRadius = 3.0f;
-        [merchantView.layer setBorderColor:limitColor.CGColor];
-        [merchantView.layer setBorderWidth:1.0f];
-        
-        UILabel *merchantTitle = [[UILabel alloc] initWithFrame:CGRectMake(1, 0, 30, 20)];
-        merchantTitle.text = @"商家";
-        merchantTitle.font = NJTextFont;
-        merchantTitle.backgroundColor = limitColor;
-        [merchantTitle setTextColor:[UIColor whiteColor]];
-        [merchantTitle setTextAlignment:NSTextAlignmentCenter];
-        [self.merchantView addSubview:merchantTitle];
-        
-        
-        UILabel *merchantLabel = [[UILabel alloc] initWithFrame:CGRectMake(31, 0, 40, 20)];
-        self.merchantLabel = merchantLabel;
-        merchantLabel.font = NJTextFont;
-        [merchantView addSubview:merchantLabel];
-        [merchantLabel setTextColor:limitColor];
-        [merchantLabel setTextAlignment:NSTextAlignmentCenter];
+
+    
         
         UILabel *priceLabel = [[UILabel alloc] init];
         self.priceLabel = priceLabel;
         [self.contentView addSubview:priceLabel];
-        priceLabel.font = NJPriceFont;
-        [priceLabel setTextColor:[UIColor colorWithRed:219/255.0f green:0/255.0f blue:0/255.0f alpha:1]];
+        priceLabel.font = NJNameFont;
+        
+        UILabel *quantityLabel = [[UILabel alloc] init];
+        self.quantityLabel = quantityLabel;
+        [self.contentView addSubview:quantityLabel];
+        quantityLabel.font = NJNameFont;
         
         
-        UIButton *cartButton = [[UIButton alloc] init];
-        self.cartButton = cartButton;
-        [cartButton setBackgroundImage:[UIImage imageNamed:@"goods-cart.png"] forState:UIControlStateNormal];
-        [self.contentView addSubview:cartButton];
+        UILabel *quantity2Label = [[UILabel alloc] init];
+        self.quantity2Label = quantity2Label;
+        [self.contentView addSubview:quantity2Label];
+        quantity2Label.font = NJNameFont;
         
-        
-        UIButton *buyButton = [[UIButton alloc] init];
-        self.buyButton = buyButton;
-        [buyButton setTitle:@"立即购买" forState:UIControlStateNormal];
-        
-        buyButton.titleLabel.font = [UIFont systemFontOfSize:18 weight:10];
-        buyButton.titleLabel.numberOfLines = 0;
-        
-        [buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [buyButton setBackgroundColor:[UIColor colorWithRed:219/255.0f green:0/255.0f blue:0/255.0f alpha:1]];
-        [self.contentView addSubview:buyButton];
-        
-        
-        UIButton *auctionButton = [[UIButton alloc] init];
-        self.auctionButton = auctionButton;
-        [auctionButton setTitle:@"委托拍卖" forState:UIControlStateNormal];
-        
-        auctionButton.titleLabel.font = [UIFont systemFontOfSize:18 weight:10];
-        auctionButton.titleLabel.numberOfLines = 0;
-        
-        [auctionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [auctionButton setBackgroundColor:[UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1]];
-        
-        [self.contentView addSubview:auctionButton];
+        UILabel *subtotalLabel = [[UILabel alloc] init];
+        self.subtotalLabel = subtotalLabel;
+        [self.contentView addSubview:subtotalLabel];
+        subtotalLabel.font = NJNameFont;
+        [subtotalLabel setTextColor:[UIColor colorWithRed:219/255.0f green:0/255.0f blue:0/255.0f alpha:1]];
+
+
         
         
         
@@ -230,7 +162,7 @@
     
     NSDictionary *data = self.viewFrame.data;
     
-    NSString *image_url = [data objectForKey:@"photo_cd1"];
+    NSString *image_url = [[data objectForKey:@"photo"] objectAtIndex:0];
     
     
     [self.imageView setImage:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image_url]]]];
@@ -242,9 +174,16 @@
     self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    self.nameLabel.text = [data objectForKey:@"flw"];
-    self.levelLabel.text = [data objectForKey:@"flwlevel"];
-    self.merchantLabel.text = [data objectForKey:@"seller_name"];
+    self.sellerLabel.text = [data objectForKey:@"seller_name"];
+    
+    self.nameLabel.text = [data objectForKey:@"goods_cd"];
+    
+    self.quantityLabel.text =[NSString stringWithFormat:@"%@支", [data objectForKey:@"quantity"]];
+    self.quantity2Label.text =[NSString stringWithFormat:@"X%@", [data objectForKey:@"quantity"]];
+    
+    float subtotal = [[data objectForKey:@"quantity"] integerValue] * [[data objectForKey:@"sale_prc"] floatValue];
+    self.subtotalLabel.text =[NSString stringWithFormat:@"小计：%0.2f", subtotal];
+
     self.priceLabel.text = [NSString stringWithFormat:@"¥%@", [data objectForKey:@"sale_prc"]];
     
     
@@ -258,22 +197,25 @@
     self.layer.borderColor = [[UIColor whiteColor] CGColor];
     self.layer.borderWidth=1.0;
     
+    
     self.borderView.frame = self.viewFrame.borderViewF;
+    
+    self.headerView.frame = self.viewFrame.headerF;
+    
+    self.quantityLabel.frame = self.viewFrame.quantityF;
+    self.quantity2Label.frame = self.viewFrame.quantity2F;
+    self.subtotalLabel.frame = self.viewFrame.subtotalF;
+    
     self.nameLabel.frame = self.viewFrame.nameF;
     
-    self.levelView.frame = self.viewFrame.levelF;
-    
-    self.limitView.frame = self.viewFrame.limitF;
-    self.merchantView.frame = self.viewFrame.merchantF;
     self.priceLabel.frame = self.viewFrame.priceF;
     
-    self.buyButton.frame = self.viewFrame.buyButtonF;
-    self.auctionButton.frame = self.viewFrame.auctionButtonF;
-    
-    self.cartButton.frame = self.viewFrame.cartButtonF;
-    
     [BWCommon setTopBorder:self.borderView color:[BWCommon getBorderColor]];
+    //[BWCommon setBottomBorder:self.contentView color:[BWCommon getBorderColor]];
+    
     [BWCommon setBottomBorder:self.borderView color:[BWCommon getBorderColor]];
+    
+    [BWCommon setBottomBorder:self.headerView color:[BWCommon getBorderColor]];
     
 }
 

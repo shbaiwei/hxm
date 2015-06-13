@@ -178,8 +178,8 @@ UITextField *password;
     NSString *passwordValue = password.text;
 
     //test user
-    //usernameValue = @"花满大厦";
-    //passwordValue = @"hj1234567";
+    usernameValue = @"花满大厦";
+    passwordValue = @"hj1234567";
 
     
     
@@ -232,6 +232,7 @@ UITextField *password;
                 
                 [BWCommon setUserInfo:@"uid" value:uid];
                 [BWCommon setUserInfo:@"user_key" value:user_key];
+                [BWCommon setUserInfo:@"password" value:passwordValue];
                 
                 [BWCommon setUserInfo:@"status" value:@"verify"];
                 ApplyViewController *applyView = [[ApplyViewController alloc] init];
@@ -247,6 +248,8 @@ UITextField *password;
             
             [BWCommon setUserInfo:@"uid" value:uid];
             [BWCommon setUserInfo:@"user_key" value:user_key];
+            //认证通过后清除
+            [BWCommon setUserInfo:@"password" value:@""];
             
             [self getHxmUserInfo:uid];
             

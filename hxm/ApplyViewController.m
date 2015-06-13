@@ -541,7 +541,7 @@ NSMutableArray *selectedRegions;
     
     NSString *api_url = @"http://hj.s10.baiwei.org/member/register/upload_img";
 
-    NSDictionary *postData = @{@"password":@"hj1234567",@"uniqueid":[BWCommon getUserInfo:@"uid"]};
+    NSDictionary *postData = @{@"password":[BWCommon getUserInfo:@"password"],@"uniqueid":[BWCommon getUserInfo:@"uid"]};
     
     
     [AFNetworkTool postUploadWithUrl:api_url fileUrl:fileUrl parameters:postData success:^(id responseObject) {
@@ -560,10 +560,20 @@ NSMutableArray *selectedRegions;
             NSString *imgurl = [[responseObject objectForKey:@"data"] objectForKey:@"imgurl"];
             NSString *imgview = [[responseObject objectForKey:@"data"] objectForKey:@"imgview"];
             
-
+            //图片获取的token
+            NSString *timestamp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970] ];
+            NSString *uid = [BWCommon getUserInfo:@"uid"];
+            
+            NSString *str = [NSString stringWithFormat:@"register/display_cert_image/%@/%@",timestamp,[BWCommon md5:uid]];
+            //init token
+            NSString *token = [BWCommon md5:str];
+            
             NSString *nimgview = [[NSString alloc] init];
             nimgview = [imgview stringByReplacingOccurrencesOfString:@"http://www.huaji.com/" withString:@"http://www.huaji.com:81/"];
+            nimgview = [NSString stringWithFormat:@"%@?token=%@&time=%@&uid=%@",nimgview,token,timestamp,uid];
             NSURL *dataurl = [[NSURL alloc] initFileURLWithPath:nimgview];
+            
+            NSLog(@"%@",dataurl);
             
             NSData* ndata = [NSData dataWithContentsOfURL:dataurl];
             

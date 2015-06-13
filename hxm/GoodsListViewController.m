@@ -14,10 +14,13 @@
 #import "BWCommon.h"
 #import "MJRefresh.h"
 #import "AFNetworkTool.h"
+#import "YCXMenu.h"
 
 @interface GoodsListViewController ()
 @property (nonatomic, strong) NSArray *statusFrames;
 @property (nonatomic,assign) NSUInteger gpage;
+
+@property (nonatomic , strong) NSMutableArray *items;
 
 @end
 
@@ -25,6 +28,8 @@
 
 @synthesize dataArray;
 @synthesize tableview;
+
+@synthesize items = _items;
 
 
 - (void)viewDidLoad {
@@ -53,6 +58,12 @@
     backItem.title=@"";
     backItem.image=[UIImage imageNamed:@""];
     self.navigationItem.backBarButtonItem=backItem;
+    
+    //right bar
+    UIBarButtonItem *listItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"right-dot.png"] style:UIBarButtonItemStylePlain target:self action:@selector(listTouched:)];
+    //listItem.title=@"";
+    //listItem.image=[UIImage imageNamed:@"right-dot.png"];
+    self.navigationItem.rightBarButtonItem=listItem;
     
     
     CGRect rect = [[UIScreen mainScreen] bounds];
@@ -90,6 +101,38 @@
     
     tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
+
+- (void) listTouched:(id) sender{
+    NSLog(@"listTouched");
+    
+    //[YCXMenu setHasShadow:YES];
+    //[YCXMenu setBackgrounColorEffect:YCXMenuBackgrounColorEffectGradient];
+    [YCXMenu setTintColor:[BWCommon getMainColor]];
+    [YCXMenu showMenuInView:self.view fromRect:CGRectMake(self.view.frame.size.width - 50, 64, 50, 0) menuItems:self.items selected:^(NSInteger index, YCXMenuItem *item) {
+        NSLog(@"%@",item);
+    }];
+    
+}
+
+- (NSMutableArray *)items {
+    if (!_items) {
+        // set title
+        
+        //set logout button
+        YCXMenuItem *cartItem = [YCXMenuItem menuItem:@"购物车" image:nil target:self action:@selector(cartTouched:)];
+        cartItem.alignment = NSTextAlignmentCenter;
+        
+        //set item
+        _items = [@[cartItem,
+                    [YCXMenuItem menuItem:@"客服热线"
+                                    image:nil
+                                      tag:102
+                                 userInfo:@{@"title":@"Menu"}]
+                    ] mutableCopy];
+    }
+    return _items;
+}
+
 
 - (void) refreshingData:(NSUInteger)page callback:(void(^)()) callback
 {
@@ -213,16 +256,15 @@
    // NSLog(@"%ld",sender.tag);
     
     NSUInteger detail_id;
-    detail_id = [[[dataArray objectAtIndex:[sender tag]] objectForKey:@"goods_id"] integerValue];
+    detail_id = [[[dataArray objectAtIndex:[sender tag]] objectForKey:@"ent_id"] integerValue];
     
     //加入购物车
     
+    __weak GoodsListViewController *weakSelf = self;
+    
     [self addToCart:detail_id callback:^{
-
-        CartTableViewController * cartViewController = [[CartTableViewController alloc] init];
-        self.delegate = cartViewController;
-        [self.navigationController pushViewController:cartViewController animated:YES];
-        [self.delegate setValue:detail_id];
+        
+        [weakSelf cartTouched:sender];
     }];
     
     
@@ -232,17 +274,22 @@
     //NSLog(@"%ld",sender.tag);
 }
 
+-(void) cartTouched:(id)sender{
+    //NSLog(@"%ld",sender.tag);
+    CartTableViewController * cartViewController = [[CartTableViewController alloc] init];
+    self.delegate = cartViewController;
+    [self.navigationController pushViewController:cartViewController animated:YES];
+}
 
 -(void) cartButtonTouched:(UIButton *)sender{
     //NSLog(@"%ld",sender.tag);
     
     NSUInteger detail_id;
-    detail_id = [[[dataArray objectAtIndex:[sender tag]] objectForKey:@"goods_id"] integerValue];
+    detail_id = [[[dataArray objectAtIndex:[sender tag]] objectForKey:@"ent_id"] integerValue];
     
     //加入购物车
     
-    [self addToCart:detail_id callback:^{
-    }];
+    [self addToCart:detail_id callback:^{}];
 }
 
 -(void) addToCart: (NSUInteger) ent_id callback:(void(^)()) callback{
@@ -251,7 +298,8 @@
     
     NSMutableDictionary *postData = [BWCommon getTokenData:@"cart/AddToCart"];
     
-    [postData setValue:[NSString stringWithFormat:@"%d",ent_id] forKey:@"goods_id"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",ent_id] forKey:@"id"];
+    [postData setValue:@"1" forKey:@"quantity"];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     

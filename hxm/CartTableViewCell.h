@@ -16,21 +16,15 @@
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @property (nonatomic,weak) UIView *borderView;
+@property (nonatomic,weak) UIView *headerView;
 
-@property (nonatomic, weak) UIButton *buyButton;
+@property (nonatomic,weak) UILabel *sellerLabel;
 
-@property (nonatomic, weak) UIButton *auctionButton;
-@property (nonatomic, weak) UIButton *cartButton;
 
-@property (nonatomic,weak) UIView *levelView;
+@property (nonatomic,weak) UILabel *quantityLabel;
+@property (nonatomic,weak) UILabel *quantity2Label;
 
-@property (nonatomic,weak) UIView *limitView;
-
-@property (nonatomic,weak) UIView *merchantView;
-
-@property (nonatomic,weak) UILabel *levelLabel;
-
-@property (nonatomic,weak) UILabel *limitLabel;
+@property (nonatomic,weak) UILabel *subtotalLabel;
 
 @property (nonatomic,weak) UILabel *merchantLabel;
 

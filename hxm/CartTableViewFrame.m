@@ -27,38 +27,41 @@
     //CGFloat imageY = padding;
     //self.imageF = CGRectMake(imageX, imageY, 100, 60);
     
+    
+    CGFloat headerX = padding;
+    CGFloat headerY = padding + 12;
+    CGFloat headerH = 26;
+    self.headerF = CGRectMake(headerX,headerY,size.width-padding*2,headerH);
+    
     CGFloat nameX = padding + 100;
-    CGFloat nameY = padding + 16;
+    CGFloat nameY = padding + headerH + headerY;
     CGFloat nameH = 20;
     self.nameF = CGRectMake(nameX, nameY, 200, nameH);
     
+    CGSize priceSize = [self sizeWithString:[NSString stringWithFormat:@"¥%@",[data objectForKey:@"sale_prc"]] font:NJNameFont maxSize:CGSizeMake(100, MAXFLOAT)];
+    CGFloat priceX = size.width - padding - priceSize.width;
+    CGFloat priceY = nameY;
+    CGFloat priceH = 20;
+    self.priceF = CGRectMake(priceX, priceY, priceSize.width, priceH);
     
-    CGFloat levelY = nameY + nameH + padding;
-    self.levelF = CGRectMake(nameX, levelY, 60, 20);
+    CGFloat quantityX = nameX;
+    CGFloat quantityY = nameY + nameH + padding;
     
+    self.quantityF = CGRectMake(quantityX, quantityY, 80, 20);
     
-    CGFloat limitX = nameX+60+padding/2;
-    self.limitF = CGRectMake(limitX, levelY, 70, 20);
+    CGSize quantity2Size = [self sizeWithString:[NSString stringWithFormat:@"X%@",[data objectForKey:@"quantity"]] font:NJNameFont maxSize:CGSizeMake(100, MAXFLOAT)];
+    CGFloat quantity2X = size.width - padding - quantity2Size.width;
+    CGFloat quantity2Y = quantityY;
+    self.quantity2F = CGRectMake(quantity2X, quantity2Y, quantity2Size.width, 20);
     
+    float subtotal = [[data objectForKey:@"quantity"] integerValue] * [[data objectForKey:@"sale_prc"] floatValue];
     
+    CGSize subtotalSize =[self sizeWithString:[NSString stringWithFormat:@"小计：%0.2f",subtotal] font:NJNameFont maxSize:CGSizeMake(160, MAXFLOAT)];
+    CGFloat subtotalX = size.width-padding - subtotalSize.width;
+    CGFloat subtotalY = quantity2Y + 20 + padding;
+    self.subtotalF = CGRectMake(subtotalX, subtotalY, subtotalSize.width, 20);
     
-    CGFloat priceY = levelY + 20 + padding;
-    if(size.width>320){
-        self.merchantF = CGRectMake(limitX+70+padding/2, levelY, 70, 20);
-    }
-    else{
-        priceY += 20;
-        self.merchantF = CGRectMake(nameX, levelY + 20 + padding/2, 70, 20);
-    }
-    
-    self.priceF = CGRectMake(nameX, priceY, 60, 20);
-    
-    self.buyButtonF = CGRectMake(size.width-50, 16, 50, 70);
-    self.auctionButtonF = CGRectMake(size.width-50, 86, 50, 70);
-    
-    self.cartButtonF = CGRectMake(size.width-105, 100, 40, 40);
-    
-    self.cellHeight =  140+16;
+    self.cellHeight =  144+16;
     
     self.borderViewF = CGRectMake(0, 1, size.width, 15);
     

@@ -20,6 +20,12 @@
 @interface OrderViewController ()
 @property (nonatomic, strong) NSArray *statusFrames;
 @property (nonatomic,assign) NSUInteger gpage;
+@property (nonatomic,assign) NSUInteger order_type;
+
+@property (nonatomic,strong) DOPDropDownMenu *menu;
+//@property (nonatomic, strong) NSArray *classifys;
+@property (nonatomic, strong) NSArray *status;
+@property (nonatomic, strong) NSArray *trade;
 
 @end
 
@@ -57,6 +63,7 @@
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = rect.size;
     //筛选方式
+    /*
     UIView *filterView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, size.width, 40)];
     filterView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:filterView];
@@ -76,20 +83,37 @@
     
     [filterView addConstraints:constraints1];
     [filterView addConstraints:constraints2];
-    [filterView addConstraints:constraints3];
+    [filterView addConstraints:constraints3];*/
     
     
-   
+
     
+    //self.classifys = @[@"交易方式",@"订单状态"];
+    self.trade = @[@"交易方式",@"订购",@"委托拍卖",@"在线拍卖",@"调配"];
+    self.status = @[@"订单状态",@"等待付款",@"等待发货",@"已发货",@"交易成功",@"待评价",@"退款中",@"已关闭"];
     
-    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 104, size.width, size.height-146)];
+    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 42, size.width, size.height-90)];
     tableview.delegate = self;
     tableview.dataSource = self;
     tableview.rowHeight = 180;
     
     [self.view addSubview:tableview];
     
+    // 添加下拉菜单
+    self.menu = [[DOPDropDownMenu alloc] initWithOrigin:CGPointMake(0, 64) andHeight:44];
+    [self.menu setSeparatorColor:[UIColor whiteColor]];
+    //self.menu.indicatorColor = [BWCommon getMainColor];
+    //self.menu.textSelectedColor = [BWCommon getMainColor];
+    //self.menu.textColor = [BWCommon getMainColor];
+
+    self.menu.delegate = self;
+    self.menu.dataSource = self;
+    
+    [self.view addSubview:self.menu];
+    
     self.gpage = 1;
+    self.order_type = 0;
+
     [self refreshingData:1 callback:^{
         //[self.tableview.header endRefreshing];
     }];
@@ -135,7 +159,9 @@
     NSMutableDictionary *postData = [BWCommon getTokenData:@"order/queryOrders"];
     
     [postData setValue:[NSString stringWithFormat:@"%ld",page] forKey:@"OrderInfo_page"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",self.order_type] forKey:@"order_type"];
     
+    NSLog(@"%@",postData);
     
     NSLog(@"%@",url);
     //load data
@@ -149,6 +175,7 @@
         {
             
             //NSArray *data = [[NSArray alloc] init];
+            
             if(page == 1)
             {
                 dataArray = [[responseObject objectForKey:@"data"] mutableCopy];
@@ -202,6 +229,89 @@
 {
     return 1;
 }
+
+// DOP Dropdown Menu begin
+- (NSInteger)numberOfColumnsInMenu:(DOPDropDownMenu *)menu
+{
+    
+    return 2;
+    
+}
+
+- (NSInteger)menu:(DOPDropDownMenu *)menu numberOfRowsInColumn:(NSInteger)column
+{
+    if (column == 0) {
+        return self.trade.count;
+    }
+    else if(column == 1) {
+         return self.status.count;
+    }
+    
+    return 0;
+}
+
+- (NSString *)menu:(DOPDropDownMenu *)menu titleForRowAtIndexPath:(DOPIndexPath *)indexPath
+{
+    
+    if (indexPath.column == 0) {
+        
+        return self.trade[indexPath.row];
+    }
+    else if(indexPath.column == 1){
+        return self.status[indexPath.row];
+    }
+    else
+    {
+        return self.trade[indexPath.row];
+    }
+}
+
+- (NSInteger)menu:(DOPDropDownMenu *)menu numberOfItemsInRow:(NSInteger)row column:(NSInteger)column
+{
+    
+
+    
+    return 0;
+    
+}
+
+- (NSString *)menu:(DOPDropDownMenu *)menu titleForItemsInRowAtIndexPath:(DOPIndexPath *)indexPath
+{
+    
+    if (indexPath.column == 0) {
+        
+        if (indexPath.row == 0) {
+            
+            return self.trade[indexPath.item];
+            
+        }
+        
+    }
+    else if(indexPath.column == 1) {
+
+        if (indexPath.row == 0) {
+            
+            return self.status[indexPath.item];
+            
+        }
+    }
+    
+    return nil;
+    
+}
+-(void) menu:(DOPDropDownMenu *)menu didSelectRowAtIndexPath:(DOPIndexPath *)indexPath{
+    
+    if(indexPath.column == 0){
+        
+        //NSLog(@"item %ld",indexPath.item);
+        //NSLog(@"row %ld",indexPath.row);
+        
+        self.order_type = (int)indexPath.row;
+        [self refreshingData:1 callback:^{}];
+    }
+}
+
+//DOP Dropdown menu end.
 
 /* 这个函数是指定显示多少cells*/
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

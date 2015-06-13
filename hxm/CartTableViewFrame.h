@@ -14,20 +14,19 @@
 //@property (nonatomic, assign) CGRect imageF;
 
 @property (nonatomic, assign) CGRect borderViewF;
+
+@property (nonatomic, assign) CGRect  headerF;
+
 @property (nonatomic, assign) CGRect nameF;
 
-@property (nonatomic, assign) CGRect levelF;
+@property (nonatomic, assign) CGRect quantityF;
+@property (nonatomic, assign) CGRect quantity2F;
 
-@property (nonatomic, assign) CGRect limitF;
+@property (nonatomic, assign) CGRect subtotalF;
 
-@property (nonatomic, assign) CGRect merchantF;
 
 @property (nonatomic, assign) CGRect priceF;
 
-@property (nonatomic, assign) CGRect buyButtonF;
-@property (nonatomic, assign) CGRect auctionButtonF;
-
-@property (nonatomic,assign) CGRect cartButtonF;
 
 @property (nonatomic, assign) CGFloat cellHeight;
 

@@ -46,6 +46,8 @@ NSUInteger ent_id;
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     self.navigationItem.title = @"购物车";
     
+    dataArray  = [[NSMutableArray alloc] init];
+    
     
     [self loadData:^{}];
     
@@ -74,6 +76,7 @@ NSUInteger ent_id;
         [hud removeFromSuperview];
         if(errNo == 0)
         {
+            
             
             dataArray = [[responseObject objectForKey:@"data"] mutableCopy];
             
@@ -122,8 +125,23 @@ NSUInteger ent_id;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    // Return the number of rows in the section.
+
     return [[self dataArray] count];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath      //当在Cell上滑动时会调用此函数
+{
+        
+    return  UITableViewCellEditingStyleDelete;  //返回此值时,Cell会做出响应显示Delete按键,点击Delete后会调用下面的函数,别给传递UITableViewCellEditingStyleDelete参数
+
+    
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        NSLog(@"%ld",indexPath.row);
+    }
 }
 
 
@@ -145,6 +163,37 @@ NSUInteger ent_id;
     NSLog(@"height = %f", vf.cellHeight);
     return vf.cellHeight;
 }
+
+-(CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 60;
+}
+
+-(UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    
+    UIView* myView = [[UIView alloc] init];
+    myView.backgroundColor = [BWCommon getBackgroundColor];
+    
+    
+    
+    if(section==0)
+    {
+        CGFloat width = self.view.frame.size.width;
+        //加入
+        UIButton *btnCheckout = [[UIButton alloc] initWithFrame:CGRectMake(width - 100, 20, 80, 40)];
+        btnCheckout.layer.cornerRadius = 5.0f;
+        [btnCheckout setTitle:@"结算" forState:UIControlStateNormal];
+        [btnCheckout setBackgroundColor:[UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1]];
+ 
+        [myView addSubview: btnCheckout];
+        
+        UILabel *subtotalLabel = UILabel
+
+    }
+    
+    return myView;
+}
+
 
 - (NSArray *)statusFrames
 {
