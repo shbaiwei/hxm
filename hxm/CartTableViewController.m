@@ -187,7 +187,7 @@ NSUInteger ent_id;
  
         [myView addSubview: btnCheckout];
         
-        UILabel *subtotalLabel = UILabel
+        //UILabel *subtotalLabel = UILabel
 
     }
     
