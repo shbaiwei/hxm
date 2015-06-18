@@ -162,6 +162,29 @@
     [layer addSublayer:bottomBorder];
 }
 
++(void) syncUserInfo{
+    //如果地区不存在 则重新加载
+    NSString *api_url = [self getBaseInfo:@"api_url"];
+    
+    NSString *url =  [api_url stringByAppendingString:@"user/getUserInfoById"];
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"user/getUserInfoById"];
+
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        if (errNo == 0) {
+            NSLog(@"%@",[responseObject objectForKey:@"data"]);
+            //NSDictionary *userInfo = [responseObject objectForKey:@"data"];
+            [BWCommon setUserInfo:@"link_mobile" value:[[responseObject objectForKey:@"data"] objectForKey:@"link_mobile"] ];
+        }
+    } fail:^{
+        
+        NSLog(@"请求失败");
+    }];
+}
+
+
 +(NSMutableDictionary *) getTokenData:(NSString *) api
 {
     //NSString *api_url = [self getBaseInfo:@"api_url"];

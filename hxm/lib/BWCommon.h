@@ -23,6 +23,8 @@
 
 +(id) getUserInfo:(NSString *) key;
 
++(void) syncUserInfo;
+
 +(BOOL) isLoggedIn;
 +(void) logout;
 

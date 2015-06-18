@@ -21,11 +21,16 @@
 @property (nonatomic, strong) NSArray *statusFrames;
 @property (nonatomic,assign) NSUInteger gpage;
 @property (nonatomic,assign) NSUInteger order_type;
+@property (nonatomic,assign) NSString * status_search;
+@property (nonatomic,assign) NSString * OrderInfo_sort;
 
 @property (nonatomic,strong) DOPDropDownMenu *menu;
 //@property (nonatomic, strong) NSArray *classifys;
 @property (nonatomic, strong) NSArray *status;
 @property (nonatomic, strong) NSArray *trade;
+@property (nonatomic, strong) NSArray *sort;
+@property (nonatomic, strong) NSArray *sort_value;
+@property (nonatomic, strong) NSArray *status_value;
 
 @end
 
@@ -91,6 +96,10 @@
     //self.classifys = @[@"交易方式",@"订单状态"];
     self.trade = @[@"交易方式",@"订购",@"委托拍卖",@"在线拍卖",@"调配"];
     self.status = @[@"订单状态",@"等待付款",@"等待发货",@"已发货",@"交易成功",@"待评价",@"退款中",@"已关闭"];
+    self.sort = @[@"排序方式",@"成交时间最新",@"订单金额高到低",@"订单金额低到高",@"商品箱数多到少",@"商品箱数少到多"];
+    self.sort_value = @[@"",@"create_time.desc",@"order_fee.desc",@"order_fee",@"total_num.desc",@"total_num"];
+    self.status_value = @[@"",@"WAIT_PAY",@"WAIT_SEND",@"WAIT_CONFIRM",@"SUCCESS",@"WAIT_RATE",@"REFUNDING",@"DROP"];
+    
     
     tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 42, size.width, size.height-90)];
     tableview.delegate = self;
@@ -113,6 +122,7 @@
     
     self.gpage = 1;
     self.order_type = 0;
+    self.status_search = 0;
 
     [self refreshingData:1 callback:^{
         //[self.tableview.header endRefreshing];
@@ -158,10 +168,14 @@
     
     NSMutableDictionary *postData = [BWCommon getTokenData:@"order/queryOrders"];
     
-    [postData setValue:[NSString stringWithFormat:@"%ld",page] forKey:@"OrderInfo_page"];
-    [postData setValue:[NSString stringWithFormat:@"%ld",self.order_type] forKey:@"order_type"];
+    url = [url stringByAppendingFormat:@"?OrderInfo_page=%ld&order_type=%ld&status_search=%@&OrderInfo_sort=%@",page,self.order_type,self.status_search,self.OrderInfo_sort];
     
-    NSLog(@"%@",postData);
+    //[postData setValue:[NSString stringWithFormat:@"%ld",page] forKey:@"OrderInfo_page"];
+    //[postData setValue:[NSString stringWithFormat:@"%ld",self.order_type] forKey:@"order_type"];
+    //[postData setValue:[NSString stringWithFormat:@"%ld",self.status_search] forKey:@"status_search"];
+    //[postData setValue:[NSString stringWithFormat:@"%@",self.OrderInfo_sort] forKey:@"OrderInfo_sort"];
+    
+    //NSLog(@"%@",postData);
     
     NSLog(@"%@",url);
     //load data
@@ -234,7 +248,7 @@
 - (NSInteger)numberOfColumnsInMenu:(DOPDropDownMenu *)menu
 {
     
-    return 2;
+    return 3;
     
 }
 
@@ -246,6 +260,9 @@
     else if(column == 1) {
          return self.status.count;
     }
+    else if(column == 2) {
+        return self.sort.count;
+    }
     
     return 0;
 }
@@ -254,15 +271,17 @@
 {
     
     if (indexPath.column == 0) {
+
         
         return self.trade[indexPath.row];
     }
     else if(indexPath.column == 1){
+
         return self.status[indexPath.row];
     }
     else
     {
-        return self.trade[indexPath.row];
+        return self.sort[indexPath.row];
     }
 }
 
@@ -295,6 +314,14 @@
             
         }
     }
+    else if(indexPath.column == 2) {
+        
+        if (indexPath.row == 0) {
+            
+            return self.sort[indexPath.item];
+            
+        }
+    }
     
     return nil;
     
@@ -307,6 +334,16 @@
         //NSLog(@"row %ld",indexPath.row);
         
         self.order_type = (int)indexPath.row;
+        [self refreshingData:1 callback:^{}];
+    }
+    else if(indexPath.column == 1){
+        
+        self.status_search = [self.status_value objectAtIndex:indexPath.row];
+        [self refreshingData:1 callback:^{}];
+    }
+    else if(indexPath.column == 2){
+        
+        self.OrderInfo_sort = [self.sort_value objectAtIndex:indexPath.row];
         [self refreshingData:1 callback:^{}];
     }
 }

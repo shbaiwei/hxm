@@ -20,6 +20,8 @@
 @property (nonatomic,weak) UILabel * orderTimeValue;
 @property (nonatomic,weak) UILabel * orderStatusValue;
 @property (nonatomic,weak) UILabel * orderAddressValue;
+@property (nonatomic,weak) UILabel * trackerValue;
+
 @property (nonatomic,retain) XCMultiTableView * tableView;
 
 @property (nonatomic,retain) UIScrollView *sclView;
@@ -93,7 +95,7 @@ NSMutableArray *rightTableData;
     
     [BWCommon setBottomBorder:infoView color:[BWCommon getBorderColor]];
     //order status
-    UIView * orderView = [[UIView alloc] initWithFrame:CGRectMake(0, 90, size.width, 200)];
+    UIView * orderView = [[UIView alloc] initWithFrame:CGRectMake(0, 90, size.width, 262)];
     orderView.backgroundColor = [UIColor whiteColor];
     
     [BWCommon setTopBorder:orderView color:[BWCommon getBorderColor]];
@@ -126,7 +128,7 @@ NSMutableArray *rightTableData;
     
     //收货地址
     UIView *addressView = [self createRow:@"收货地址："];
-    addressView.frame = CGRectMake(0, 102, size.width, 100);
+    addressView.frame = CGRectMake(0, 102, size.width, 80);
     [BWCommon setBottomBorder:addressView color:[UIColor lightGrayColor]];
     
     UILabel *orderAddressValue = [[UILabel alloc] initWithFrame:CGRectMake(95, 10, size.width-110, 46)];
@@ -134,11 +136,23 @@ NSMutableArray *rightTableData;
     orderAddressValue.font = NJNameFont;
     orderAddressValue.numberOfLines = 0;
     [addressView addSubview:orderAddressValue];
-    
     [orderView addSubview:addressView];
     
+    //物流信息
+    UIView *trackerView = [self createRow:@"物流信息："];
+    trackerView.frame = CGRectMake(0, 183, size.width, 80);
+    [BWCommon setBottomBorder:trackerView color:[UIColor lightGrayColor]];
+    
+    UILabel *trackerValue = [[UILabel alloc] initWithFrame:CGRectMake(95, 10, size.width-110, 46)];
+    self.trackerValue = trackerValue;
+    trackerValue.font = NJNameFont;
+    trackerValue.numberOfLines = 0;
+    [trackerView addSubview:trackerValue];
+    [orderView addSubview:trackerView];
+
+    
     //商品列表
-    UIView *goodsView = [[UIView alloc] initWithFrame:CGRectMake(0, 305, size.width, 50)];
+    UIView *goodsView = [[UIView alloc] initWithFrame:CGRectMake(0, 365, size.width, 50)];
     
     [BWCommon setTopBorder:goodsView color:[BWCommon getBorderColor]];
     [BWCommon setBottomBorder:goodsView color:[BWCommon getBorderColor]];
@@ -160,7 +174,7 @@ NSMutableArray *rightTableData;
     
     [self initData];
     
-    XCMultiTableView *tableView = [[XCMultiTableView alloc] initWithFrame:CGRectMake(0, 356, size.width, 160)];
+    XCMultiTableView *tableView = [[XCMultiTableView alloc] initWithFrame:CGRectMake(0, 416, size.width, 160)];
     tableView.leftHeaderEnable = YES;
     tableView.datasource = self;
     tableView.backgroundColor = [UIColor whiteColor];
@@ -170,32 +184,32 @@ NSMutableArray *rightTableData;
     
     [sclView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(headerRefreshing)];
     
-    UIView *actionView = [[UIView alloc] initWithFrame:CGRectMake(0, 526, size.width, 50)];
+    UIView *actionView = [[UIView alloc] initWithFrame:CGRectMake(0, 586, size.width, 50)];
     
     UIButton *commentButton = [self createButton:@"评 论"];
     UIButton *noteButton = [self createButton:@"备 注"];
     UIButton *complainButton = [self createButton:@"投 诉"];
-    UIButton *trackerButton = [self createButton:@"查看物流"];
+    //UIButton *trackerButton = [self createButton:@"查看物流"];
     [actionView addSubview:commentButton];
     [actionView addSubview:noteButton];
     [actionView addSubview:complainButton];
-    [actionView addSubview:trackerButton];
+    //[actionView addSubview:trackerButton];
     
     [commentButton addTarget:self action:@selector(commentButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[commentButton(<=90)]-[noteButton(<=90)]-[complainButton(<=90)]-[trackerButton(<=90)]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentButton,noteButton,complainButton,trackerButton)];
+    NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[commentButton(<=90)]-[noteButton(<=90)]-[complainButton(<=90)]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentButton,noteButton,complainButton)];
     
     NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[commentButton(<=30)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentButton)];
     NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[noteButton(<=30)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(noteButton)];
     NSArray *constraints4= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[complainButton(<=30)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(complainButton)];
-    NSArray *constraints5= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[trackerButton(<=30)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(trackerButton)];
+    //NSArray *constraints5= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[trackerButton(<=30)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(trackerButton)];
 
     [actionView addConstraints:constraints1];
     [actionView addConstraints:constraints2];
     [actionView addConstraints:constraints3];
     [actionView addConstraints:constraints4];
-    [actionView addConstraints:constraints5];
+    //[actionView addConstraints:constraints5];
     
     [sclView addSubview:actionView];
     
@@ -303,7 +317,21 @@ NSMutableArray *rightTableData;
     
     self.orderTimeValue.text = [data objectForKey:@"create_time"];
     self.orderStatusValue.text = [data objectForKey:@"status"];
-    self.orderAddressValue.text = [data objectForKey:@"address"];
+    
+    NSString *address = [data objectForKey:@"address"];
+    
+    CGSize addressSize = [BWCommon sizeWithString:address font:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(220, MAXFLOAT)];
+    
+    self.orderAddressValue.frame = CGRectMake(96, 10, addressSize.width, addressSize.height);
+    
+    self.orderAddressValue.text = address;
+    
+    NSString *tracker = [data objectForKey:@"shipping"];
+    
+    CGSize trackerSize = [BWCommon sizeWithString:tracker font:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(220, MAXFLOAT)];
+    
+    self.trackerValue.frame = CGRectMake(96, 10, trackerSize.width, trackerSize.height);
+    self.trackerValue.text = tracker;
     
     
     NSArray * goodsList = [[NSArray alloc] initWithArray:[data objectForKey:@"goods_list"]];
@@ -349,7 +377,7 @@ NSMutableArray *rightTableData;
 
 - (void) initData{
     headData = [NSMutableArray arrayWithCapacity:13];
-    [headData addObject:@"商品编号"];
+    [headData addObject:@"品类"];
     [headData addObject:@"品种"];
     [headData addObject:@"颜色"];
     [headData addObject:@"等级"];

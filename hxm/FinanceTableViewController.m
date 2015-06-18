@@ -59,8 +59,8 @@
     
     NSMutableArray *menus0 = [[NSMutableArray alloc] init];
     
-    [menus0 addObject:@{@"title":@"会员名：",@"text":@"brucehe3"}];
-    [menus0 addObject:@{@"title":@"手机号码：",@"text":@"18621320482"}];
+    [menus0 addObject:@{@"title":@"会员名：",@"text":@""}];
+    [menus0 addObject:@{@"title":@"手机号码：",@"text":@""}];
     
     NSMutableArray *menus1 = [[NSMutableArray alloc] init];
     
@@ -77,6 +77,7 @@
     [self.sectionList addObject:@{@"title":@"账户信息"}];
     [self.sectionList addObject:@{@"title":@"账户余额"}];
     
+
  
     [self loadData:^{}];
     
