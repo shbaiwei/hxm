@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OrderTableViewFrame.h"
+#import "UIImageView+WebCache.h"
 
 @interface OrderTableViewCell : UITableViewCell
 

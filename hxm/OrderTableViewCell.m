@@ -187,14 +187,15 @@
     NSString *image_url = [photos objectAtIndex:0];
     
     
-    [self.imageView setImage:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image_url]]]];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:image_url]];
+    //[self.imageView setImage:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image_url]]]];
     
-    CGSize itemSize = CGSizeMake(90, 90);
-    UIGraphicsBeginImageContext(itemSize);
-    CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, 120);
-    [self.imageView.image drawInRect:imageRect];
-    self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    //CGSize itemSize = CGSizeMake(90, 90);
+    //UIGraphicsBeginImageContext(itemSize);
+    //CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, 120);
+    //[self.imageView.image drawInRect:imageRect];
+    //self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+    //UIGraphicsEndImageContext();
 
     
     self.orderNoLabel.text = [NSString stringWithFormat:@"订单编号：%@",[data objectForKey:@"order_no"]];

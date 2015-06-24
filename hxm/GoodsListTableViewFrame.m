@@ -55,7 +55,7 @@
     self.buyButtonF = CGRectMake(size.width-50, 16, 50, 70);
     self.auctionButtonF = CGRectMake(size.width-50, 86, 50, 70);
     
-    self.cartButtonF = CGRectMake(size.width-105, 100, 40, 40);
+    self.cartButtonF = CGRectMake(size.width-98, 114, 32, 32);
     
     self.cellHeight =  140+16;
     

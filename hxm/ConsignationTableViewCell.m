@@ -170,14 +170,7 @@
 
     NSString *image_url = [data objectForKey:@"img1"];
     
-    [self.imageView setImage:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image_url]]]];
-    
-    CGSize itemSize = CGSizeMake(90, 90);
-    UIGraphicsBeginImageContext(itemSize);
-    CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, 120);
-    [self.imageView.image drawInRect:imageRect];
-    self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:image_url]];
     
     self.priceValue.text = [NSString stringWithFormat:@"¥ %@",[data objectForKey:@"price"]];
     self.inValue.text = [data objectForKey:@"ent_num"];

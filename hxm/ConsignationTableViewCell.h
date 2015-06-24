@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ConsignationTableViewFrame.h"
+#import "UIImageView+WebCache.h"
 
 @interface ConsignationTableViewCell : UITableViewCell
 

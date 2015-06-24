@@ -248,6 +248,7 @@ UITextField *password;
             NSString *user_key = [[responseObject objectForKey:@"data"] objectForKey:@"user_key"];
             
             [BWCommon setUserInfo:@"uid" value:uid];
+            [BWCommon setUserInfo:@"username" value:usernameValue];
             [BWCommon setUserInfo:@"user_key" value:user_key];
             //认证通过后清除
             [BWCommon setUserInfo:@"password" value:@""];

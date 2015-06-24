@@ -123,6 +123,16 @@
             NSDictionary * data = [responseObject objectForKey:@"data"];
             
             
+            NSMutableArray *menus0 = [[NSMutableArray alloc] init];
+            NSMutableDictionary *username = [[NSMutableDictionary alloc] init];
+            [username setObject:@"会员名：" forKey:@"title"];
+            [username setObject:[BWCommon getUserInfo:@"username"] forKey:@"text"];
+            NSMutableDictionary *mobile = [[NSMutableDictionary alloc] init];
+            [mobile setObject:@"手机号码：" forKey:@"title"];
+            [mobile setObject:[BWCommon getUserInfo:@"link_mobile"] forKey:@"text"];
+            [menus0 addObject:username];
+            [menus0 addObject:mobile];
+            
             
             NSMutableArray *menus1 = [[NSMutableArray alloc] init];
             NSMutableDictionary *balance = [[NSMutableDictionary alloc] init];
@@ -141,6 +151,7 @@
             [menus1 addObject:auction];
             [menus1 addObject:guarantee];
             
+            self.list[0] = menus0;
             self.list[1] = menus1;
             
             self.statusFrames = nil;

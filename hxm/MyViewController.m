@@ -17,6 +17,8 @@
 #import "MyPasswordViewController.h"
 #import "UIImageView+WebCache.h"
 
+#define NJNameFont [UIFont systemFontOfSize:14]
+
 @interface MyViewController ()
 {
     UILabel *user_number;
@@ -87,21 +89,22 @@
     [self.view addSubview:bar_title];
     
      
-    user_number = [[UILabel alloc] initWithFrame:CGRectMake(0, (topView.bounds.size.height)-30, size.width, 20)];
+    user_number = [[UILabel alloc] initWithFrame:CGRectMake(110, (topView.bounds.size.height)-30, size.width, 20)];
     user_number.text = @"";
-    user_number.textAlignment = NSTextAlignmentCenter;
+    //user_number.textAlignment = NSTextAlignmentCenter;
     user_number.textColor = [UIColor whiteColor];
     [self.view addSubview:user_number];
     
-    user_face = [[UIImageView alloc] initWithFrame:CGRectMake(10, topView.frame.size.height-80, 80, 80)];
+    user_face = [[UIImageView alloc] initWithFrame:CGRectMake(20, topView.frame.size.height-70, 80, 80)];
     [user_face.layer setCornerRadius:40.0];
+    [user_face.layer setZPosition:100.0f];
     user_face.layer.masksToBounds = YES;
     //[user_face setImage:[UIImage imageNamed:@"user-face"]];
     [self.view addSubview:user_face];
     
     UIScrollView *sclView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 160, size.width, size.height-160)];
     sclView.scrollEnabled = YES;
-    sclView.contentSize = CGSizeMake(size.width, size.height+400);
+    sclView.contentSize = CGSizeMake(size.width, size.height+300);
     [self.view addSubview:sclView];
     //基础信息view
     UIView *baseinfo_view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width+1, 205)];
@@ -124,6 +127,7 @@
     
     baseinfo_telephone = [[UILabel alloc] initWithFrame:CGRectMake(baseinfo_title.frame.origin.x, baseinfo_line1.frame.origin.y+10, 300, 30)];
     //baseinfo_telephone.text = @"手机：15221966658";
+    baseinfo_telephone.font = NJNameFont;
     [baseinfo_view addSubview:baseinfo_telephone];
     
     UILabel *baseinfo_line2 = [[UILabel alloc] initWithFrame:CGRectMake(baseinfo_telephone.frame.origin.x, baseinfo_telephone.frame.origin.y+30+10, size.width, 0.5)];
@@ -131,7 +135,10 @@
     [baseinfo_view addSubview:baseinfo_line2];
     
     baseinfo_birthday = [[UILabel alloc] initWithFrame:CGRectMake(baseinfo_title.frame.origin.x, baseinfo_line2.frame.origin.y+10, 150, 30)];
-   // baseinfo_birthday.text = @"生日：1985-01-25";
+    
+    baseinfo_birthday.font = NJNameFont;
+    
+    // baseinfo_birthday.text = @"生日：1985-01-25";
     [baseinfo_view addSubview:baseinfo_birthday];
     
     UIButton *baseinfo_birthday_edit = [[UIButton alloc] initWithFrame:CGRectMake(baseinfo_birthday.frame.origin.x+baseinfo_birthday.frame.size.width+10, baseinfo_birthday.frame.origin.y+5, 20, 20)];
@@ -145,6 +152,9 @@
     [baseinfo_view addSubview:baseinfo_line3];
     
     baseinfo_sex = [[UILabel alloc] initWithFrame:CGRectMake(baseinfo_birthday.frame.origin.x, baseinfo_line3.frame.origin.y+10, 75, 30)];
+    
+    baseinfo_sex.font = NJNameFont;
+    
     //baseinfo_sex.text = @"性别：男";
     [baseinfo_view addSubview:baseinfo_sex];
     
@@ -318,8 +328,17 @@
             [idcard_view addSubview:id_card_title];
             [idcard_view addSubview:line];
             
-            NSString *real_name = [NSString stringWithFormat:@"真实姓名：%@",[userinfo objectForKey:@"real_name"]];
-            NSString *id_card = [NSString stringWithFormat:@"身份证号：%@",[userinfo objectForKey:@"id_card"]];
+            NSString *real_name_value = [userinfo objectForKey:@"real_name"];
+            
+            NSRange range0 = NSMakeRange(1, 1);
+            real_name_value = [real_name_value stringByReplacingCharactersInRange:range0 withString:@"*"];
+            NSString *real_name = [NSString stringWithFormat:@"真实姓名：%@",real_name_value];
+
+            NSString *id_card_value = [userinfo objectForKey:@"id_card"];
+
+            NSRange range1 = NSMakeRange(6, 8);
+            id_card_value = [id_card_value stringByReplacingCharactersInRange:range1 withString:@"********"];
+            NSString *id_card = [NSString stringWithFormat:@"身份证号：%@",id_card_value];
             NSString *idcard_time = [NSString stringWithFormat:@"有效期限：%@至%@",[userinfo objectForKey:@"id_card_start"],[userinfo objectForKey:@"id_card_end"]];
             NSArray *id_title_array = [[NSArray alloc] initWithObjects:real_name, id_card, idcard_time, nil];
             UILabel *title_array_label;
@@ -328,6 +347,7 @@
             for(int i=0;i<id_title_array.count;i++)
             {
                 title_array_label = [[UILabel alloc] initWithFrame:CGRectMake(62, id_card_y_size+60, size.width, 50)];
+                title_array_label.font = NJNameFont;
                 title_array_label.text = id_title_array[i];
                 card_title_line = [[UILabel alloc] initWithFrame:CGRectMake(62, id_card_y_size+110, size.width, 0.5)];
                 card_title_line.backgroundColor = [UIColor grayColor];
