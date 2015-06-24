@@ -11,6 +11,8 @@
 #import "GoodsListTableViewFrame.h"
 #import "CartTableViewController.h"
 #import "GoodsDetailViewController.h"
+#import "ConsignationFormViewController.h"
+#import "BuyTableViewController.h"
 #import "BWCommon.h"
 #import "MJRefresh.h"
 #import "AFNetworkTool.h"
@@ -258,20 +260,24 @@
     NSUInteger detail_id;
     detail_id = [[[dataArray objectAtIndex:[sender tag]] objectForKey:@"ent_id"] integerValue];
     
-    //加入购物车
-    
-    __weak GoodsListViewController *weakSelf = self;
-    
-    [self addToCart:detail_id callback:^{
-        
-        [weakSelf cartTouched:sender];
-    }];
-    
+    BuyTableViewController * buyTableViewController = [[BuyTableViewController alloc] init];
+    self.delegate = buyTableViewController;
+    [self.navigationController pushViewController:buyTableViewController animated:YES];
+    [self.delegate setValue:detail_id];
+
     
 }
 
 -(void) auctionButtonTouched:(UIButton *)sender{
     //NSLog(@"%ld",sender.tag);
+    
+    NSUInteger detail_id;
+    detail_id = [[[dataArray objectAtIndex:[sender tag]] objectForKey:@"ent_id"] integerValue];
+    
+    ConsignationFormViewController * consignationFormViewController = [[ConsignationFormViewController alloc] init];
+    self.delegate = consignationFormViewController;
+    [self.navigationController pushViewController:consignationFormViewController animated:YES];
+    [self.delegate setValue:detail_id];
 }
 
 -(void) cartTouched:(id)sender{
@@ -289,7 +295,15 @@
     
     //加入购物车
     
-    [self addToCart:detail_id callback:^{}];
+    __weak GoodsListViewController *weakSelf = self;
+    
+    [self addToCart:detail_id callback:^{
+        
+        CartTableViewController * cartViewController = [[CartTableViewController alloc] init];
+        weakSelf.delegate = cartViewController;
+        [weakSelf.navigationController pushViewController:cartViewController animated:YES];
+        [weakSelf.delegate setValue:detail_id];
+    }];
 }
 
 -(void) addToCart: (NSUInteger) ent_id callback:(void(^)()) callback{

@@ -38,4 +38,6 @@
 // 名称
 @property (nonatomic, weak) UILabel *nameLabel;
 
+@property (nonatomic, weak) UILabel *tipsLabel;
+
 @end

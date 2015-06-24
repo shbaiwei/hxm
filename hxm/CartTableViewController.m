@@ -8,6 +8,7 @@
 
 #import "CartTableViewController.h"
 
+#import "BuyTableViewController.h"
 #import "CartTableViewCell.h"
 #import "CartTableViewFrame.h"
 #import "BWCommon.h"
@@ -17,6 +18,9 @@
 @interface CartTableViewController ()
 
 @property (nonatomic, strong) NSArray *statusFrames;
+@property (nonatomic, retain) UIButton *btnCheckout;
+@property (nonatomic, retain) UILabel *priceLabel;
+@property (nonatomic, retain) UILabel *feeLabel;
 
 @end
 
@@ -49,10 +53,45 @@ NSUInteger ent_id;
     dataArray  = [[NSMutableArray alloc] init];
     
     
+    //加入
+    CGFloat width = self.view.frame.size.width;
+    UIButton *btnCheckout = [[UIButton alloc] initWithFrame:CGRectMake(width - 100, 20, 80, 40)];
+    btnCheckout.layer.cornerRadius = 5.0f;
+    [btnCheckout setTitle:@"结算" forState:UIControlStateNormal];
+    [btnCheckout setBackgroundColor:[UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1]];
+    
+    self.btnCheckout = btnCheckout;
+    [self.btnCheckout setHidden:YES];
+    
+    [btnCheckout addTarget:self action:@selector(checkoutTouched:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(width - 240, 22, 130, 20)];
+    [priceLabel setTextColor:[BWCommon getRedColor]];
+    priceLabel.textAlignment = NSTextAlignmentRight;
+    self.priceLabel = priceLabel;
+    
+    UILabel *feeLabel = [[UILabel alloc] initWithFrame:CGRectMake(width - 190, 42, 80, 20)];
+    feeLabel.font = [UIFont systemFontOfSize:14];
+    feeLabel.textAlignment = NSTextAlignmentRight;
+    [feeLabel setTextColor:[UIColor grayColor]];
+    self.feeLabel = feeLabel;
+    
+    
     [self loadData:^{}];
     
     [self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(headerRefreshing)];
     
+}
+
+- (void) checkoutTouched:(id) sender{
+   
+    
+    BuyTableViewController * buyTableViewController = [[BuyTableViewController alloc] init];
+    self.delegate = buyTableViewController;
+    [self.navigationController pushViewController:buyTableViewController animated:YES];
+    
+    NSLog(@"checkoutTouched    %ld",ent_id);
+    [self.delegate setValue:ent_id];
 }
 
 - (void) loadData:(void(^)()) callback
@@ -82,6 +121,27 @@ NSUInteger ent_id;
             
             NSLog(@"%@",dataArray);
             self.statusFrames = nil;
+            
+            if([dataArray count] == 1 ){
+                [self.btnCheckout setHidden:NO];
+                
+                //计算总价
+                float totalPrice = 0.0f;
+                for(NSInteger i=0;i<dataArray.count;i++){
+                    totalPrice += [[dataArray[i] objectForKey:@"quantity"] floatValue] * [[dataArray[i] objectForKey:@"sale_prc"] floatValue];
+                }
+                
+                [self.priceLabel setText:[NSString stringWithFormat:@"合计：¥ %.02f",totalPrice]];
+                [self.feeLabel setText:@"不含运费"];
+            }
+            else{
+                [self.btnCheckout setHidden:YES];
+                
+                [self.priceLabel setText:@""];
+                [self.feeLabel setText:@""];
+            }
+            
+
 
             [self.tableView reloadData];
             
@@ -178,14 +238,11 @@ NSUInteger ent_id;
     
     if(section==0)
     {
-        CGFloat width = self.view.frame.size.width;
-        //加入
-        UIButton *btnCheckout = [[UIButton alloc] initWithFrame:CGRectMake(width - 100, 20, 80, 40)];
-        btnCheckout.layer.cornerRadius = 5.0f;
-        [btnCheckout setTitle:@"结算" forState:UIControlStateNormal];
-        [btnCheckout setBackgroundColor:[UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1]];
- 
-        [myView addSubview: btnCheckout];
+
+        [myView addSubview: self.btnCheckout];
+        [myView addSubview:self.priceLabel];
+        [myView addSubview:self.feeLabel];
+        
         
         //UILabel *subtotalLabel = UILabel
 

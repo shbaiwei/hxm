@@ -25,6 +25,8 @@
 
 @property (nonatomic, assign) CGRect priceF;
 
+@property (nonatomic, assign) CGRect tipsF;
+
 @property (nonatomic, assign) CGRect buyButtonF;
 @property (nonatomic, assign) CGRect auctionButtonF;
 

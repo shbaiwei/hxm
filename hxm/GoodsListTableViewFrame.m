@@ -43,7 +43,7 @@
     
     CGFloat priceY = levelY + 20 + padding;
     if(size.width>320){
-        self.merchantF = CGRectMake(limitX+70+padding/2, levelY, 70, 20);
+        self.merchantF = CGRectMake(limitX+70+padding/2, levelY, 76, 20);
     }
     else{
         priceY += 20;
@@ -52,10 +52,14 @@
 
     self.priceF = CGRectMake(nameX, priceY, 60, 20);
     
-    self.buyButtonF = CGRectMake(size.width-50, 16, 50, 70);
-    self.auctionButtonF = CGRectMake(size.width-50, 86, 50, 70);
+    CGSize tipsSize = [self sizeWithString:@"同品种同等级产品剩余：枝" font:NJNameFont maxSize:CGSizeMake(230, MAXFLOAT)];
+    CGFloat tipsY = priceY + 20 + padding;
+    self.tipsF = CGRectMake(nameX, tipsY, tipsSize.width, tipsSize.height);
     
-    self.cartButtonF = CGRectMake(size.width-98, 114, 32, 32);
+    self.buyButtonF = CGRectMake(size.width-46, 16, 46, 70);
+    self.auctionButtonF = CGRectMake(size.width-46, 86, 46, 70);
+    
+    self.cartButtonF = CGRectMake(size.width-98, 106, 32, 32);
     
     self.cellHeight =  140+16;
     

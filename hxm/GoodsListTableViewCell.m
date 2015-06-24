@@ -10,7 +10,7 @@
 #import "GoodsListTableViewFrame.h"
 #import "BWCommon.h"
 
-#define NJPriceFont [UIFont systemFontOfSize:16]
+#define NJPriceFont [UIFont systemFontOfSize:18]
 #define NJNameFont [UIFont systemFontOfSize:14]
 #define NJTextFont [UIFont systemFontOfSize:12]
 
@@ -164,6 +164,12 @@
         [self.contentView addSubview:priceLabel];
         priceLabel.font = NJPriceFont;
         [priceLabel setTextColor:[UIColor colorWithRed:219/255.0f green:0/255.0f blue:0/255.0f alpha:1]];
+        
+        UILabel *tipsLabel = [[UILabel alloc] init];
+        self.tipsLabel = tipsLabel;
+        [self.contentView addSubview:tipsLabel];
+        tipsLabel.font = [UIFont systemFontOfSize:12];
+        [tipsLabel setTextColor:[UIColor colorWithRed:160/255.0f green:160/255.0f blue:160/255.0f alpha:1]];
 
         
         UIButton *cartButton = [[UIButton alloc] init];
@@ -256,6 +262,7 @@
     self.merchantLabel.text = [data objectForKey:@"seller_name"];
     self.priceLabel.text = [NSString stringWithFormat:@"¥%@", [data objectForKey:@"sale_prc"]];
     self.limitLabel.text = [data objectForKey:@"ent_num"];
+    self.tipsLabel.text = @"同品种同等级产品剩余：枝";
 
     
 }
@@ -279,6 +286,8 @@
     
     self.buyButton.frame = self.viewFrame.buyButtonF;
     self.auctionButton.frame = self.viewFrame.auctionButtonF;
+    
+    self.tipsLabel.frame = self.viewFrame.tipsF;
     
     self.cartButton.frame = self.viewFrame.cartButtonF;
     

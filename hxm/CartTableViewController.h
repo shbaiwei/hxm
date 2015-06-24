@@ -19,5 +19,6 @@ DetailDelegate
 }
 
 @property (nonatomic,retain) NSMutableArray *dataArray;
+@property (nonatomic,assign) id<DetailDelegate> delegate;
 
 @end
