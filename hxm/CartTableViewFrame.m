@@ -54,7 +54,7 @@
     CGFloat quantity2Y = quantityY;
     self.quantity2F = CGRectMake(quantity2X, quantity2Y, quantity2Size.width, 20);
     
-    float subtotal = [[data objectForKey:@"quantity"] integerValue] * [[data objectForKey:@"sale_prc"] floatValue];
+    float subtotal = [[data objectForKey:@"quantity"] integerValue] * [[data objectForKey:@"ent_num"] integerValue]  * [[data objectForKey:@"sale_prc"] floatValue];
     
     CGSize subtotalSize =[self sizeWithString:[NSString stringWithFormat:@"小计：%0.2f",subtotal] font:NJNameFont maxSize:CGSizeMake(160, MAXFLOAT)];
     CGFloat subtotalX = size.width-padding - subtotalSize.width;

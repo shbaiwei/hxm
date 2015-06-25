@@ -200,10 +200,17 @@
                 
             }
             
-            NSLog(@"%@",dataArray);
+            NSLog(@"%@",[responseObject objectForKey:@"data"]);
             self.statusFrames = nil;
             
-            [tableview reloadData];
+            [self.tableview reloadData];
+            
+           /* __weak OrderViewController *weakSelf = self;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+            });
+            */
+            
             
             if(callback){
                 callback();

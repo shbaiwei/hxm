@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 Bruce. All rights reserved.
 //
 
-#import "ConsignationTableViewCell.h"
-#import "ConsignationTableViewFrame.h"
+#import "AuctionTableViewCell.h"
+#import "AuctionTableViewFrame.h"
 #import "BWCommon.h"
 
 
@@ -15,7 +15,7 @@
 #define NJTextFont [UIFont systemFontOfSize:12]
 #define NJStatusFont [UIFont systemFontOfSize:10]
 
-@implementation ConsignationTableViewCell
+@implementation AuctionTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -23,7 +23,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -35,12 +35,12 @@
 }
 
 + (instancetype)cellWithTableView:(UITableView *)tableView{
-
+    
     static NSString *identifier = @"status";
-    ConsignationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    AuctionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         
-        cell = [[ConsignationTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[AuctionTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     return cell;
 }
@@ -150,7 +150,7 @@
     return size;
 }
 
-- (void)setViewFrame:(ConsignationTableViewFrame *)viewFrame
+- (void)setViewFrame:(AuctionTableViewFrame *)viewFrame
 {
     _viewFrame = viewFrame;
     
@@ -167,13 +167,10 @@
 {
     
     NSDictionary *data = self.viewFrame.data;
-
+    
     NSString *image_url = [data objectForKey:@"img1"];
     
-    //[self.imageView sd_setImageWithURL:[NSURL URLWithString:image_url]];
-    //[self.imageView sd_setImageWithURL:[NSURL URLWithString:image_url] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageProgressiveDownload];
-    
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:image_url] placeholderImage:[UIImage imageNamed:@"icon.png"] options:SDWebImageCacheMemoryOnly];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:image_url]];
     
     self.priceValue.text = [NSString stringWithFormat:@"¥ %@",[data objectForKey:@"price"]];
     self.inValue.text = [data objectForKey:@"ent_num"];
@@ -203,8 +200,8 @@
     
     self.inRowView.frame = self.viewFrame.inRowF;
     self.packRowView.frame = self.viewFrame.packRowF;
-
-
+    
+    
     
 }
 

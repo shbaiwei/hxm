@@ -178,10 +178,10 @@
     
     self.nameLabel.text = [data objectForKey:@"goods_cd"];
     
-    self.quantityLabel.text =[NSString stringWithFormat:@"%@支", [data objectForKey:@"quantity"]];
+    self.quantityLabel.text =[NSString stringWithFormat:@"%@支", [data objectForKey:@"ent_num"]];
     self.quantity2Label.text =[NSString stringWithFormat:@"X%@", [data objectForKey:@"quantity"]];
     
-    float subtotal = [[data objectForKey:@"quantity"] integerValue] * [[data objectForKey:@"sale_prc"] floatValue];
+    float subtotal = [[data objectForKey:@"quantity"] integerValue] * [[data objectForKey:@"ent_num"] integerValue] * [[data objectForKey:@"sale_prc"] floatValue];
     self.subtotalLabel.text =[NSString stringWithFormat:@"小计：%0.2f", subtotal];
 
     self.priceLabel.text = [NSString stringWithFormat:@"¥%@", [data objectForKey:@"sale_prc"]];

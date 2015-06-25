@@ -1,8 +1,8 @@
 //
-//  ConsignationTableViewController.h
+//  AuctionTableViewController.h
 //  hxm
 //
-//  Created by Bruce on 15-6-2.
+//  Created by Bruce He on 15/6/25.
 //  Copyright (c) 2015年 Bruce. All rights reserved.
 //
 
@@ -10,13 +10,11 @@
 #import "MBProgressHUD.h"
 #import "DetailDelegate.h"
 
-
-@interface ConsignationTableViewController : UITableViewController
+@interface AuctionTableViewController : UITableViewController
 <MBProgressHUDDelegate>
 {
     MBProgressHUD *hud;
 }
-
 @property (nonatomic, retain) NSMutableArray *dataArray;
 
 @property (nonatomic,assign) id<DetailDelegate> delegate;

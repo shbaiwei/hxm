@@ -6,22 +6,22 @@
 //  Copyright (c) 2015年 Bruce. All rights reserved.
 //
 
-#import "ConsignationTableViewController.h"
-#import "ConsignationTableViewFrame.h"
-#import "ConsignationTableViewCell.h"
-#import "ConsignationDetailViewController.h"
+#import "AuctionTableViewController.h"
+#import "AuctionTableViewFrame.h"
+#import "AuctionTableViewCell.h"
+//#import "AuctionDetailViewController.h"
 #import "BWCommon.h"
 #import "MJRefresh.h"
 #import "AFNetworkTool.h"
 
-@interface ConsignationTableViewController ()
+@interface AuctionTableViewController ()
 
 @property (nonatomic, strong) NSArray *statusFrames;
 @property (nonatomic,assign) NSUInteger gpage;
 
 @end
 
-@implementation ConsignationTableViewController
+@implementation AuctionTableViewController
 
 @synthesize dataArray;
 
@@ -43,7 +43,7 @@
     self.view.backgroundColor = [BWCommon getBackgroundColor];
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    self.navigationItem.title = @"委托记录";
+    self.navigationItem.title = @"拍卖顺序";
     
     [self refreshingData:1 callback:^{}];
     
@@ -61,7 +61,7 @@
         
         for (NSDictionary *dict in dataArray) {
             // 创建模型
-            ConsignationTableViewFrame *vf = [[ConsignationTableViewFrame alloc] init];
+            AuctionTableViewFrame *vf = [[AuctionTableViewFrame alloc] init];
             vf.data = dict;
             [models addObject:vf];
         }
@@ -84,12 +84,16 @@
     hud.delegate=self;
     
     
-    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"delegation/queryDelegations"];
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"auction/queryAuctions"];
     
-    NSMutableDictionary *postData = [BWCommon getTokenData:@"delegation/queryDelegations"];
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"auction/queryAuctions"];
     
     [postData setValue:@"10" forKey:@"pageSize"];
-    [postData setValue:[NSString stringWithFormat:@"%ld",self.gpage] forKey:@"DelegationEntry_page"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",self.gpage] forKey:@"AuctionEntry_page"];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+
+
     
     
     NSLog(@"%@",url);
@@ -117,7 +121,7 @@
             NSLog(@"%@",dataArray);
             self.statusFrames = nil;
             
-            [self.tableView reloadData];
+            //[self.tableView reloadData];
             
             if(callback){
                 callback();
@@ -128,11 +132,18 @@
         else
         {
             NSLog(@"%@",[responseObject objectForKey:@"error"]);
+            
+            [alert setMessage:[responseObject objectForKey:@"error"]];
+            [alert show];
+            
+            [self.navigationController popViewControllerAnimated:YES];
         }
         
     } fail:^{
         [hud removeFromSuperview];
         NSLog(@"请求失败");
+        [alert setMessage:@"连接超时，请重试"];
+        [alert show];
     }];
     
     
@@ -162,7 +173,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    
     // Return the number of rows in the section.
     return [self.dataArray count];
 }
@@ -170,7 +181,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    ConsignationTableViewCell *cell = [[ConsignationTableViewCell alloc] init];
+    AuctionTableViewCell *cell = [[AuctionTableViewCell alloc] init];
     cell.viewFrame = self.statusFrames[indexPath.row];
     
     return cell;
@@ -181,7 +192,7 @@
 {
     // NSLog(@"heightForRowAtIndexPath");
     // 取出对应航的frame模型
-    ConsignationTableViewFrame *vf = self.statusFrames[indexPath.row];
+    AuctionTableViewFrame *vf = self.statusFrames[indexPath.row];
     NSLog(@"height = %f", vf.cellHeight);
     return vf.cellHeight;
 }
@@ -190,7 +201,7 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    NSUInteger detail_id;
+    /*NSUInteger detail_id;
     detail_id = [[[dataArray objectAtIndex:[indexPath row]] objectForKey:@"id"] integerValue];
     
     ConsignationDetailViewController *detailViewController = [[ConsignationDetailViewController alloc] init];
@@ -199,6 +210,7 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
     [self.delegate setValue:detail_id];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+     */
 }
 
 

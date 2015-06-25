@@ -11,6 +11,7 @@
 #import "GoodsTableViewCell.h"
 #import "GoodsListViewController.h"
 #import "ConsignationTableViewController.h"
+#import "AuctionTableViewController.h"
 
 @interface GoodsViewController ()
 
@@ -185,6 +186,9 @@
     }
     else if(row==2){
         //拍卖顺序
+        AuctionTableViewController *consignationViewController = [[AuctionTableViewController alloc] init];
+        consignationViewController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:consignationViewController animated:YES];
         
     }
     

@@ -50,6 +50,10 @@ NSUInteger ent_id;
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     self.navigationItem.title = @"购物车";
     
+    
+
+    
+    
     dataArray  = [[NSMutableArray alloc] init];
     
     
@@ -82,6 +86,8 @@ NSUInteger ent_id;
     [self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(headerRefreshing)];
     
 }
+
+
 
 - (void) checkoutTouched:(id) sender{
    
@@ -128,7 +134,7 @@ NSUInteger ent_id;
                 //计算总价
                 float totalPrice = 0.0f;
                 for(NSInteger i=0;i<dataArray.count;i++){
-                    totalPrice += [[dataArray[i] objectForKey:@"quantity"] floatValue] * [[dataArray[i] objectForKey:@"sale_prc"] floatValue];
+                    totalPrice += [[dataArray[i] objectForKey:@"quantity"] floatValue] * [[dataArray[i] objectForKey:@"ent_num"] floatValue] * [[dataArray[i] objectForKey:@"sale_prc"] floatValue];
                 }
                 
                 [self.priceLabel setText:[NSString stringWithFormat:@"合计：¥ %.02f",totalPrice]];

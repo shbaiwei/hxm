@@ -9,6 +9,7 @@
 #import "BuyTableViewController.h"
 #import "BuyTableViewCell.h"
 #import "BuyTableViewFrame.h"
+#import "OrderDetailViewController.h"
 #import "BWCommon.h"
 #import "MJRefresh.h"
 #import "AFNetworkTool.h"
@@ -50,9 +51,9 @@ NSUInteger addressIndex;
     backItem.title=@"";
     backItem.image=[UIImage imageNamed:@""];
     self.navigationItem.backBarButtonItem=backItem;
+
     
-    
-    
+
     //CGRect rect = [[UIScreen mainScreen] bounds];
     //CGSize size = rect.size;
     
@@ -78,6 +79,8 @@ NSUInteger addressIndex;
     [self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(headerRefreshing)];
     
 }
+
+
 
 - (void) headerRefreshing{
     
@@ -259,9 +262,21 @@ NSUInteger addressIndex;
         {
             NSDictionary * data = [responseObject objectForKey:@"data"];
             
+             NSString *order_no = [data objectForKey:@"order_no"];
+            
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-            [alert setMessage:[NSString stringWithFormat:@"订单创建成功，订单号：%@",[data objectForKey:@"order_no"]]];
+            [alert setMessage:[NSString stringWithFormat:@"订单创建成功，订单号：%@",order_no]];
             [alert show];
+            
+           
+            OrderDetailViewController *detailViewController = [[OrderDetailViewController alloc] init];
+            
+            self.delegate = detailViewController;
+            [self.navigationController pushViewController:detailViewController animated:YES];
+            [self.delegate setValue:order_no];
+            
+
+            
             
             if(callback){
                 callback();
@@ -448,9 +463,10 @@ NSUInteger addressIndex;
 }
 
 -(void) confirmTouched:(id) sender{
-
+    
+    
     [self createOrder:^{
-        [self.navigationController popViewControllerAnimated:YES];
+        
     }];
 }
 

@@ -186,8 +186,14 @@
     
     NSString *image_url = [photos objectAtIndex:0];
     
+    image_url = [NSString stringWithFormat:@"%@?%@",image_url,[data objectForKey:@"order_no"]];
+    NSLog(@"%@",image_url);
     
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:image_url]];
+    //[self.imageView sd_setImageWithURL:[NSURL URLWithString:image_url]];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:image_url] placeholderImage:[UIImage imageNamed:@"icon.png"] options:SDWebImageCacheMemoryOnly];
+    
+    //[self.imageView setImageWithURL:[NSURL URLWithString:image_url]];
+
     //[self.imageView setImage:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image_url]]]];
     
     //CGSize itemSize = CGSizeMake(90, 90);

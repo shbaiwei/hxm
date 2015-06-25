@@ -29,6 +29,11 @@
 		321B0E571B14807C004D5827 /* user-icon5.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B0E4F1B14807C004D5827 /* user-icon5.png */; };
 		321B0E581B14807C004D5827 /* user-icon6.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B0E501B14807C004D5827 /* user-icon6.png */; };
 		321B0E591B14807C004D5827 /* user-icon7.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B0E511B14807C004D5827 /* user-icon7.png */; };
+		3223FB601B3BC5B300392039 /* ConsignationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3223FB5F1B3BC5B300392039 /* ConsignationDetailViewController.m */; };
+		3223FB631B3BCC7D00392039 /* AuctionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3223FB621B3BCC7D00392039 /* AuctionTableViewController.m */; };
+		3223FB661B3BCCBD00392039 /* AuctionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3223FB651B3BCCBD00392039 /* AuctionTableViewCell.m */; };
+		3223FB681B3BCCD200392039 /* AuctionTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3223FB671B3BCCD200392039 /* AuctionTableViewFrame.m */; };
+		3223FB6C1B3BE07900392039 /* LDXScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3223FB6B1B3BE07900392039 /* LDXScore.m */; };
 		3227EAED1B19E44D00AC34B8 /* GoodsListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3227EAEC1B19E44D00AC34B8 /* GoodsListTableViewController.m */; };
 		3227EAF11B19E67100AC34B8 /* GoodsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3227EAF01B19E67100AC34B8 /* GoodsListTableViewCell.m */; };
 		3227EAF31B19E68B00AC34B8 /* GoodsListTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3227EAF21B19E68B00AC34B8 /* GoodsListTableViewFrame.m */; };
@@ -182,6 +187,16 @@
 		321B0E4F1B14807C004D5827 /* user-icon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-icon5.png"; sourceTree = "<group>"; };
 		321B0E501B14807C004D5827 /* user-icon6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-icon6.png"; sourceTree = "<group>"; };
 		321B0E511B14807C004D5827 /* user-icon7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-icon7.png"; sourceTree = "<group>"; };
+		3223FB5E1B3BC5B300392039 /* ConsignationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsignationDetailViewController.h; sourceTree = "<group>"; };
+		3223FB5F1B3BC5B300392039 /* ConsignationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsignationDetailViewController.m; sourceTree = "<group>"; };
+		3223FB611B3BCC7D00392039 /* AuctionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuctionTableViewController.h; sourceTree = "<group>"; };
+		3223FB621B3BCC7D00392039 /* AuctionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuctionTableViewController.m; sourceTree = "<group>"; };
+		3223FB641B3BCCBD00392039 /* AuctionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuctionTableViewCell.h; sourceTree = "<group>"; };
+		3223FB651B3BCCBD00392039 /* AuctionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuctionTableViewCell.m; sourceTree = "<group>"; };
+		3223FB671B3BCCD200392039 /* AuctionTableViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuctionTableViewFrame.m; sourceTree = "<group>"; };
+		3223FB691B3BCCDE00392039 /* AuctionTableViewFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuctionTableViewFrame.h; sourceTree = "<group>"; };
+		3223FB6A1B3BE07900392039 /* LDXScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDXScore.h; sourceTree = "<group>"; };
+		3223FB6B1B3BE07900392039 /* LDXScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDXScore.m; sourceTree = "<group>"; };
 		3227EAEB1B19E44D00AC34B8 /* GoodsListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsListTableViewController.h; sourceTree = "<group>"; };
 		3227EAEC1B19E44D00AC34B8 /* GoodsListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsListTableViewController.m; sourceTree = "<group>"; };
 		3227EAEF1B19E67100AC34B8 /* GoodsListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsListTableViewCell.h; sourceTree = "<group>"; };
@@ -497,6 +512,10 @@
 				32AB9B5C1B3AB43F00B12107 /* ConsignationFormViewController.m */,
 				32AB9B5E1B3AC3F200B12107 /* BuyTableViewController.h */,
 				32AB9B5F1B3AC3F200B12107 /* BuyTableViewController.m */,
+				3223FB5E1B3BC5B300392039 /* ConsignationDetailViewController.h */,
+				3223FB5F1B3BC5B300392039 /* ConsignationDetailViewController.m */,
+				3223FB611B3BCC7D00392039 /* AuctionTableViewController.h */,
+				3223FB621B3BCC7D00392039 /* AuctionTableViewController.m */,
 			);
 			name = Goods;
 			sourceTree = "<group>";
@@ -520,6 +539,10 @@
 				32AB9B621B3AC48700B12107 /* BuyTableViewCell.m */,
 				32AB9B661B3AC4BC00B12107 /* BuyTableViewFrame.h */,
 				32AB9B641B3AC4A900B12107 /* BuyTableViewFrame.m */,
+				3223FB641B3BCCBD00392039 /* AuctionTableViewCell.h */,
+				3223FB651B3BCCBD00392039 /* AuctionTableViewCell.m */,
+				3223FB691B3BCCDE00392039 /* AuctionTableViewFrame.h */,
+				3223FB671B3BCCD200392039 /* AuctionTableViewFrame.m */,
 			);
 			name = Goods;
 			sourceTree = "<group>";
@@ -546,6 +569,8 @@
 				6FE330031B19E39A00BE3B8F /* MyAddressTableViewFrame.m */,
 				6FE330051B19E3FB00BE3B8F /* MyAddressTableViewCell.h */,
 				6FE330061B19E3FB00BE3B8F /* MyAddressTableViewCell.m */,
+				3223FB6A1B3BE07900392039 /* LDXScore.h */,
+				3223FB6B1B3BE07900392039 /* LDXScore.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1005,7 +1030,9 @@
 				6F85EFEB1B16E47F008C101B /* MyContactWayViewController.m in Sources */,
 				32A48DF51B205F00000A44A0 /* OrderCommentViewController.m in Sources */,
 				323EE90D1AF8F57D00C55306 /* main.m in Sources */,
+				3223FB6C1B3BE07900392039 /* LDXScore.m in Sources */,
 				3214A87F1B04F920007DE10F /* RegisterViewController.m in Sources */,
+				3223FB631B3BCC7D00392039 /* AuctionTableViewController.m in Sources */,
 				6FE330071B19E3FB00BE3B8F /* MyAddressTableViewCell.m in Sources */,
 				32AAD6AE1B1AE488008C3306 /* GoodsListViewController.m in Sources */,
 				6FCBFE2D1B19B5A800537CC6 /* MyAfterSaleTableViewCell.m in Sources */,
@@ -1014,11 +1041,14 @@
 				3227EAF11B19E67100AC34B8 /* GoodsListTableViewCell.m in Sources */,
 				32A48DF81B20672B000A44A0 /* OrderNoteViewController.m in Sources */,
 				32502BB11B24557700C9AB9C /* CartTableViewCell.m in Sources */,
+				3223FB661B3BCCBD00392039 /* AuctionTableViewCell.m in Sources */,
 				32A48DED1B2032AF000A44A0 /* UIView+XCMultiSortTableView.m in Sources */,
 				6F85EFF11B16E509008C101B /* MyPasswordViewController.m in Sources */,
+				3223FB681B3BCCD200392039 /* AuctionTableViewFrame.m in Sources */,
 				32AB9B651B3AC4A900B12107 /* BuyTableViewFrame.m in Sources */,
 				32502BA51B242D9000C9AB9C /* FinanceDetailViewController.m in Sources */,
 				3272D63F1B1DB7EC007DBF31 /* ConsignationTableViewController.m in Sources */,
+				3223FB601B3BC5B300392039 /* ConsignationDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 #import "DetailDelegate.h"
+#import "OrderDetailDelegate.h"
 
 @interface BuyTableViewController : UITableViewController
 <MBProgressHUDDelegate,
@@ -18,4 +19,5 @@ DetailDelegate
     MBProgressHUD *hud;
 }
 
+@property (nonatomic,assign) id<OrderDetailDelegate> delegate;
 @end

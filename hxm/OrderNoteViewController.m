@@ -19,6 +19,7 @@
 @implementation OrderNoteViewController
 
 NSString *order_no;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -78,6 +79,8 @@ NSString *order_no;
     
     
 }
+
+
 
 - (void) buttonTouched:(id)sender{
     

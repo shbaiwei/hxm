@@ -8,6 +8,7 @@
 
 #import "OrderDetailViewController.h"
 #import "OrderCommentViewController.h"
+#import "OrderNoteViewController.h"
 #import "BWCommon.h"
 #import "MJRefresh.h"
 #import "AFNetworkTool.h"
@@ -21,6 +22,7 @@
 @property (nonatomic,weak) UILabel * orderStatusValue;
 @property (nonatomic,weak) UILabel * orderAddressValue;
 @property (nonatomic,weak) UILabel * trackerValue;
+@property (nonatomic,weak) UIButton * payButton;
 
 @property (nonatomic,retain) XCMultiTableView * tableView;
 
@@ -39,8 +41,24 @@ NSMutableArray *rightTableData;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
     
     [self pageLayout];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    
+    
+    //快速清理堆栈
+    NSMutableArray *navigationArray = [[NSMutableArray alloc] initWithArray: self.navigationController.viewControllers];
+    
+    NSInteger i = [navigationArray count];
+    i-=2;
+    while (i>0) {
+        [navigationArray removeObjectAtIndex:i];
+        i--;
+    }
+    self.navigationController.viewControllers = navigationArray;
 }
 
 - (void) pageLayout{
@@ -54,6 +72,10 @@ NSMutableArray *rightTableData;
     backItem.title=@"";
     backItem.image=[UIImage imageNamed:@""];
     self.navigationItem.backBarButtonItem=backItem;
+    
+    [self.navigationItem.backBarButtonItem setTarget:self];
+    [self.navigationItem.backBarButtonItem setAction:@selector(backTouched:)];
+
     
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = rect.size;
@@ -126,6 +148,17 @@ NSMutableArray *rightTableData;
     [statusView addSubview:orderStatusValue];
     [orderView addSubview:statusView];
     
+    
+    UIButton *payButton = [self coloredButton:@"去付款" bgColor:[UIColor colorWithRed:219/255.0f green:0/255.0f blue:0/255.0f alpha:1]];
+    payButton.frame = CGRectMake(size.width - 90, 61, 80, 30);
+    self.payButton = payButton;
+    [payButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [orderView addSubview:payButton];
+    [payButton setHidden:YES];
+    
+    [payButton addTarget:self action:@selector(payTouched:) forControlEvents:UIControlEventTouchUpInside];
+
+    
     //收货地址
     UIView *addressView = [self createRow:@"收货地址："];
     addressView.frame = CGRectMake(0, 102, size.width, 80);
@@ -196,6 +229,7 @@ NSMutableArray *rightTableData;
     //[actionView addSubview:trackerButton];
     
     [commentButton addTarget:self action:@selector(commentButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [noteButton addTarget:self action:@selector(noteButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
     
     
     NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[commentButton(<=90)]-[noteButton(<=90)]-[complainButton(<=90)]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentButton,noteButton,complainButton)];
@@ -221,6 +255,74 @@ NSMutableArray *rightTableData;
     
 }
 
+- (void) payTouched: (id) sender{
+ 
+    __weak OrderDetailViewController *weakSelf = self;
+    [self payOrder:order_no callback:^{
+        [weakSelf loadData:order_no callback:^{}];
+    }];
+}
+
+- (void) payOrder:(NSString *) order_no callback:(void(^)()) callback{
+    
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
+    
+    
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"order/pay"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"order/pay"];
+    
+    [postData setValue:order_no forKey:@"order_no"];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    
+    
+    NSLog(@"%@",order_no);
+    //load data
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        [hud removeFromSuperview];
+        if(errNo == 0)
+        {
+            
+            NSLog(@"%@",[responseObject objectForKey:@"data"]);
+            [alert setMessage:[NSString stringWithFormat:@"订单号：%@ 支付成功！",order_no]];
+            [alert show];
+            if(callback){
+                callback();
+            }
+            
+            //NSLog(@"%@",json);
+        }
+        else
+        {
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+            
+            [alert setMessage:[responseObject objectForKey:@"error"]];
+            [alert show];
+        }
+        
+    } fail:^{
+        [hud removeFromSuperview];
+        NSLog(@"请求失败");
+        [alert setMessage:@"连接超时，请重试"];
+        [alert show];
+    }];
+    
+    
+}
+
+-(void) backTouched: (id) sender{
+    
+    NSLog(@"backTouched!!!!!!!!");
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+}
+
+
 - (void) commentButtonTouched:(id) sender{
     
     OrderCommentViewController * commentViewController = [[OrderCommentViewController alloc] init];
@@ -231,6 +333,18 @@ NSMutableArray *rightTableData;
     
     [self.delegate setValue:order_no];
     
+}
+
+
+- (void) noteButtonTouched:(id) sender{
+    
+    OrderNoteViewController * noteViewController = [[OrderNoteViewController alloc] init];
+    self.delegate = noteViewController;
+    noteViewController.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:noteViewController animated:YES];
+    
+    [self.delegate setValue:order_no];
 }
 
 - (void) setValue:(NSString *)detailValue{
@@ -316,7 +430,12 @@ NSMutableArray *rightTableData;
     self.orderFeeValue.text = [NSString stringWithFormat:@"¥ %@",[data objectForKey:@"order_fee"]];
     
     self.orderTimeValue.text = [data objectForKey:@"create_time"];
-    self.orderStatusValue.text = [data objectForKey:@"status"];
+    self.orderStatusValue.text = [data objectForKey:@"status_cn"];
+    
+    NSUInteger status = [[data objectForKey:@"status"]integerValue];
+    
+    if(status == 1)
+        [self.payButton setHidden:NO];
     
     NSString *address = [data objectForKey:@"address"];
     
@@ -485,6 +604,22 @@ NSMutableArray *rightTableData;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+-(UIButton *) coloredButton: (NSString *) title bgColor : (UIColor *) bgColor {
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    [button.layer setMasksToBounds:YES];
+    [button.layer setCornerRadius:5.0];
+    //button.translatesAutoresizingMaskIntoConstraints = NO;
+    button.backgroundColor = bgColor;
+    button.tintColor = [UIColor whiteColor];
+    button.titleLabel.font = [UIFont systemFontOfSize:16];
+    [button setTitle:title forState:UIControlStateNormal];
+    return button;
+}
+
 
 /*
 #pragma mark - Navigation

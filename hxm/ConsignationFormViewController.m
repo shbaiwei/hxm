@@ -115,6 +115,7 @@ NSUInteger detail_id;
     
 }
 
+
 -(void) confirmTouched:(id)sender{
     
     NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"delegation/addDelegation"];
