@@ -383,8 +383,26 @@
         case 1: //eidt birthday
         {
             //NSDate *toDate = [[NSData alloc] initwith];
-            
-            NSLog(@"edit birthday");
+            UIAlertController* alertVc=[UIAlertController alertControllerWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n" message:nil preferredStyle:(UIAlertControllerStyleActionSheet)];
+            UIDatePicker* datePicker=[[UIDatePicker alloc]init];
+            datePicker.datePickerMode = UIDatePickerModeDate;
+            UIAlertAction* ok=[UIAlertAction actionWithTitle:@"确认" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) {
+                NSDate* date=[datePicker date];
+                NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
+                [formatter setDateFormat:@"yyyy-MM-dd"];
+                NSString* curentDatest=[formatter stringFromDate:date];
+                NSLog(@"%@",curentDatest);
+                
+                
+                //date=curentDatest;
+                //[self.tableView reloadData];
+            }];
+            UIAlertAction* no=[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:nil];
+            [alertVc.view addSubview:datePicker];
+            [alertVc addAction:ok];
+            [alertVc addAction:no];
+            [self presentViewController:alertVc animated:YES completion:nil];
+             NSLog(@"edit birthday");
             break;
         }
         case 2: //edit sex
@@ -455,6 +473,7 @@
             break;
     }
 }
+
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -558,5 +577,6 @@
         NSLog(@"请求失败");
     }];
 }
+
 
 @end
