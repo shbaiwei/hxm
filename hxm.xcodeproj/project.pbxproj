@@ -121,6 +121,9 @@
 		32AB9B601B3AC3F200B12107 /* BuyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AB9B5F1B3AC3F200B12107 /* BuyTableViewController.m */; };
 		32AB9B631B3AC48700B12107 /* BuyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AB9B621B3AC48700B12107 /* BuyTableViewCell.m */; };
 		32AB9B651B3AC4A900B12107 /* BuyTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AB9B641B3AC4A900B12107 /* BuyTableViewFrame.m */; };
+		32C832211B3D376E00CCAE8B /* MyNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C832201B3D376E00CCAE8B /* MyNewViewController.m */; };
+		32C832241B3D510000CCAE8B /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C832231B3D510000CCAE8B /* MyTableViewCell.m */; };
+		32C832261B3D511300CCAE8B /* MyTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C832251B3D511300CCAE8B /* MyTableViewFrame.m */; };
 		32D3D9891B03B2AE00B50967 /* AFNetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D3D9851B03B2AE00B50967 /* AFNetworkTool.m */; };
 		32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D3D9871B03B2AE00B50967 /* BWCommon.m */; };
 		6F57A9EC1B1BF986001530C7 /* MyAddressEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57A9EB1B1BF986001530C7 /* MyAddressEditViewController.m */; };
@@ -327,6 +330,12 @@
 		32AB9B621B3AC48700B12107 /* BuyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyTableViewCell.m; sourceTree = "<group>"; };
 		32AB9B641B3AC4A900B12107 /* BuyTableViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyTableViewFrame.m; sourceTree = "<group>"; };
 		32AB9B661B3AC4BC00B12107 /* BuyTableViewFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyTableViewFrame.h; sourceTree = "<group>"; };
+		32C8321F1B3D376E00CCAE8B /* MyNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNewViewController.h; sourceTree = "<group>"; };
+		32C832201B3D376E00CCAE8B /* MyNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNewViewController.m; sourceTree = "<group>"; };
+		32C832221B3D510000CCAE8B /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
+		32C832231B3D510000CCAE8B /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
+		32C832251B3D511300CCAE8B /* MyTableViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewFrame.m; sourceTree = "<group>"; };
+		32C832271B3D512000CCAE8B /* MyTableViewFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewFrame.h; sourceTree = "<group>"; };
 		32D3D9841B03B2AE00B50967 /* AFNetworkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkTool.h; sourceTree = "<group>"; };
 		32D3D9851B03B2AE00B50967 /* AFNetworkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkTool.m; sourceTree = "<group>"; };
 		32D3D9861B03B2AE00B50967 /* BWCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWCommon.h; sourceTree = "<group>"; };
@@ -571,6 +580,10 @@
 				6FE330061B19E3FB00BE3B8F /* MyAddressTableViewCell.m */,
 				3223FB6A1B3BE07900392039 /* LDXScore.h */,
 				3223FB6B1B3BE07900392039 /* LDXScore.m */,
+				32C832221B3D510000CCAE8B /* MyTableViewCell.h */,
+				32C832231B3D510000CCAE8B /* MyTableViewCell.m */,
+				32C832271B3D512000CCAE8B /* MyTableViewFrame.h */,
+				32C832251B3D511300CCAE8B /* MyTableViewFrame.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -667,6 +680,8 @@
 				3214A87E1B04F920007DE10F /* RegisterViewController.m */,
 				323C30E61B0B90A400D0B8D0 /* OrderViewController.h */,
 				323C30E71B0B90A400D0B8D0 /* OrderViewController.m */,
+				32C8321F1B3D376E00CCAE8B /* MyNewViewController.h */,
+				32C832201B3D376E00CCAE8B /* MyNewViewController.m */,
 				325A8A8A1B0D948800CEA0AB /* MyViewController.h */,
 				325A8A8B1B0D948800CEA0AB /* MyViewController.m */,
 				6F85EFE91B16E47F008C101B /* MyContactWayViewController.h */,
@@ -1010,7 +1025,9 @@
 				32D3D98A1B03B2AE00B50967 /* BWCommon.m in Sources */,
 				6F6E4CAB1B187B91002F0419 /* PasswordSaleViewController.m in Sources */,
 				323C30E81B0B90A400D0B8D0 /* OrderViewController.m in Sources */,
+				32C832211B3D376E00CCAE8B /* MyNewViewController.m in Sources */,
 				325A8A8C1B0D948800CEA0AB /* MyViewController.m in Sources */,
+				32C832261B3D511300CCAE8B /* MyTableViewFrame.m in Sources */,
 				6F8AEB8E1B1D446000E2F6E9 /* HZLocation.m in Sources */,
 				32502BAE1B24553C00C9AB9C /* CartTableViewController.m in Sources */,
 				32A48DEE1B2032AF000A44A0 /* XCMultiSortTableView.m in Sources */,
@@ -1049,6 +1066,7 @@
 				32502BA51B242D9000C9AB9C /* FinanceDetailViewController.m in Sources */,
 				3272D63F1B1DB7EC007DBF31 /* ConsignationTableViewController.m in Sources */,
 				3223FB601B3BC5B300392039 /* ConsignationDetailViewController.m in Sources */,
+				32C832241B3D510000CCAE8B /* MyTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

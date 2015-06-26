@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
@@ -89,19 +90,10 @@
             </objects>
             <point key="canvasLocation" x="88" y="823"/>
         </scene>
-        <!--My View Controller-->
+        <!--My New View Controller-->
         <scene sceneID="L9a-Rt-wms">
             <objects>
-                <viewController id="KOa-Pz-yN0" customClass="MyViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0bS-kY-Y9o"/>
-                        <viewControllerLayoutGuide type="bottom" id="otW-Pc-hEF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pMz-HU-i0i">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
+                <viewController id="KOa-Pz-yN0" customClass="MyNewViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="FRt-aG-uV1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1EX-pW-fEs" userLabel="First Responder" sceneMemberID="firstResponder"/>

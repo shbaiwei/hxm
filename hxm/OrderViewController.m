@@ -123,15 +123,23 @@
     self.gpage = 1;
     self.order_type = 0;
     self.status_search = 0;
+    
+    [self.tableview setHidden:YES];
+    
+    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    [self.tableview setTableFooterView:v];
 
     [self refreshingData:1 callback:^{
         //[self.tableview.header endRefreshing];
     }];
     
     [self.tableview addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(headerRefreshing)];
-    
-    [self.tableview addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
 
+    [self.tableview addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
+    
+    //self.tableview add
+    //self.tableview.footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
 }
 
 - (UIButton *) createFilterButton:(NSString *) name{
@@ -161,7 +169,10 @@
 {
     
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    //hud.mode = MBProgressHUDModeCustomView;
     hud.delegate=self;
+    
+    
     
 
     NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"order/queryOrders"];
@@ -203,6 +214,7 @@
             NSLog(@"%@",[responseObject objectForKey:@"data"]);
             self.statusFrames = nil;
             
+            [self.tableview setHidden:NO];
             [self.tableview reloadData];
             
            /* __weak OrderViewController *weakSelf = self;

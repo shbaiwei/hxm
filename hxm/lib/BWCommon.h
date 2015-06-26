@@ -39,6 +39,7 @@
 +(id) getDataInfo:(NSString *) key;
 +(void) setUserInfo:(NSString *) key value:(NSString *) value;
 
++(UIColor *) getRGBColor: (NSInteger) rgbValue;
 +(UIColor *) getBackgroundColor;
 +(UIColor *) getMainColor;
 +(UIColor *) getBorderColor;
