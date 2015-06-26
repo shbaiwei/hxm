@@ -59,6 +59,9 @@
     CGRect rect = [[UIScreen mainScreen] bounds];
     size = rect.size;
     
+    [self.navigationController.navigationBar setBarTintColor:[BWCommon getMainColor]];
+
+    
     UIView *main_view = [[UIView alloc] initWithFrame:CGRectMake(20, 60, size.width, size.height)];
     [self.view addSubview:main_view];
     NSInteger yy = 10;

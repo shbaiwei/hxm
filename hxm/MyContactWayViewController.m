@@ -73,8 +73,18 @@
     CGRect rect = [[UIScreen mainScreen] bounds];
     size = rect.size;
     
-    UIView *main_view = [[UIView alloc] initWithFrame:CGRectMake(20, 60, size.width, size.height)];
-    [self.view addSubview:main_view];
+    [self.navigationController.navigationBar setBarTintColor:[BWCommon getMainColor]];
+
+    
+    UIScrollView *sclView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    sclView.backgroundColor = bgColor;
+    sclView.scrollEnabled = YES;
+    sclView.contentSize = CGSizeMake(size.width, size.height);
+    [self.view addSubview:sclView];
+    
+    //UIScrollView *main_view = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 60, size.width, size.height)];
+    
+    [self.view addSubview:sclView];
     NSInteger yy = 0;
     link_man = [self createTextFieldWithTitle:@"姓    名：" yy:yy];
     yy += 50;
@@ -93,74 +103,18 @@
     link_fax.keyboardType = UIKeyboardTypeNumberPad;
     yy += 50;
     areaText = [self createTextFieldWithTitle:@"所在地区：" yy:yy];
-    /*
-    //所在地区重新定义view
-    //areaText = [self createTextFieldWithTitle:@"所在地区：" yy:yy];
-    UIView *area_view = [[UIView alloc] init];
-    area_view.frame = CGRectMake(0, yy+10, size.width-40, 40);
-    area_view.backgroundColor = [UIColor whiteColor];
-    [area_view.layer setCornerRadius:3.0];
-    [main_view addSubview:area_view];
-    
-    UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(10, 0, 80, 40);
-    label.text = @"所在地区:";
-    [area_view addSubview:label];
-    
-    UIButton *provice_btn = [[UIButton alloc] init];
-    provice_btn.frame = CGRectMake(105, 0, 45, 40);
-    [provice_btn setTitle:@"浙江" forState:UIControlStateNormal];
-    provice_btn.titleLabel.font = [UIFont systemFontOfSize: 16.0];
-    [provice_btn setTitleColor:[UIColor blackColor]forState:UIControlStateNormal];
-    //provice_btn.backgroundColor = [UIColor redColor];
-    provice_btn.tag = 21;
-    [provice_btn addTarget:self action:@selector(get_area:) forControlEvents:UIControlEventTouchUpInside];
-    [area_view addSubview:provice_btn];
-    
-    UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user-address-down-icon"]];
-    image.frame = CGRectMake(provice_btn.frame.size.width+provice_btn.frame.origin.x+5, 12, 15, 15);
-    [area_view addSubview:image];
-    
-    UIButton *city_btn = [[UIButton alloc] init];
-    city_btn.frame = CGRectMake(image.frame.size.width+image.frame.origin.x+10, 0, 45, 40);
-    [city_btn setTitle:@"杭州" forState:UIControlStateNormal];
-    city_btn.titleLabel.font = [UIFont systemFontOfSize: 16.0];
-    city_btn.tag = 22;
-    [city_btn setTitleColor:[UIColor blackColor]forState:UIControlStateNormal];
-    [city_btn addTarget:self action:@selector(get_area:) forControlEvents:UIControlEventTouchUpInside];
-    [area_view addSubview:city_btn];
-    
-    UIImageView *image2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user-address-down-icon"]];
-    image2.frame = CGRectMake(city_btn.frame.size.width+city_btn.frame.origin.x+5, 12, 15, 15);
-    [area_view addSubview:image2];
-    
-    UIButton *area_btn = [[UIButton alloc] init];
-    area_btn.frame = CGRectMake(image2.frame.size.width+image2.frame.origin.x+10, 0, 45, 40);
-    [area_btn setTitle:@"下城" forState:UIControlStateNormal];
-    city_btn.titleLabel.font = [UIFont systemFontOfSize: 16.0];
-    area_btn.tag = 23;
-    [area_btn setTitleColor:[UIColor blackColor]forState:UIControlStateNormal];
-    [area_btn addTarget:self action:@selector(get_area:) forControlEvents:UIControlEventTouchUpInside];
-    //area_btn.backgroundColor = [UIColor blueColor];
-    [area_view addSubview:area_btn];
-    
-    UIImageView *image3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user-address-down-icon"]];
-    image3.frame = CGRectMake(area_btn.frame.size.width+area_btn.frame.origin.x+5, 12, 15, 15);
-    [area_view addSubview:image3];
-    
-    //所在地区重新定义view--end
-    */
+
     yy += 50;
     link_address = [self createTextFieldWithTitle:@"街道地址：" yy:yy];
     
-    [main_view addSubview:link_man];
-    [main_view addSubview:link_mobile];
-    [main_view addSubview:link_phone];
-    [main_view addSubview:link_email];
-    [main_view addSubview:link_qq];
-    [main_view addSubview:link_fax];
-    [main_view addSubview:areaText];
-    [main_view addSubview:link_address];
+    [sclView addSubview:link_man];
+    [sclView addSubview:link_mobile];
+    [sclView addSubview:link_phone];
+    [sclView addSubview:link_email];
+    [sclView addSubview:link_qq];
+    [sclView addSubview:link_fax];
+    [sclView addSubview:areaText];
+    [sclView addSubview:link_address];
     
     
     UIButton *save_button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -172,45 +126,10 @@
     [save_button setBackgroundColor:[UIColor redColor]];
     [save_button setTitle:@"保存" forState:UIControlStateNormal];
     [save_button addTarget:self action:@selector(do_save:) forControlEvents:UIControlEventTouchUpInside];
-    [main_view addSubview:save_button];
+    [sclView addSubview:save_button];
     
     
 }
-
-/*
-- (void)get_area:(UIButton *)sender
-{
-    switch (sender.tag) {
-        case 21:
-        {
-            //省选择
-            self.pickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, 300, 300, 162)];
-            self.pickerView.backgroundColor = [UIColor whiteColor];
-            self.pickerView.delegate = self;
-            self.pickerView.dataSource = self;
-            [self.view addSubview:self.pickerView];
-            
-            [self.pickerView reloadAllComponents];//刷新UIPickerView
-            
-            _cityArray = [NSArray arrayWithObjects:@"北京",@"上海",@"广州",@"深圳",@"重庆",@"武汉",@"天津",nil];
-        }
-            break;
-        case 22:
-        {
-            //市选择
-        }
-            break;
-        case 23:
-        {
-            //区选择
-        }
-            break;
-        default:
-            break;
-    }
-}
-*/
-
 
 - (void)do_save:(id *)sender
 {

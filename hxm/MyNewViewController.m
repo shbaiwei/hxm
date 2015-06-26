@@ -31,7 +31,7 @@
 @property (nonatomic,retain) UILabel *usernameLabel;
 @property (nonatomic,retain) UIImageView * faceImage;
 
-@property (nonatomic,retain) NSDictionary *userinfo;
+@property (nonatomic,retain) NSMutableDictionary *userinfo;
 
 @end
 
@@ -122,12 +122,14 @@ CGSize size;
     
     
     
-    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height+60)];
+    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     tableview.delegate = self;
     tableview.scrollEnabled = NO;
     tableview.dataSource = self;
     tableview.tableFooterView = footerView;
     //tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    
+    [tableview addObserver:self forKeyPath:@"contentSize" options:0 context:NULL];
     
 
     [sclView addSubview:tableview];
@@ -147,6 +149,16 @@ CGSize size;
     
     [self renderPage];
     [self getUserInfo];
+
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    //将UITableview的高度设置为内容的大小
+    CGRect frame = self.tableview.frame;
+    frame.size = self.tableview.contentSize;
+
+    self.tableview.frame = frame;
+    self.sclView.contentSize = CGSizeMake(frame.size.width,frame.size.height+220);
 
 }
 
@@ -256,7 +268,7 @@ CGSize size;
         [self.sclView.header endRefreshing];
         if(errNo == 0)
         {
-            self.userinfo = [responseObject objectForKey:@"data"];
+            self.userinfo = [[responseObject objectForKey:@"data"] mutableCopy];
             [self renderPage];
         }
         else
@@ -384,11 +396,21 @@ CGSize size;
     cell.viewFrame = self.statusFrames[indexPath.section][indexPath.row];
     
     cell.separatorInset = UIEdgeInsetsMake(0, 50, 0, 0);
-    
-    if(indexPath.section==2){
+    if(indexPath.section == 0){
+        if(indexPath.row>0){
+            UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user-edit"]];
+            [cell.contentView addSubview:icon];
+            
+            if(indexPath.row==1){
+                icon.frame = CGRectMake(184, 12, 24, 24);
+            }else{
+                icon.frame = CGRectMake(120, 12, 24, 24);
+            }
+        }
+    }
+    else if(indexPath.section==2){
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.font = [UIFont systemFontOfSize:16];
-        
     }
     
     return cell;
@@ -411,20 +433,133 @@ CGSize size;
     return button;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0){
+        if(indexPath.row==1){
+            [self editBirthday];
+        }else if(indexPath.row==2){
+            [self editGender];
+        }
+    }
+    else if (indexPath.section == 2){
+        
+        if(indexPath.row == 0){
+            MyContactWayViewController *viewController = [[MyContactWayViewController alloc] init];
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
+        else if(indexPath.row == 1){
+            MyBusinessInfoViewController *viewController = [[MyBusinessInfoViewController alloc] init];
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
+        else if(indexPath.row == 2){
+            MyAddressViewController *viewController = [[MyAddressViewController alloc] init];
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
+        else if(indexPath.row == 3){
+            MyAfterSalesViewController *viewController = [[MyAfterSalesViewController alloc] init];
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
+        else if(indexPath.row == 4){
+            MyPasswordViewController *viewController = [[MyPasswordViewController alloc] init];
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
+        
+
+    }
+    
+    [tableview deselectRowAtIndexPath:indexPath animated:NO];
+    
+}
+
+- (void) editGender{
+ 
+    UIAlertController* alertVc=[UIAlertController alertControllerWithTitle:@"请选择" message:nil preferredStyle:(UIAlertControllerStyleActionSheet)];
+
+    UIAlertAction* male=[UIAlertAction actionWithTitle:@"男" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) {
+        [self updateProfile:@"gender" field_vale:@"1"];
+    }];
+    
+    UIAlertAction* female=[UIAlertAction actionWithTitle:@"女" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) {
+        [self updateProfile:@"gender" field_vale:@"2"];
+    }];
+    
+    UIAlertAction* no=[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:nil];
+    [alertVc addAction:male];
+    [alertVc addAction:female];
+    [alertVc addAction:no];
+    [self presentViewController:alertVc animated:YES completion:nil];
+}
+
+- (void) editBirthday{
+    
+    UIAlertController* alertVc=[UIAlertController alertControllerWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n" message:nil preferredStyle:(UIAlertControllerStyleActionSheet)];
+    UIDatePicker* datePicker=[[UIDatePicker alloc]init];
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    UIAlertAction* ok=[UIAlertAction actionWithTitle:@"确认" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) {
+        NSDate* date=[datePicker date];
+        NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSString* curentDatest=[formatter stringFromDate:date];
+        
+        [self updateProfile:@"birthday" field_vale:curentDatest];
+    }];
+
+    UIAlertAction* no=[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:nil];
+    [alertVc.view addSubview:datePicker];
+    [alertVc addAction:ok];
+    [alertVc addAction:no];
+    [self presentViewController:alertVc animated:YES completion:nil];
+}
+
+
+- (void)updateProfile: (NSString *)field_name field_vale:(NSString *) field_value
+{
+    
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
+
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"user/saveContactInfo"];
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"user/saveContactInfo"];
+    
+
+    [postData setValue:field_value forKey:field_name];
+    [postData setValue:[self fetchData:@"gender"] forKey:@"gender"];
+    [postData setValue:[self fetchData:@"link_man"] forKey:@"link_man"];
+    [postData setValue:[self fetchData:@"link_mobile"] forKey:@"link_mobile"];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        [hud removeFromSuperview];
+        if(errNo == 0)
+        {
+            [self.userinfo setValue:field_value forKey:field_name];
+            [self renderPage];
+        }
+        else
+        {
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+            
+            [alert setMessage:[responseObject objectForKey:@"error"]];
+            [alert show];
+        }
+        
+    } fail:^{
+        [hud removeFromSuperview];
+        [alert setMessage:@"连接超时，请重试"];
+        [alert show];
+        NSLog(@"请求失败");
+    }];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -43,6 +43,9 @@
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = rect.size;
     
+    [self.navigationController.navigationBar setBarTintColor:[BWCommon getMainColor]];
+
+    
     
     tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     tableview.delegate = self;
