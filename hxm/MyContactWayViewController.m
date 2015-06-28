@@ -64,7 +64,12 @@ NSMutableArray *selectedRegions;
     link_qq.text = [userinfo objectForKey:@"link_qq"];
     link_fax.text = [userinfo objectForKey:@"link_fax"];
     link_address.text = [userinfo objectForKey:@"link_address"];
-    areaText.text = [NSString stringWithFormat:@"%@-%@-%@",userinfo[@"link_prov"],userinfo[@"link_city"],userinfo[@"link_dist"]];
+    
+    selectedRegions[0] =userinfo[@"link_prov"];
+    selectedRegions[1] =userinfo[@"link_city"];
+    selectedRegions[2] =userinfo[@"link_dist"];
+    
+    areaText.text =  [selectedRegions componentsJoinedByString:@" - "];
     send_province = [userinfo[@"link_prov_id"] integerValue];
     send_city = [userinfo[@"link_city_id"] integerValue];
     send_town = [userinfo[@"link_dist_id"] integerValue];
@@ -130,6 +135,8 @@ NSMutableArray *selectedRegions;
 
     
     UIButton *submitButton = [self footerButton:@"保 存" bgColor:[BWCommon getRedColor]];
+    
+    [submitButton addTarget:self action:@selector(do_save:) forControlEvents:UIControlEventTouchUpInside];
     
     [sclView addSubview:link_man];
     [sclView addSubview:link_mobile];
@@ -270,6 +277,8 @@ NSMutableArray *selectedRegions;
             [pickerView reloadComponent:2];
             
             [pickerView selectRow:0 inComponent:1 animated:YES];
+            [pickerView selectRow:0 inComponent:2 animated:YES];
+
             
             send_province = [[[provinceData allKeys] objectAtIndex:row] integerValue];
             selectedRegions[0] = [[provinceData allValues] objectAtIndex:row];
@@ -421,7 +430,7 @@ NSMutableArray *selectedRegions;
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"资料修改成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
     
-    NSLog(@"%@",url);
+    NSLog(@"%@",postData);
 
     [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
         

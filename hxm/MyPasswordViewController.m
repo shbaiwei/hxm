@@ -60,7 +60,7 @@
         label.font = [UIFont systemFontOfSize:20];
         [button addSubview:label];
         
-        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 240, 80)];
+        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, size.width - 130, 80)];
         label2.text = subtitleArray[i];
         label2.numberOfLines = 0;
        // label2.backgroundColor = [UIColor redColor];
