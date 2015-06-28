@@ -243,6 +243,15 @@
     
 }
 
+- (void) setTextFieldCenter:(NSArray *) items{
+    
+    NSInteger i = 0;
+    
+    for (i=0; i<[items count]; i++) {
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:[items objectAtIndex:i] attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    }
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
