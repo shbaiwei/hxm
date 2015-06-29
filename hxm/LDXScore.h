@@ -20,13 +20,13 @@ IB_DESIGNABLE
 
 
 /* 距离左边的间距 */
-@property (nonatomic, assign) IBInspectable CGFloat padding;
+@property (nonatomic, assign) CGFloat padding;
 /* 最多的星数，默认为5 */
-@property (nonatomic, assign) IBInspectable NSInteger max_star;
+@property (nonatomic, assign) NSInteger max_star;
 /* 是否支持选择星数 */
-@property (nonatomic, assign) IBInspectable BOOL isSelect;
-@property (nonatomic, strong) IBInspectable UIImage *normalImg;
-@property (nonatomic, strong) IBInspectable UIImage *highlightImg;
+@property (nonatomic, assign) BOOL isSelect;
+@property (nonatomic, strong) UIImage *normalImg;
+@property (nonatomic, strong) UIImage *highlightImg;
 
 
 @end

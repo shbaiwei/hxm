@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "OrderDetailDelegate.h"
+#import "MBProgressHUD.h"
 
 @interface OrderNoteViewController : UIViewController
-<OrderDetailDelegate>
+<OrderDetailDelegate,
+UIPickerViewDelegate,
+UIPickerViewDataSource,
+MBProgressHUDDelegate,
+UIAlertViewDelegate
+>
+{
+    MBProgressHUD *hud;
+}
 
 @end

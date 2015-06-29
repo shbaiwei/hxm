@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
+#import "DetailDelegate.h"
 
 @interface MyAddressViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,MBProgressHUDDelegate>
 {
@@ -23,4 +24,6 @@
 @property (nonatomic,retain) NSMutableArray *itemsKeys;
 @property (nonatomic,strong) UITableView *tableview;
 @property (nonatomic,retain) NSMutableArray *dataArray;
+
+@property (nonatomic,assign) id<DetailDelegate> delegate;
 @end

@@ -7,12 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HZAreaPickerView.h"
-@interface MyAddressEditViewController : UIViewController<UITextFieldDelegate,HZAreaPickerDelegate>
-@property (nonatomic,strong) NSDictionary *address_info;
-@property (retain, nonatomic) IBOutlet UITextField *areaText;
-@property (strong, nonatomic) NSString *areaValue;
-@property (strong, nonatomic) HZAreaPickerView *locatePicker;
+#import "MBProgressHUD.h"
+#import "DetailDelegate.h"
 
--(void)cancelLocatePicker;
+@interface MyAddressEditViewController : UIViewController
+<UITextFieldDelegate,
+MBProgressHUDDelegate,
+UIPickerViewDataSource,
+UIPickerViewDelegate,
+DetailDelegate,
+UIGestureRecognizerDelegate>
+{
+    
+    MBProgressHUD *hud;
+}
+@property (nonatomic,strong) NSDictionary *addressInfo;
+@property (retain, nonatomic) UITextField *areaText;
+@property (strong, nonatomic) NSString *areaValue;
+
+
+
 @end

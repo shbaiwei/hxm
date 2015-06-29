@@ -11,6 +11,7 @@
 #import "AFNetworkTool.h"
 #import "MJRefresh.h"
 
+
 @interface MyContactWayViewController ()
 {
     UITextField *link_man;
@@ -393,7 +394,7 @@ NSMutableArray *selectedRegions;
 
 - (NSString *) createFormat:(NSString *) name  width:( NSUInteger ) width{
     
-    return [NSString stringWithFormat:@"H:|-20-[%@(==%ld)]-20-|",name,width];
+    return [NSString stringWithFormat:@"H:|-20-[%@(==%d)]-20-|",name,width];
 }
 
 - (void) setTextFieldCenter:(NSArray *) items{
@@ -424,9 +425,9 @@ NSMutableArray *selectedRegions;
     [postData setValue:link_qq.text forKey:@"link_qq"];
     [postData setValue:link_fax.text forKey:@"link_fax"];
     [postData setValue:link_address.text forKey:@"link_address"];
-    [postData setValue:[NSString stringWithFormat:@"%ld",send_province] forKey:@"link_prov_id"];
-    [postData setValue:[NSString stringWithFormat:@"%ld",send_city] forKey:@"link_city_id"];
-    [postData setValue:[NSString stringWithFormat:@"%ld",send_town] forKey:@"link_dist_id"];
+    [postData setValue:[NSString stringWithFormat:@"%d",send_province] forKey:@"link_prov_id"];
+    [postData setValue:[NSString stringWithFormat:@"%d",send_city] forKey:@"link_city_id"];
+    [postData setValue:[NSString stringWithFormat:@"%d",send_town] forKey:@"link_dist_id"];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"资料修改成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
     

@@ -186,14 +186,19 @@
     //NSDictionary *address = [dataArray objectAtIndex:sender.tag];
     //NSLog(@"address:%@",address);
     MyAddressEditViewController *page = [[MyAddressEditViewController alloc] init];
-    page.address_info = [dataArray objectAtIndex:sender.tag];
+
+    self.delegate = page;
+    [self.delegate setValue:[[[dataArray objectAtIndex:sender.tag] objectForKey:@"address_id"] integerValue ]];
+    
     [self.navigationController pushViewController:page animated:YES];
+    
+
 }
 
 - (void) do_del: (UIButton *)sender
 {
     //NSDictionary *address = [dataArray objectAtIndex:sender.tag];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"您确定要删除吗？" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:@"确认", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"您确定要删除吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
     alert.tag = sender.tag;
     [alert show];
     //[dataArray objectAtIndex:sender.tag];

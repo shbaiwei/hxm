@@ -8,11 +8,18 @@
 
 #import "OrderCommentViewController.h"
 #import "BWCommon.h"
+#import "LDXScore.h"
+#import "AFNetworkTool.h"
 
 @interface OrderCommentViewController ()
 
 @property (nonatomic,weak) UILabel *orderNoValue;
+
+@property (nonatomic, weak) UITextView *commentView;
+
 @property (nonatomic,weak) UIScrollView *sclView;
+
+@property (nonatomic,retain) LDXScore *starView;
 
 @end
 
@@ -39,14 +46,29 @@ NSString *order_no;
     UIScrollView *sclView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     sclView.backgroundColor = [BWCommon getBackgroundColor];
     sclView.scrollEnabled = YES;
-    sclView.contentSize = CGSizeMake(size.width,700);
+    sclView.contentSize = CGSizeMake(size.width,size.height);
     self.sclView = sclView;
     
     [self.view addSubview:sclView];
     
-    NSUInteger padding = 15;
-    UILabel *orderNoLabel = [[UILabel alloc] initWithFrame:CGRectMake(padding, padding, 80, 20)];
-    UILabel *orderNoValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(padding+80, padding, 200, 20)];
+     NSUInteger padding = 15;
+    
+    LDXScore *starView = [[LDXScore alloc] initWithFrame:CGRectMake(padding,padding,140,50)];
+    
+    self.starView = starView;
+    starView.normalImg = [UIImage imageNamed:@"btn_star_evaluation_normal"];
+    starView.highlightImg = [UIImage imageNamed:@"btn_star_evaluation_press"];
+    starView.isSelect = YES;
+    starView.padding = 0;
+    starView.layer.cornerRadius = 10;
+    starView.layer.masksToBounds = YES;
+    
+    [sclView addSubview:starView];
+
+    
+   
+    UILabel *orderNoLabel = [[UILabel alloc] initWithFrame:CGRectMake(padding, padding+50, 80, 20)];
+    UILabel *orderNoValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(padding+80, padding+50, 200, 20)];
 
     orderNoLabel.text = @"订单编号：";
     orderNoLabel.font = [UIFont systemFontOfSize:16];
@@ -58,22 +80,25 @@ NSString *order_no;
     [sclView addSubview:orderNoLabel];
     [sclView addSubview:orderNoValueLabel];
     
-    UITextView *commentView = [[UITextView alloc] initWithFrame:CGRectMake(padding, 69, size.width-padding*2, 120)];
+    UITextView *commentView = [[UITextView alloc] initWithFrame:CGRectMake(padding, 110, size.width-padding*2, 120)];
     
     [sclView addSubview:commentView];
     
     commentView.text = @"输入评论的内容";
+    commentView.font = [UIFont systemFontOfSize:16];
     
     commentView.layer.cornerRadius = 5.0f;
     commentView.layer.borderWidth = 1.0f;
     [commentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    self.commentView = commentView;
+    
     
     [commentView setBackgroundColor:[UIColor whiteColor]];
     
     UIButton *submitButton = [self footerButton:@"提交评论" bgColor:[UIColor colorWithRed:219/255.0f green:0/255.0f blue:0 alpha:1]];
     
     [submitButton addTarget:self action:@selector(buttonTouched:) forControlEvents:UIControlEventTouchUpInside];
-    submitButton.frame = CGRectMake(padding, 200, size.width-padding*2 , 40);
+    submitButton.frame = CGRectMake(padding, 250, size.width-padding*2 , 40);
     [sclView addSubview:submitButton];
 
 
@@ -81,10 +106,59 @@ NSString *order_no;
 
 - (void) buttonTouched:(id)sender{
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [alert setMessage:@"评论接口还未开放"];
-    [alert show];
+
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
+    
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"order/addComment"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"order/addComment"];
+    
+    
+    
+    
+    [postData setValue:[NSString stringWithFormat:@"%d",self.starView.show_star ] forKey:@"comment_rate"];
+    [postData setValue:self.commentView.text forKey:@"comment_content"];
+    
+    url = [url stringByAppendingFormat:@"?order_no=%@",order_no ];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"点评提交成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    
+    NSLog(@"%@",postData);
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        // NSLog(@"userinfo:%@",responseObject);
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        [hud removeFromSuperview];
+        if(errNo == 0)
+        {
+            //处理成功
+            [alert show];
+        }
+        else
+        {
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+            [alert setMessage:[responseObject objectForKey:@"error"]];
+            [alert show];
+        }
+        
+    } fail:^{
+        [hud removeFromSuperview];
+        NSLog(@"请求失败");
+        
+        [alert setMessage:@"连接超时，请重试"];
+        [alert show];
+    }];
+    
 }
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 -(UIButton *) footerButton: (NSString *) title bgColor : (UIColor *) bgColor {
     

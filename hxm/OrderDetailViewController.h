@@ -14,6 +14,7 @@
 @interface OrderDetailViewController : UIViewController
 <OrderDetailDelegate,
 XCMultiTableViewDataSource,
+UIAlertViewDelegate,
 MBProgressHUDDelegate>
 {
     MBProgressHUD *hud;

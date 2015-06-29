@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "OrderDetailDelegate.h"
+#import "MBProgressHUD.h"
 
 @interface OrderCommentViewController : UIViewController
-<OrderDetailDelegate>
+<OrderDetailDelegate,
+MBProgressHUDDelegate,
+UIAlertViewDelegate
+>
+{
+    MBProgressHUD *hud;
+}
 
 @end

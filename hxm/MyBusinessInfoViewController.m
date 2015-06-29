@@ -103,7 +103,7 @@
 
 - (NSString *) createFormat:(NSString *) name  width:( NSUInteger ) width{
     
-    return [NSString stringWithFormat:@"H:|-20-[%@(==%ld)]-20-|",name,width];
+    return [NSString stringWithFormat:@"H:|-20-[%@(==%d)]-20-|",name,width];
 }
 
 
@@ -263,9 +263,9 @@
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.delegate=self;
     
-    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"user/saveContactInfo"];
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"user/saveBusinessInfo"];
     
-    NSMutableDictionary *postData = [BWCommon getTokenData:@"user/saveContactInfo"];
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"user/saveBusinessInfo"];
     
     [postData setValue:@"2" forKey:@"body_type"];
     [postData setValue:business_hour.text forKey:@"business_hour"];

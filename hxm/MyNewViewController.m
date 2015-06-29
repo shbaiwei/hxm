@@ -217,7 +217,7 @@ CGSize size;
     
     [menus1 addObject:[self createRow:@"身份证号：" text:idCard icon:nil]];
     
-    NSString *idCardTime = [NSString stringWithFormat:@"有效期限：%@至%@",[self fetchData:@"id_card_start"],[self fetchData:@"id_card_end"]];
+    NSString *idCardTime = [NSString stringWithFormat:@"%@至%@",[self fetchData:@"id_card_start"],[self fetchData:@"id_card_end"]];
     [menus1 addObject:[self createRow:@"有效期限：" text:idCardTime icon:nil]];
     
     NSMutableArray *menus2 = [[NSMutableArray alloc] init];

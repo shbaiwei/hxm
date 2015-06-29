@@ -256,11 +256,21 @@ NSMutableArray *rightTableData;
 }
 
 - (void) payTouched: (id) sender{
- 
-    __weak OrderDetailViewController *weakSelf = self;
-    [self payOrder:order_no callback:^{
-        [weakSelf loadData:order_no callback:^{}];
-    }];
+    
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"支付确认" message:@"优先从余额账户、拍卖账户扣除商品费用、服务费用，运费冻结到保证金账户" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+    
+    [alert show];
+
+}
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
+        
+        __weak OrderDetailViewController *weakSelf = self;
+        [self payOrder:order_no callback:^{
+            [weakSelf loadData:order_no callback:^{}];
+        }];
+    }
 }
 
 - (void) payOrder:(NSString *) order_no callback:(void(^)()) callback{
