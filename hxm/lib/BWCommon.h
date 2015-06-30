@@ -36,6 +36,8 @@
 
 +(void) setBusinessData;
 
++(NSString *) getRegionById:(NSUInteger ) region_id;
+
 +(id) getDataInfo:(NSString *) key;
 +(void) setUserInfo:(NSString *) key value:(NSString *) value;
 

@@ -26,10 +26,10 @@
     
     self.borderViewF = CGRectMake(0, 1, size.width, 15);
     
-    self.statusViewF = CGRectMake(0, 16, size.width, 40);
+    self.statusViewF = CGRectMake(0, 16, size.width, 36);
     self.timeIconF = CGRectMake(paddingX, paddingY+2, 15, 15);
     self.timeLabelF = CGRectMake(paddingX+20, paddingY, 100, 20);
-    self.delButtonF = CGRectMake(size.width-70, paddingY, 20, 20);
+    self.delButtonF = CGRectMake(size.width-70, paddingY, 18, 18);
     self.editButtonF = CGRectMake(size.width-40, paddingY, 20, 20);
     
     //CGFloat orderNoX = paddingX*3;
@@ -41,9 +41,9 @@
     self.addressButtonF = CGRectMake(30, 60, size.width-90, 120);
     self.nameLabelF = CGRectMake(0, 0, 200, 30);
     self.detailLabelF = CGRectMake(0, 20, size.width-60, 80);
-    self.rigthImageIconF = CGRectMake(size.width-60, 50, 10, 13);
+    //self.rigthImageIconF = CGRectMake(size.width-60, 50, 10, 13);
     
-    self.cellHeight =  90+paddingY*2 + 70;
+    self.cellHeight =  90+paddingY*2 + 50;
     
     //self.cellHeight =CGRectGetMaxY(self.contentF) +padding;
     

@@ -50,6 +50,21 @@
     [udata synchronize];
 }
 
++(NSString *) getRegionById:(NSUInteger )region_id{
+    
+    NSArray *regions = [BWCommon getDataInfo:@"regions"];
+    for (int i=0;i<[regions count];i++){
+        NSDictionary *item = [[NSDictionary alloc] initWithDictionary:[regions objectAtIndex:i]];
+        if ([[item objectForKey:@"region_id"] integerValue] == region_id) {
+            return [item objectForKey:@"region_name"];
+            //[data setObject:[item objectForKey:@"region_name"] forKey:[item objectForKey:@"region_id"]];
+        }
+    }
+    
+    return @"";
+    
+}
+
 +(BOOL) isLoggedIn{
     
     return [self getUserInfo:@"uid"] != nil && [[self getUserInfo:@"status"] isEqualToString:@"normal"];

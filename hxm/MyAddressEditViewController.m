@@ -23,7 +23,7 @@
 }
 
 @property (nonatomic,retain) UIScrollView *sclView;
-
+@property (nonatomic,retain) UISwitch *switchView;
 @end
 
 
@@ -40,6 +40,8 @@ NSUInteger send_city;
 NSUInteger send_town;
 
 NSUInteger address_id;
+
+bool is_default;
 
 NSMutableArray *selectedRegions;
 
@@ -83,6 +85,11 @@ NSMutableArray *selectedRegions;
     
     if(address_id>0)
         [sclView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(getAddressInfo)];
+    else
+    {
+        is_default = 0;
+        self.switchView.on = is_default;
+    }
     
     
     receiver_name = [self createTextFieldWithTitle:@"收件人姓名："];
@@ -133,6 +140,8 @@ NSMutableArray *selectedRegions;
     switchView.frame = CGRectMake(size.width-95, 10, 40, 30);
     switchView.on = YES;//设置初始为ON的一边
     [switchView addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+    
+    self.switchView = switchView;
 
     [switchBody addSubview:label2];
     [switchBody addSubview:switchView];
@@ -156,7 +165,7 @@ NSMutableArray *selectedRegions;
     NSArray *constraints7= [NSLayoutConstraint constraintsWithVisualFormat:[self createFormat:@"switchBody" width:width] options:0 metrics:nil views:NSDictionaryOfVariableBindings(switchBody)];
     NSArray *constraints9= [NSLayoutConstraint constraintsWithVisualFormat:[self createFormat:@"submitButton" width:width] options:0 metrics:nil views:NSDictionaryOfVariableBindings(submitButton)];
     
-    NSArray *constraintsV= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[receiver_name(==50)]-10-[areaText(==50)]-10-[address(==50)]-10-[zip(==50)]-10-[mobile(==50)]-10-[phone(==50)]-10-[switchBody(==40)]-20-[submitButton(==50)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(receiver_name,areaText,address,zip,mobile,phone,switchBody,submitButton)];
+    NSArray *constraintsV= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[receiver_name(==50)]-10-[areaText(==50)]-10-[address(==50)]-10-[zip(==50)]-10-[mobile(==50)]-10-[phone(==50)]-10-[switchBody(==30)]-20-[submitButton(==50)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(receiver_name,areaText,address,zip,mobile,phone,switchBody,submitButton)];
     
     
     [sclView addConstraints:constraints1];
@@ -188,6 +197,27 @@ NSMutableArray *selectedRegions;
     mobile.text = [self.addressInfo objectForKey:@"mobile"];
     phone.text = [self.addressInfo objectForKey:@"phone"];
     
+    is_default = [[self.addressInfo objectForKey:@"is_default"] boolValue];
+    
+    if(is_default){
+        self.switchView.on = YES;
+    }else{
+        self.switchView.on = NO;
+    }
+    
+    
+    NSMutableArray *areaArray = [[NSMutableArray alloc] init];
+    
+    areaArray[0] = [BWCommon getRegionById:[[self.addressInfo objectForKey:@"prov_id"]integerValue]];
+    areaArray[1] = [BWCommon getRegionById:[[self.addressInfo objectForKey:@"city_id"]integerValue]];
+    
+    if([[self.addressInfo objectForKey:@"dist_id"] integerValue] > 0)
+    {
+        areaArray[2] = [BWCommon getRegionById:[[self.addressInfo objectForKey:@"dist_id"]integerValue]];
+    }
+    
+    areaText.text = [areaArray componentsJoinedByString:@" - "];
+
     
     //selectedRegions[0] =self.addressInfo[@"prov_id"];
     //selectedRegions[1] =self.addressInfo[@"city_id"];
@@ -353,7 +383,7 @@ NSMutableArray *selectedRegions;
     NSMutableDictionary *postData = [BWCommon getTokenData:@"user/getAddressInfoById"];
     
 
-    [postData setValue:[NSString stringWithFormat:@"%d",address_id] forKey:@"address_id"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",address_id] forKey:@"address_id"];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
     
@@ -403,13 +433,19 @@ NSMutableArray *selectedRegions;
 
 - (NSString *) createFormat:(NSString *) name  width:( NSUInteger ) width{
     
-    return [NSString stringWithFormat:@"H:|-20-[%@(==%d)]-20-|",name,width];
+    return [NSString stringWithFormat:@"H:|-20-[%@(==%ld)]-20-|",name,width];
 }
 
 //UISwitch事件处理
 - (void) switchAction: (UISwitch *) sender
 {
-    
+    UISwitch *switchButton = (UISwitch*)sender;
+    BOOL isButtonOn = [switchButton isOn];
+    if (isButtonOn) {
+        is_default = 1;
+    }else {
+        is_default = 0;
+    }
 }
 
 - (void)do_save:(id *)sender
@@ -432,12 +468,14 @@ NSMutableArray *selectedRegions;
     [postData setValue:mobile.text forKey:@"link_qq"];
     [postData setValue:zip.text forKey:@"link_fax"];
     [postData setValue:phone.text forKey:@"link_address"];
-    [postData setValue:[NSString stringWithFormat:@"%d",send_province] forKey:@"prov_id"];
-    [postData setValue:[NSString stringWithFormat:@"%d",send_city] forKey:@"city_id"];
-    [postData setValue:[NSString stringWithFormat:@"%d",send_town] forKey:@"dist_id"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",send_province] forKey:@"prov_id"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",send_city] forKey:@"city_id"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",send_town] forKey:@"dist_id"];
+    
+    [postData setValue:[NSString stringWithFormat:@"%d",is_default] forKey:@"is_default"];
     
     if(address_id>0)
-        [postData setValue:[NSString stringWithFormat:@"%d",address_id] forKey:@"address_id"];
+        [postData setValue:[NSString stringWithFormat:@"%ld",address_id] forKey:@"address_id"];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
     

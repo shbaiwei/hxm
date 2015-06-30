@@ -109,6 +109,9 @@ CGSize size;
     footerView.backgroundColor = [BWCommon getBackgroundColor];
     //加入
     UIButton *btLogout = [self footerButton:@"退出当前账号" bgColor:[BWCommon getRedColor]];
+    
+    [btLogout addTarget:self action:@selector(logoutTouched:) forControlEvents:UIControlEventTouchUpInside];
+    
     [footerView addSubview: btLogout];
     //[btnList addTarget:self action:@selector(listButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -150,6 +153,30 @@ CGSize size;
     [self renderPage];
     [self getUserInfo];
 
+}
+
+-(void) logoutTouched:(id) sender{
+    
+
+    UIAlertController* alertVc=[UIAlertController alertControllerWithTitle:@"系统提示" message:@"确定要退出吗？" preferredStyle:(UIAlertControllerStyleActionSheet)];
+    UIAlertAction* ok=[UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) {
+        
+        [BWCommon logout];
+        [self presentLoginView];
+
+    }];
+    UIAlertAction* no=[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:nil];
+    [alertVc addAction:ok];
+    [alertVc addAction:no];
+    [self presentViewController:alertVc animated:YES completion:nil];
+    
+}
+
+-(void) presentLoginView{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    id mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginIdentifier"];
+    [self presentViewController:mainViewController animated:YES completion:^{}];
+    
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{

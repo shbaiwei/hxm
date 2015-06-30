@@ -73,13 +73,7 @@
     NSLog(@"uid:%@",user_id);
     [postData setValue:[NSString stringWithFormat:@"%@",user_id] forKey:@"uid"];
     
-    /*
-    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"order/queryOrders"];
-    
-    NSMutableDictionary *postData = [BWCommon getTokenData:@"order/queryOrders"];
-    
-    [postData setValue:[NSString stringWithFormat:@"%ld",self.gpage] forKey:@"OrderInfo_page"];
-    */
+
     
     NSLog(@"%@",url);
     //load data

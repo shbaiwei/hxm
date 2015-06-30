@@ -22,7 +22,7 @@
 @property (nonatomic, weak) UIButton *addressButton;
 @property (nonatomic,weak) UILabel *nameLabel;
 @property (nonatomic,weak) UILabel *detailLabel;
-@property (nonatomic,weak) UIImageView *rigthImageIcon;
+//@property (nonatomic,weak) UIImageView *rigthImageIcon;
 
 @end
 
@@ -48,6 +48,7 @@
     if (cell == nil) {
         
         cell = [[MyAddressTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
 }
@@ -65,11 +66,7 @@
         [view.layer setBorderColor:[UIColor colorWithRed:168/255.0f green:168/255.0f blue:168/255.0f alpha:1].CGColor ];
         [view.layer setBorderWidth:1.0f];
         
-        //view.layer.shadowColor = [UIColor grayColor].CGColor;
-        //view.layer.shadowOffset = CGSizeMake(1, 1);
-        //view.layer.shadowOpacity = 0.2;
-        //view.layer.shadowRadius = 1;
-        //self.contentView.backgroundColor = [UIColor redColor];
+
         [self.contentView addSubview:view];
         self.borderView = view;
         
@@ -78,6 +75,8 @@
         statusView.backgroundColor = [UIColor colorWithRed:235/255.0f green:235/255.0f blue:235/255.0f alpha:1.0];
         [self.contentView addSubview:statusView];
         self.statusView = statusView;
+        
+        
         
         UIImageView *time_icon = [[UIImageView alloc] init];
         [time_icon setImage:[UIImage imageNamed:@"address-noselect-icon"]];
@@ -88,23 +87,22 @@
         timeLabel.font = NJNameFont;
         timeLabel.numberOfLines = 0;
         timeLabel.text = @"设为默认地址";
-        timeLabel.textColor = [UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1.0];
+        //timeLabel.textColor = [BWCommon getMainColor];
+        [timeLabel setTextColor:[BWCommon getRGBColor:0x666666]];
 
-        [self.statusView addSubview:timeLabel];
+        //[self.statusView addSubview:timeLabel];
         self.timeLabel = timeLabel;
         
-        /*
-        UILabel *statusLabel = [[UILabel alloc] init];
-        [statusLabel.layer setMasksToBounds:YES];
-        [statusLabel.layer setCornerRadius:3.0f];
-        statusLabel.backgroundColor = [UIColor colorWithRed:255/255.0f green:192/255.0f blue:0/255.0f alpha:1.0f];
-        statusLabel.text = @"审核中";
-        statusLabel.textColor = [UIColor whiteColor];
-        statusLabel.textAlignment = NSTextAlignmentCenter;
-        statusLabel.font = [UIFont boldSystemFontOfSize:14];;
-        [self.statusView addSubview:statusLabel];
-        self.statusLabel = statusLabel;
-        */
+        UIButton *defaultButton = [[UIButton alloc] initWithFrame:CGRectMake(30, 10, 100, 20)];
+        [defaultButton setTitle:@"设为默认地址" forState:UIControlStateNormal];
+        [defaultButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [defaultButton setTitleColor:[BWCommon getRGBColor:0x666666] forState:UIControlStateNormal];
+        
+        //defaultButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+        defaultButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        self.defaultButton = defaultButton;
+        [self.statusView addSubview:defaultButton];
+        
         UIButton *delButton = [[UIButton alloc] init];
         [delButton setBackgroundImage:[UIImage imageNamed:@"address-delete-icon"] forState:UIControlStateNormal];
         [self.statusView addSubview:delButton];
@@ -115,15 +113,7 @@
         [self.statusView addSubview:editButton];
         self.editButton = editButton;
         
-        /*时间，状态栏结束*/
-        /*
-        UILabel *orderNoLabel = [[UILabel alloc] init];
-        orderNoLabel.font = [UIFont boldSystemFontOfSize:16.0f];
-        orderNoLabel.numberOfLines = 0;
-        //  orderNoLabel.backgroundColor = [UIColor greenColor];
-        [self.contentView addSubview:orderNoLabel];
-        self.orderNoLabel = orderNoLabel;
-        */
+
         
         UIButton *addressButton = [[UIButton alloc] init];
         [self.contentView addSubview:addressButton];
@@ -136,15 +126,18 @@
         self.nameLabel = nameLabel;
         
         UILabel *detailLabel = [[UILabel alloc] init];
-        detailLabel.text = @"浙江－杭州－下城区 \n建国东路236号诚信大厦11楼 \n15221966658";
+        //detailLabel.text = @"浙江－杭州－下城区 \n建国东路236号诚信大厦11楼 \n15221966658";
+        
+        detailLabel.font = NJNameFont;
+        [detailLabel setTextColor:[BWCommon getRGBColor:0x666666]];
         detailLabel.numberOfLines = 0;
+        
+        
+        
         [addressButton addSubview:detailLabel];
         self.detailLabel = detailLabel;
         
-        UIImageView *rigthImageIcon = [[UIImageView alloc] init];
-        rigthImageIcon.image = [UIImage imageNamed:@"user-right-array"];
-        [addressButton addSubview:rigthImageIcon];
-        self.rigthImageIcon = rigthImageIcon;
+        
         
         UILabel *orderFeeTitleLabel = [[UILabel alloc] init];
         orderFeeTitleLabel.font = NJNameFont;
@@ -196,7 +189,32 @@
     
     self.nameLabel.text = [NSString stringWithFormat:@"%@",[data objectForKey:@"receiver_name"]];
     
-    self.detailLabel.text = [NSString stringWithFormat:@"%@\n%@",[data objectForKey:@"address"],[data objectForKey:@"mobile"]];
+    NSMutableArray *areaArray = [[NSMutableArray alloc] init];
+    
+    areaArray[0] = [BWCommon getRegionById:[[data objectForKey:@"prov_id"]integerValue]];
+    areaArray[1] = [BWCommon getRegionById:[[data objectForKey:@"city_id"]integerValue]];
+    
+    if([[data objectForKey:@"dist_id"] integerValue] > 0)
+    {
+        areaArray[2] = [BWCommon getRegionById:[[data objectForKey:@"dist_id"]integerValue]];
+    }
+    
+    NSString *detail = [NSString stringWithFormat:@"%@\n%@\n%@",[areaArray componentsJoinedByString:@" - " ],[data objectForKey:@"address"],[data objectForKey:@"mobile"]];
+    
+    NSMutableAttributedString * attributedString1 = [[NSMutableAttributedString alloc] initWithString:detail];
+    NSMutableParagraphStyle * paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle1 setLineSpacing:20];
+    [attributedString1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [detail length])];
+    [self.detailLabel setAttributedText:attributedString1];
+    self.detailLabel.text = detail;
+    [self.detailLabel sizeToFit];
+    
+    if([[data objectForKey:@"is_default"]integerValue] > 0 ){
+        
+        [self.defaultButton setTitle:@"默认地址" forState:UIControlStateNormal];
+        [self.defaultButton setTitleColor:[BWCommon getMainColor] forState:UIControlStateNormal];
+
+    }
     
 }
 /**
@@ -218,7 +236,7 @@
     self.addressButton.frame = self.viewFrame.addressButtonF;
     self.nameLabel.frame = self.viewFrame.nameLabelF;
     self.detailLabel.frame = self.viewFrame.detailLabelF;
-    self.rigthImageIcon.frame = self.viewFrame.rigthImageIconF;
+    //self.rigthImageIcon.frame = self.viewFrame.rigthImageIconF;
     
     // 设置正文的frame
     //self.contentLabel.frame = self.viewFrame.contentF;

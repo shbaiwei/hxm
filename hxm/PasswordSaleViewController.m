@@ -83,10 +83,11 @@
     [save_button addTarget:self action:@selector(do_action:) forControlEvents:UIControlEventTouchUpInside];
     [main_view addSubview:save_button];
     
+    __weak PasswordSaleViewController *weakSelf = self;
     /*发送验证码uibutton事件处理*/
     [getCodeButton addToucheHandler:^(JKCountDownButton*sender, NSInteger tag) {
         
-        [self sendPhoneCode];
+        [weakSelf sendPhoneCode];
         UIColor *orgin_color = sender.backgroundColor;
         sender.backgroundColor = [UIColor grayColor];
         sender.enabled = NO;

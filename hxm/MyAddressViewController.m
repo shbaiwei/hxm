@@ -33,8 +33,8 @@
 
 -(void) pageLayout{
     self.navigationItem.title = @"收货地址管理";
-    //创建一个右边按钮
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:        UIBarButtonSystemItemAdd target:self action:@selector(clickRightButton)];
+    //创建一个右边按
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(clickRightButton)];
     [self.navigationItem setRightBarButtonItem:rightButton];
     UIColor *bgColor = [BWCommon getBackgroundColor];
     
@@ -42,9 +42,13 @@
     
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = rect.size;
-    
     [self.navigationController.navigationBar setBarTintColor:[BWCommon getMainColor]];
 
+    
+    UIBarButtonItem *backItem=[[UIBarButtonItem alloc]init];
+    backItem.title=@"";
+    backItem.image=[UIImage imageNamed:@""];
+    self.navigationItem.backBarButtonItem=backItem;
     
     
     tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
@@ -85,13 +89,6 @@
     NSLog(@"uid:%@",user_id);
     [postData setValue:[NSString stringWithFormat:@"%@",user_id] forKey:@"uid"];
     
-    /*
-    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"order/queryOrders"];
-    
-    NSMutableDictionary *postData = [BWCommon getTokenData:@"order/queryOrders"];
-    
-    [postData setValue:[NSString stringWithFormat:@"%ld",self.gpage] forKey:@"OrderInfo_page"];
-    */
     NSLog(@"%@",url);
     //load data
     
@@ -177,8 +174,26 @@
     [cell.editButton addTarget:self action:@selector(do_edit:) forControlEvents:UIControlEventTouchUpInside];
     cell.delButton.tag = indexPath.row;
     [cell.delButton addTarget:self action:@selector(do_del:) forControlEvents:UIControlEventTouchUpInside];
+    cell.defaultButton.tag = indexPath.row;
+    [cell.defaultButton addTarget:self action:@selector(do_default:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
+}
+
+- (void) do_default: (UIButton *) sender{
+    NSMutableDictionary *address = [dataArray objectAtIndex:sender.tag];
+    UIAlertView *alert  = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    
+    if ([[address objectForKey:@"is_default"] integerValue] == 0) {
+        [alert setMessage:@"确定要设为默认地址吗？"];
+        [alert show];
+    }
+}
+
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
+        NSLog(@"提交默认地址设置");
+    }
 }
 
 - (void) do_edit: (UIButton *)sender
@@ -288,10 +303,5 @@
  // Pass the selected object to the new view controller.
  }
  */
-#pragma marks -- UIAlertViewDelegate --
-//根据被点击按钮的索引处理点击事件
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSLog(@"clickButtonAtIndex:%ld",(long)buttonIndex);
-}
+
 @end
