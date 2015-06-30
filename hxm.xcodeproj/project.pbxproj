@@ -118,6 +118,8 @@
 		32998DD11B2C1C0800BD8C59 /* YCXMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 32998DCE1B2C1C0800BD8C59 /* YCXMenu.m */; };
 		32998DD21B2C1C0800BD8C59 /* YCXMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 32998DD01B2C1C0800BD8C59 /* YCXMenuItem.m */; };
 		32998DD41B2C2CA100BD8C59 /* seller-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32998DD31B2C2CA100BD8C59 /* seller-icon.png */; };
+		329B303D1B42F49A005BAC74 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 329B303C1B42F49A005BAC74 /* PayViewController.m */; };
+		329B30401B42FDEC005BAC74 /* PayWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 329B303F1B42FDEC005BAC74 /* PayWebViewController.m */; };
 		32A48DED1B2032AF000A44A0 /* UIView+XCMultiSortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DE71B2032AF000A44A0 /* UIView+XCMultiSortTableView.m */; };
 		32A48DEE1B2032AF000A44A0 /* XCMultiSortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DE91B2032AF000A44A0 /* XCMultiSortTableView.m */; };
 		32A48DEF1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A48DEB1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.m */; };
@@ -324,6 +326,10 @@
 		32998DCF1B2C1C0800BD8C59 /* YCXMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCXMenuItem.h; sourceTree = "<group>"; };
 		32998DD01B2C1C0800BD8C59 /* YCXMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCXMenuItem.m; sourceTree = "<group>"; };
 		32998DD31B2C2CA100BD8C59 /* seller-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seller-icon.png"; sourceTree = "<group>"; };
+		329B303B1B42F49A005BAC74 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
+		329B303C1B42F49A005BAC74 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
+		329B303E1B42FDEC005BAC74 /* PayWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayWebViewController.h; sourceTree = "<group>"; };
+		329B303F1B42FDEC005BAC74 /* PayWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayWebViewController.m; sourceTree = "<group>"; };
 		32A48DE61B2032AF000A44A0 /* UIView+XCMultiSortTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XCMultiSortTableView.h"; sourceTree = "<group>"; };
 		32A48DE71B2032AF000A44A0 /* UIView+XCMultiSortTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XCMultiSortTableView.m"; sourceTree = "<group>"; };
 		32A48DE81B2032AF000A44A0 /* XCMultiSortTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCMultiSortTableView.h; sourceTree = "<group>"; };
@@ -689,6 +695,10 @@
 			children = (
 				32502BA31B242D9000C9AB9C /* FinanceDetailViewController.h */,
 				32502BA41B242D9000C9AB9C /* FinanceDetailViewController.m */,
+				329B303B1B42F49A005BAC74 /* PayViewController.h */,
+				329B303C1B42F49A005BAC74 /* PayViewController.m */,
+				329B303E1B42FDEC005BAC74 /* PayWebViewController.h */,
+				329B303F1B42FDEC005BAC74 /* PayWebViewController.m */,
 			);
 			name = Finance;
 			sourceTree = "<group>";
@@ -1054,6 +1064,7 @@
 				323EE9101AF8F57D00C55306 /* AppDelegate.m in Sources */,
 				6FE330041B19E39A00BE3B8F /* MyAddressTableViewFrame.m in Sources */,
 				323C30EB1B0B913F00D0B8D0 /* GoodsViewController.m in Sources */,
+				329B30401B42FDEC005BAC74 /* PayWebViewController.m in Sources */,
 				3272D63C1B1CAFBF007DBF31 /* FinanceTableViewFrame.m in Sources */,
 				32A48DEF1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.m in Sources */,
 				6FCBFE271B19B4A200537CC6 /* MyAfterSaleTableViewFrame.m in Sources */,
@@ -1085,6 +1096,7 @@
 				32D3D9891B03B2AE00B50967 /* AFNetworkTool.m in Sources */,
 				32502BB41B2455B200C9AB9C /* CartTableViewFrame.m in Sources */,
 				6F85EFEB1B16E47F008C101B /* MyContactWayViewController.m in Sources */,
+				329B303D1B42F49A005BAC74 /* PayViewController.m in Sources */,
 				32A48DF51B205F00000A44A0 /* OrderCommentViewController.m in Sources */,
 				323EE90D1AF8F57D00C55306 /* main.m in Sources */,
 				3223FB6C1B3BE07900392039 /* LDXScore.m in Sources */,

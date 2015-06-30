@@ -13,7 +13,9 @@
 @interface FinanceDetailViewController : UIViewController
 <
 XCMultiTableViewDataSource,
-MBProgressHUDDelegate>
+MBProgressHUDDelegate,
+UIGestureRecognizerDelegate
+>
 {
     MBProgressHUD *hud;
 }

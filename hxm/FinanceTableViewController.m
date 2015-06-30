@@ -10,6 +10,7 @@
 #import "FinanceTableViewCell.h"
 #import "FinanceTableViewFrame.h"
 #import "FinanceDetailViewController.h"
+#import "PayViewController.h"
 #import "BWCommon.h"
 #import "MJRefresh.h"
 #import "AFNetworkTool.h"
@@ -233,7 +234,7 @@
     if(section == 0)
         return 15;
     else
-        return 50;
+        return 80;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -302,18 +303,21 @@
     
     if(section==1)
     {
+        NSInteger bwidth = (self.view.frame.size.width - 30)/2;
         //加入
         UIButton *btnWireIn = [self footerButton:@"去充值" bgColor:[UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1]];
-        btnWireIn.frame = CGRectMake(10, 20, 160, 60);
+        btnWireIn.frame = CGRectMake(10, 20, bwidth, 40);
         [myView addSubview: btnWireIn];
         
+        [btnWireIn addTarget:self action:@selector(wireInTouched:) forControlEvents:UIControlEventTouchUpInside];
+        
         UIButton *btnList = [self footerButton:@"我的对账单" bgColor:[UIColor colorWithRed:219/255.0f green:0/255.0f blue:0 alpha:1]];
-        btnList.frame = CGRectMake(0, 20, 160, 60);
+        btnList.frame = CGRectMake(bwidth + 20, 20, bwidth, 40);
         [myView addSubview: btnList];
         
         [btnList addTarget:self action:@selector(listButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
         
-        NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnWireIn(<=160)]-10-[btnList(<=160)]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnWireIn,btnList)];
+       /* NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnWireIn(<=160)]-10-[btnList(<=160)]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnWireIn,btnList)];
         
         NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[btnWireIn(==40)]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnWireIn)];
         
@@ -321,7 +325,7 @@
         
         [myView addConstraints:constraints1];
         [myView addConstraints:constraints2];
-        [myView addConstraints:constraints3];
+        [myView addConstraints:constraints3];*/
     }
     
     return myView;
@@ -336,13 +340,23 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
+
+-(void) wireInTouched:(id) sender{
+    
+    PayViewController * detailViewController = [[PayViewController alloc] init];
+    
+    detailViewController.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:detailViewController animated:YES];
+
+}
 -(UIButton *) footerButton: (NSString *) title bgColor : (UIColor *) bgColor {
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
     [button.layer setMasksToBounds:YES];
     [button.layer setCornerRadius:5.0];
-    button.translatesAutoresizingMaskIntoConstraints = NO;
+    //button.translatesAutoresizingMaskIntoConstraints = NO;
     button.backgroundColor = bgColor;
     button.tintColor = [UIColor whiteColor];
     button.titleLabel.font = [UIFont systemFontOfSize:16];

@@ -229,10 +229,13 @@ UITextField *password;
                 
                 NSString *uid = [[responseObject objectForKey:@"data"] objectForKey:@"user_id"];
                 NSString *user_key = [[responseObject objectForKey:@"data"] objectForKey:@"user_key"];
+                NSString *billauth = [[responseObject objectForKey:@"data"] objectForKey:@"billauth"];
+                
                 
                 [BWCommon setUserInfo:@"uid" value:uid];
                 [BWCommon setUserInfo:@"username" value:usernameValue];
                 [BWCommon setUserInfo:@"user_key" value:user_key];
+                [BWCommon setUserInfo:@"billauth" value:billauth];
                 [BWCommon setUserInfo:@"password" value:passwordValue];
                 
                 [BWCommon setUserInfo:@"status" value:@"verify"];
@@ -246,10 +249,12 @@ UITextField *password;
             
             NSString *uid = [[responseObject objectForKey:@"data"] objectForKey:@"user_id"];
             NSString *user_key = [[responseObject objectForKey:@"data"] objectForKey:@"user_key"];
+            NSString *billauth = [[responseObject objectForKey:@"data"] objectForKey:@"billauth"];
             
             [BWCommon setUserInfo:@"uid" value:uid];
             [BWCommon setUserInfo:@"username" value:usernameValue];
             [BWCommon setUserInfo:@"user_key" value:user_key];
+            [BWCommon setUserInfo:@"billauth" value:billauth];
             //认证通过后清除
             [BWCommon setUserInfo:@"password" value:@""];
             
