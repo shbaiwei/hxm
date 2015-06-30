@@ -13,8 +13,8 @@
 @interface OrderCommentViewController : UIViewController
 <OrderDetailDelegate,
 MBProgressHUDDelegate,
-UIAlertViewDelegate
->
+UIAlertViewDelegate,
+UIGestureRecognizerDelegate>
 {
     MBProgressHUD *hud;
 }

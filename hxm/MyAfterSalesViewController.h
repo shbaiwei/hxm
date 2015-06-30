@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 
-@interface MyAfterSalesViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,MBProgressHUDDelegate>
+@interface MyAfterSalesViewController : UIViewController
+<UITableViewDataSource,
+UITableViewDelegate,
+UIAlertViewDelegate,
+MBProgressHUDDelegate>
 {
     MBProgressHUD *hud;
     NSMutableArray *_items;

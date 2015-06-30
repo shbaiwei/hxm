@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GoodsListTableViewFrame.h"
+#import "UIImageView+WebCache.h"
 
 @interface GoodsListTableViewCell : UITableViewCell
 
@@ -38,6 +39,10 @@
 // 名称
 @property (nonatomic, weak) UILabel *nameLabel;
 
+@property (nonatomic, weak) UIView  *tipsView;
+
 @property (nonatomic, weak) UILabel *tipsLabel;
+@property (nonatomic, weak) UILabel *tips2Label;
+@property (nonatomic, weak) UILabel *tipsValue;
 
 @end

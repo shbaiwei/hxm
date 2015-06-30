@@ -22,34 +22,38 @@
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = rect.size;
     
-    CGFloat padding = 10;
+    CGFloat padding = 5;
     
-    NSUInteger priceLabelY = padding + 15;
-    NSUInteger priceLabelH = 20;
-    NSUInteger priceLabelW = 50;
-    self.priceLabelF = CGRectMake(padding*2 + 90, priceLabelY, priceLabelW, priceLabelH);
+    NSUInteger aucNoLabelY = padding + 15;
+    NSUInteger aucNoLabelH = 20;
+    NSUInteger aucNoLabelW = 80;
+    self.aucNoLabelF = CGRectMake(padding*2 + 100, aucNoLabelY, aucNoLabelW, aucNoLabelH);
     
-    NSUInteger priceValueH = 20;
-    NSUInteger pricevalueW = 80;
-    self.priceValueF = CGRectMake(padding*2 + priceLabelW + 90, priceLabelY, pricevalueW, priceValueH);
+    NSUInteger aucNoValueH = 20;
+    NSUInteger aucNovalueW = 80;
+    self.aucNoValueF = CGRectMake(padding*2 + aucNoLabelW + 100,aucNoLabelY, aucNovalueW, aucNoValueH);
     
-    self.statusLabelF = CGRectMake(size.width - 70, priceLabelY, 60, 20);
-    
-    
-    NSUInteger inRowY = priceLabelY + priceLabelH + padding;
-    NSUInteger inRowH = 22;
-    
-    self.inRowF = CGRectMake(padding * 2 + 90, inRowY, 130, inRowH);
+    //self.statusLabelF = CGRectMake(size.width - 70, priceLabelY, 60, 20);
     
     
-    NSUInteger packRowY = inRowY + padding + inRowH;
+    NSUInteger channelRowY = aucNoLabelY + aucNoLabelH + padding;
+    NSUInteger channelRowH = 22;
     
-    self.packRowF = CGRectMake(padding * 2 + 90, packRowY, 130, inRowH);
+    self.channelRowF = CGRectMake(padding * 2 + 100, channelRowY, 130, channelRowH);
+    
+    
+    NSUInteger catRowY = channelRowY + padding + channelRowH;
+    
+    self.catRowF = CGRectMake(padding * 2 + 100, catRowY, 130, channelRowH);
+    
+    NSUInteger cat2RowY = channelRowY + padding + channelRowH*2 + padding;
+    
+    self.cat2RowF = CGRectMake(padding * 2 + 100, cat2RowY, 130, channelRowH);
     
     
     self.borderViewF = CGRectMake(0, 1, size.width, 15);
     
-    self.cellHeight = 120;
+    self.cellHeight = 130;
     
 }
 

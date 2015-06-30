@@ -93,8 +93,6 @@
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
 
-
-    
     
     NSLog(@"%@",url);
     //load data
@@ -118,10 +116,10 @@
                 
             }
             
-            NSLog(@"%@",dataArray);
+            NSLog(@"%@",responseObject);
             self.statusFrames = nil;
             
-            //[self.tableView reloadData];
+            [self.tableView reloadData];
             
             if(callback){
                 callback();

@@ -52,7 +52,7 @@
 
     self.priceF = CGRectMake(nameX, priceY, 60, 20);
     
-    CGSize tipsSize = [self sizeWithString:@"同品种同等级产品剩余：枝" font:NJNameFont maxSize:CGSizeMake(230, MAXFLOAT)];
+    CGSize tipsSize = [self sizeWithString:[NSString stringWithFormat:@"同品种同等级产品剩余：%@ 枝",[data objectForKey:@"sameLeft"]] font:NJNameFont maxSize:CGSizeMake(230, MAXFLOAT)];
     CGFloat tipsY = priceY + 20 + padding;
     self.tipsF = CGRectMake(nameX, tipsY, tipsSize.width, tipsSize.height);
     

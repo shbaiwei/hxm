@@ -101,6 +101,13 @@ NSString *order_no;
     submitButton.frame = CGRectMake(padding, 250, size.width-padding*2 , 40);
     [sclView addSubview:submitButton];
 
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    // very important make delegate useful
+    tap.delegate = self;
 
 }
 
@@ -117,7 +124,7 @@ NSString *order_no;
     
     
     
-    [postData setValue:[NSString stringWithFormat:@"%d",self.starView.show_star ] forKey:@"comment_rate"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",self.starView.show_star ] forKey:@"comment_rate"];
     [postData setValue:self.commentView.text forKey:@"comment_content"];
     
     url = [url stringByAppendingFormat:@"?order_no=%@",order_no ];
@@ -183,6 +190,14 @@ NSString *order_no;
     order_no = detailValue;
     
 }
+
+
+// tap dismiss keyboard
+-(void)dismissKeyboard {
+    [self.view endEditing:YES];
+    //[self.password resignFirstResponder];
+}
+
 /*
 #pragma mark - Navigation
 

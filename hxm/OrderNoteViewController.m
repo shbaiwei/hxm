@@ -116,6 +116,13 @@ NSUInteger flag_id;
     [sclView addSubview:submitButton];
     
     
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    // very important make delegate useful
+    tap.delegate = self;
 }
 
 
@@ -133,7 +140,7 @@ NSUInteger flag_id;
     UIAlertAction* ok=[UIAlertAction actionWithTitle:@"确认" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) {
         
         flag_id = tmp_flag_id;
-        [self.flagButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"op_memo_%d",flag_id]] forState:UIControlStateNormal];
+        [self.flagButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"op_memo_%ld",flag_id]] forState:UIControlStateNormal];
 
     }];
     
@@ -206,7 +213,7 @@ NSUInteger flag_id;
     NSMutableDictionary *postData = [BWCommon getTokenData:@"order/addRemark"];
 
     
-    [postData setValue:[NSString stringWithFormat:@"%d",flag_id ] forKey:@"buyer_memo_flag"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",flag_id ] forKey:@"buyer_memo_flag"];
     [postData setValue:self.noteView.text forKey:@"buyer_memo"];
     
     url = [url stringByAppendingFormat:@"?order_no=%@",order_no ];
@@ -271,6 +278,14 @@ NSUInteger flag_id;
     order_no = detailValue;
     
 }
+
+
+// tap dismiss keyboard
+-(void)dismissKeyboard {
+    [self.view endEditing:YES];
+    //[self.password resignFirstResponder];
+}
+
 /*
  #pragma mark - Navigation
  

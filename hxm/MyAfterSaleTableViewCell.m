@@ -215,8 +215,9 @@
     }
     //self.timeLabel;
     
+
     
-    NSDate * dt = [NSDate dateWithTimeIntervalSince1970:[[data objectForKey:@"updatetime"] floatValue]];
+    NSDate * dt = [NSDate dateWithTimeIntervalSince1970:[[data objectForKey:@"addtime"] floatValue]];
     NSDateFormatter * df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd"];
     //NSString *time = [df stringFromDate:dt];

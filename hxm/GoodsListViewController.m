@@ -13,6 +13,7 @@
 #import "GoodsDetailViewController.h"
 #import "ConsignationFormViewController.h"
 #import "BuyTableViewController.h"
+#import "SearchViewController.h"
 #import "BWCommon.h"
 #import "MJRefresh.h"
 #import "AFNetworkTool.h"
@@ -23,6 +24,8 @@
 @property (nonatomic,assign) NSUInteger gpage;
 
 @property (nonatomic , strong) NSMutableArray *items;
+
+@property (nonatomic, retain) NSString *keyword;
 
 @end
 
@@ -46,8 +49,18 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self pageLayout];
+    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self
+           selector:@selector(handleSearchChange:)
+               name:@"do"
+             object:nil];
 }
 
+- (void)handleSearchChange:(id)sender{
+    self.keyword = [BWCommon getUserInfo:@"keyword"];
+    [self refreshingData:1 callback:^{}];
+}
 - (void) pageLayout{
     
     self.view.backgroundColor = [BWCommon getBackgroundColor];
@@ -148,10 +161,11 @@
     NSMutableDictionary *postData = [BWCommon getTokenData:@"goods/queryGoods"];
     
     [postData setValue:@"10" forKey:@"pageSize"];
+    [postData setValue:self.keyword forKey:@"keyword"];
     [postData setValue:[NSString stringWithFormat:@"%ld",page] forKey:@"GoodsEntry_page"];
     
     
-    NSLog(@"%@",url);
+    NSLog(@"%@",postData);
     //load data
     
     [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
@@ -403,7 +417,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 50;
+    return 40;
 }
 
 -(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -411,28 +425,64 @@
     
     NSUInteger width = self.view.frame.size.width;
     
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 50)];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 40)];
     headView.backgroundColor = [BWCommon getBackgroundColor];
-    UITextField *searchField = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, width - 40, 40)];
-    [headView addSubview:searchField];
     
-    searchField.backgroundColor = [UIColor colorWithRed:250/255.0f green:250/255.0f  blue:250/255.0f  alpha:1];
+    
+    /*UITextField *searchField = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, width - 40, 40)];
+    [headView addSubview:searchField];*/
+    
+    /*searchField.backgroundColor = [UIColor colorWithRed:250/255.0f green:250/255.0f  blue:250/255.0f  alpha:1];
     searchField.layer.cornerRadius = 5.0f;
     searchField.layer.borderColor = [BWCommon getMainColor].CGColor;
     searchField.layer.borderWidth = 1.0f;
     searchField.placeholder = @"搜索您想找的商品";
     
     searchField.borderStyle = UITextBorderStyleRoundedRect;
+     */
+    
+    //[searchField addTarget:self action:@selector(searchTouched:) forControlEvents:UIControlEvent];
 
     UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"goods-q.png"]];
-    searchField.leftView = icon;
+    icon.frame = CGRectMake(5, 5, 22,22);
+    /*searchField.leftView = icon;
     searchField.leftViewMode = UITextFieldViewModeAlways;
+    */
     
+    UIButton *headButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 12, width-40, 30)];
+    headButton.layer.cornerRadius = 5.0f;
+    headButton.layer.borderColor = [BWCommon getMainColor].CGColor;
+    headButton.layer.borderWidth = 1.0f;
+    [headButton setBackgroundColor:[BWCommon getRGBColor:0xefefef]];
+    [headButton.titleLabel setFont: [UIFont systemFontOfSize:14]];
+    //[headView addSubview:icon];
+    [headButton addSubview:icon];
+    
+    if(!self.keyword){
+        [headButton setTitle:@"搜索您想找的商品" forState:UIControlStateNormal];
+        [headButton setTitleColor:[BWCommon getRGBColor:0x999999] forState:UIControlStateNormal];
+    }else{
+        [headButton setTitle:self.keyword forState:UIControlStateNormal];
+        [headButton setTitleColor:[BWCommon getRGBColor:0x666666] forState:UIControlStateNormal];
+    }
+
+
+    [headView addSubview:headButton];
+    
+    [headButton addTarget:self action:@selector(searchTouched:) forControlEvents:UIControlEventTouchUpInside];
     
     [BWCommon setBottomBorder:headView color:[BWCommon getBackgroundColor]];
 
     return headView;
 
+}
+
+- (void) searchTouched:(id) sender{
+    
+    NSLog(@"");
+    SearchViewController *searchViewController = [[SearchViewController alloc] init];
+    
+    [self presentViewController:searchViewController animated:NO completion:^{}];
 }
 
 /*

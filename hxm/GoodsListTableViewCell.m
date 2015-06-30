@@ -165,11 +165,29 @@
         priceLabel.font = NJPriceFont;
         [priceLabel setTextColor:[UIColor colorWithRed:219/255.0f green:0/255.0f blue:0/255.0f alpha:1]];
         
-        UILabel *tipsLabel = [[UILabel alloc] init];
+        UIView *tipsView = [[UIView alloc] init];
+        
+        self.tipsView = tipsView;
+        [self.contentView addSubview:tipsView];
+        
+        UILabel *tipsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 135, 20)];
         self.tipsLabel = tipsLabel;
-        [self.contentView addSubview:tipsLabel];
         tipsLabel.font = [UIFont systemFontOfSize:12];
         [tipsLabel setTextColor:[UIColor colorWithRed:160/255.0f green:160/255.0f blue:160/255.0f alpha:1]];
+        [self.tipsView addSubview:tipsLabel];
+        
+        UILabel *tips2Label = [[UILabel alloc] initWithFrame:CGRectMake(180, 0, 50, 20)];
+        self.tips2Label = tips2Label;
+        tips2Label.font = [UIFont systemFontOfSize:12];
+        [tips2Label setTextColor:[UIColor colorWithRed:160/255.0f green:160/255.0f blue:160/255.0f alpha:1]];
+        //[self.tipsView addSubview:tips2Label];
+        
+        UILabel *tipsValue = [[UILabel alloc] initWithFrame:CGRectMake(132, 0, 40, 20)];
+        self.tipsValue = tipsValue;
+        tipsValue.font = [UIFont systemFontOfSize:14];
+        [tipsValue setTextAlignment:NSTextAlignmentLeft];
+        [tipsValue setTextColor:[BWCommon getMainColor]];
+        [self.tipsView addSubview:tipsValue];
 
         
         UIButton *cartButton = [[UIButton alloc] init];
@@ -248,7 +266,7 @@
     NSString *image_url = [data objectForKey:@"photo_cd1"];
     
     
-    [self.imageView setImage:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image_url]]]];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:image_url] placeholderImage:[UIImage imageNamed:@"icon.png"] options:SDWebImageCacheMemoryOnly];
     
     CGSize itemSize = CGSizeMake(90, 90);
     UIGraphicsBeginImageContext(itemSize);
@@ -262,7 +280,9 @@
     self.merchantLabel.text = [data objectForKey:@"seller_name"];
     self.priceLabel.text = [NSString stringWithFormat:@"¥%@", [data objectForKey:@"sale_prc"]];
     self.limitLabel.text = [data objectForKey:@"ent_num"];
-    self.tipsLabel.text = @"同品种同等级产品剩余：枝";
+    self.tipsLabel.text = @"同品种同等级产品剩余：";
+    self.tipsValue.text = [data objectForKey:@"sameLeft"];
+    self.tips2Label.text = @"枝";
 
     
 }
@@ -287,7 +307,7 @@
     self.buyButton.frame = self.viewFrame.buyButtonF;
     self.auctionButton.frame = self.viewFrame.auctionButtonF;
     
-    self.tipsLabel.frame = self.viewFrame.tipsF;
+    self.tipsView.frame = self.viewFrame.tipsF;
     
     self.cartButton.frame = self.viewFrame.cartButtonF;
     

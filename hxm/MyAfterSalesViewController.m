@@ -35,7 +35,11 @@
     
     UIColor *bgColor = [BWCommon getBackgroundColor];
     
+    [self.navigationController.navigationBar setBarTintColor:[BWCommon getMainColor]];
+
+    
     self.view.backgroundColor = bgColor;
+    
     
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = rect.size;
@@ -44,8 +48,15 @@
     tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     tableview.delegate = self;
     tableview.dataSource = self;
+
     
     [self.view addSubview:tableview];
+    
+    [tableview setHidden:YES];
+    
+    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    [tableview setTableFooterView:v];
     
     self.gpage = 1;
     [self refreshingData:1 callback:^{
@@ -70,17 +81,16 @@
     NSMutableDictionary *postData = [BWCommon getTokenData:@"complain/queryComplains"];
     
     NSString *user_id = [BWCommon getUserInfo:@"uid"];
-    NSLog(@"uid:%@",user_id);
+
+    [postData setValue:[NSString stringWithFormat:@"%@",user_id] forKey:@"uid"];
     [postData setValue:[NSString stringWithFormat:@"%@",user_id] forKey:@"uid"];
     
-
-    
-    NSLog(@"%@",url);
+    NSLog(@"%@",postData);
     //load data
     
     [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
         
-        NSLog(@"%@",responseObject);
+        //NSLog(@"%@",responseObject);
         NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
         
         [hud removeFromSuperview];
@@ -98,8 +108,12 @@
                 
             }
             
-           // NSLog(@"%@",dataArray);
+            
+            NSLog(@"%@",dataArray);
+            
             self.statusFrames = nil;
+            
+            [tableview setHidden:NO];
             
             [tableview reloadData];
             
@@ -154,6 +168,7 @@
     MyAfterSaleTableViewCell *cell = [MyAfterSaleTableViewCell cellWithTableView:tableview];
     
     cell.viewFrame = self.statusFrames[indexPath.row];
+
     
     cell.cancelButton.tag = indexPath.row;
     [cell.cancelButton addTarget:self action:@selector(do_cancel:) forControlEvents:UIControlEventTouchUpInside];
@@ -169,11 +184,12 @@
 //撤销投诉
 - (void) do_cancel:(UIButton *) btn
 {
-    NSDictionary *data = [dataArray objectAtIndex:btn.tag];
-    NSString *order_id = [data objectForKey:@"order_no"];
-    NSLog(@"撤销操作：%@",order_id);
+   // NSDictionary *data = [dataArray objectAtIndex:btn.tag];
+   // NSString *order_id = [data objectForKey:@"order_no"];
+   // NSLog(@"撤销操作：%@",order_id);
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"您确定要撤销该投诉吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
     alert.tag = btn.tag;
+
     [alert show];
 }
 
@@ -214,6 +230,8 @@
             vf.data = dict;
             [models addObject:vf];
         }
+        
+
         self.statusFrames = [models copy];
     }
     return _statusFrames;
@@ -222,17 +240,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSUInteger detail_id;
-    /*detail_id = [[[dataArray objectAtIndex:[indexPath row]] objectForKey:@"id"] integerValue];
-     
-     MixDetailViewController *detailViewController = [[MixDetailViewController alloc] init];
-     
-     detailViewController.hidesBottomBarWhenPushed = YES;
-     self.delegate = detailViewController;
-     
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     
-     [self.delegate setValue:detail_id];*/
+   /* NSString * order_no;
+    order_no = [[dataArray objectAtIndex:[indexPath row]] objectForKey:@"order_no"];
+    
+    OrderDetailViewController *detailViewController = [[OrderDetailViewController alloc] init];
+    
+    detailViewController.hidesBottomBarWhenPushed = YES;
+    self.delegate = detailViewController;
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    [self.delegate setValue:order_no];*/
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
     
 }
 
@@ -271,6 +290,58 @@
 //根据被点击按钮的索引处理点击事件
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"clickButtonAtIndex:%ld",(long)buttonIndex);
+
+    if(buttonIndex == 1){
+        
+        NSString *complainId = [[dataArray objectAtIndex:alertView.tag] objectForKey:@"id"];
+        [self cancelHandler:complainId];
+    }
 }
+
+
+-(void) cancelHandler: (NSString *) complainId
+{
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
+    
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"complain/cancelComplain"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"complain/cancelComplain"];
+    
+    
+    [postData setValue:complainId forKey:@"id"];
+    
+    UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"系统提示" message:@"" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    NSLog(@"%@",postData);
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        NSLog(@"complain:%@",responseObject);
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        [hud removeFromSuperview];
+        if(errNo == 0)
+        {
+            [self refreshingData:1 callback:^{
+                
+            }];
+        }
+        else
+        {
+            [alert setMessage:[responseObject objectForKey:@"error"]];
+            [alert show];
+            
+        }
+        
+    } fail:^{
+        [hud removeFromSuperview];
+        NSLog(@"请求失败");
+        
+        [alert setMessage:@"链接超时，请重试"];
+        [alert show];
+        
+    }];
+
+}
+
 @end

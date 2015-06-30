@@ -15,16 +15,18 @@
 
 @property (nonatomic, assign) CGRect borderViewF;
 
-@property (nonatomic,assign) CGRect priceLabelF;
-@property (nonatomic,assign) CGRect priceValueF;
+@property (nonatomic,assign) CGRect aucNoLabelF;
+@property (nonatomic,assign) CGRect aucNoValueF;
 
 @property (nonatomic,assign) CGRect statusLabelF;
 
 
 
-@property (nonatomic,assign) CGRect inRowF;
+@property (nonatomic,assign) CGRect channelRowF;
 
-@property (nonatomic,assign) CGRect packRowF;
+@property (nonatomic,assign) CGRect catRowF;
+
+@property (nonatomic,assign) CGRect cat2RowF;
 
 @property (nonatomic, assign) CGFloat cellHeight;
 

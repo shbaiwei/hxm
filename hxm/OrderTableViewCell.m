@@ -212,6 +212,10 @@
     
     self.timeLabel.text = [data objectForKey:@"create_time"];
     
+    if([[data objectForKey:@"canRate"] integerValue] == 0){
+        [self.commentButton setHidden:YES];
+    }
+
     
 }
 /**

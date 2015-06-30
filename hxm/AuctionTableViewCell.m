@@ -61,17 +61,17 @@
         [self.contentView addSubview:view];
         self.borderView = view;
         
-        UILabel *priceLabel = [[UILabel alloc] init];
-        self.priceLabel = priceLabel;
-        priceLabel.text = @"委托价";
-        [priceLabel setTextColor:[BWCommon getRedColor]];
-        [self.contentView addSubview:priceLabel];
-        priceLabel.font = NJNameFont;
+        UILabel *aucNoLabel = [[UILabel alloc] init];
+        self.aucNoLabel = aucNoLabel;
+        aucNoLabel.text = @"拍卖顺序：";
+        [aucNoLabel setTextColor:[BWCommon getRedColor]];
+        [self.contentView addSubview:aucNoLabel];
+        aucNoLabel.font = NJNameFont;
         
-        UILabel *priceValue = [[UILabel alloc] init];
-        self.priceValue = priceValue;
-        [self.contentView addSubview:priceValue];
-        [priceValue setTextColor:[BWCommon getRedColor]];
+        UILabel *aucNoValue = [[UILabel alloc] init];
+        self.aucNoValue = aucNoValue;
+        [self.contentView addSubview:aucNoValue];
+        [aucNoValue setTextColor:[BWCommon getRedColor]];
         
         UILabel *statusLabel = [[UILabel alloc] init];
         self.statusLabel = statusLabel;
@@ -83,49 +83,74 @@
         
         [self.contentView addSubview:statusLabel];
         
-        UIView *inRowView = [[UIView alloc] init];
-        [self.contentView addSubview:inRowView];
-        self.inRowView = inRowView;
+        UIView *channelRowView = [[UIView alloc] init];
+        [self.contentView addSubview:channelRowView];
+        self.channelRowView = channelRowView;
         
-        UILabel *inLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 1, 62, 20)];
-        self.inLabel = inLabel;
+        UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 1, 62, 20)];
+        self.channelLabel = channelLabel;
         
-        inLabel.text = @"商品入数";
-        [inRowView addSubview:inLabel];
-        [inRowView setBackgroundColor:[UIColor lightGrayColor]];
+        channelLabel.text = @"拍卖频道";
+        [channelRowView addSubview:channelLabel];
+        [channelRowView setBackgroundColor:[UIColor lightGrayColor]];
         
-        inLabel.font = NJTextFont;
-        [inLabel setTextColor:[UIColor whiteColor]];
+        channelLabel.font = NJTextFont;
+        [channelLabel setTextColor:[UIColor whiteColor]];
         //[inLabel setBackgroundColor:[UIColor whi]];
         
-        UILabel *inValue = [[UILabel alloc] initWithFrame:CGRectMake(67, 1, 62, 20)];
-        self.inValue = inValue;
-        [inRowView addSubview:inValue];
-        [inValue setBackgroundColor:[UIColor whiteColor]];
-        inValue.textAlignment = NSTextAlignmentCenter;
-        inValue.font = NJTextFont;
+        UILabel *channelValue = [[UILabel alloc] initWithFrame:CGRectMake(67, 1, 62, 20)];
+        self.channelValue = channelValue;
+        [channelRowView addSubview:channelValue];
+        [channelValue setBackgroundColor:[UIColor whiteColor]];
+        channelValue.textAlignment = NSTextAlignmentCenter;
+        channelValue.font = NJTextFont;
         
-        UIView *packRowView = [[UIView alloc] init];
-        [self.contentView addSubview:packRowView];
-        self.packRowView = packRowView;
+        UIView *catRowView = [[UIView alloc] init];
+        [self.contentView addSubview:catRowView];
+        self.catRowView = catRowView;
         
-        [packRowView setBackgroundColor:[UIColor lightGrayColor]];
+        [catRowView setBackgroundColor:[UIColor lightGrayColor]];
         
-        UILabel *packLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 1, 62, 20)];
-        self.packLabel = packLabel;
-        packLabel.text = @"已委托数量";
-        [packRowView addSubview:packLabel];
+        UILabel *catLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 1, 62, 20)];
+        self.catLabel = catLabel;
+        catLabel.text = @"品 类";
+        [catRowView addSubview:catLabel];
         
-        packLabel.font = NJTextFont;
-        [packLabel setTextColor:[UIColor whiteColor]];
+        catLabel.font = NJTextFont;
+        [catLabel setTextColor:[UIColor whiteColor]];
         //[packLabel setBackgroundColor:[UIColor lightGrayColor]];
         
-        UILabel *packValue = [[UILabel alloc] initWithFrame:CGRectMake(67, 1, 62, 20)];
-        self.packValue = packValue;
-        [packRowView addSubview:packValue];
-        packValue.font = NJTextFont;
-        [packValue setBackgroundColor:[UIColor whiteColor]];
-        packValue.textAlignment = NSTextAlignmentCenter;
+        UILabel *catValue = [[UILabel alloc] initWithFrame:CGRectMake(67, 1, 62, 20)];
+        self.catValue = catValue;
+        [catRowView addSubview:catValue];
+        catValue.font = NJTextFont;
+        [catValue setBackgroundColor:[UIColor whiteColor]];
+        catValue.textAlignment = NSTextAlignmentCenter;
+        
+        
+        
+        UIView *cat2RowView = [[UIView alloc] init];
+        [self.contentView addSubview:cat2RowView];
+        self.cat2RowView = cat2RowView;
+        
+        [cat2RowView setBackgroundColor:[UIColor lightGrayColor]];
+        
+        UILabel *cat2Label = [[UILabel alloc] initWithFrame:CGRectMake(5, 1, 62, 20)];
+        self.cat2Label = cat2Label;
+        cat2Label.text = @"品 种";
+        [cat2RowView addSubview:cat2Label];
+        
+        cat2Label.font = NJTextFont;
+        [cat2Label setTextColor:[UIColor whiteColor]];
+        //[packLabel setBackgroundColor:[UIColor lightGrayColor]];
+        
+        UILabel *cat2Value = [[UILabel alloc] initWithFrame:CGRectMake(67, 1, 62, 20)];
+        self.cat2Value = cat2Value;
+        [cat2RowView addSubview:cat2Value];
+        cat2Value.font = NJTextFont;
+        [cat2Value setBackgroundColor:[UIColor whiteColor]];
+        cat2Value.textAlignment = NSTextAlignmentCenter;
+
         
         
     }
@@ -168,18 +193,30 @@
     
     NSDictionary *data = self.viewFrame.data;
     
-    NSString *image_url = [data objectForKey:@"img1"];
     
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:image_url]];
+    NSString *image_url = [data objectForKey:@"photo_cd1"];
     
-    self.priceValue.text = [NSString stringWithFormat:@"¥ %@",[data objectForKey:@"price"]];
-    self.inValue.text = [data objectForKey:@"ent_num"];
-    self.packValue.text = [NSString stringWithFormat:@"%@ 箱", [data objectForKey:@"etr_qty"] ];
-    self.statusLabel.text =[data objectForKey:@"status"];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:image_url] placeholderImage:[UIImage imageNamed:@"icon.png"] options:SDWebImageCacheMemoryOnly];
     
+    self.aucNoValue.text = [self getString:[data objectForKey:@"auc_no"]];
+    self.channelValue.text = [self getString:[data objectForKey:@"channel"]];
+    self.catValue.text = [self getString:[data objectForKey:@"fcname"]];
+    self.cat2Value.text = [self getString:[data objectForKey:@"name"]];
     
     
 }
+
+- (NSString *) getString:(id) str{
+    
+    if(str == [NSNull null]){
+        return @"";
+    }
+    else{
+        return str;
+    }
+}
+
+
 /**
  *  设置子控件的frame
  */
@@ -190,18 +227,18 @@
     self.layer.borderWidth=1.0;
     
     self.borderView.frame = self.viewFrame.borderViewF;
-    self.priceLabel.frame = self.viewFrame.priceLabelF;
-    self.priceValue.frame = self.viewFrame.priceValueF;
-    self.statusLabel.frame = self.viewFrame.statusLabelF;
+    
+    self.aucNoLabel.frame = self.viewFrame.aucNoLabelF;
+    self.aucNoValue.frame = self.viewFrame.aucNoValueF;
+    self.channelRowView.frame = self.viewFrame.channelRowF;
+    //self.statusLabel.frame = self.viewFrame.statusLabelF;
     //self.inLabel.frame = self.viewFrame.inLabelF;
     //self.inValue.frame = self.viewFrame.inValueF;
     //self.packLabel.frame = self.viewFrame.packLabelF;
     //self.packValue.frame = self.viewFrame.packValueF;
     
-    self.inRowView.frame = self.viewFrame.inRowF;
-    self.packRowView.frame = self.viewFrame.packRowF;
-    
-    
+    self.catRowView.frame = self.viewFrame.catRowF;
+    self.cat2RowView.frame = self.viewFrame.cat2RowF;
     
 }
 

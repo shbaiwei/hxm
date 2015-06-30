@@ -9,6 +9,7 @@
 #import "OrderDetailViewController.h"
 #import "OrderCommentViewController.h"
 #import "OrderNoteViewController.h"
+#import "OrderComplainViewController.h"
 #import "BWCommon.h"
 #import "MJRefresh.h"
 #import "AFNetworkTool.h"
@@ -23,6 +24,7 @@
 @property (nonatomic,weak) UILabel * orderAddressValue;
 @property (nonatomic,weak) UILabel * trackerValue;
 @property (nonatomic,weak) UIButton * payButton;
+@property (nonatomic,weak) UIButton * commentButton;
 
 @property (nonatomic,retain) XCMultiTableView * tableView;
 
@@ -37,6 +39,9 @@ NSString *order_no;
 NSMutableArray *headData;
 NSMutableArray *leftTableData;
 NSMutableArray *rightTableData;
+
+BOOL canRate = YES;
+BOOL canPayment = YES;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -222,6 +227,9 @@ NSMutableArray *rightTableData;
     UIButton *commentButton = [self createButton:@"评 论"];
     UIButton *noteButton = [self createButton:@"备 注"];
     UIButton *complainButton = [self createButton:@"投 诉"];
+    
+    self.commentButton = commentButton;
+
     //UIButton *trackerButton = [self createButton:@"查看物流"];
     [actionView addSubview:commentButton];
     [actionView addSubview:noteButton];
@@ -230,6 +238,7 @@ NSMutableArray *rightTableData;
     
     [commentButton addTarget:self action:@selector(commentButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
     [noteButton addTarget:self action:@selector(noteButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [complainButton addTarget:self action:@selector(complainButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
     
     
     NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[commentButton(<=90)]-[noteButton(<=90)]-[complainButton(<=90)]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentButton,noteButton,complainButton)];
@@ -335,6 +344,10 @@ NSMutableArray *rightTableData;
 
 - (void) commentButtonTouched:(id) sender{
     
+    if(canRate == NO){
+        return;
+    }
+
     OrderCommentViewController * commentViewController = [[OrderCommentViewController alloc] init];
     self.delegate = commentViewController;
     commentViewController.hidesBottomBarWhenPushed = YES;
@@ -345,6 +358,16 @@ NSMutableArray *rightTableData;
     
 }
 
+- (void) complainButtonTouched:(id) sender{
+    
+    OrderComplainViewController * complainViewController = [[OrderComplainViewController alloc] init];
+    self.delegate = complainViewController;
+    complainViewController.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:complainViewController animated:YES];
+    [self.delegate setValue:order_no];
+    
+}
 
 - (void) noteButtonTouched:(id) sender{
     
@@ -442,10 +465,9 @@ NSMutableArray *rightTableData;
     self.orderTimeValue.text = [data objectForKey:@"create_time"];
     self.orderStatusValue.text = [data objectForKey:@"status_cn"];
     
-    NSUInteger status = [[data objectForKey:@"status"]integerValue];
+    //NSUInteger status = [[data objectForKey:@"status"]integerValue];
     
-    if(status == 1)
-        [self.payButton setHidden:NO];
+
     
     NSString *address = [data objectForKey:@"address"];
     
@@ -462,6 +484,16 @@ NSMutableArray *rightTableData;
     self.trackerValue.frame = CGRectMake(96, 10, trackerSize.width, trackerSize.height);
     self.trackerValue.text = tracker;
     
+    if([[data objectForKey:@"canRate"] boolValue] == NO){
+        canRate = NO;
+        [self.commentButton setBackgroundColor:[BWCommon getRGBColor:0xeeeeee]];
+    }
+    
+    if([[data objectForKey:@"canPayment"] boolValue] == NO){
+        canPayment = NO;
+        [self.payButton setHidden:YES];
+
+    }
     
     NSArray * goodsList = [[NSArray alloc] initWithArray:[data objectForKey:@"goods_list"]];
     

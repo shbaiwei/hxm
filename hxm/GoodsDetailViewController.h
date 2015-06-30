@@ -17,4 +17,6 @@ MBProgressHUDDelegate>
     MBProgressHUD *hud;
 }
 
+@property (nonatomic,assign) id<DetailDelegate> delegate;
+
 @end

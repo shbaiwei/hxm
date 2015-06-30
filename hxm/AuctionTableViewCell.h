@@ -18,15 +18,18 @@
 
 
 @property (nonatomic,weak) UIView *borderView;
-@property (nonatomic,weak) UILabel *priceLabel;
-@property (nonatomic,weak) UILabel *priceValue;
+@property (nonatomic,weak) UILabel *aucNoLabel;
+@property (nonatomic,weak) UILabel *aucNoValue;
 @property (nonatomic,weak) UILabel *statusLabel;
-@property (nonatomic,weak) UILabel *inLabel;
-@property (nonatomic,weak) UILabel *inValue;
-@property (nonatomic,weak) UILabel *packLabel;
-@property (nonatomic,weak) UILabel *packValue;
-@property (nonatomic,weak) UIView *inRowView;
-@property (nonatomic,weak) UIView *packRowView;
+@property (nonatomic,weak) UILabel *channelLabel;
+@property (nonatomic,weak) UILabel *channelValue;
+@property (nonatomic,weak) UILabel *catLabel;
+@property (nonatomic,weak) UILabel *catValue;
+@property (nonatomic,weak) UILabel *cat2Label;
+@property (nonatomic,weak) UILabel *cat2Value;
+@property (nonatomic,weak) UIView *channelRowView;
+@property (nonatomic,weak) UIView *catRowView;
+@property (nonatomic,weak) UIView *cat2RowView;
 
 
 

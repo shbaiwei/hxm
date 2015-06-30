@@ -9,6 +9,9 @@
 #import "GoodsDetailViewController.h"
 #import "BWCommon.h"
 #import "AFNetworkTool.h"
+#import "CartTableViewController.h"
+#import "ConsignationFormViewController.h"
+#import "BuyTableViewController.h"
 
 
 @interface GoodsDetailViewController ()
@@ -138,9 +141,19 @@ NSUInteger detail_id;
     
     y += 16;
     
-    [self.sclView addSubview:[self itemView: CGRectMake(0, y, size.width, height) title:@"拍卖顺序：" value:[data objectForKey:@"auc_id"]]];
+    NSString *auc_no = [[NSString alloc] init];
+    
+
+    if([data objectForKey:@"auc_no"] == [NSNull null]){
+        auc_no = @"";
+    }
+    else{
+        auc_no = [data objectForKey:@"auc_no"];
+    }
+    
+    [self.sclView addSubview:[self itemView: CGRectMake(0, y, size.width, height) title:@"拍卖顺序：" value:auc_no]];
     y += height+1;
-    [self.sclView addSubview:[self itemView: CGRectMake(0, y, size.width, height) title:@"拍卖频道：" value:@""]];
+    [self.sclView addSubview:[self itemView: CGRectMake(0, y, size.width, height) title:@"拍卖频道：" value:[data objectForKey:@"channel"]]];
     
     y += height+1;
     [self.sclView addSubview:[self itemView: CGRectMake(0, y, size.width, height) title:@"商品编号：" value:[data objectForKey:@"goods_cd"]]];
@@ -168,11 +181,13 @@ NSUInteger detail_id;
     [self.sclView addSubview:borderView3];
     
     y += 16;
-    [self.sclView addSubview:[self itemView: CGRectMake(0, y, size.width, height) title:@"入库数量：" value:[data objectForKey:@"flwhead"]]];
+    [self.sclView addSubview:[self itemView: CGRectMake(0, y, size.width, height) title:@"入库数量：" value:[data objectForKey:@"ent_qty"]]];
     y += height+1;
-    [self.sclView addSubview:[self itemView: CGRectMake(0, y, size.width, height) title:@"拍卖数量：" value:[data objectForKey:@"abortive_qty"]]];
+    [self.sclView addSubview:[self itemView: CGRectMake(0, y, size.width, height) title:@"拍卖数量：" value:[data objectForKey:@"lock_qty"]]];
     y += height+1;
-    [self.sclView addSubview:[self itemView: CGRectMake(0, y, size.width, height) title:@"可售数量：" value:[data objectForKey:@"ent_num"]]];
+    
+    NSInteger sale_qty = [[data objectForKey:@"ent_qty"] integerValue] - [[data objectForKey:@"lock_qty"] integerValue];
+    [self.sclView addSubview:[self itemView: CGRectMake(0, y, size.width, height) title:@"可售数量：" value:[NSString stringWithFormat:@"%ld",sale_qty]]];
     y += height+1;
     [self.sclView addSubview:[self itemView: CGRectMake(0, y, size.width, height) title:@"卖点说明：" value:[data objectForKey:@"flwmor"]]];
     
@@ -194,6 +209,10 @@ NSUInteger detail_id;
     auctionButton.frame = CGRectMake(216, y, 98, 40);
     [self.sclView addSubview:auctionButton];
 
+    
+    [buyButton addTarget:self action:@selector(buyButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [auctionButton addTarget:self action:@selector(auctionButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [cartButton addTarget:self action:@selector(cartButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
     
     
 }
@@ -342,6 +361,92 @@ NSUInteger detail_id;
 -(void) setValue:(NSUInteger)detailValue{
 
     detail_id =detailValue;
+}
+
+
+
+-(void) buyButtonTouched:(UIButton *)sender{
+    // NSLog(@"%ld",sender.tag);
+    
+    BuyTableViewController * buyTableViewController = [[BuyTableViewController alloc] init];
+    self.delegate = buyTableViewController;
+    [self.navigationController pushViewController:buyTableViewController animated:YES];
+    [self.delegate setValue:detail_id];
+    
+    
+}
+
+-(void) auctionButtonTouched:(UIButton *)sender{
+    //NSLog(@"%ld",sender.tag);
+    
+    ConsignationFormViewController * consignationFormViewController = [[ConsignationFormViewController alloc] init];
+    self.delegate = consignationFormViewController;
+    [self.navigationController pushViewController:consignationFormViewController animated:YES];
+    [self.delegate setValue:detail_id];
+}
+
+-(void) cartTouched:(id)sender{
+    //NSLog(@"%ld",sender.tag);
+    CartTableViewController * cartViewController = [[CartTableViewController alloc] init];
+    self.delegate = cartViewController;
+    [self.navigationController pushViewController:cartViewController animated:YES];
+}
+
+-(void) cartButtonTouched:(UIButton *)sender{
+    //NSLog(@"%ld",sender.tag);
+    
+    //加入购物车
+    
+    __weak GoodsDetailViewController *weakSelf = self;
+    
+    [self addToCart:detail_id callback:^{
+        
+        CartTableViewController * cartViewController = [[CartTableViewController alloc] init];
+        weakSelf.delegate = cartViewController;
+        [weakSelf.navigationController pushViewController:cartViewController animated:YES];
+        [weakSelf.delegate setValue:detail_id];
+    }];
+}
+
+-(void) addToCart: (NSUInteger) ent_id callback:(void(^)()) callback{
+    
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"cart/AddToCart"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"cart/AddToCart"];
+    
+    [postData setValue:[NSString stringWithFormat:@"%ld",ent_id] forKey:@"id"];
+    [postData setValue:@"1" forKey:@"quantity"];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    
+    NSLog(@"%@",url);
+    //load data
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        NSLog(@"%@",responseObject);
+        
+        if(errNo == 0)
+        {
+            if(callback){
+                callback();
+            }
+        }
+        else
+        {
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+            [alert setMessage:[responseObject objectForKey:@"error"]];
+            [alert show];
+        }
+        
+    } fail:^{
+        NSLog(@"请求失败");
+        [alert setMessage:@"请求超时"];
+        [alert show];
+    }];
+    
 }
 /*
 #pragma mark - Navigation
