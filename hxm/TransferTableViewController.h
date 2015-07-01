@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TransferTableViewController : UITableViewController
+<UIGestureRecognizerDelegate>
 
 @end

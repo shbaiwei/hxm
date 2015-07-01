@@ -10,11 +10,15 @@
 #import "TransferTableViewCell.h"
 #import "TransferTableViewFrame.h"
 #import "BWCommon.h"
+#import "AFNetworkTool.h"
 
 @interface TransferTableViewController ()
 @property (nonatomic, strong) NSArray *statusFrames;
 
 @property (nonatomic, strong) NSMutableArray *list;
+@property (nonatomic, retain) UITextField *field0;
+@property (nonatomic, retain) UITextField *field1;
+@property (nonatomic, retain) UITextField *field2;
 
 @end
 
@@ -22,6 +26,8 @@
 
 NSArray *titleArray;
 NSMutableArray *sectionArray;
+
+
 
 CGSize size;
 
@@ -60,19 +66,19 @@ CGSize size;
     
     [menus0 addObject:[self createRow:@"会员名：" text:@""]];
     [menus0 addObject:[self createRow:@"账户余额：" text:@""]];
-    [menus0 addObject:[self createRow:@"转账余额：" text:@""]];
+    [menus0 addObject:[self createRow:@"转账金额：" text:@""]];
     
     NSMutableArray *menus1 = [[NSMutableArray alloc] init];
     
     [menus1 addObject:[self createRow:@"会员名：" text:@""]];
     [menus1 addObject:[self createRow:@"账户余额：" text:@""]];
-    [menus1 addObject:[self createRow:@"转账余额：" text:@""]];
+    [menus1 addObject:[self createRow:@"转账金额：" text:@""]];
     
     NSMutableArray *menus2 = [[NSMutableArray alloc] init];
     
     [menus2 addObject:[self createRow:@"会员名：" text:@""]];
     [menus2 addObject:[self createRow:@"账户余额：" text:@""]];
-    [menus2 addObject:[self createRow:@"转账余额：" text:@""]];
+    [menus2 addObject:[self createRow:@"转账金额：" text:@""]];
     
     self.list = [[NSMutableArray alloc] initWithCapacity:3];
 
@@ -80,13 +86,96 @@ CGSize size;
     self.list[1] = menus1;
     self.list[2] = menus2;
     
+    [self loadData:^{}];
+    
     //[self.tableView setBackgroundColor:[BWCommon getBackgroundColor]];
+
+// tap for dismissing keyboard
+UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                               initWithTarget:self
+                               action:@selector(dismissKeyboard)];
+[self.view addGestureRecognizer:tap];
+// very important make delegate useful
+tap.delegate = self;
+
+
 }
+
+// tap dismiss keyboard
+-(void)dismissKeyboard {
+    [self.view endEditing:YES];
+    //[self.password resignFirstResponder];
+}
+
 - (NSDictionary *) createRow:(NSString *) title  text: (NSString *) text{
     
     NSDictionary *row = [[NSMutableDictionary alloc] initWithObjectsAndKeys:title,@"title",text,@"text", nil];
     return row;
 }
+
+- (void) loadData:(void(^)()) callback
+{
+    
+    
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"account/getAccountInfoById"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"account/getAccountInfoById"];
+    
+    NSLog(@"%@",url);
+    //load data
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        NSLog(@"%@",responseObject);
+
+        if(errNo == 0)
+        {
+
+            NSDictionary * data = [responseObject objectForKey:@"data"];
+            
+            
+            NSMutableArray *menus0 = [[NSMutableArray alloc] init];
+            
+            [menus0 addObject:[self createRow:@"会员名：" text:[BWCommon getUserInfo:@"username"] ]];
+            [menus0 addObject:[self createRow:@"账户余额：" text:[data objectForKey:@"balance"] ]];
+            [menus0 addObject:[self createRow:@"转账金额：" text:@""]];
+            
+            NSMutableArray *menus1 = [[NSMutableArray alloc] init];
+            
+            [menus1 addObject:[self createRow:@"会员名：" text:[BWCommon getUserInfo:@"username"] ]];
+            [menus1 addObject:[self createRow:@"账户余额：" text:[data objectForKey:@"auction"] ]];
+            [menus1 addObject:[self createRow:@"转账金额：" text:@""]];
+            
+            NSMutableArray *menus2 = [[NSMutableArray alloc] init];
+            
+            [menus2 addObject:[self createRow:@"会员名：" text:[BWCommon getUserInfo:@"username"] ]];
+            [menus2 addObject:[self createRow:@"账户余额：" text:[data objectForKey:@"balance"] ]];
+            [menus2 addObject:[self createRow:@"转账金额：" text:@""]];
+            
+            
+            self.list[0] = menus0;
+            self.list[1] = menus1;
+            self.list[2] = menus2;
+            
+            self.statusFrames = nil;
+            
+            //NSLog(@"%@",self.list);
+            
+            [self.tableView reloadData];
+        }
+        else
+        {
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+        }
+        
+    } fail:^{
+        NSLog(@"请求失败");
+    }];
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -113,6 +202,9 @@ CGSize size;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if([indexPath row] == 3)
+        return 60;
+
     return 48;
 }
 
@@ -153,6 +245,75 @@ CGSize size;
     return _statusFrames;
 }
 
+- (void) doTouched:(UIButton *) sender{
+    
+    NSString *price ;
+    NSString *apiName;
+    if(sender.tag == 0){
+        price = self.field0.text;
+        apiName = @"account/balanceToAuction";
+    }
+    else if(sender.tag == 1){
+        price = self.field1.text;
+        apiName = @"account/auctionToBalance";
+    }
+    else if(sender.tag == 2){
+        price = self.field2.text;
+        apiName = @"account/balanceToHuaji";
+    }
+    NSLog(@"%@",price);
+
+    
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:apiName];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:apiName];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"请先输入金额" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    
+    if([price isEqual:@""])
+    {
+        
+        [alert show];
+        return;
+    }
+    
+    [postData setValue:price forKey:@"amount"];
+    
+    NSLog(@"%@",postData);
+    //load data
+    
+    
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        
+        NSLog(@"%@",responseObject);
+        if(errNo == 0)
+        {
+            
+            //NSLog(@"%@",json);
+            //[alert setMessage:@"操作成功！"];
+            
+            [self loadData:^{}];
+        }
+        else
+        {
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+            [alert setMessage:[responseObject objectForKey:@"error"]];
+            [alert show];
+        }
+        
+    } fail:^{
+
+        NSLog(@"请求失败");
+        [alert setMessage:@"连接超时，请重试"];
+        [alert show];
+    }];
+
+    
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -165,12 +326,16 @@ CGSize size;
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell11"];
         }
         
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, size.width - 20, 40)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, 10, size.width - 40, 40)];
         [button setBackgroundColor:[BWCommon getRedColor]];
         button.layer.cornerRadius = 5.0f;
         button.titleLabel.font = [UIFont systemFontOfSize:16];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+        [button setTitle:@"确定转账" forState:UIControlStateNormal];
+        
+        button.tag = indexPath.section;
+        [button addTarget:self action:@selector(doTouched:) forControlEvents:UIControlEventTouchUpInside];
         
         [cell.contentView addSubview:button];
         
@@ -180,10 +345,24 @@ CGSize size;
     {
     
         TransferTableViewCell * cell = [TransferTableViewCell cellWithTableView:tableView];
-    
         cell.viewFrame = self.statusFrames[indexPath.section][indexPath.row];
-
         cell.separatorInset = UIEdgeInsetsMake(0, 50, 0, 0);
+        if(indexPath.row == 2){
+            UITextField *amountField = [[UITextField alloc] initWithFrame:CGRectMake(125, 10, size.width-130, 30)];
+            //amountField.backgroundColor = [UIColor grayColor];
+            amountField.placeholder = @"输入金额";
+            amountField.font = [UIFont systemFontOfSize:14];
+            amountField.tag = indexPath.section;
+            amountField.keyboardType = UIKeyboardTypeDecimalPad;
+            [cell.contentView addSubview:amountField];
+            if(indexPath.section == 0)
+                self.field0 = amountField;
+            else if(indexPath.section == 1)
+                self.field1 = amountField;
+            else if(indexPath.section == 2)
+                self.field2 = amountField;
+            //fieldArray[indexPath.section] = amountField;
+        }
         
         return cell;
     }
@@ -212,7 +391,7 @@ CGSize size;
     
 
     NSInteger icon1 = section + 1;
-    UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"account-%ld",icon1]]];
+    UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"account-%ld",(long)icon1]]];
     
     icon.frame = CGRectMake(10, 10, 30, 30);
     

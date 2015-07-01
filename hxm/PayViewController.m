@@ -73,7 +73,7 @@ CGSize size;
     
     UITextField *numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, size.width - 150, 30)];
     [rowNumber addSubview:numberField];
-    numberField.keyboardType = UIKeyboardTypeNumberPad;
+    numberField.keyboardType = UIKeyboardTypeDecimalPad;
     numberField.placeholder = @"如：100";
     numberField.layer.borderWidth = 1.0f;
     numberField.layer.cornerRadius = 2.0f;
