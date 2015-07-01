@@ -39,6 +39,8 @@
     CGRect rect = [[UIScreen mainScreen] bounds];
     size = rect.size;
     
+     [self.navigationController.navigationBar setBarTintColor:[BWCommon getMainColor]];
+    
     UIView *main_view = [[UIView alloc] initWithFrame:CGRectMake(20, 60, size.width, size.height)];
     [self.view addSubview:main_view];
     NSInteger yy = 10;
@@ -72,7 +74,7 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"系统信息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     if([password.text isEqualToString:@""])
     {
-        alert.message = @"请输入您的愿密码";
+        alert.message = @"请输入您的原密码";
         [alert show];
         return ;
     }

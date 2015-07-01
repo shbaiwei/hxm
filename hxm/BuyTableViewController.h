@@ -13,7 +13,8 @@
 
 @interface BuyTableViewController : UITableViewController
 <MBProgressHUDDelegate,
-DetailDelegate
+DetailDelegate,
+UIAlertViewDelegate
 >
 {
     MBProgressHUD *hud;

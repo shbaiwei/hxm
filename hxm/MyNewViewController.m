@@ -196,7 +196,7 @@ CGSize size;
 }
 -(NSString *) fetchData:(NSString *)key{
     NSString *value = [self.userinfo objectForKey:key];
-    if (value){
+    if (![value isEqual:[NSNull null]] ){
         return value;
     }
     return @"";
@@ -237,7 +237,8 @@ CGSize size;
     [menus1 addObject:[self createRow:@"真实姓名：" text:realName icon:nil]];
     
     NSString *idCard =[self fetchData:@"id_card"];
-    if(![idCard isEqualToString:@""]){
+    
+    if(![idCard isEqualToString:@""] && [idCard length] == 18){
         NSRange range1 = NSMakeRange(6, 8);
         idCard = [idCard stringByReplacingCharactersInRange:range1 withString:@"********"];
     }

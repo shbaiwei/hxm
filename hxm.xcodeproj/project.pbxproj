@@ -90,6 +90,12 @@
 		325A8A8C1B0D948800CEA0AB /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325A8A8B1B0D948800CEA0AB /* MyViewController.m */; };
 		325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325C87E81B04D100001DF5D8 /* LoginViewController.m */; };
 		3262EE7D1B20722B007489B9 /* order-tips.png in Resources */ = {isa = PBXBuildFile; fileRef = 3262EE7C1B20722B007489B9 /* order-tips.png */; };
+		3271CB001B44149600158B77 /* account-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3271CAFD1B44149600158B77 /* account-1.png */; };
+		3271CB011B44149600158B77 /* account-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3271CAFE1B44149600158B77 /* account-2.png */; };
+		3271CB021B44149600158B77 /* account-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3271CAFF1B44149600158B77 /* account-3.png */; };
+		3271CB051B44159300158B77 /* TransferTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3271CB041B44159300158B77 /* TransferTableViewController.m */; };
+		3271CB081B44270900158B77 /* TransferTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3271CB071B44270900158B77 /* TransferTableViewCell.m */; };
+		3271CB0A1B44271D00158B77 /* TransferTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3271CB091B44271D00158B77 /* TransferTableViewFrame.m */; };
 		3272D6351B1CA672007DBF31 /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272D6341B1CA672007DBF31 /* OrderDetailViewController.m */; };
 		3272D63C1B1CAFBF007DBF31 /* FinanceTableViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272D63B1B1CAFBF007DBF31 /* FinanceTableViewFrame.m */; };
 		3272D63F1B1DB7EC007DBF31 /* ConsignationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272D63E1B1DB7EC007DBF31 /* ConsignationTableViewController.m */; };
@@ -291,6 +297,15 @@
 		325C87E71B04D100001DF5D8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		325C87E81B04D100001DF5D8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		3262EE7C1B20722B007489B9 /* order-tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "order-tips.png"; sourceTree = "<group>"; };
+		3271CAFD1B44149600158B77 /* account-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "account-1.png"; sourceTree = "<group>"; };
+		3271CAFE1B44149600158B77 /* account-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "account-2.png"; sourceTree = "<group>"; };
+		3271CAFF1B44149600158B77 /* account-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "account-3.png"; sourceTree = "<group>"; };
+		3271CB031B44159300158B77 /* TransferTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferTableViewController.h; sourceTree = "<group>"; };
+		3271CB041B44159300158B77 /* TransferTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferTableViewController.m; sourceTree = "<group>"; };
+		3271CB061B44270900158B77 /* TransferTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferTableViewCell.h; sourceTree = "<group>"; };
+		3271CB071B44270900158B77 /* TransferTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferTableViewCell.m; sourceTree = "<group>"; };
+		3271CB091B44271D00158B77 /* TransferTableViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferTableViewFrame.m; sourceTree = "<group>"; };
+		3271CB0B1B44272800158B77 /* TransferTableViewFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferTableViewFrame.h; sourceTree = "<group>"; };
 		3272D6331B1CA671007DBF31 /* OrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
 		3272D6341B1CA672007DBF31 /* OrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
 		3272D63A1B1CAFA7007DBF31 /* FinanceTableViewFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinanceTableViewFrame.h; sourceTree = "<group>"; };
@@ -452,6 +467,9 @@
 		321A23821B09CD0200A9D294 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				3271CAFD1B44149600158B77 /* account-1.png */,
+				3271CAFE1B44149600158B77 /* account-2.png */,
+				3271CAFF1B44149600158B77 /* account-3.png */,
 				322EF6891B4166BF003463B9 /* op_memo_1.png */,
 				322EF68A1B4166BF003463B9 /* op_memo_2.png */,
 				322EF68B1B4166BF003463B9 /* op_memo_3.png */,
@@ -619,6 +637,10 @@
 				32C832231B3D510000CCAE8B /* MyTableViewCell.m */,
 				32C832271B3D512000CCAE8B /* MyTableViewFrame.h */,
 				32C832251B3D511300CCAE8B /* MyTableViewFrame.m */,
+				3271CB061B44270900158B77 /* TransferTableViewCell.h */,
+				3271CB071B44270900158B77 /* TransferTableViewCell.m */,
+				3271CB091B44271D00158B77 /* TransferTableViewFrame.m */,
+				3271CB0B1B44272800158B77 /* TransferTableViewFrame.h */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -699,6 +721,8 @@
 				329B303C1B42F49A005BAC74 /* PayViewController.m */,
 				329B303E1B42FDEC005BAC74 /* PayWebViewController.h */,
 				329B303F1B42FDEC005BAC74 /* PayWebViewController.m */,
+				3271CB031B44159300158B77 /* TransferTableViewController.h */,
+				3271CB041B44159300158B77 /* TransferTableViewController.m */,
 			);
 			name = Finance;
 			sourceTree = "<group>";
@@ -939,6 +963,7 @@
 				323263601B0C88550004522E /* register-cellphone@2x.png in Resources */,
 				321B0E541B14807C004D5827 /* user-icon2.png in Resources */,
 				322EF68E1B4166BF003463B9 /* op_memo_1.png in Resources */,
+				3271CB001B44149600158B77 /* account-1.png in Resources */,
 				32998DD41B2C2CA100BD8C59 /* seller-icon.png in Resources */,
 				323EE91E1AF8F57D00C55306 /* LaunchScreen.xib in Resources */,
 				322CFAEE1B18800300D12AFD /* goods-2.png in Resources */,
@@ -964,6 +989,7 @@
 				6FE32FFB1B19BEE300BE3B8F /* complain-time-icon.png in Resources */,
 				321B0E561B14807C004D5827 /* user-icon4.png in Resources */,
 				321A239A1B09CEFF00A9D294 /* baseinfo.plist in Resources */,
+				3271CB021B44149600158B77 /* account-3.png in Resources */,
 				328715541B257DB900D386CC /* icon@2x.png in Resources */,
 				322EF68F1B4166BF003463B9 /* op_memo_2.png in Resources */,
 				321A23921B09CD0200A9D294 /* logo.png in Resources */,
@@ -1001,6 +1027,7 @@
 				327D07961B2157F6002F4600 /* retainhd55.png in Resources */,
 				3287154A1B25379C00D386CC /* app-store.png in Resources */,
 				327D079C1B21BB43002F4600 /* apply-plus2.png in Resources */,
+				3271CB011B44149600158B77 /* account-2.png in Resources */,
 				327D07941B2157F6002F4600 /* retain4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1066,6 +1093,7 @@
 				323C30EB1B0B913F00D0B8D0 /* GoodsViewController.m in Sources */,
 				329B30401B42FDEC005BAC74 /* PayWebViewController.m in Sources */,
 				3272D63C1B1CAFBF007DBF31 /* FinanceTableViewFrame.m in Sources */,
+				3271CB0A1B44271D00158B77 /* TransferTableViewFrame.m in Sources */,
 				32A48DEF1B2032AF000A44A0 /* XCMultiSortTableViewBGScrollView.m in Sources */,
 				6FCBFE271B19B4A200537CC6 /* MyAfterSaleTableViewFrame.m in Sources */,
 				6F6E4CA81B187B5F002F0419 /* PasswordLoginViewController.m in Sources */,
@@ -1080,6 +1108,7 @@
 				6F8AEB8E1B1D446000E2F6E9 /* HZLocation.m in Sources */,
 				32502BAE1B24553C00C9AB9C /* CartTableViewController.m in Sources */,
 				32A48DEE1B2032AF000A44A0 /* XCMultiSortTableView.m in Sources */,
+				3271CB081B44270900158B77 /* TransferTableViewCell.m in Sources */,
 				325132911B42998B00BA907B /* SearchViewController.m in Sources */,
 				325C87E91B04D100001DF5D8 /* LoginViewController.m in Sources */,
 				322CFAF21B18845500D12AFD /* FinanceTableViewController.m in Sources */,
@@ -1100,6 +1129,7 @@
 				32A48DF51B205F00000A44A0 /* OrderCommentViewController.m in Sources */,
 				323EE90D1AF8F57D00C55306 /* main.m in Sources */,
 				3223FB6C1B3BE07900392039 /* LDXScore.m in Sources */,
+				3271CB051B44159300158B77 /* TransferTableViewController.m in Sources */,
 				3214A87F1B04F920007DE10F /* RegisterViewController.m in Sources */,
 				3223FB631B3BCC7D00392039 /* AuctionTableViewController.m in Sources */,
 				6FE330071B19E3FB00BE3B8F /* MyAddressTableViewCell.m in Sources */,

@@ -219,6 +219,15 @@
         [auctionButton setBackgroundColor:[UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1]];
 
         [self.contentView addSubview:auctionButton];
+        
+        UILabel *disableLabel = [[UILabel alloc] init];
+        self.disableLabel = disableLabel;
+        disableLabel.backgroundColor = [BWCommon getRGBColor:0xcccccc];
+        [disableLabel setTextColor:[UIColor whiteColor]];
+        disableLabel.numberOfLines = 0;
+        disableLabel.textAlignment = NSTextAlignmentCenter;
+        
+        [self.contentView addSubview:disableLabel];
 
 
         
@@ -283,6 +292,28 @@
     self.tipsLabel.text = @"同品种同等级产品剩余：";
     self.tipsValue.text = [data objectForKey:@"sameLeft"];
     self.tips2Label.text = @"枝";
+    
+    NSInteger action = [[data objectForKey:@"action"] integerValue];
+    
+    if(action == 1){
+        
+        self.disableLabel.text = @"预售已售完";
+        [self.disableLabel setHidden:NO];
+        [self.auctionButton setHidden:YES];
+        [self.buyButton setHidden:YES];
+        [self.cartButton setHidden:YES];
+    }else if(action == 2){
+        self.disableLabel.text = @"预售已结束";
+        [self.disableLabel setHidden:NO];
+        [self.auctionButton setHidden:YES];
+        [self.buyButton setHidden:YES];
+        [self.cartButton setHidden:YES];
+    }else if(action == 3){
+        [self.disableLabel setHidden:YES];
+        [self.auctionButton setHidden:NO];
+        [self.buyButton setHidden:NO];
+        [self.cartButton setHidden:NO];
+    }
 
     
 }
@@ -306,6 +337,7 @@
     
     self.buyButton.frame = self.viewFrame.buyButtonF;
     self.auctionButton.frame = self.viewFrame.auctionButtonF;
+    self.disableLabel.frame = self.viewFrame.disableLabelF;
     
     self.tipsView.frame = self.viewFrame.tipsF;
     

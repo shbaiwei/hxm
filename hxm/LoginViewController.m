@@ -54,6 +54,7 @@ UITextField *password;
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = rect.size;
     
+    NSLog(@"%@",[BWCommon getUserInfo:@"uid"]);
     
     UIBarButtonItem *backItem=[[UIBarButtonItem alloc]init];
     backItem.title=@"";
@@ -178,6 +179,9 @@ UITextField *password;
     NSString *passwordValue = password.text;
 
     //test user
+    //usernameValue = @"好香美应用";
+    //passwordValue = @"hj123456";
+    
     usernameValue = @"花满大厦";
     passwordValue = @"hj1234567";
 
@@ -230,10 +234,12 @@ UITextField *password;
                 NSString *uid = [[responseObject objectForKey:@"data"] objectForKey:@"user_id"];
                 NSString *user_key = [[responseObject objectForKey:@"data"] objectForKey:@"user_key"];
                 NSString *billauth = [[responseObject objectForKey:@"data"] objectForKey:@"billauth"];
+                NSString *mobile = [[responseObject objectForKey:@"data"] objectForKey:@"mobile"];
                 
                 
                 [BWCommon setUserInfo:@"uid" value:uid];
                 [BWCommon setUserInfo:@"username" value:usernameValue];
+                [BWCommon setUserInfo:@"mobile" value:mobile];
                 [BWCommon setUserInfo:@"user_key" value:user_key];
                 [BWCommon setUserInfo:@"billauth" value:billauth];
                 [BWCommon setUserInfo:@"password" value:passwordValue];

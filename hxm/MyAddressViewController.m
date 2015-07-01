@@ -17,9 +17,14 @@
 @interface MyAddressViewController ()
 @property (nonatomic, strong) NSArray *statusFrames;
 @property (nonatomic,assign) NSUInteger gpage;
+
+
 @end
 
 @implementation MyAddressViewController
+
+NSMutableDictionary *addressInfo;
+
 @synthesize items = _items;
 @synthesize itemsKeys = _itemsKeys;
 @synthesize tableview;
@@ -181,10 +186,10 @@
 }
 
 - (void) do_default: (UIButton *) sender{
-    NSMutableDictionary *address = [dataArray objectAtIndex:sender.tag];
+    addressInfo = [dataArray objectAtIndex:sender.tag];
     UIAlertView *alert  = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     
-    if ([[address objectForKey:@"is_default"] integerValue] == 0) {
+    if ([[addressInfo objectForKey:@"is_default"] integerValue] == 0) {
         [alert setMessage:@"确定要设为默认地址吗？"];
         [alert show];
     }
@@ -193,6 +198,61 @@
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 1){
         NSLog(@"提交默认地址设置");
+        
+        NSLog(@"save action");
+        hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.delegate=self;
+        
+        NSString *url2 = @"user/saveAddress";
+        
+        NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:url2];
+        
+        NSMutableDictionary *postData = [BWCommon getTokenData:url2];
+        
+        
+        [postData setValue:[addressInfo objectForKey:@"receiver_name"] forKey:@"receiver_name"];
+        
+        
+        [postData setValue:[addressInfo objectForKey:@"address"] forKey:@"address"];
+        [postData setValue:[addressInfo objectForKey:@"link_qq"] forKey:@"link_qq"];
+        [postData setValue:[addressInfo objectForKey:@"link_fax"] forKey:@"link_fax"];
+        [postData setValue:[addressInfo objectForKey:@"link_address"] forKey:@"link_address"];
+        [postData setValue:[addressInfo objectForKey:@"prov_id"] forKey:@"prov_id"];
+        [postData setValue:[addressInfo objectForKey:@"city_id"] forKey:@"city_id"];
+        [postData setValue:[addressInfo objectForKey:@"dist_id"] forKey:@"dist_id"];
+        [postData setValue:[addressInfo objectForKey:@"address_id"] forKey:@"address_id"];
+        [postData setValue:@"1" forKey:@"is_default"];
+
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        
+        NSLog(@"%@",postData);
+        
+        [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+            
+            // NSLog(@"userinfo:%@",responseObject);
+            NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+            
+            [hud removeFromSuperview];
+            if(errNo == 0)
+            {
+                self.statusFrames = nil;
+                [self.tableview reloadData];
+            }
+            else
+            {
+                NSLog(@"%@",[responseObject objectForKey:@"error"]);
+                [alert setMessage:[responseObject objectForKey:@"error"]];
+                [alert show];
+            }
+            
+        } fail:^{
+            [hud removeFromSuperview];
+            NSLog(@"请求失败");
+            
+            [alert setMessage:@"连接超时，请重试"];
+            [alert show];
+        }];
     }
 }
 
@@ -260,6 +320,8 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      
      [self.delegate setValue:detail_id];*/
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
 }
 

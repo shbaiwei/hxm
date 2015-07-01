@@ -66,9 +66,9 @@ NSMutableArray *selectedRegions;
     link_fax.text = [userinfo objectForKey:@"link_fax"];
     link_address.text = [userinfo objectForKey:@"link_address"];
     
-    selectedRegions[0] =userinfo[@"link_prov"];
-    selectedRegions[1] =userinfo[@"link_city"];
-    selectedRegions[2] =userinfo[@"link_dist"];
+    selectedRegions[0] = [userinfo[@"link_prov_id"] integerValue] > 0 ?  userinfo[@"link_prov"] : @"";
+    selectedRegions[1] = [userinfo[@"link_city_id"] integerValue] > 0 ?  userinfo[@"link_city"] : @"";
+    selectedRegions[2] = [userinfo[@"link_dist_id"] integerValue] > 0 ?  userinfo[@"link_dist"] : @"";
     
     areaText.text =  [selectedRegions componentsJoinedByString:@" - "];
     send_province = [userinfo[@"link_prov_id"] integerValue];

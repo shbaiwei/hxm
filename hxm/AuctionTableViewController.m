@@ -47,6 +47,8 @@
     
     [self refreshingData:1 callback:^{}];
     
+    //[self.tableView setHidden:YES];
+    
     [self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(headerRefreshing)];
     
     [self.tableView addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
@@ -119,6 +121,7 @@
             NSLog(@"%@",responseObject);
             self.statusFrames = nil;
             
+
             [self.tableView reloadData];
             
             if(callback){

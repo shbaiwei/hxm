@@ -34,6 +34,9 @@
 
 @property (nonatomic, assign) CGFloat cellHeight;
 
+
+@property (nonatomic,assign) CGRect disableLabelF;
+
 @property (nonatomic, strong) NSDictionary *data;
 
 @end

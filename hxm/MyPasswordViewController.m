@@ -32,6 +32,8 @@
     UIColor *bgColor = [BWCommon getBackgroundColor];
     self.view.backgroundColor = bgColor;
     
+     [self.navigationController.navigationBar setBarTintColor:[BWCommon getMainColor]];
+    
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = rect.size;
     NSArray *titleArray = [[NSArray alloc] initWithObjects: @"密码管理", @"拍卖密码",nil];

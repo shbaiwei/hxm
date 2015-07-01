@@ -31,6 +31,8 @@
 NSUInteger detail_id;
 NSUInteger addressIndex;
 
+NSString *order_no;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -132,6 +134,12 @@ NSUInteger addressIndex;
             
             self.addresses = [[NSMutableArray alloc] init];
             self.addresses = [addresses mutableCopy];
+            
+            if([self.addresses count] <=0){
+                UIAlertView *alert2 = [[UIAlertView alloc] initWithTitle:@"提示" message:@"收货地址还未设置" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [alert2 show];
+                return;
+            }
 
             for (NSInteger i=0; i<addresses.count; i++) {
                 NSMutableDictionary *row = [[NSMutableDictionary alloc] init];
@@ -250,30 +258,26 @@ NSUInteger addressIndex;
     [postData setValue:[address objectForKey:@"zip"] forKey:@"receiver_zip"];
     
 
-    NSLog(@"%@",url);
+    NSLog(@"%@",postData);
     //load data
     
     [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
         
+        NSLog(@"%@",responseObject);
+        
         NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
         
         [hud removeFromSuperview];
         if(errNo == 0)
         {
             NSDictionary * data = [responseObject objectForKey:@"data"];
             
-             NSString *order_no = [data objectForKey:@"order_no"];
+             order_no = [data objectForKey:@"order_no"];
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:@"订单详情",nil];
             [alert setMessage:[NSString stringWithFormat:@"订单创建成功，订单号：%@",order_no]];
             [alert show];
-            
-           
-            OrderDetailViewController *detailViewController = [[OrderDetailViewController alloc] init];
-            
-            self.delegate = detailViewController;
-            [self.navigationController pushViewController:detailViewController animated:YES];
-            [self.delegate setValue:order_no];
             
 
             
@@ -297,6 +301,19 @@ NSUInteger addressIndex;
     
 }
 
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else if(buttonIndex == 1){
+        
+        OrderDetailViewController *detailViewController = [[OrderDetailViewController alloc] init];
+        
+        self.delegate = detailViewController;
+        [self.navigationController pushViewController:detailViewController animated:YES];
+        [self.delegate setValue:order_no];
+    }
+}
 
 
 - (NSArray *)statusFrames

@@ -159,7 +159,7 @@ BOOL canPayment = YES;
     self.payButton = payButton;
     [payButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [orderView addSubview:payButton];
-    [payButton setHidden:YES];
+    [payButton setHidden:NO];
     
     [payButton addTarget:self action:@selector(payTouched:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -484,12 +484,13 @@ BOOL canPayment = YES;
     self.trackerValue.frame = CGRectMake(96, 10, trackerSize.width, trackerSize.height);
     self.trackerValue.text = tracker;
     
-    if([[data objectForKey:@"canRate"] boolValue] == NO){
+    if([[data objectForKey:@"canRate"] integerValue] == 0){
         canRate = NO;
         [self.commentButton setBackgroundColor:[BWCommon getRGBColor:0xeeeeee]];
     }
     
-    if([[data objectForKey:@"canPayment"] boolValue] == NO){
+
+    if([[data objectForKey:@"canPayment"] integerValue] == 0){
         canPayment = NO;
         [self.payButton setHidden:YES];
 

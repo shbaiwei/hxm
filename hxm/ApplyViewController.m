@@ -16,7 +16,23 @@
 @property (nonatomic, weak) UIButton *photo2Button;
 @property (nonatomic,weak) UITextField *main_type;
 @property (nonatomic,weak) UITextField *province;
+@property (nonatomic,weak) UITextField *send_address;
 
+@property (nonatomic,weak) UITextField *contact_1;
+@property (nonatomic,weak) UITextField *mobile_1;
+@property (nonatomic,weak) UITextField *qq;
+
+@property (nonatomic,weak) UITextField *floristname;
+@property (nonatomic,weak) UITextField *docnum;
+@property (nonatomic,weak) UITextField *begintime;
+@property (nonatomic,weak) UITextField *endtime;
+
+@property (nonatomic,weak) UITextField *send_stime;
+@property (nonatomic,weak) UITextField *send_otime;
+
+@property (nonatomic,weak) UIDatePicker* datePicker;
+
+@property (nonatomic,weak) UIImageView *testImage;
 @end
 
 @implementation ApplyViewController
@@ -36,6 +52,8 @@ NSUInteger send_province;
 NSUInteger send_city;
 NSUInteger send_town;
 
+NSInteger main_type_id;
+
 NSUInteger photo_type = 0;
 
 NSMutableArray *selectedRegions;
@@ -46,6 +64,22 @@ NSMutableArray *selectedRegions;
     
     [self pageLayout];
 }
+
+- (void)viewDidAppear:(BOOL)animated{
+    
+    
+    //快速清理堆栈
+    NSMutableArray *navigationArray = [[NSMutableArray alloc] initWithArray: self.navigationController.viewControllers];
+    
+    NSInteger i = [navigationArray count];
+    i-=2;
+    while (i>0) {
+        [navigationArray removeObjectAtIndex:i];
+        i--;
+    }
+    self.navigationController.viewControllers = navigationArray;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -72,6 +106,9 @@ NSMutableArray *selectedRegions;
     
     UIView *tipsView = [[UIView alloc] initWithFrame:CGRectMake((size.width - 280) / 2, 15, 280, 50)];
     UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"apply-icon.png"]];
+    
+    self.testImage = icon;
+
     icon.frame = CGRectMake(0,0, 40, 40);
     UILabel *tips = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 240, 20)];
     tips.text = @"注册完成，请完善以下信息！";
@@ -80,14 +117,50 @@ NSMutableArray *selectedRegions;
     
     [sclView addSubview:tipsView];
     
-    UITextField *real_name = [self createTextField:@"真实姓名："];
-    [sclView addSubview:real_name];
+    UITextField *floristname = [self createTextField:@"真实姓名："];
+    [sclView addSubview:floristname];
     
-    UITextField *id_card = [self createTextField:@"身份证号："];
-    [sclView addSubview:id_card];
+    self.floristname = floristname;
     
-    UITextField *id_card_time = [self createTextField:@"有效期限："];
-    [sclView addSubview:id_card_time];
+    UITextField *docnum = [self createTextField:@"身份证号："];
+    [sclView addSubview:docnum];
+    
+    self.docnum = docnum;
+    
+    UIView *timeView = [self createRow:@"有效期限："];
+    [sclView addSubview:timeView];
+    
+    NSInteger swidth = (size.width - 180)/2;
+    
+    UITextField *begintime = [[UITextField alloc] initWithFrame:CGRectMake(80, 10, swidth, 30)];
+    //begintime.backgroundColor = [UIColor grayColor];
+    begintime.font = [UIFont systemFontOfSize:14];
+    begintime.textAlignment = NSTextAlignmentCenter;
+
+    [timeView addSubview:begintime];
+    self.begintime = begintime;
+    
+    UILabel *midLabel = [[UILabel alloc] initWithFrame:CGRectMake(80+swidth, 15, 20, 20)];
+    midLabel.text = @"~";
+    [timeView addSubview:midLabel];
+    
+    
+    UITextField *endtime = [[UITextField alloc] initWithFrame:CGRectMake(100+swidth, 10, swidth, 30)];
+    //endtime.backgroundColor = [UIColor grayColor];
+    endtime.font = [UIFont systemFontOfSize:14];
+    endtime.textAlignment = NSTextAlignmentCenter;
+    [timeView addSubview:endtime];
+    self.endtime = endtime;
+    
+    
+    
+    UIDatePicker* datePicker=[[UIDatePicker alloc]init];
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    
+    self.datePicker = datePicker;
+    
+    [self setDatePickerView:begintime];
+    [self setDatePickerView:endtime];
     
     UITextField *main_type = [self createTextField:@"主体类型："];
     [sclView addSubview:main_type];
@@ -105,20 +178,51 @@ NSMutableArray *selectedRegions;
     
     [self setPickerView:province];
     
-    UITextField *address = [self createTextField:@"送货地址："];
-    [sclView addSubview:address];
+    UITextField *send_address = [self createTextField:@"送货地址："];
+    [sclView addSubview:send_address];
     
-    UITextField *time = [self createTextField:@"送货时间："];
-    [sclView addSubview:time];
     
-    UITextField *contact = [self createTextField:@"联系人："];
-    [sclView addSubview:contact];
+    UIView *timeView2 = [self createRow:@"送货时间："];
+    [sclView addSubview:timeView2];
     
-    UITextField *mobile = [self createTextField:@"手机："];
-    [sclView addSubview:mobile];
+    UITextField *send_stime = [[UITextField alloc] initWithFrame:CGRectMake(80, 10, swidth, 30)];
+    //begintime.backgroundColor = [UIColor grayColor];
+    send_stime.font = [UIFont systemFontOfSize:14];
+    send_stime.textAlignment = NSTextAlignmentCenter;
+    //send_stime.keyboardAppearance = UIKeyboardTypeNamePhonePad;
+    
+    [timeView2 addSubview:send_stime];
+    self.send_stime = send_stime;
+    
+    UILabel *midLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(80+swidth, 15, 20, 20)];
+    midLabel2.text = @"~";
+    [timeView2 addSubview:midLabel2];
+    
+    UITextField *send_otime = [[UITextField alloc] initWithFrame:CGRectMake(100+swidth, 10, swidth, 30)];
+    //endtime.backgroundColor = [UIColor grayColor];
+    send_otime.font = [UIFont systemFontOfSize:14];
+    send_otime.textAlignment = NSTextAlignmentCenter;
+    //send_otime.keyboardAppearance = UIKeyboardTypeNumbersAndPunctuation;
+    [timeView2 addSubview:send_otime];
+    self.send_otime = send_otime;
+
+    
+    UITextField *contact_1 = [self createTextField:@"联系人："];
+    [sclView addSubview:contact_1];
+    self.contact_1 = contact_1;
+    
+    UITextField *mobile_1= [self createTextField:@"手机："];
+    [sclView addSubview:mobile_1];
+    mobile_1.keyboardType = UIKeyboardTypePhonePad;
+    [mobile_1 setHidden:YES];
+    self.mobile_1 = mobile_1;
+    
+    mobile_1.text = [BWCommon getUserInfo:@"mobile"];
     
     UITextField *qq = [self createTextField:@"QQ："];
     [sclView addSubview:qq];
+    qq.keyboardType = UIKeyboardTypeNumberPad;
+    self.qq = qq;
     
     UIView *photoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 120)];
     [sclView addSubview:photoView];
@@ -148,10 +252,8 @@ NSMutableArray *selectedRegions;
     regions = [BWCommon getDataInfo:@"regions"];
     
     provinceData  = [self loadRegions:0];
-    
     //默认加载第一条
     cityData = [self loadRegions:[[[provinceData allKeys] objectAtIndex:0] integerValue]];
-    
     townData = [self loadRegions:[[[cityData allKeys] objectAtIndex:0] integerValue]];
     
     business = [BWCommon getDataInfo:@"business"];
@@ -160,26 +262,30 @@ NSMutableArray *selectedRegions;
     
     selectedRegions = [NSMutableArray arrayWithCapacity:3];
     
+    selectedRegions[0] = [[provinceData allValues] objectAtIndex:0];
+    selectedRegions[1] = [[cityData allValues] objectAtIndex:0];
+    selectedRegions[2] = [[townData allValues] objectAtIndex:0];
+    
     
     UIButton *submitButton = [self footerButton:@"保 存" bgColor:[UIColor colorWithRed:219/255.0f green:0/255.0f blue:0 alpha:1]];
     
-    //[submitButton addTarget:self action:@selector(buttonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [submitButton addTarget:self action:@selector(buttonTouched:) forControlEvents:UIControlEventTouchUpInside];
     //submitButton.frame = CGRectMake(padding, 200, size.width-padding*2 , 40);
     [sclView addSubview:submitButton];
     
     
-    NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[real_name(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(real_name)];
+    NSArray *constraints1= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[floristname(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(floristname)];
     
-    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-80-[real_name(==50)]-10-[id_card(==50)]-10-[id_card_time(==50)]-10-[main_type(==50)]-10-[province(==50)]-10-[address(==50)]-10-[time(==50)]-10-[contact(==50)]-10-[mobile(==50)]-10-[qq(==50)]-10-[photoView(==120)]-10-[submitButton(==50)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(real_name,id_card,id_card_time,main_type,province,address,time,contact,mobile,qq,photoView,submitButton)];
+    NSArray *constraints2= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-80-[floristname(==50)]-10-[docnum(==50)]-10-[timeView(==50)]-10-[main_type(==50)]-10-[province(==50)]-10-[send_address(==50)]-10-[timeView2(==50)]-10-[contact_1(==50)]-10-[qq(==50)]-10-[photoView(==120)]-10-[submitButton(==50)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(floristname,docnum,timeView,main_type,province,send_address,timeView2,contact_1,qq,photoView,submitButton)];
     
-    NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[id_card(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(id_card)];
-    NSArray *constraints4= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[id_card_time(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(id_card_time)];
+    NSArray *constraints3= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[docnum(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(docnum)];
+    NSArray *constraints4= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[timeView(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(timeView)];
     NSArray *constraints5= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[main_type(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(main_type)];
     NSArray *constraints6= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[province(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(province)];
-    NSArray *constraints7= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[address(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(address)];
-    NSArray *constraints8= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[time(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(time)];
-    NSArray *constraints9= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[contact(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(contact)];
-    NSArray *constraints10= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[mobile(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(mobile)];
+    NSArray *constraints7= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[send_address(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(send_address)];
+    NSArray *constraints8= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[timeView2(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(timeView2)];
+    NSArray *constraints9= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[contact_1(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(contact_1)];
+    //NSArray *constraints10= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[mobile_1(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(mobile_1)];
     NSArray *constraints11= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[qq(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(qq)];
     NSArray *constraints12= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[photoView(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(photoView)];
     NSArray *constraints13= [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[submitButton(==300)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(submitButton)];
@@ -193,7 +299,7 @@ NSMutableArray *selectedRegions;
     [sclView addConstraints:constraints7];
     [sclView addConstraints:constraints8];
     [sclView addConstraints:constraints9];
-    [sclView addConstraints:constraints10];
+    //[sclView addConstraints:constraints10];
     [sclView addConstraints:constraints11];
     [sclView addConstraints:constraints12];
     [sclView addConstraints:constraints13];
@@ -207,7 +313,7 @@ NSMutableArray *selectedRegions;
     photo1Button.tag=1;
     photo2Button.tag=2;
 
-    [self setTextFieldCenter:[[NSArray alloc] initWithObjects:real_name,id_card,id_card_time,main_type,province,address,time,contact,mobile,qq,photoView,submitButton,nil]];
+    [self setTextFieldCenter:[[NSArray alloc] initWithObjects:floristname,docnum,timeView,main_type,province,send_address,timeView2,contact_1,mobile_1,qq,photoView,submitButton,nil]];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -216,6 +322,103 @@ NSMutableArray *selectedRegions;
     // very important make delegate useful
     tap.delegate = self;
 }
+
+-(void) buttonTouched: (id)sender
+{
+
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    
+    
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
+    
+    
+    NSString *api_url = [BWCommon getBaseInfo:@"api_url"];
+    
+    NSString *url =  [api_url stringByAppendingString:@"user/addApply"];
+    
+    NSMutableDictionary *postData = [[NSMutableDictionary alloc] init];
+    [postData setValue:self.floristname.text forKey:@"floristname"];
+    [postData setValue:self.docnum.text forKey:@"docnum"];
+    [postData setValue:[BWCommon getUserInfo:@"username"] forKey:@"user_name"];
+    [postData setValue:[BWCommon getUserInfo:@"uid"] forKey:@"uniqueid"];
+    [postData setValue:[BWCommon getUserInfo:@"mobile"] forKey:@"mobile"];
+    
+    [postData setValue:self.begintime.text forKey:@"begintime"];
+    [postData setValue:self.endtime.text forKey:@"endtime"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",main_type_id] forKey:@"main_type"];
+    [postData setValue:self.send_address.text forKey:@"send_address"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",send_province] forKey:@"send_province"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",send_city] forKey:@"send_city"];
+    [postData setValue:[NSString stringWithFormat:@"%ld",send_town] forKey:@"send_town"];
+    
+    [postData setValue:self.send_stime.text forKey:@"send_stime"];
+    [postData setValue:self.send_otime.text forKey:@"send_otime"];
+    [postData setValue:self.contact_1.text forKey:@"contact_1"];
+    //[postData setValue:self.mobile_1.text forKey:@"mobile_1"];
+    [postData setValue:self.qq.text forKey:@"qq"];
+    [postData setValue:face_pic forKey:@"face_pic"];
+    [postData setValue:back_pic forKey:@"back_pic"];
+    
+    
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        
+        NSLog(@"%@",responseObject);
+        
+        [hud removeFromSuperview];
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        if (errNo > 0) {
+            [alert setMessage:[responseObject objectForKey:@"error"]];
+            [alert show];
+        }
+        else
+        {
+            
+            [alert setMessage:[responseObject objectForKey:@"error"]];
+            alert.tag = 1;
+            [alert show];
+
+            
+            //[self backTouched:nil];
+            
+            //NSLog(@"%@",udata);
+        }
+        
+    } fail:^{
+        
+        [hud removeFromSuperview];
+        [alert setMessage:@"网络连接超时"];
+        [alert show];
+        
+        NSLog(@"请求失败");
+    }];
+    
+    
+}
+
+- (void) setDatePickerView:(UITextField *) field{
+    
+    
+    //datePicker.tag = field.tag;
+    
+    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    toolBar.barStyle = UIBarStyleDefault;
+    
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTouched:)];
+    //doneButton.tag = field.tag;
+    
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelTouched:)];
+    
+    [toolBar setItems:[NSArray arrayWithObjects:cancelButton,[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],doneButton,nil ]];
+    field.inputView = self.datePicker;
+    field.inputAccessoryView = toolBar;
+}
+
+
 
 - (void) setPickerView:(UITextField *) field{
     
@@ -312,6 +515,28 @@ NSMutableArray *selectedRegions;
     return field;
 }
 
+- (UIView *) createRow:(NSString *) title{
+    
+    UIView * rview = [[UIView alloc] init];
+    
+    [rview.layer setCornerRadius:5.0];
+    rview.backgroundColor = [UIColor whiteColor];
+    rview.layer.borderWidth = 1.0f;
+    rview.layer.borderColor = [BWCommon getRGBColor:0xdddddd].CGColor;
+
+    
+    //UIView *lfView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 80, 30)];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 80, 30)];
+    titleLabel.font = [UIFont systemFontOfSize:16];
+    titleLabel.text = title;
+    
+    [rview addSubview:titleLabel];
+    rview.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    return rview;
+}
+
 
 -(void) uploadTouched:(UIButton *)sender{
 
@@ -342,6 +567,22 @@ NSMutableArray *selectedRegions;
         
         [self.province resignFirstResponder];
     }
+    
+    
+    NSDate* date=[self.datePicker date];
+    NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString* curentDatest=[formatter stringFromDate:date];
+    
+    if (self.begintime.resignFirstResponder == YES){
+        self.begintime.text = curentDatest;
+    }
+    if (self.endtime.resignFirstResponder == YES){
+        self.endtime.text = curentDatest;
+    }
+    
+    [self.begintime resignFirstResponder];
+    [self.endtime resignFirstResponder];
     
 }
 -(void) cancelTouched:(id)sender{
@@ -423,6 +664,7 @@ NSMutableArray *selectedRegions;
             
             NSArray *values = [business allValues];
             self.main_type.text = [values objectAtIndex:row];
+            main_type_id = [[[business allKeys] objectAtIndex:row] integerValue];
         }
     }
     else if(pickerView.tag == 2)
@@ -437,6 +679,8 @@ NSMutableArray *selectedRegions;
             [pickerView reloadComponent:2];
             
             [pickerView selectRow:0 inComponent:1 animated:YES];
+            [pickerView selectRow:0 inComponent:2 animated:YES];
+            
             
             send_province = [[[provinceData allKeys] objectAtIndex:row] integerValue];
             selectedRegions[0] = [[provinceData allValues] objectAtIndex:row];
@@ -457,6 +701,7 @@ NSMutableArray *selectedRegions;
             [pickerView selectRow:0 inComponent:2 animated:YES];
             
             send_city = [[[cityData allKeys] objectAtIndex:row] integerValue];
+            
             selectedRegions[1] = [[cityData allValues] objectAtIndex:row];
             
             if([townData count])
@@ -465,16 +710,25 @@ NSMutableArray *selectedRegions;
                 selectedRegions[2] = @"";
         }
         else if (component == 2){
-
+            
             send_town = [[[townData allKeys] objectAtIndex:row] integerValue];
             selectedRegions[2] = [[townData allValues] objectAtIndex:row];
         }
+
         
         //self.province.text = [selectedRegions componentsJoinedByString:@" - "];
     }
 
 }
 
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if(alertView.tag == 1){
+        if(buttonIndex == 0){
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }
+}
 
 - (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
 
@@ -564,18 +818,25 @@ NSMutableArray *selectedRegions;
             NSString *timestamp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970] ];
             NSString *uid = [BWCommon getUserInfo:@"uid"];
             
+            //NSLog(@"uniqueid:%@",uid);
+            
             NSString *str = [NSString stringWithFormat:@"register/display_cert_image/%@/%@",timestamp,[BWCommon md5:uid]];
+            
+            
             //init token
             NSString *token = [BWCommon md5:str];
             
             NSString *nimgview = [[NSString alloc] init];
-            nimgview = [imgview stringByReplacingOccurrencesOfString:@"http://www.huaji.com/" withString:@"http://www.huaji.com:81/"];
+            nimgview = [imgview stringByReplacingOccurrencesOfString:@"http://www.huaji.com/" withString:@"http://hj.s10.baiwei.org/"];
             nimgview = [NSString stringWithFormat:@"%@?token=%@&time=%@&uid=%@",nimgview,token,timestamp,uid];
-            NSURL *dataurl = [[NSURL alloc] initFileURLWithPath:nimgview];
+            NSURL *dataurl = [NSURL URLWithString:nimgview];
             
             NSLog(@"%@",dataurl);
             
             NSData* ndata = [NSData dataWithContentsOfURL:dataurl];
+            
+            //NSLog(@"%@",ndata);
+            //[self.testImage sd_setImageWithURL:dataurl];
             
             if(photo_type==1){
                 face_pic = imgurl;

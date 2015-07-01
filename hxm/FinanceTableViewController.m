@@ -10,6 +10,7 @@
 #import "FinanceTableViewCell.h"
 #import "FinanceTableViewFrame.h"
 #import "FinanceDetailViewController.h"
+#import "TransferTableViewController.h"
 #import "PayViewController.h"
 #import "BWCommon.h"
 #import "MJRefresh.h"
@@ -303,16 +304,23 @@
     
     if(section==1)
     {
-        NSInteger bwidth = (self.view.frame.size.width - 30)/2;
+        NSInteger bwidth = (self.view.frame.size.width - 40)/3;
         //加入
+        
+        UIButton *btnTransfer = [self footerButton:@"去转账" bgColor:[BWCommon getRGBColor:0xff7e00]];
+        btnTransfer.frame = CGRectMake(10, 20, bwidth, 40);
+        [myView addSubview: btnTransfer];
+        
+        [btnTransfer addTarget:self action:@selector(TransferTouched:) forControlEvents:UIControlEventTouchUpInside];
+        
         UIButton *btnWireIn = [self footerButton:@"去充值" bgColor:[UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1]];
-        btnWireIn.frame = CGRectMake(10, 20, bwidth, 40);
+        btnWireIn.frame = CGRectMake(bwidth + 20, 20, bwidth, 40);
         [myView addSubview: btnWireIn];
         
         [btnWireIn addTarget:self action:@selector(wireInTouched:) forControlEvents:UIControlEventTouchUpInside];
         
         UIButton *btnList = [self footerButton:@"我的对账单" bgColor:[UIColor colorWithRed:219/255.0f green:0/255.0f blue:0 alpha:1]];
-        btnList.frame = CGRectMake(bwidth + 20, 20, bwidth, 40);
+        btnList.frame = CGRectMake(bwidth * 2 + 30, 20, bwidth, 40);
         [myView addSubview: btnList];
         
         [btnList addTarget:self action:@selector(listButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
@@ -340,6 +348,15 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
+-(void) TransferTouched:(id) sender{
+    
+    TransferTableViewController * detailViewController = [[TransferTableViewController alloc] init];
+    
+    detailViewController.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    
+}
 
 -(void) wireInTouched:(id) sender{
     

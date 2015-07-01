@@ -82,7 +82,7 @@ UITextField *email;
     [btnRegister setTitle:@"提交注册" forState:UIControlStateNormal];
     
     //点击回调
-    [btnRegister addTarget:self action:@selector(applyTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [btnRegister addTarget:self action:@selector(registerTouched:) forControlEvents:UIControlEventTouchUpInside];
     
     [sclView addSubview:btnRegister];
     
@@ -195,12 +195,15 @@ UITextField *email;
             //udata = [data copy];
             //[udata setObject:[data objectForKey:@"uid"] forKey:@"uid"];
             
-            NSString *uid = [[responseObject objectForKey:@"data"] objectForKey:@"id"];
+            NSString *uid = [[[responseObject objectForKey:@"data"] objectForKey:@"id"] stringValue];
             NSString *user_key = [[responseObject objectForKey:@"data"] objectForKey:@"user_key"];
             
             [BWCommon setUserInfo:@"uid" value:uid];
+            [BWCommon setUserInfo:@"username" value:usernameValue];
+            
             [BWCommon setUserInfo:@"user_key" value:user_key];
             [BWCommon setUserInfo:@"password" value:passwordValue];
+            [BWCommon setUserInfo:@"mobile" value:mobileValue];
             
             [BWCommon setUserInfo:@"status" value:@"verify"];
             ApplyViewController *applyView = [[ApplyViewController alloc] init];

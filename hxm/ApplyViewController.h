@@ -18,7 +18,8 @@ UINavigationControllerDelegate,
 MBProgressHUDDelegate,
 UIGestureRecognizerDelegate,
 UIPickerViewDelegate,
-UIPickerViewDataSource
+UIPickerViewDataSource,
+UIAlertViewDelegate
 >
 {
     MBProgressHUD *hud;

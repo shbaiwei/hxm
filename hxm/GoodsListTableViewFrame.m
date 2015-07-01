@@ -61,6 +61,8 @@
     
     self.cartButtonF = CGRectMake(size.width-98, 106, 32, 32);
     
+    self.disableLabelF = CGRectMake(size.width-46,16,46,140);
+    
     self.cellHeight =  140+16;
     
     self.borderViewF = CGRectMake(0, 1, size.width, 15);

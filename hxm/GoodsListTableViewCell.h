@@ -36,6 +36,9 @@
 @property (nonatomic,weak) UILabel *merchantLabel;
 
 @property  (nonatomic, weak) UILabel *priceLabel;
+
+@property  (nonatomic, weak) UILabel *disableLabel;
+
 // 名称
 @property (nonatomic, weak) UILabel *nameLabel;
 
