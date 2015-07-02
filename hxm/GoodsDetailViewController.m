@@ -65,7 +65,7 @@ NSUInteger detail_id;
     
     UIView *nameView = [[UIView alloc] initWithFrame:CGRectMake(0, 200, size.width, 100)];
     self.nameView = nameView;
-    nameView.backgroundColor = [UIColor whiteColor];
+    
     [self.sclView addSubview:nameView];
     
     [self loadData:detail_id callback:^{}];
@@ -97,6 +97,8 @@ NSUInteger detail_id;
     [self.imageView2.image drawInRect:imageRect2];
     self.imageView2.image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
+    self.nameView.backgroundColor = [UIColor whiteColor];
 
     
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 280, 30)];
@@ -194,19 +196,21 @@ NSUInteger detail_id;
     
     
     y += height + 16;
+    NSInteger swidth = (size.width - 40)/3;
+    
     UIButton *cartButton = [self footerButton:@"加入购物车" bgColor:[UIColor colorWithRed:255/255.0f green:126/255.0f blue:0 alpha:1]];
     
-    cartButton.frame = CGRectMake(10, y, 98, 40);
+    cartButton.frame = CGRectMake(10, y, swidth, 40);
     [self.sclView addSubview:cartButton];
     
     UIButton *buyButton = [self footerButton:@"立即购买" bgColor:[UIColor colorWithRed:219/255.0f green:0/255.0f blue:0 alpha:1]];
     
-    buyButton.frame = CGRectMake(113, y, 98, 40);
+    buyButton.frame = CGRectMake(swidth+20, y, swidth, 40);
     [self.sclView addSubview:buyButton];
     
     UIButton *auctionButton = [self footerButton:@"委托拍卖" bgColor:[UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1]];
     
-    auctionButton.frame = CGRectMake(216, y, 98, 40);
+    auctionButton.frame = CGRectMake(swidth*2 + 30, y, swidth, 40);
     [self.sclView addSubview:auctionButton];
 
     
@@ -223,7 +227,7 @@ NSUInteger detail_id;
 
     [button.layer setMasksToBounds:YES];
     [button.layer setCornerRadius:5.0];
-    button.translatesAutoresizingMaskIntoConstraints = NO;
+    //button.translatesAutoresizingMaskIntoConstraints = NO;
     button.backgroundColor = bgColor;
     button.tintColor = [UIColor whiteColor];
     button.titleLabel.font = [UIFont systemFontOfSize:16];

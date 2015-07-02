@@ -147,7 +147,7 @@
     return [UIColor colorWithRed:116/255.0f green:197/255.0f blue:67/255.0f alpha:1];
 }
 +(UIColor *) getBorderColor{
-    return [UIColor colorWithRed:168/255.0f green:168/255.0f blue:168/255.0f alpha:1];
+    return [UIColor colorWithRed:220/255.0f green:220/255.0f blue:220/255.0f alpha:1];
 }
 +(UIColor *) getRedColor{
     return [UIColor colorWithRed:219/255.0f green:0/255.0f blue:0/255.0f alpha:1];
@@ -210,6 +210,19 @@
     NSString *timestamp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970] ];
     
     NSString *str = [NSString stringWithFormat:@"%@/%@/%@",[api lowercaseString],timestamp,[self getUserInfo:@"user_key"]];
+    
+    NSString *seckey = [self md5:@"hwxappapi_2015_jw"];
+    
+    
+    NSInteger timeintval = [timestamp integerValue];
+    NSInteger s1 = timeintval % 11;
+    NSInteger s2 = timeintval % 19;
+    NSInteger start = MIN(s1,s2);
+    NSInteger end = MAX(s1,s2);
+    
+    seckey = [self md5:[seckey substringWithRange:NSMakeRange(start,end)]];
+    
+    
 
     //init token
     NSString *token = [self md5:str];
@@ -218,10 +231,12 @@
     NSLog(@"%@",timestamp);
     NSLog(@"%@",str);
     NSLog(@"%@",token);
+    NSLog(@"%@",seckey);
     
     [data setValue:[BWCommon getUserInfo:@"hxm_uid"] forKey:@"user_id"];
     [data setValue:timestamp forKey:@"time"];
     [data setValue:token forKey:@"token"];
+    [data setValue:seckey forKey:@"seckey"];
 
     return data;
 }

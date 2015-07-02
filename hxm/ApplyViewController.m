@@ -130,7 +130,7 @@ NSMutableArray *selectedRegions;
     UIView *timeView = [self createRow:@"有效期限："];
     [sclView addSubview:timeView];
     
-    NSInteger swidth = (size.width - 180)/2;
+    NSInteger swidth = (300 - 130)/2;
     
     UITextField *begintime = [[UITextField alloc] initWithFrame:CGRectMake(80, 10, swidth, 30)];
     //begintime.backgroundColor = [UIColor grayColor];
@@ -142,6 +142,7 @@ NSMutableArray *selectedRegions;
     
     UILabel *midLabel = [[UILabel alloc] initWithFrame:CGRectMake(80+swidth, 15, 20, 20)];
     midLabel.text = @"~";
+    midLabel.textAlignment = NSTextAlignmentCenter;
     [timeView addSubview:midLabel];
     
     
@@ -343,7 +344,7 @@ NSMutableArray *selectedRegions;
     [postData setValue:self.docnum.text forKey:@"docnum"];
     [postData setValue:[BWCommon getUserInfo:@"username"] forKey:@"user_name"];
     [postData setValue:[BWCommon getUserInfo:@"uid"] forKey:@"uniqueid"];
-    [postData setValue:[BWCommon getUserInfo:@"mobile"] forKey:@"mobile"];
+    [postData setValue:[BWCommon getUserInfo:@"mobile_1"] forKey:@"mobile"];
     
     [postData setValue:self.begintime.text forKey:@"begintime"];
     [postData setValue:self.endtime.text forKey:@"endtime"];
@@ -506,7 +507,7 @@ NSMutableArray *selectedRegions;
     [lfView addSubview:titleLabel];
     
     field.leftView = lfView;
-
+    field.font = [UIFont systemFontOfSize:14];
     field.translatesAutoresizingMaskIntoConstraints = NO;
     field.leftViewMode = UITextFieldViewModeAlways;
     field.rightViewMode=UITextFieldViewModeAlways;

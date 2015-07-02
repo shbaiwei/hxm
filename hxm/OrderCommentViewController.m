@@ -101,6 +101,7 @@ NSString *order_no;
     submitButton.frame = CGRectMake(padding, 250, size.width-padding*2 , 40);
     [sclView addSubview:submitButton];
 
+    [self loadData:order_no callback:^{}];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -109,6 +110,63 @@ NSString *order_no;
     // very important make delegate useful
     tap.delegate = self;
 
+}
+
+
+- (void) loadData:(NSString *) order_no callback:(void(^)()) callback{
+    
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
+    
+    
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"order/getOrderInfoById"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"order/getOrderInfoById"];
+    
+    [postData setValue:order_no forKey:@"order_no"];
+    
+    NSLog(@"%@",order_no);
+    //load data
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        [hud removeFromSuperview];
+        if(errNo == 0)
+        {
+            
+            NSLog(@"%@",[responseObject objectForKey:@"data"]);
+            
+            NSDictionary *data = [responseObject objectForKey:@"data"];
+            
+            NSString *comment_content = [data objectForKey:@"comment_content"];
+            if([comment_content  isEqual: [NSNull null]]){
+                comment_content = @"";
+            }
+            
+            self.commentView.text = comment_content;
+            
+            NSInteger comment_rate = [[data objectForKey:@"comment_rate"] integerValue];
+
+            self.starView.show_star = comment_rate;
+            
+            if(callback){
+                callback();
+            }
+            
+            //NSLog(@"%@",json);
+        }
+        else
+        {
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+        }
+        
+    } fail:^{
+        [hud removeFromSuperview];
+        NSLog(@"请求失败");
+    }];
+    
 }
 
 - (void) buttonTouched:(id)sender{

@@ -126,7 +126,7 @@
 }
 
 - (void) cancelTouched:(id) sender{
-    [BWCommon setUserInfo:@"keyword" value:@""];
+    //[BWCommon setUserInfo:@"keyword" value:@""];
     [self backToView];
 }
 -(void) backToView{

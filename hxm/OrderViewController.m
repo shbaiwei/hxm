@@ -13,7 +13,7 @@
 #import "OrderDetailViewController.h"
 #import "OrderCommentViewController.h"
 #import "OrderNoteViewController.h"
-#import "MJRefresh.h"
+
 #import "AFNetworkTool.h"
 
 
@@ -138,6 +138,7 @@
 
     [self.tableview addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
     
+    
     //self.tableview add
     //self.tableview.footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
 }
@@ -210,6 +211,8 @@
                 [dataArray addObjectsFromArray:[[responseObject objectForKey:@"data"] mutableCopy]];
                 
             }
+            
+            tableview.footer.hidden = (dataArray.count <=0) ? YES : NO;
             
             NSLog(@"%@",[responseObject objectForKey:@"data"]);
             self.statusFrames = nil;

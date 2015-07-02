@@ -69,7 +69,7 @@
                         
         view.backgroundColor = [BWCommon getBackgroundColor];
         
-        [view.layer setBorderColor:[UIColor colorWithRed:168/255.0f green:168/255.0f blue:168/255.0f alpha:1].CGColor ];
+        [view.layer setBorderColor:[BWCommon getBorderColor].CGColor ];
         [view.layer setBorderWidth:1.0f];
         
         //view.layer.shadowColor = [UIColor grayColor].CGColor;
@@ -104,7 +104,7 @@
         self.orderFeeLabel = orderFeeLabel;
         
         UIView *buttonView = [[UIView alloc] init];
-        [buttonView.layer setBorderColor:[UIColor colorWithRed:168/255.0f green:168/255.0f blue:168/255.0f alpha:1].CGColor ];
+        [buttonView.layer setBorderColor:[BWCommon getBorderColor].CGColor ];
         [buttonView.layer setBorderWidth:1.0f];
         self.buttonView = buttonView;
         [self.contentView addSubview:buttonView];

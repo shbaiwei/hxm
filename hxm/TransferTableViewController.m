@@ -115,6 +115,8 @@ tap.delegate = self;
 
 - (void) loadData:(void(^)()) callback
 {
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
     
     
     NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"account/getAccountInfoById"];
@@ -128,6 +130,8 @@ tap.delegate = self;
         
         NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
         NSLog(@"%@",responseObject);
+        
+        [hud removeFromSuperview];
 
         if(errNo == 0)
         {
@@ -170,6 +174,7 @@ tap.delegate = self;
         }
         
     } fail:^{
+        [hud removeFromSuperview];
         NSLog(@"请求失败");
     }];
     
@@ -262,6 +267,8 @@ tap.delegate = self;
         apiName = @"account/balanceToHuaji";
     }
     NSLog(@"%@",price);
+    
+    [sender setEnabled:NO];
 
     
     NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:apiName];
@@ -277,7 +284,7 @@ tap.delegate = self;
         return;
     }
     
-    [postData setValue:price forKey:@"amount"];
+    [postData setValue:price forKey:@"money"];
     
     NSLog(@"%@",postData);
     //load data
@@ -288,13 +295,15 @@ tap.delegate = self;
         
         NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
         
+        [sender setEnabled:YES];
         
         NSLog(@"%@",responseObject);
         if(errNo == 0)
         {
             
             //NSLog(@"%@",json);
-            //[alert setMessage:@"操作成功！"];
+            [alert setMessage:@"转账操作成功！"];
+            [alert show];
             
             [self loadData:^{}];
         }

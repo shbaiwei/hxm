@@ -121,6 +121,8 @@
             NSLog(@"%@",responseObject);
             self.statusFrames = nil;
             
+            self.tableView.footer.hidden = (dataArray.count <=0) ? YES : NO;
+            
 
             [self.tableView reloadData];
             

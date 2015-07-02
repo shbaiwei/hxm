@@ -116,6 +116,7 @@ NSUInteger flag_id;
     [sclView addSubview:submitButton];
     
     
+    [self loadData:order_no callback:^{}];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -124,6 +125,66 @@ NSUInteger flag_id;
     // very important make delegate useful
     tap.delegate = self;
 }
+
+
+- (void) loadData:(NSString *) order_no callback:(void(^)()) callback{
+    
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
+    
+    
+    NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"order/getOrderInfoById"];
+    
+    NSMutableDictionary *postData = [BWCommon getTokenData:@"order/getOrderInfoById"];
+    
+    [postData setValue:order_no forKey:@"order_no"];
+    
+    NSLog(@"%@",order_no);
+    //load data
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
+        
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
+        
+        [hud removeFromSuperview];
+        if(errNo == 0)
+        {
+            
+            NSLog(@"%@",[responseObject objectForKey:@"data"]);
+            
+            NSDictionary *data = [responseObject objectForKey:@"data"];
+            
+            NSString *buyer_memo = [data objectForKey:@"buyer_memo"];
+            if([buyer_memo  isEqual: [NSNull null]]){
+                buyer_memo = @"";
+            }
+            
+            self.noteView.text = buyer_memo;
+            
+            NSInteger buyer_memo_flag = [[data objectForKey:@"buyer_memo_flag"] integerValue];
+            buyer_memo_flag = buyer_memo_flag < 1? 1 : buyer_memo_flag;
+            flag_id = buyer_memo_flag;
+            [self.flagButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"op_memo_%ld",flag_id]] forState:UIControlStateNormal];
+            
+            if(callback){
+                callback();
+            }
+            
+            //NSLog(@"%@",json);
+        }
+        else
+        {
+            NSLog(@"%@",[responseObject objectForKey:@"error"]);
+        }
+        
+    } fail:^{
+        [hud removeFromSuperview];
+        NSLog(@"请求失败");
+    }];
+    
+    
+}
+
 
 
 

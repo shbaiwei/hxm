@@ -121,6 +121,8 @@ NSMutableDictionary *addressInfo;
             NSLog(@"%@",dataArray);
             self.statusFrames = nil;
             
+            tableview.footer.hidden = (dataArray.count <=0) ? YES : NO;
+            
             [tableview reloadData];
             
             if(callback){

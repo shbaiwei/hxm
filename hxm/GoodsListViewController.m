@@ -80,6 +80,8 @@
     //listItem.image=[UIImage imageNamed:@"right-dot.png"];
     self.navigationItem.rightBarButtonItem=listItem;
     
+    self.keyword = @"";
+    
     
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = rect.size;
@@ -189,6 +191,8 @@
             
             NSLog(@"%@",dataArray);
             self.statusFrames = nil;
+            
+            tableview.footer.hidden = (dataArray.count <=0) ? YES : NO;
             
             [self.tableview reloadData];
             
@@ -458,7 +462,7 @@
     //[headView addSubview:icon];
     [headButton addSubview:icon];
     
-    if(!self.keyword){
+    if([self.keyword isEqualToString:@""]){
         [headButton setTitle:@"搜索您想找的商品" forState:UIControlStateNormal];
         [headButton setTitleColor:[BWCommon getRGBColor:0x999999] forState:UIControlStateNormal];
     }else{

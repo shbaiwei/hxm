@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
 @interface TransferTableViewController : UITableViewController
-<UIGestureRecognizerDelegate>
+<
+MBProgressHUDDelegate,
+UIGestureRecognizerDelegate>
+{
+    MBProgressHUD *hud;
+}
 
 @end

@@ -282,13 +282,7 @@
         
     [headerView sizeToFit];
     
-    CALayer* layer = [headerView layer];
-    
-    CALayer *bottomBorder = [CALayer layer];
-    bottomBorder.borderWidth = 1;
-    bottomBorder.frame = CGRectMake(-1, layer.frame.size.height, layer.frame.size.width, 1);
-    [bottomBorder setBorderColor:[UIColor lightGrayColor].CGColor];
-    [layer addSublayer:bottomBorder];
+    [BWCommon setBottomBorder:headerView color:[BWCommon getBorderColor]];
     
     
     return headerView;
