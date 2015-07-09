@@ -55,12 +55,15 @@ NSMutableDictionary *addressInfo;
     backItem.image=[UIImage imageNamed:@""];
     self.navigationItem.backBarButtonItem=backItem;
     
+    dataArray = [[NSMutableArray  alloc] init];
     
     tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     tableview.delegate = self;
     tableview.dataSource = self;
     
     [self.view addSubview:tableview];
+    
+    [self setExtraCellLineHidden:tableview];
     
     self.gpage = 1;
     [self refreshingData:1 callback:^{
@@ -71,6 +74,18 @@ NSMutableDictionary *addressInfo;
     
     //[self.tableview addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
     
+}
+
+- (void)setExtraCellLineHidden: (UITableView *)tableView{
+    
+    UIView *view =[ [UIView alloc]init];
+    
+    view.backgroundColor = [UIColor clearColor];
+    
+    [tableView setTableFooterView:view];
+    
+    [tableView setTableHeaderView:view];
+
 }
 
 - (void) clickRightButton
@@ -191,6 +206,7 @@ NSMutableDictionary *addressInfo;
     addressInfo = [dataArray objectAtIndex:sender.tag];
     UIAlertView *alert  = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     
+    alert.tag = 1;
     if ([[addressInfo objectForKey:@"is_default"] integerValue] == 0) {
         [alert setMessage:@"确定要设为默认地址吗？"];
         [alert show];
@@ -198,32 +214,26 @@ NSMutableDictionary *addressInfo;
 }
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+
     if(buttonIndex == 1){
-        NSLog(@"提交默认地址设置");
-        
-        NSLog(@"save action");
+
         hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.delegate=self;
         
-        NSString *url2 = @"user/saveAddress";
+        NSString *url2 = @"";
+        
+        if(alertView.tag == 1){
+            url2 = @"user/setDefaultAddress";
+        }
+        else if(alertView.tag == 2){
+            url2 = @"user/deleteAddress";
+        }
         
         NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:url2];
         
         NSMutableDictionary *postData = [BWCommon getTokenData:url2];
         
-        
-        [postData setValue:[addressInfo objectForKey:@"receiver_name"] forKey:@"receiver_name"];
-        
-        
-        [postData setValue:[addressInfo objectForKey:@"address"] forKey:@"address"];
-        [postData setValue:[addressInfo objectForKey:@"link_qq"] forKey:@"link_qq"];
-        [postData setValue:[addressInfo objectForKey:@"link_fax"] forKey:@"link_fax"];
-        [postData setValue:[addressInfo objectForKey:@"link_address"] forKey:@"link_address"];
-        [postData setValue:[addressInfo objectForKey:@"prov_id"] forKey:@"prov_id"];
-        [postData setValue:[addressInfo objectForKey:@"city_id"] forKey:@"city_id"];
-        [postData setValue:[addressInfo objectForKey:@"dist_id"] forKey:@"dist_id"];
         [postData setValue:[addressInfo objectForKey:@"address_id"] forKey:@"address_id"];
-        [postData setValue:@"1" forKey:@"is_default"];
 
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
@@ -232,7 +242,7 @@ NSMutableDictionary *addressInfo;
         
         [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
             
-            // NSLog(@"userinfo:%@",responseObject);
+            NSLog(@"userinfo:%@",responseObject);
             NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
             
             [hud removeFromSuperview];
@@ -256,10 +266,12 @@ NSMutableDictionary *addressInfo;
             [alert show];
         }];
     }
+
 }
 
 - (void) do_edit: (UIButton *)sender
 {
+    
     //NSDictionary *address = [dataArray objectAtIndex:sender.tag];
     //NSLog(@"address:%@",address);
     MyAddressEditViewController *page = [[MyAddressEditViewController alloc] init];
@@ -274,12 +286,11 @@ NSMutableDictionary *addressInfo;
 
 - (void) do_del: (UIButton *)sender
 {
-    //NSDictionary *address = [dataArray objectAtIndex:sender.tag];
+    addressInfo = [dataArray objectAtIndex:sender.tag];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"您确定要删除吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
-    alert.tag = sender.tag;
+    alert.tag = 2;
     [alert show];
-    //[dataArray objectAtIndex:sender.tag];
-    NSLog(@"delete action:%@",[dataArray objectAtIndex:sender.tag]);
+ 
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

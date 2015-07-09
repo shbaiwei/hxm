@@ -182,8 +182,8 @@ UITextField *password;
     //usernameValue = @"好香美应用";
     //passwordValue = @"hj123456";
     
-    usernameValue = @"花满大厦";
-    passwordValue = @"hj1234567";
+    //usernameValue = @"花满大厦";
+    //passwordValue = @"hj1234567";
 
     
     
@@ -211,7 +211,11 @@ UITextField *password;
     
     NSString *url =  [api_url stringByAppendingString:@"user/checkUser"];
     
-    NSDictionary *postData = @{@"username":usernameValue,@"password":passwordValue};
+    NSDictionary *postData = [BWCommon getCommonTokenData];
+    [postData setValue:usernameValue forKey:@"username"];
+    [postData setValue:passwordValue forKey:@"password"];
+    
+    NSLog(@"%@",postData);
     
     
     [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
@@ -283,7 +287,9 @@ UITextField *password;
     
     NSString *url =  [[BWCommon getBaseInfo:@"api_url"] stringByAppendingString:@"user/getHxmUserInfo"];
     
-    NSDictionary *postData = @{@"uniqueid":uid};
+    
+    NSDictionary *postData = [BWCommon getCommonTokenData];
+    [postData setValue:uid forKey:@"uniqueid"];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     

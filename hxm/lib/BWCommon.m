@@ -90,12 +90,13 @@
     
     NSString *url =  [api_url stringByAppendingString:@"common/getRegions"];
     
-    [AFNetworkTool JSONDataWithUrl:url success:^(id json) {
+    NSDictionary *postData = [BWCommon getCommonTokenData];
+
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
         
-        
-        NSInteger errNo = [[json objectForKey:@"errno"] integerValue];
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
         if (errNo == 0) {
-            NSArray *regions = [json objectForKey:@"data"];
+            NSArray *regions = [responseObject objectForKey:@"data"];
             NSUserDefaults *udata = [NSUserDefaults standardUserDefaults];
             [udata setObject:regions forKey:@"regions"];
             [udata synchronize];
@@ -118,12 +119,14 @@
     
     NSString *url =  [api_url stringByAppendingString:@"common/getBusinessTypes"];
     
-    [AFNetworkTool JSONDataWithUrl:url success:^(id json) {
+    NSDictionary *postData = [BWCommon getCommonTokenData];
+    
+    [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
         
         
-        NSInteger errNo = [[json objectForKey:@"errno"] integerValue];
+        NSInteger errNo = [[responseObject objectForKey:@"errno"] integerValue];
         if (errNo == 0) {
-            NSArray *business = [json objectForKey:@"data"];
+            NSArray *business = [responseObject objectForKey:@"data"];
             
             NSUserDefaults *udata = [NSUserDefaults standardUserDefaults];
             [udata setObject:business forKey:@"business"];
@@ -198,7 +201,30 @@
         NSLog(@"请求失败");
     }];
 }
++(NSMutableDictionary *) getCommonTokenData{
 
+
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    
+    NSString *timestamp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970] ];
+    
+    NSString *seckey = [self md5:@"hwxappapi_2015_jw"];
+    
+    
+    NSInteger timeintval = [timestamp integerValue];
+    NSInteger s1 = timeintval % 11;
+    NSInteger s2 = timeintval % 19;
+    NSInteger start = MIN(s1,s2);
+    NSInteger end = MAX(s1,s2);
+    
+    seckey = [self md5:[seckey substringWithRange:NSMakeRange(start,end)]];
+    
+    [data setValue:timestamp forKey:@"time"];
+    [data setValue:seckey forKey:@"seckey"];
+    
+    return data;
+    
+}
 
 +(NSMutableDictionary *) getTokenData:(NSString *) api
 {

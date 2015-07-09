@@ -49,6 +49,8 @@
 +(void) setTopBorder:(UIView *)view color:(UIColor *)color;
 +(void) setBottomBorder:(UIView *)view color:(UIColor *)color;
 
+
++(NSMutableDictionary *) getCommonTokenData;
 +(NSMutableDictionary *) getTokenData:(NSString *) api;
 
 +(NSString *) md5: (NSString *) str;

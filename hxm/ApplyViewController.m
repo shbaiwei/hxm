@@ -339,12 +339,13 @@ NSMutableArray *selectedRegions;
     
     NSString *url =  [api_url stringByAppendingString:@"user/addApply"];
     
-    NSMutableDictionary *postData = [[NSMutableDictionary alloc] init];
+    NSDictionary *postData = [BWCommon getCommonTokenData];
+    
     [postData setValue:self.floristname.text forKey:@"floristname"];
     [postData setValue:self.docnum.text forKey:@"docnum"];
     [postData setValue:[BWCommon getUserInfo:@"username"] forKey:@"user_name"];
     [postData setValue:[BWCommon getUserInfo:@"uid"] forKey:@"uniqueid"];
-    [postData setValue:[BWCommon getUserInfo:@"mobile_1"] forKey:@"mobile"];
+    [postData setValue:[BWCommon getUserInfo:@"mobile"] forKey:@"mobile_1"];
     
     [postData setValue:self.begintime.text forKey:@"begintime"];
     [postData setValue:self.endtime.text forKey:@"endtime"];
@@ -795,8 +796,11 @@ NSMutableArray *selectedRegions;
     
     
     NSString *api_url = @"http://hj.s10.baiwei.org/member/register/upload_img";
+    
+    NSDictionary *postData = [BWCommon getCommonTokenData];
+    [postData setValue:[BWCommon getUserInfo:@"password"] forKey:@"password"];
+    [postData setValue:[BWCommon getUserInfo:@"uid"] forKey:@"uniqueid"];
 
-    NSDictionary *postData = @{@"password":[BWCommon getUserInfo:@"password"],@"uniqueid":[BWCommon getUserInfo:@"uid"]};
     
     
     [AFNetworkTool postUploadWithUrl:api_url fileUrl:fileUrl parameters:postData success:^(id responseObject) {

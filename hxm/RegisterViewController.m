@@ -169,8 +169,13 @@ UITextField *email;
     
     NSString *url =  [api_url stringByAppendingString:@"user/addUser"];
     
-    NSDictionary *postData = @{@"username":usernameValue,@"password":passwordValue,@"repassword":repasswordValue,@"mobile":mobileValue,@"email":emailValue};
-    
+    NSDictionary *postData = [BWCommon getCommonTokenData];
+    [postData setValue:usernameValue forKey:@"username"];
+    [postData setValue:passwordValue forKey:@"password"];
+    [postData setValue:repasswordValue forKey:@"repassword"];
+    [postData setValue:mobileValue forKey:@"mobile"];
+    [postData setValue:emailValue forKey:@"email"];
+   
     
     [AFNetworkTool postJSONWithUrl:url parameters:postData success:^(id responseObject) {
         
